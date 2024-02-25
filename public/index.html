@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Stats</title>
+</head>
+<body>
+    <h1>NBA Player Statistics</h1>
+    <div id="stats"></div>
+    <button onclick="fetchData()">Fetch NBA Stats</button>
+
+    <script>
+        function fetchData() {
+            fetch('/fetch-data') // Send request to fetch data
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('stats').innerText = data; // Display data on the webpage
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+    </script>
+</body>
+</html>
