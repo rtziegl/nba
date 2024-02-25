@@ -4,11 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NBA Stats</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
 </head>
 <body>
     <h1>NBA Player Statistics</h1>
     <div id="stats"></div>
     <button onclick="fetchData()">Fetch NBA Stats</button>
+
+    <h1>NBA Players</h1>
+    <!-- Select2 searchable dropdown -->
+    <select id="playerDropdown" style="width: 300px;"></select>
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include Select2 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <!-- Include your JavaScript file -->
+    <script src="/scripts/dropdown.js"></script>
 
     <script>
         function fetchData() {
