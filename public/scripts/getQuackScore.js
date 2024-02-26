@@ -1,62 +1,57 @@
-function calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount, matchupGamesOverCount, matchupGamesUnderCount, matchupDataNumGames, overUnderSelected ) {
+
+function calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount, matchupGamesOverCount, matchupGamesUnderCount, matchupDataNumGames, overUnderSelected) {
 
     let allGamesCalc = 0.0;
-    let recentGamesCalc = 0.0;
+    let recent12GamesCalc = 0.0;
     let matchupGamesCalc = 0.0;
+    let recent3GamesCalc = 0.0;
     let tallyUpCalc = 0.0;
-    let missingMatchups = 0.08333333333;
-    let amtOfRecentGames = 12;
+    let missingOneMatchup = 0.08333333333;
+    let missingTwoMatchup = 0.16666666666;
+    let amt12RecentGames = 12;
+    let amt3RecentGames = 3;
+    let allGamesPercent = .25;
+    let recent12GamesPercent = .5;
+    let matchupGamesPercent = .15;
+    let recent3GamesPercent = .10;
 
     if (overUnderSelected == 'Over') {
 
         allGamesCalc = allGamesOverCount / gameCount;
-        allGamesCalc *= .25;
+        allGamesCalc *= allGamesPercent;
 
-        recentGamesCalc = recentGamesOverCount / amtOfRecentGames;
-        recentGamesCalc *= .5;
+        recent12GamesCalc = recent12GamesOverCount / amt12RecentGames;
+        recent12GamesCalc *= recent12GamesPercent;
+
+        recent3GamesCalc = recent3GamesOverCount / amt3RecentGames;
+        recent3GamesCalc *= recent3GamesPercent;
 
         matchupGamesCalc = matchupGamesOverCount / matchupDataNumGames;
-        matchupGamesCalc *= .25;
+        matchupGamesCalc *= matchupGamesPercent;
 
-        tallyUpCalc = allGamesCalc + recentGamesCalc + matchupGamesCalc;
 
-        if (matchupDataNumGames == 2){
-            tallyUpCalc -= (tallyUpCalc * missingMatchups);
-        }
-        else if (matchupDataNumGames == 1){
-            tallyUpCalc -= (tallyUpCalc * (missingMatchups * 2));
-        }
-        else if (matchupDataNumGames == 0){
-            tallyUpCalc -= (tallyUpCalc * .25);
-        }
+        tallyUpCalc = allGamesCalc + recent12GamesCalc + matchupGamesCalc +recent3GamesCalc;
 
-        console.log("Tally Up Calc:" , tallyUpCalc)
     }
 
     else if (overUnderSelected == 'Under') {
         allGamesCalc = allGamesUnderCount / gameCount;
-        allGamesCalc *= .25;
+        allGamesCalc *= allGamesPercent;
 
-        recentGamesCalc = recentGamesUnderCount / amtOfRecentGames;
-        recentGamesCalc *= .5;
+        recent12GamesCalc = recent12GamesUnderCount / amt12RecentGames;
+        recent12GamesCalc *= recent12GamesPercent;
+
+        recent3GamesCalc = recent3GamesUnderCount / amt3RecentGames;
+        recent3GamesCalc *= recent3GamesPercent;
 
         matchupGamesCalc = matchupGamesUnderCount / matchupDataNumGames;
-        matchupGamesCalc *= .25;
+        matchupGamesCalc *= matchupGamesPercent;
 
-        tallyUpCalc = allGamesCalc + recentGamesCalc + matchupGamesCalc;
 
-        if (matchupDataNumGames == 2){
-            tallyUpCalc -= (tallyUpCalc * missingMatchups);
-        }
-        else if (matchupDataNumGames == 1){
-            tallyUpCalc -= (tallyUpCalc * (missingMatchups * 2));
-        }
-        else if (matchupDataNumGames == 0){
-            tallyUpCalc -= (tallyUpCalc * .25);
-        }
-
-        console.log("Tally Up Calc:" , tallyUpCalc)
+        tallyUpCalc = allGamesCalc + recent12GamesCalc + matchupGamesCalc +recent3GamesCalc;
     }
+
+    return tallyUpCalc * 10;
 }
 
 
@@ -108,11 +103,13 @@ function countOverUnderOccurrences(gameData, statSelected, propValue) {
     // Convert propValue to number if it's numerical
     const propValueNumber = isNaN(propValue) ? propValue : parseFloat(propValue);
 
-    // Initialize counters for over and under occurrences for all games and recent games
+    // Initialize counters for over and under occurrences for all games, recent games, and the most recent 3 games
     let allGamesOverCount = 0;
     let allGamesUnderCount = 0;
-    let recentGamesOverCount = 0;
-    let recentGamesUnderCount = 0;
+    let recent12GamesOverCount = 0;
+    let recent12GamesUnderCount = 0;
+    let recent3GamesOverCount = 0;
+    let recent3GamesUnderCount = 0;
     let gameCount = 0;
 
     let statMappedToAbrv = mapStatToAbrv(statSelected)
@@ -132,9 +129,18 @@ function countOverUnderOccurrences(gameData, statSelected, propValue) {
         // Count only the first 12 games for recent games
         if (index < 12) {
             if (statValue >= propValueNumber) {
-                recentGamesOverCount++;
+                recent12GamesOverCount++;
             } else if (statValue < propValueNumber) {
-                recentGamesUnderCount++;
+                recent12GamesUnderCount++;
+            }
+        }
+
+        // Count only the most recent 3 games
+        if (index < 3) {
+            if (statValue >= propValueNumber) {
+                recent3GamesOverCount++;
+            } else if (statValue < propValueNumber) {
+                recent3GamesUnderCount++;
             }
         }
 
@@ -144,9 +150,11 @@ function countOverUnderOccurrences(gameData, statSelected, propValue) {
     // Fix missing one game
     gameCount += 1;
 
-    // Return the counts of over and under occurrences for all games and recent games
-    return { gameCount, allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount };
+    console.log(recent3GamesOverCount)
+    // Return the counts of over and under occurrences for all games, recent games, and the most recent 3 games
+    return { gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount };
 }
+
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('myForm').addEventListener('submit', function (event) {
@@ -158,6 +166,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const propValue = document.getElementById('propInput').value.trim();
         const overUnderSelected = document.getElementById('overUnderDropdownButton').innerText.trim();
         const playerId = getPlayerId(playerName); // Function to extract player ID from playerName
+        // Get the element where you want to display the Quack Score
+        const quackScoreDisplay = document.getElementById('quackScoreDisplay');
 
         //Logging form values for testing.
         console.log(playerName)
@@ -206,13 +216,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('Matchup data:', matchupData);
 
                 // All games and recent games
-                const { gameCount, allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount } = countOverUnderOccurrences(allGameData, statSelected, propValue);
+                const { gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount } = countOverUnderOccurrences(allGameData, statSelected, propValue);
 
                 // Matchups
                 const { matchupGamesOverCount, matchupGamesUnderCount } = countMatchupOverUnderOccurrences(matchupData, statSelected, propValue);
 
-
-                calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount, matchupGamesOverCount, matchupGamesUnderCount, matchupData.num_games, overUnderSelected)
+                console.log(recent3GamesOverCount)
+                const tallyUpCalc = calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount, matchupGamesOverCount, matchupGamesUnderCount, matchupData.num_games, overUnderSelected)
+                // Update the content of the element with the Quack Score
+                quackScoreDisplay.textContent = `Quack Score: ${tallyUpCalc.toFixed(4)}`;
             })
             .catch(error => {
                 console.error('Error processing data:', error);
