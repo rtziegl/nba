@@ -48,6 +48,17 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => {
                 console.error('Error:', error);
             });
+        
+        // Make a GET request to your Express.js server
+        fetch(`/fetch-player-game-data-against-next-team/${playerId}`)
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response data
+                console.log('Response from server:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
 
         // Reset the form fields if needed
         document.getElementById('myForm').reset();

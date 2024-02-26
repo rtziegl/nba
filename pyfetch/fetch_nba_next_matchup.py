@@ -1,3 +1,5 @@
+import json
+import sys
 from nba_api.stats.endpoints import PlayerNextNGames, PlayerGameLog, CommonPlayerInfo
 from nba_api.stats.library.parameters import SeasonAll
 
@@ -17,7 +19,6 @@ def get_recent_games_stats(player_id, opponent_team_abbr):
     except Exception as e:
         print(f"Error retrieving recent games stats: {e}")
         return None, 0
-
 
 def get_opponent_team(player_team_abbr):
     try:
@@ -45,7 +46,6 @@ def get_opponent_team(player_team_abbr):
         print(f"Error retrieving opponent team: {e}")
         return None
 
-
 def get_player_team_abbreviation(player_id):
     try:
         # Retrieve player information
@@ -59,29 +59,43 @@ def get_player_team_abbreviation(player_id):
         print(f"Error retrieving player team abbreviation: {e}")
         return None
 
-
-# Example usage:
-player_id = 201939  # Example player ID (Stephen Curry)
-
-# Get the player's team abbreviation
-player_team_abbreviation = get_player_team_abbreviation(player_id)
-if player_team_abbreviation:
-    print("Player's Team Abbreviation:", player_team_abbreviation)
-    
-    # Get the opponent team abbreviation
-    opponent_team_abbreviation = get_opponent_team(player_team_abbreviation)
-    if opponent_team_abbreviation:
-        print("Opponent Team Abbreviation:", opponent_team_abbreviation)
-        
-        # Retrieve recent games stats
-        opponent_games, num_games = get_recent_games_stats(player_id, opponent_team_abbreviation)
-        if opponent_games is not None:
-            print("Recent Games Against Opponent Team:")
-            print(opponent_games)
-            print(f"Number of Games Played Against {opponent_team_abbreviation}: {num_games}")
-        else:
-            print("Error retrieving recent games stats.")
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python fetch_nba_player_game_data.py <player_id>")
     else:
-        print("Error retrieving opponent team abbreviation.")
-else:
-    print("Error retrieving player team abbreviation.")
+        player_id = sys.argv[1]
+        # Get the player's team abbreviation
+        player_team_abbreviation = get_player_team_abbreviation(player_id)
+        if player_team_abbreviation:
+            # print("Player's Team Abbreviation:", player_team_abbreviation)
+            
+            # Get the opponent team abbreviation
+            opponent_team_abbreviation = get_opponent_team(player_team_abbreviation)
+            if opponent_team_abbreviation:
+                # print("Opponent Team Abbreviation:", opponent_team_abbreviation)
+                
+                # Retrieve recent games stats
+                opponent_games, num_games = get_recent_games_stats(player_id, opponent_team_abbreviation)
+                if opponent_games is not None:
+                    
+                    # Prepare data dictionary for JSON conversion
+                    data_dict = {
+                        'recent_matchups': opponent_games.to_dict(orient='records'),
+                        'num_games': num_games
+                    }
+                    # Convert the dictionary to JSON format
+                    json_data = json.dumps(data_dict)
+                    # Print the JSON data (to be captured by Node.js)
+                    print(json_data)
+                else:
+                    # Prepare data dictionary for JSON conversion if no matchups yet (espeecially for start of new season)
+                    data_dict = {
+                        'recent_matchups': None,
+                        'num_games': num_games
+                    }
+                    # Convert the dictionary to JSON format
+                    json_data = json.dumps(data_dict)
+            else:
+                print("Error retrieving opponent team abbreviation.")
+        else:
+            print("Error retrieving player team abbreviation.")
