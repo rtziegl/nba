@@ -1,67 +1,156 @@
-// document.addEventListener('DOMContentLoaded', function() {
-//     document.getElementById('myForm').addEventListener('submit', function(event) {
-//         event.preventDefault(); // Prevent the default form submission behavior
 
-//         // Get the selected values from the form
-//         const playerName = document.getElementById('searchInput').value.trim();
-//         const propValue = document.getElementById('propInput').value.trim();
-//         const selectedStat = document.getElementById('statDropdownButton').textContent.trim(); // Get text content of the dropdown button
-//         const selectedOverUnder = document.getElementById('overUnderDropdownButton').textContent.trim(); // Get text content of the dropdown button
+// Json data has abreviated datapoints
+function mapStatToAbrv(statSelected) {
+    switch (statSelected) {
+        case 'Points':
+            return 'PTS';
+        case 'Assists':
+            return 'AST';
+        case 'Rebounds':
+            return 'REB';
+        default:
+            return null; // Return null for unsupported stats
+    }
+}
 
-//         // Perform form submission actions
-//         handleFormSubmission(playerName, selectedStat, propValue, selectedOverUnder);
+function countOverUnderOccurrences(gameData, statSelected, propValue) {
+    // Convert propValue to number if it's numerical
+    const propValueNumber = isNaN(propValue) ? propValue : parseFloat(propValue);
 
-//         // Reset the form fields if needed
-//         document.getElementById('myForm').reset();
-//     });
-// });
+    // Initialize counters for over and under occurrences for all games and recent games
+    let allGamesOverCount = 0;
+    let allGamesUnderCount = 0;
+    let recentGamesOverCount = 0;
+    let recentGamesUnderCount = 0;
 
-// // Function to handle form submission
-// function handleFormSubmission(playerName, selectedStat, propValue, selectedOverUnder) {
-//     // Extract player ID from playerName
-//     const playerNameParts = playerName.split('#');
-//     const playerId = playerNameParts.length > 1 ? playerNameParts[1].trim() : null;
+    let statMappedToAbrv = mapStatToAbrv(statSelected)
 
-//     // Perform actions based on the form data
-//     console.log('Player Name:', playerNameParts[0].trim()); // Log player name without ID
-//     console.log('Player ID:', playerId); // Log player ID
-//     console.log('Selected Stat:', selectedStat);
-//     console.log('Prop Value:', propValue);
-//     console.log('Over/Under:', selectedOverUnder);
+    // Iterate through the game data
+    gameData.forEach((game, index) => {
+        // Get the value of the selected stat for the current game
+        const statValue = game[statMappedToAbrv];
+
+        console.log(statValue)
+
+        // Determine if the stat value is over or under the propValue for all games
+        if (statValue >= propValueNumber) {
+            allGamesOverCount++;
+        } else if (statValue < propValueNumber) {
+            allGamesUnderCount++;
+        }
+
+        // Count only the first 12 games for recent games
+        if (index < 12) {
+            if (statValue >= propValueNumber) {
+                recentGamesOverCount++;
+            } else if (statValue < propValueNumber) {
+                recentGamesUnderCount++;
+            }
+        }
+    });
+
+    // Return the counts of over and under occurrences for all games and recent games
+    return { allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount };
+}
+
+
+
+// function handleOverSelection(gameData, statSelected, propValue) {
+//     const { allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount  } = countOverUnderOccurrences(gameData, statSelected, propValue);
+//     console.log('allGamesOverCount:', allGamesOverCount);
+//     console.log('allGamesUnderCount:', allGamesUnderCount);
+//     console.log('allGamesOverCount:', recentGamesOverCount);
+//     console.log('allGamesUnderCount:', recentGamesUnderCount);
+//     // Call any other function or perform further processing specific to the "Over" selection
 // }
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('myForm').addEventListener('submit', function(event) {
+// function handleUnderSelection(gameData, statSelected, propValue) {
+//     const { allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount } = countOverUnderOccurrences(gameData, statSelected, propValue, 'Under');
+//     console.log('allGamesOverCount:', allGamesOverCount);
+//     console.log('allGamesUnderCount:', allGamesUnderCount);
+//     console.log('allGamesOverCount:', recentGamesOverCount);
+//     console.log('allGamesUnderCount:', recentGamesUnderCount);
+//     // Call any other function or perform further processing specific to the "Under" selection
+// }
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('myForm').addEventListener('submit', function (event) {
         event.preventDefault(); // Prevent the default form submission behavior
 
         // Get the selected values from the form
         const playerName = document.getElementById('searchInput').value.trim();
+        const statSelected = document.getElementById('statDropdownButton').innerText.trim();
+        const propValue = document.getElementById('propInput').value.trim();
+        const overUnderSelected = document.getElementById('overUnderDropdownButton').innerText.trim();
         const playerId = getPlayerId(playerName); // Function to extract player ID from playerName
 
-        // Make a GET request to your Express.js server
-        fetch(`/fetch-player-game-data/${playerId}`)
+        //Logging form values for testing.
+        console.log(playerName)
+        console.log(statSelected)
+        console.log(propValue)
+        console.log(overUnderSelected)
+
+        // Create an array to store promises for each fetch request
+        const fetchPromises = [];
+
+        // Make a GET request to your Express.js server for all game stats
+        const fetchAllGameData = fetch(`/fetch-player-game-data/${playerId}`)
             .then(response => response.json())
             .then(data => {
                 // Handle the response data
-                console.log('Response from server:', data);
+                console.log('Player Game Data:', data);
+
+                // Return the data for further processing
+                return data;
             })
             .catch(error => {
-                console.error('Error:', error);
-            });
-        
-        // Make a GET request to your Express.js server
-        fetch(`/fetch-player-game-data-against-next-team/${playerId}`)
-            .then(response => response.json())
-            .then(data => {
-                // Handle the response data
-                console.log('Response from server:', data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
+                console.error('Error fetching player game data:', error);
+                throw error; // Propagate the error for Promise.all()
             });
 
-        // Reset the form fields if needed
+        // Push the fetch promise to the array
+        fetchPromises.push(fetchAllGameData);
+
+        // Make a GET request to your Express.js server for matchups
+        const fetchMatchupData = fetch(`/fetch-player-game-data-against-next-team/${playerId}`)
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response data
+                console.log('Player Matchup Data:', data);
+
+                // Return the data for further processing
+                return data;
+            })
+            .catch(error => {
+                console.error('Error fetching player matchup data:', error);
+                throw error; // Propagate the error for Promise.all()
+            });
+
+        // Push the fetch promise to the array
+        fetchPromises.push(fetchMatchupData);
+
+        // Use Promise.all() to wait for all fetch requests to complete
+        Promise.all(fetchPromises)
+            .then(([allGameData, matchupData]) => {
+                // Process the combined data from all fetch requests
+                console.log('All game data:', allGameData);
+                console.log('Matchup data:', matchupData);
+
+                // Now you can combine and process the data as needed
+                const { allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount } = countOverUnderOccurrences(allGameData, statSelected, propValue);
+                
+                // Pass the necessary data to generateQuackScore
+                // generateQuackScore(allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount);
+            })
+            .catch(error => {
+                console.error('Error processing data:', error);
+            });
+
+        // Reset the form fields
         document.getElementById('myForm').reset();
+        document.getElementById('statDropdownButton').textContent = 'Select a Stat';
+        document.getElementById('overUnderDropdownButton').textContent = 'Over/Under';
     });
 });
 

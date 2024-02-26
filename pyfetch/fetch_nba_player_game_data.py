@@ -9,7 +9,7 @@ import pandas as pd  # Import pandas library
 def fetch_player_game_data(player_id):
     try:
         # Retrieve player game logs for the entire season
-        gamelog = playergamelog.PlayerGameLog(player_id=player_id, season=SeasonAll.all)
+        gamelog = playergamelog.PlayerGameLog(player_id=player_id, season=SeasonAll.current_season)
         player_stats = gamelog.get_data_frames()[0]
 
         # Convert the 'GAME_DATE' column to datetime
@@ -19,10 +19,10 @@ def fetch_player_game_data(player_id):
         player_stats = player_stats.sort_values(by='GAME_DATE', ascending=False)
 
         # Select the first 12 games (most recent)
-        player_stats_recent = player_stats.head(12)
+        # player_stats_recent = player_stats.head(12)
 
         # Convert the selected data to JSON format
-        json_data = player_stats_recent.to_json(orient='records')
+        json_data = player_stats.to_json(orient='records')
 
         # Print the JSON data to be captured by Node.js
         print(json_data)
