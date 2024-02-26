@@ -11,6 +11,15 @@ body{
     color: #fff; /* Text color */
 }
 
-.dropdown-menu li:hover {
-    background-color: #495057; /* Hover background color */
+.dropdown-menu.bg-dark .dropdown-item:hover {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
 }
+
+.dropdown-menu.bg-dark .dropdown-item {
+    color: white; /* Text color */
+}
+
+.dropdown-menu.bg-dark .dropdown-item:hover {
+    background-color: rgba(0, 0, 0, 0.2); /* Adjust opacity as needed */
+}
+

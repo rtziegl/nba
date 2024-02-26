@@ -9,87 +9,89 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        /* Additional CSS styles can be added here */
+    </style>
 </head>
 
 <body>
-    <!-- <h1>NBA Player Statistics</h1>
-    <div id="stats"></div>
-    <button onclick="fetchData()">Fetch NBA Stats</button> -->
-
-
-
-    <form id="myForm">
-
-        <!-- Search a player custom searchable dropdown -->
-        <div class="container mt-3">
-            <h3 class="text-white">Search a Player</h3>
-            <div class="dropdown">
-                <input type="text" class="form-control form-select-lg dropdown-toggle bg-dark text-white"
-                    id="searchInput" data-bs-toggle="dropdown" aria-expanded="false" placeholder="Search">
-                <ul class="dropdown-menu bg-dark" aria-labelledby="searchInput" id="searchResults">
-                    <!-- Search results will be displayed here -->
-                </ul>
-            </div>
-        </div>
-
-        <div class="container mt-3">
-            <h3 class="text-white">Select a Stat</h3>
-            <div class="dropdown">
-                <button class="btn btn-dark dropdown-toggle" type="button" id="statDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    Select a Stat
-                </button>
-                <ul class="dropdown-menu bg-dark" aria-labelledby="statDropdownButton">
-                    <li><a class="dropdown-item text-white" href="#" data-value="Points">Points</a></li>
-                    <li><a class="dropdown-item text-white" href="#" data-value="Rebounds">Rebounds</a></li>
-                    <li><a class="dropdown-item text-white" href="#" data-value="Assists">Assists</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <!-- Enter a value into the textbox for the stat -->
-        <div class="container mt-3">
-            <h3 class="text-white">Enter a Prop</h3>
-            <div class="mb-3">
-                <input type="text" id="propInput" class="form-control bg-dark text-white" name="propInput">
-            </div>
-        </div>
-        
-        <!-- Over or under for the prop -->
-        <div class="container mt-3">
-            <h3 class="text-white">Over/Under</h3>
-            <div class="dropdown">
-                <button class="btn btn-dark dropdown-toggle" type="button" id="overUnderDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    Over/Under
-                </button>
-                <ul class="dropdown-menu bg-dark" aria-labelledby="overUnderDropdownButton">
-                    <li><a class="dropdown-item text-white" href="#" data-value="Over">Over</a></li>
-                    <li><a class="dropdown-item text-white" href="#" data-value="Under">Under</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="container mt-5">
-            <button type="submit" id="submitButton" class="btn btn-lg btn-dark">Generate Quack Score</button>
-        </div>
-
-
-    </form>
-
     <div class="container mt-5">
-        <div id="quackScoreDisplay" class="text-white display-6"></div>
+        <div class="card bg-dark text-white">
+            <div class="card-body">
+                <h2 class="card-title">NBA Player Statistics</h2>
+                <form id="myForm">
+    
+                    <!-- Search a player custom searchable dropdown -->
+                    <div class="mb-3">
+                        <label for="searchInput" class="form-label text-white">Search a Player</label>
+                        <div class="dropdown">
+                            <input type="text" class="form-control form-select-lg dropdown-toggle bg-dark text-white"
+                                id="searchInput" data-bs-toggle="dropdown" aria-expanded="false" placeholder="Search">
+                            <ul class="dropdown-menu bg-dark" aria-labelledby="searchInput" id="searchResults">
+                                <!-- Search results will be displayed here -->
+                            </ul>
+                        </div>
+                    </div>
+    
+                    <div class="row mb-3">
+                        <div class="col-auto">
+                            <div class="dropdown">
+                                <button class="btn btn-dark dropdown-toggle" type="button" id="statDropdownButton" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Select a Stat
+                                </button>
+                                <ul class="dropdown-menu bg-dark" aria-labelledby="statDropdownButton">
+                                    <li><a class="dropdown-item text-white" href="#" data-value="Points">Points</a></li>
+                                    <li><a class="dropdown-item text-white" href="#" data-value="Rebounds">Rebounds</a></li>
+                                    <li><a class="dropdown-item text-white" href="#" data-value="Assists">Assists</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="propInput" class="form-label text-white">Enter a Prop</label>
+                            <input type="text" id="propInput" class="form-control bg-dark text-white" name="propInput">
+                        </div>
+                    </div>
+    
+                    <!-- Over or under for the prop -->
+                    <div class="mb-3">
+                        <div class="dropdown">
+                            <button class="btn btn-dark dropdown-toggle" type="button" id="overUnderDropdownButton" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Over/Under
+                            </button>
+                            <ul class="dropdown-menu bg-dark" aria-labelledby="overUnderDropdownButton">
+                                <li><a class="dropdown-item text-white" href="#" data-value="Over">Over</a></li>
+                                <li><a class="dropdown-item text-white" href="#" data-value="Under">Under</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" id="submitButton" class="btn btn-lg btn-dark">Generate Quack Score</button>
+    
+                </form>
+            </div>
+        </div>
     </div>
-
-
+    
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Quack Score</h2>
+                <div id="quackScoreDisplay" class="text-white display-6"></div>
+            </div>
+        </div>
+    </div>
+    
+    
 
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Include Select2 JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-
     <!-- Include your JavaScript file -->
     <script src="scripts/customSearchableDropdown.js"></script>
     <script src="scripts/dropdowns.js"></script>

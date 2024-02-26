@@ -6,8 +6,6 @@ function calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, r
     let matchupGamesCalc = 0.0;
     let recent3GamesCalc = 0.0;
     let tallyUpCalc = 0.0;
-    let missingOneMatchup = 0.08333333333;
-    let missingTwoMatchup = 0.16666666666;
     let amt12RecentGames = 12;
     let amt3RecentGames = 3;
     let allGamesPercent = .25;
@@ -20,17 +18,26 @@ function calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, r
         allGamesCalc = allGamesOverCount / gameCount;
         allGamesCalc *= allGamesPercent;
 
+        console.log("huntint allgamescalc", allGamesCalc)
+
         recent12GamesCalc = recent12GamesOverCount / amt12RecentGames;
         recent12GamesCalc *= recent12GamesPercent;
+
+        console.log("huntint recent12", recent12GamesCalc)
 
         recent3GamesCalc = recent3GamesOverCount / amt3RecentGames;
         recent3GamesCalc *= recent3GamesPercent;
 
-        matchupGamesCalc = matchupGamesOverCount / matchupDataNumGames;
+        console.log("huntint recent3", recent3GamesCalc)
+
+        matchupGamesCalc = matchupGamesOverCount / matchupDataNumGames; //DIVIDE BY 0 = NAN
         matchupGamesCalc *= matchupGamesPercent;
 
+        console.log("huntint matchup", matchupGamesCalc)
 
         tallyUpCalc = allGamesCalc + recent12GamesCalc + matchupGamesCalc +recent3GamesCalc;
+
+        console.log("huntint nan", tallyUpCalc)
 
     }
 
@@ -220,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Matchups
                 const { matchupGamesOverCount, matchupGamesUnderCount } = countMatchupOverUnderOccurrences(matchupData, statSelected, propValue);
-
+                console.log("hunting NAN", matchupGamesOverCount)
                 console.log(recent3GamesOverCount)
                 const tallyUpCalc = calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount, matchupGamesOverCount, matchupGamesUnderCount, matchupData.num_games, overUnderSelected)
                 // Update the content of the element with the Quack Score
