@@ -1,3 +1,65 @@
+function calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount, matchupGamesOverCount, matchupGamesUnderCount, matchupDataNumGames, overUnderSelected ) {
+
+    let allGamesCalc = 0.0;
+    let recentGamesCalc = 0.0;
+    let matchupGamesCalc = 0.0;
+    let tallyUpCalc = 0.0;
+    let missingMatchups = 0.08333333333;
+    let amtOfRecentGames = 12;
+
+    if (overUnderSelected == 'Over') {
+
+        allGamesCalc = allGamesOverCount / gameCount;
+        allGamesCalc *= .25;
+
+        recentGamesCalc = recentGamesOverCount / amtOfRecentGames;
+        recentGamesCalc *= .5;
+
+        matchupGamesCalc = matchupGamesOverCount / matchupDataNumGames;
+        matchupGamesCalc *= .25;
+
+        tallyUpCalc = allGamesCalc + recentGamesCalc + matchupGamesCalc;
+
+        if (matchupDataNumGames == 2){
+            tallyUpCalc -= (tallyUpCalc * missingMatchups);
+        }
+        else if (matchupDataNumGames == 1){
+            tallyUpCalc -= (tallyUpCalc * (missingMatchups * 2));
+        }
+        else if (matchupDataNumGames == 0){
+            tallyUpCalc -= (tallyUpCalc * .25);
+        }
+
+        console.log("Tally Up Calc:" , tallyUpCalc)
+    }
+
+    else if (overUnderSelected == 'Under') {
+        allGamesCalc = allGamesUnderCount / gameCount;
+        allGamesCalc *= .25;
+
+        recentGamesCalc = recentGamesUnderCount / amtOfRecentGames;
+        recentGamesCalc *= .5;
+
+        matchupGamesCalc = matchupGamesUnderCount / matchupDataNumGames;
+        matchupGamesCalc *= .25;
+
+        tallyUpCalc = allGamesCalc + recentGamesCalc + matchupGamesCalc;
+
+        if (matchupDataNumGames == 2){
+            tallyUpCalc -= (tallyUpCalc * missingMatchups);
+        }
+        else if (matchupDataNumGames == 1){
+            tallyUpCalc -= (tallyUpCalc * (missingMatchups * 2));
+        }
+        else if (matchupDataNumGames == 0){
+            tallyUpCalc -= (tallyUpCalc * .25);
+        }
+
+        console.log("Tally Up Calc:" , tallyUpCalc)
+    }
+}
+
+
 // Json data has abreviated datapoints
 function mapStatToAbrv(statSelected) {
     switch (statSelected) {
@@ -20,20 +82,24 @@ function countMatchupOverUnderOccurrences(matchupData, statSelected, propValue) 
     let matchupGamesUnderCount = 0;
 
     let statMappedToAbrv = mapStatToAbrv(statSelected)
-    console.log(matchupData.recent_matchups)
 
-    matchupData = matchupData.recent_matchups;
-    // Iterate through the game data
-    matchupData.forEach((game) => {
-        // Get the value of the selected stat for the current game
-        const statValue = game[statMappedToAbrv];
-        // Determine if the stat value is over or under the propValue for all games
-        if (statValue >= propValueNumber) {
-            matchupGamesOverCount++;
-        } else if (statValue < propValueNumber) {
-            matchupGamesUnderCount++;
-        }
-    });
+    // Don't want to run loop on 0 matchup games
+    if (matchupData.num_games != 0) {
+        console.log(matchupData.recent_matchups)
+
+        matchupData = matchupData.recent_matchups;
+        // Iterate through the game data
+        matchupData.forEach((game) => {
+            // Get the value of the selected stat for the current game
+            const statValue = game[statMappedToAbrv];
+            // Determine if the stat value is over or under the propValue for all games
+            if (statValue >= propValueNumber) {
+                matchupGamesOverCount++;
+            } else if (statValue < propValueNumber) {
+                matchupGamesUnderCount++;
+            }
+        });
+    }
 
     return { matchupGamesOverCount, matchupGamesUnderCount };
 }
@@ -139,19 +205,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('All game data:', allGameData);
                 console.log('Matchup data:', matchupData);
 
-                // Now you can combine and process the data as needed
+                // All games and recent games
                 const { gameCount, allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount } = countOverUnderOccurrences(allGameData, statSelected, propValue);
-                // Dont want to call a loop if theres no games to search through.
-                if (matchupData.num_games !=0) {
-                    const { matchupGamesOverCount, matchupGamesUnderCount } = countMatchupOverUnderOccurrences(matchupData, statSelected, propValue);
-                }
-                
-                if (overUnderSelected == 'Over'){
 
-                }
-                else if (overUnderSelected == 'Under'){
+                // Matchups
+                const { matchupGamesOverCount, matchupGamesUnderCount } = countMatchupOverUnderOccurrences(matchupData, statSelected, propValue);
 
-                }
+
+                calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount, matchupGamesOverCount, matchupGamesUnderCount, matchupData.num_games, overUnderSelected)
             })
             .catch(error => {
                 console.error('Error processing data:', error);
