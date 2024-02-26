@@ -1,24 +1,6 @@
-// // Fetch data from the Express.js endpoint
-// fetch('/fetch-players-names-id')
-//     .then(response => response.json())
-//     .then(data => {
-//         // Get the dropdown element
-//         const playerDropdown = $('#searchResults');
+// Define searchData as a global variable
+let searchData = []; // Initialize as an empty array to avoid 'undefined' errors
 
-//         // Populate the dropdown with player names and IDs
-//         data.forEach(player => {
-//             playerDropdown.append($('<option>', {
-//                 value: player.id,
-//                 text: player.full_name
-//             }));
-//         });
-
-//         // // Initialize the Select2 plugin on the dropdown
-//         // playerDropdown.select2();
-//     })
-//     .catch(error => console.error('Error fetching player data:', error));
-
-// Function to populate dropdown with search results
 function populateDropdown(searchData) {
     const searchResults = document.getElementById('searchResults');
     searchResults.innerHTML = ''; // Clear previous results
@@ -27,19 +9,50 @@ function populateDropdown(searchData) {
         resultItem.classList.add('dropdown-item');
         resultItem.textContent = item.full_name;
         resultItem.setAttribute('data-id', item.id); // Set data attribute for player ID
+        resultItem.addEventListener('click', function () {
+            // Set the selected value in the search input
+            document.getElementById('searchInput').value = item.full_name;
+            // Close the dropdown
+            document.getElementById('searchResults').classList.remove('show');
+        });
         searchResults.appendChild(resultItem);
     });
 }
 
+// Function to filter search results based on input value
+function filterResults(inputValue) {
+    const filteredData = searchData.filter(item => {
+        const fullName = item.full_name.toLowerCase();
+        return fullName.includes(inputValue.toLowerCase());
+    });
+    populateDropdown(filteredData);
+}
+
 // Event listener for click event in search input
 document.getElementById('searchInput').addEventListener('click', function () {
-    // Fetch player data from the Express.js endpoint
-    fetch('/fetch-players-names-id')
-        .then(response => response.json())
-        .then(data => {
-            populateDropdown(data); // Populate dropdown with player data
-            // Open the dropdown programmatically
-            document.getElementById('searchInput').classList.add('show');
-        })
-        .catch(error => console.error('Error fetching player data:', error));
+    // Open the dropdown programmatically
+    document.getElementById('searchResults').classList.add('show');
 });
+
+// Event listener for input event in search input
+document.getElementById('searchInput').addEventListener('input', function () {
+    const inputValue = this.value.trim(); // Get the trimmed input value
+    filterResults(inputValue); // Filter search results based on input value
+});
+
+// Event listener for click event in the document body to close dropdown
+document.body.addEventListener('click', function (event) {
+    if (!event.target.closest('#searchResults') && event.target !== document.getElementById('searchInput')) {
+        // Close the dropdown if the click is outside the search input and search results
+        document.getElementById('searchResults').classList.remove('show');
+    }
+});
+
+// Fetch player data from the Express.js endpoint and populate dropdown
+fetch('/fetch-players-names-id')
+    .then(response => response.json())
+    .then(data => {
+        searchData = data; // Assign fetched data to searchData variable
+        populateDropdown(searchData); // Populate dropdown with player data
+    })
+    .catch(error => console.error('Error fetching player data:', error));
