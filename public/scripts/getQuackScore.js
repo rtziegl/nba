@@ -38,8 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const playerName = document.getElementById('searchInput').value.trim();
         const playerId = getPlayerId(playerName); // Function to extract player ID from playerName
 
-        console.log(playerId);
-
         // Make a GET request to your Express.js server
         fetch(`/fetch-player-game-data/${playerId}`)
             .then(response => response.json())
