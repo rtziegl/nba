@@ -1,0 +1,16 @@
+body{
+    background-color: black;
+}
+
+/* Custom styles for the dropdown menu */
+.dropdown-menu {
+    background-color: #343a40; /* Dark background color */
+}
+
+.dropdown-menu li {
+    color: #fff; /* Text color */
+}
+
+.dropdown-menu li:hover {
+    background-color: #495057; /* Hover background color */
+}
