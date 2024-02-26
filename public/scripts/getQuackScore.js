@@ -1,4 +1,3 @@
-
 // Json data has abreviated datapoints
 function mapStatToAbrv(statSelected) {
     switch (statSelected) {
@@ -13,6 +12,32 @@ function mapStatToAbrv(statSelected) {
     }
 }
 
+function countMatchupOverUnderOccurrences(matchupData, statSelected, propValue) {
+    const propValueNumber = isNaN(propValue) ? propValue : parseFloat(propValue);
+
+    // Initialize counters for over and under occurrences for all games and recent games
+    let matchupGamesOverCount = 0;
+    let matchupGamesUnderCount = 0;
+
+    let statMappedToAbrv = mapStatToAbrv(statSelected)
+    console.log(matchupData.recent_matchups)
+
+    matchupData = matchupData.recent_matchups;
+    // Iterate through the game data
+    matchupData.forEach((game) => {
+        // Get the value of the selected stat for the current game
+        const statValue = game[statMappedToAbrv];
+        // Determine if the stat value is over or under the propValue for all games
+        if (statValue >= propValueNumber) {
+            matchupGamesOverCount++;
+        } else if (statValue < propValueNumber) {
+            matchupGamesUnderCount++;
+        }
+    });
+
+    return { matchupGamesOverCount, matchupGamesUnderCount };
+}
+
 function countOverUnderOccurrences(gameData, statSelected, propValue) {
     // Convert propValue to number if it's numerical
     const propValueNumber = isNaN(propValue) ? propValue : parseFloat(propValue);
@@ -22,6 +47,7 @@ function countOverUnderOccurrences(gameData, statSelected, propValue) {
     let allGamesUnderCount = 0;
     let recentGamesOverCount = 0;
     let recentGamesUnderCount = 0;
+    let gameCount = 0;
 
     let statMappedToAbrv = mapStatToAbrv(statSelected)
 
@@ -29,8 +55,6 @@ function countOverUnderOccurrences(gameData, statSelected, propValue) {
     gameData.forEach((game, index) => {
         // Get the value of the selected stat for the current game
         const statValue = game[statMappedToAbrv];
-
-        console.log(statValue)
 
         // Determine if the stat value is over or under the propValue for all games
         if (statValue >= propValueNumber) {
@@ -47,32 +71,16 @@ function countOverUnderOccurrences(gameData, statSelected, propValue) {
                 recentGamesUnderCount++;
             }
         }
+
+        gameCount = index;
     });
 
+    // Fix missing one game
+    gameCount += 1;
+
     // Return the counts of over and under occurrences for all games and recent games
-    return { allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount };
+    return { gameCount, allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount };
 }
-
-
-
-// function handleOverSelection(gameData, statSelected, propValue) {
-//     const { allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount  } = countOverUnderOccurrences(gameData, statSelected, propValue);
-//     console.log('allGamesOverCount:', allGamesOverCount);
-//     console.log('allGamesUnderCount:', allGamesUnderCount);
-//     console.log('allGamesOverCount:', recentGamesOverCount);
-//     console.log('allGamesUnderCount:', recentGamesUnderCount);
-//     // Call any other function or perform further processing specific to the "Over" selection
-// }
-
-// function handleUnderSelection(gameData, statSelected, propValue) {
-//     const { allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount } = countOverUnderOccurrences(gameData, statSelected, propValue, 'Under');
-//     console.log('allGamesOverCount:', allGamesOverCount);
-//     console.log('allGamesUnderCount:', allGamesUnderCount);
-//     console.log('allGamesOverCount:', recentGamesOverCount);
-//     console.log('allGamesUnderCount:', recentGamesUnderCount);
-//     // Call any other function or perform further processing specific to the "Under" selection
-// }
-
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('myForm').addEventListener('submit', function (event) {
@@ -98,9 +106,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const fetchAllGameData = fetch(`/fetch-player-game-data/${playerId}`)
             .then(response => response.json())
             .then(data => {
-                // Handle the response data
-                console.log('Player Game Data:', data);
-
                 // Return the data for further processing
                 return data;
             })
@@ -116,9 +121,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const fetchMatchupData = fetch(`/fetch-player-game-data-against-next-team/${playerId}`)
             .then(response => response.json())
             .then(data => {
-                // Handle the response data
-                console.log('Player Matchup Data:', data);
-
                 // Return the data for further processing
                 return data;
             })
@@ -138,10 +140,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('Matchup data:', matchupData);
 
                 // Now you can combine and process the data as needed
-                const { allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount } = countOverUnderOccurrences(allGameData, statSelected, propValue);
+                const { gameCount, allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount } = countOverUnderOccurrences(allGameData, statSelected, propValue);
+                // Dont want to call a loop if theres no games to search through.
+                if (matchupData.num_games !=0) {
+                    const { matchupGamesOverCount, matchupGamesUnderCount } = countMatchupOverUnderOccurrences(matchupData, statSelected, propValue);
+                }
                 
-                // Pass the necessary data to generateQuackScore
-                // generateQuackScore(allGamesOverCount, allGamesUnderCount, recentGamesOverCount, recentGamesUnderCount);
+                if (overUnderSelected == 'Over'){
+
+                }
+                else if (overUnderSelected == 'Under'){
+
+                }
             })
             .catch(error => {
                 console.error('Error processing data:', error);
