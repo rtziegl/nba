@@ -62,5 +62,21 @@ fetch('/fetch-players-names-id')
     .then(data => {
         searchData = data; // Assign fetched data to searchData variable
         populateDropdown(searchData); // Populate dropdown with player data
+        setDropdownWidth();
     })
     .catch(error => console.error('Error fetching player data:', error));
+
+    // Function to set the maximum width of the dropdown
+function setDropdownWidth() {
+    const searchInputWidth = document.getElementById('searchInput').offsetWidth;
+    const searchResults = document.getElementById('searchResults');
+    searchResults.style.width = `${searchInputWidth}px`;
+}
+
+// Event listener for input event in search input
+document.getElementById('searchInput').addEventListener('input', function () {
+    const inputValue = this.value.trim(); // Get the trimmed input value
+    filterResults(inputValue); // Filter search results based on input value
+    setDropdownWidth(); // Set the maximum width of the dropdown
+});
+

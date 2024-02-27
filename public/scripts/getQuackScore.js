@@ -42,6 +42,8 @@ function calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, r
             matchupGamesCalc *= matchupGamesPercent;
         }
 
+        console.log("matchupgamescalc: " + matchupGamesCalc + "num games: " + matchupDataNumGames)
+
         console.log("huntint matchup", matchupGamesCalc)
 
         tallyUpCalc = allGamesCalc + recent12GamesCalc + matchupGamesCalc + recent3GamesCalc;

@@ -53,6 +53,13 @@ body {
     /* Adjust the height as needed */
     overflow-y: auto;
     /* Enable vertical scrolling */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds max-height */
+    border-radius: 4px; /* Add some border radius for aesthetics */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a slight shadow for depth */
+    background-color: #fff; /* Set a background color */
+    position: absolute; /* Position the dropdown absolutely */
+    z-index: 1000; /* Ensure the dropdown is above other content */
+   
 }
 
 /* Scrollbar Track */
