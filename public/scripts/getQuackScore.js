@@ -38,7 +38,7 @@ function calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, r
 
         }
         else {
-            matchupGamesCalc = matchupGamesOverCount / matchupDataNumGames; 
+            matchupGamesCalc = matchupGamesOverCount / matchupDataNumGames;
             matchupGamesCalc *= matchupGamesPercent;
         }
 
@@ -74,7 +74,7 @@ function calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, r
 
         }
         else {
-            matchupGamesCalc = matchupGamesUnderCount / matchupDataNumGames; 
+            matchupGamesCalc = matchupGamesUnderCount / matchupDataNumGames;
             matchupGamesCalc *= matchupGamesPercent;
         }
 
@@ -98,7 +98,7 @@ function mapStatToAbrv(statSelected) {
             return 'AST';
         case 'Rebounds':
             return 'REB';
-        case '3s':
+        case '3 Pointers':
             return 'FG3M'
         default:
             return null; // Return null for unsupported stats
@@ -207,6 +207,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const playerId = getPlayerId(playerName); // Function to extract player ID from playerName
         // Get the element where you want to display the Quack Score
         const quackScoreDisplay = document.getElementById('quackScoreDisplay');
+        const submitButton = document.getElementById('submitButton');
+        const statDropdownItems = document.querySelectorAll('#statDropdownButton + .dropdown-menu .dropdown-item');
+        const overUnderDropdownItems = document.querySelectorAll('#overUnderDropdownButton + .dropdown-menu .dropdown-item');
+
+        // Disable the button
+        submitButton.disabled = true;
 
         //Logging form values for testing.
         console.log(playerName)
@@ -259,8 +265,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Matchups
                 const { matchupGamesOverCount, matchupGamesUnderCount } = countMatchupOverUnderOccurrences(matchupData, statSelected, propValue);
-                console.log("hunting NANXXX", matchupGamesOverCount)
-                console.log(recent3GamesOverCount)
+                console.log("hunting NAN2", matchupGamesOverCount)
                 const tallyUpCalc = calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount, matchupGamesOverCount, matchupGamesUnderCount, matchupData.num_games, overUnderSelected)
                 // Update the content of the element with the Quack Score
                 quackScoreDisplay.textContent = `Quack Score: ${tallyUpCalc.toFixed(2)}`;
@@ -273,6 +278,8 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('myForm').reset();
         document.getElementById('statDropdownButton').textContent = 'Select a Stat';
         document.getElementById('overUnderDropdownButton').textContent = 'Over/Under';
+        statDropdownItems.forEach(item => item.classList.remove('active'));
+        overUnderDropdownItems.forEach(item => item.classList.remove('active'));
     });
 });
 

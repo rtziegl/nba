@@ -65,7 +65,6 @@ app.get('/fetch-player-game-data/:playerId', (req, res) => {
 // Define endpoint to fetch NBA player game data
 app.get('/fetch-player-game-data-against-next-team/:playerId', (req, res) => {
     const { playerId } = req.params;
-    console.log(playerId)
     const pythonScriptPath = './pyfetch/fetch_nba_next_matchup.py';
 
     // Execute the Python script
@@ -90,7 +89,6 @@ app.get('/fetch-player-game-data-against-next-team/:playerId', (req, res) => {
         // Parse the trimmed JSON data received from the Python script
         try {
             playerGameData = JSON.parse(trimmedStdout);
-            console.log(playerGameData);
         } catch (parseError) {
             console.error('Error parsing JSON:', parseError);
             res.status(500).send('Internal Server Error');
