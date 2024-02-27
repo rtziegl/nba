@@ -160,3 +160,13 @@ body {
     width: 150px;
 }
 
+.big-text {
+    font-size: 22px; /* Adjust as needed */
+    font-weight: bold; /* Adjust as needed */
+}
+
+.small-text {
+    font-size: 15px; /* Adjust as needed */
+    font-weight: normal; /* Adjust as needed */
+}
+
