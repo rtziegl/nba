@@ -169,6 +169,9 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('myForm').addEventListener('submit', function (event) {
         event.preventDefault(); // Prevent the default form submission behavior
 
+        // Display the loading animation
+        displayLoadingAnimation();
+
         // Get the selected values from the form
         const playerName = document.getElementById('searchInput').value.trim();
         const statSelected = document.getElementById('statDropdownButton').innerText.trim();

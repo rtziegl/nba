@@ -16,75 +16,80 @@
 
 <body>
     <div class="container mt-5">
-        <div class="card bg-dark text-white">
-            <div class="card-body">
-                <h2 class="card-title">NBA Player Statistics</h2>
-                <form id="myForm" class="needs-validation" novalidate>
-
-                    <!-- Search a player custom searchable dropdown -->
-                    <div class="mb-3 col-md-4">
-                        <label for="searchInput" class="form-label text-white">Search a Player</label>
-                        <div class="dropdown">
-                            <input type="text" class="form-control form-select-md dropdown-toggle bg-dark text-white"
-                                id="searchInput" data-bs-toggle="dropdown" aria-expanded="false" placeholder="Search"
+        <div class="cards-container">
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <h2 class="card-title">NBA Player Statistics</h2>
+                    <form id="myForm" class="needs-validation" novalidate>
+    
+                        <!-- Search a player custom searchable dropdown -->
+                        <div class="mb-3 col-10">
+                            <label for="searchInput" class="form-label text-white">Search a Player</label>
+                            <div class="dropdown">
+                                <input type="text" class="form-control form-select-md dropdown-toggle bg-dark text-white"
+                                    id="searchInput" data-bs-toggle="dropdown" aria-expanded="false" placeholder="Search"
+                                    required>
+                                <ul class="dropdown-menu bg-dark" aria-labelledby="searchInput" id="searchResults">
+                                    <!-- Search results will be displayed here -->
+                                </ul>
+                            </div>
+                        </div>
+    
+                        <!-- Select a Stat dropdown -->
+                        <div class="mb-3 col-md-4">
+                            <div class="dropdown">
+                                <button class="btn btn-dark dropdown-toggle" type="button" id="statDropdownButton"
+                                    data-bs-toggle="dropdown" aria-expanded="false" required>
+                                    Select a Stat
+                                </button>
+                                <ul class="dropdown-menu bg-dark" aria-labelledby="statDropdownButton">
+                                    <li><a class="dropdown-item text-white" href="#" data-value="Points">Points</a></li>
+                                    <li><a class="dropdown-item text-white" href="#" data-value="Rebounds">Rebounds</a></li>
+                                    <li><a class="dropdown-item text-white" href="#" data-value="Assists">Assists</a></li>
+                                    <li><a class="dropdown-item text-white" href="#" data-value="3s">3 Pointers</a></li>
+                                </ul>
+                            </div>
+                        </div>
+    
+                        <!-- Enter a Prop input box -->
+                        <div class="mb-3 col-md-4">
+                            <label for="propInput" class="form-label text-white">Enter a Prop</label>
+                            <input type="text" id="propInput" class="form-control bg-dark text-white" name="propInput"
                                 required>
-                            <ul class="dropdown-menu bg-dark" aria-labelledby="searchInput" id="searchResults">
-                                <!-- Search results will be displayed here -->
-                            </ul>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter a prop.</div>
                         </div>
-                    </div>
-
-                    <!-- Select a Stat dropdown -->
-                    <div class="mb-3 col-md-4">
-                        <div class="dropdown">
-                            <button class="btn btn-dark dropdown-toggle" type="button" id="statDropdownButton"
-                                data-bs-toggle="dropdown" aria-expanded="false" required>
-                                Select a Stat
-                            </button>
-                            <ul class="dropdown-menu bg-dark" aria-labelledby="statDropdownButton">
-                                <li><a class="dropdown-item text-white" href="#" data-value="Points">Points</a></li>
-                                <li><a class="dropdown-item text-white" href="#" data-value="Rebounds">Rebounds</a></li>
-                                <li><a class="dropdown-item text-white" href="#" data-value="Assists">Assists</a></li>
-                                <li><a class="dropdown-item text-white" href="#" data-value="3s">3 Pointers</a></li>
-                            </ul>
+    
+                        <!-- Over or under for the prop -->
+                        <div class="mb-3 col-md-4">
+                            <div class="dropdown">
+                                <button class="btn btn-dark dropdown-toggle" type="button" id="overUnderDropdownButton"
+                                    data-bs-toggle="dropdown" aria-expanded="false" required>
+                                    Over/Under
+                                </button>
+                                <ul class="dropdown-menu bg-dark" aria-labelledby="overUnderDropdownButton">
+                                    <li><a class="dropdown-item text-white" href="#" data-value="Over">Over</a></li>
+                                    <li><a class="dropdown-item text-white" href="#" data-value="Under">Under</a></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Enter a Prop input box -->
-                    <div class="mb-3 col-md-4">
-                        <label for="propInput" class="form-label text-white">Enter a Prop</label>
-                        <input type="text" id="propInput" class="form-control bg-dark text-white" name="propInput"
-                            required>
-                        <div class="valid-feedback">Looks good!</div>
-                        <div class="invalid-feedback">Please enter a prop.</div>
-                    </div>
-
-                    <!-- Over or under for the prop -->
-                    <div class="mb-3 col-md-4">
-                        <div class="dropdown">
-                            <button class="btn btn-dark dropdown-toggle" type="button" id="overUnderDropdownButton"
-                                data-bs-toggle="dropdown" aria-expanded="false" required>
-                                Over/Under
-                            </button>
-                            <ul class="dropdown-menu bg-dark" aria-labelledby="overUnderDropdownButton">
-                                <li><a class="dropdown-item text-white" href="#" data-value="Over">Over</a></li>
-                                <li><a class="dropdown-item text-white" href="#" data-value="Under">Under</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <button type="submit" id="submitButton" class="btn btn-md btn-dark" disabled>Generate Quack
-                        Score</button>
-
-                </form>
+    
+                        <button type="submit" id="submitButton" class="btn btn-md btn-dark" disabled>Generate Quack
+                            Score</button>
+    
+                    </form>
+                </div>
+            </div>
+    
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <div id="quackScoreDisplay" class="text-white display-6"> Listening for quack</div>
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="container mt-5">
-        <h2 class="card-title text-white">Quack Score</h2>
-        <div id="quackScoreDisplay" class="text-white display-6"></div>
-    </div>
+    
+    
 
 
     <script src="scripts/formDisableUntilComplete.js"></script>

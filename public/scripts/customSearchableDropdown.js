@@ -4,17 +4,28 @@ function populateDropdown(searchData) {
     searchData.forEach(item => {
         const resultItem = document.createElement('li');
         resultItem.classList.add('dropdown-item');
-        resultItem.textContent = `${item.full_name} #${item.id}`; // Include player name and ID
-        resultItem.setAttribute('data-id', item.id); // Set data attribute for player ID
+
+        // Create a span for the player ID
+        const idSpan = document.createElement('span');
+        idSpan.textContent = ` #${item.id}`;
+        idSpan.classList.add('player-id'); // Add a class for styling
+
+        // Set the player name
+        resultItem.textContent = `${item.full_name}`;
+        // Append the ID span to the result item
+        resultItem.appendChild(idSpan);
+
+        // Set the data attribute for player ID
+        resultItem.setAttribute('data-id', item.id); 
+
         resultItem.addEventListener('click', function () {
-            // Set the selected value in the search input
-            document.getElementById('searchInput').value = `${item.full_name} #${item.id}`; // Include player name and ID
-            // Close the dropdown
+            document.getElementById('searchInput').value = `${item.full_name} #${item.id}`;
             document.getElementById('searchResults').classList.remove('show');
         });
         searchResults.appendChild(resultItem);
     });
 }
+
 
 // Function to filter search results based on input value
 function filterResults(inputValue) {
