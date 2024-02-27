@@ -156,3 +156,7 @@ body {
     overflow: hidden; /* Hide any overflowing content */
 }
 
+#submitButton{
+    width: 150px;
+}
+
