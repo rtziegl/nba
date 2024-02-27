@@ -267,12 +267,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log("hunting NAN2", matchupGamesOverCount)
                 const tallyUpCalc = calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount, matchupGamesOverCount, matchupGamesUnderCount, matchupData.num_games, overUnderSelected)
                 // Update the content of the element with the Quack Score
-                quackScoreDisplay.textContent = `Quack Score: ${tallyUpCalc.toFixed(2)}`;
+                quackScoreDisplay.textContent = `Score: ${tallyUpCalc.toFixed(2)}`;
             })
             .catch(error => {
                 console.error('Error processing data:', error);
             });
-
+        
+        // Resets form
         const resetButton = document.getElementById('resetButton');
 
         resetButton.addEventListener('click', function () {

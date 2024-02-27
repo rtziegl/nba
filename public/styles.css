@@ -131,3 +131,28 @@ body {
 #resetButton:hover {
     transform: scale(1.1);
 }
+
+.same-size-options{
+    width: 150px;
+}
+
+.dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Ensure the dropdown toggle button stretches to fit the container */
+    text-align: left; /* Align text to the left */
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    margin-left: auto; /* Push the ::after element (dropdown indicator) to the right */
+}
+
+.two-dropdowns .dropdown-menu {
+    min-width: 0;
+    width: 100% !important; /* Set width to auto to fit the content */
+    box-sizing: border-box; /* Include padding and border in the total width */
+    overflow: hidden; /* Hide any overflowing content */
+}
+
