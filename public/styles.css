@@ -1,5 +1,5 @@
 body {
-    background-color:#444C54;
+    background-color:#607274;
 }
 
 /* Custom styles for the dropdown menu */
@@ -100,7 +100,7 @@ body {
 
 .player-id {
     color: grey; /* Set the color for the player ID */
-    font-size: 0.7em; /* Adjust the font size for the player ID */
+    font-size: 0.6em; /* Adjust the font size for the player ID */
 }
 
 .cards-container {

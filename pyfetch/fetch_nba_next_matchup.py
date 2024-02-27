@@ -43,7 +43,7 @@ def get_opponent_team(player_team_abbr):
             print("No upcoming games found for the player.")
             return None
     except Exception as e:
-        print(f"Error retrieving opponent team: {e}")
+        # print(f"Error retrieving opponent team: {e}")
         return None
 
 def get_player_team_abbreviation(player_id):
@@ -96,6 +96,13 @@ if __name__ == "__main__":
                     # Convert the dictionary to JSON format
                     json_data = json.dumps(data_dict)
             else:
-                print("Error retrieving opponent team abbreviation.")
+                # If cant find oppenent team abreviation send empty json.
+                data_dict = {
+                    'recent_matchups': None,
+                    'num_games': 0
+                }
+                # Convert the dictionary to JSON format
+                json_data = json.dumps(data_dict)
+                print(json_data)
         else:
             print("Error retrieving player team abbreviation.")

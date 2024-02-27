@@ -30,12 +30,21 @@ function calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, r
 
         console.log("huntint recent3", recent3GamesCalc)
 
-        matchupGamesCalc = matchupGamesOverCount / matchupDataNumGames; //DIVIDE BY 0 = NAN
-        matchupGamesCalc *= matchupGamesPercent;
+
+        // Replacing matchup percentage with recent 3 game percentage when no matchups found.
+        if (matchupDataNumGames == 0) {
+            matchupGamesCalc = recent3GamesOverCount / amt3RecentGames;
+            matchupGamesCalc *= matchupGamesPercent;
+
+        }
+        else {
+            matchupGamesCalc = matchupGamesOverCount / matchupDataNumGames; 
+            matchupGamesCalc *= matchupGamesPercent;
+        }
 
         console.log("huntint matchup", matchupGamesCalc)
 
-        tallyUpCalc = allGamesCalc + recent12GamesCalc + matchupGamesCalc +recent3GamesCalc;
+        tallyUpCalc = allGamesCalc + recent12GamesCalc + matchupGamesCalc + recent3GamesCalc;
 
         console.log("huntint nan", tallyUpCalc)
 
@@ -45,17 +54,35 @@ function calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, r
         allGamesCalc = allGamesUnderCount / gameCount;
         allGamesCalc *= allGamesPercent;
 
+        console.log("huntint allgamescalc", allGamesCalc)
+
         recent12GamesCalc = recent12GamesUnderCount / amt12RecentGames;
         recent12GamesCalc *= recent12GamesPercent;
+
+        console.log("huntint recent12", recent12GamesCalc)
 
         recent3GamesCalc = recent3GamesUnderCount / amt3RecentGames;
         recent3GamesCalc *= recent3GamesPercent;
 
-        matchupGamesCalc = matchupGamesUnderCount / matchupDataNumGames;
-        matchupGamesCalc *= matchupGamesPercent;
+        console.log("huntint recent3", recent3GamesCalc)
 
 
-        tallyUpCalc = allGamesCalc + recent12GamesCalc + matchupGamesCalc +recent3GamesCalc;
+        // Replacing matchup percentage with recent 3 game percentage when no matchups found.
+        if (matchupDataNumGames == 0) {
+            matchupGamesCalc = recent3GamesUnderCount / amt3RecentGames;
+            matchupGamesCalc *= matchupGamesPercent;
+
+        }
+        else {
+            matchupGamesCalc = matchupGamesUnderCount / matchupDataNumGames; 
+            matchupGamesCalc *= matchupGamesPercent;
+        }
+
+        console.log("huntint matchup", matchupGamesCalc)
+
+        tallyUpCalc = allGamesCalc + recent12GamesCalc + matchupGamesCalc + recent3GamesCalc;
+
+        console.log("huntint nan", tallyUpCalc)
     }
 
     return tallyUpCalc * 10;
@@ -170,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault(); // Prevent the default form submission behavior
 
         // Display the loading animation
-        displayLoadingAnimation();
+        // displayLoadingAnimation();
 
         // Get the selected values from the form
         const playerName = document.getElementById('searchInput').value.trim();
@@ -232,11 +259,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Matchups
                 const { matchupGamesOverCount, matchupGamesUnderCount } = countMatchupOverUnderOccurrences(matchupData, statSelected, propValue);
-                console.log("hunting NAN", matchupGamesOverCount)
+                console.log("hunting NANXXX", matchupGamesOverCount)
                 console.log(recent3GamesOverCount)
                 const tallyUpCalc = calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount, matchupGamesOverCount, matchupGamesUnderCount, matchupData.num_games, overUnderSelected)
                 // Update the content of the element with the Quack Score
-                quackScoreDisplay.textContent = `Quack Score: ${tallyUpCalc.toFixed(4)}`;
+                quackScoreDisplay.textContent = `Quack Score: ${tallyUpCalc.toFixed(2)}`;
             })
             .catch(error => {
                 console.error('Error processing data:', error);

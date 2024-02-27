@@ -9,7 +9,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Define endpoint to fetch NBA player names and id data.
 app.get('/fetch-players-names-id', (req, res) => {
-    const pythonScriptPath = 'pyfetch/fetch_nba_player_names_id.py';
+    const pythonScriptPath = './pyfetch/fetch_nba_player_names_id.py';
 
     // Execute the Python script
     exec(`python3 "${pythonScriptPath}"`, (error, stdout, stderr) => {
@@ -65,6 +65,7 @@ app.get('/fetch-player-game-data/:playerId', (req, res) => {
 // Define endpoint to fetch NBA player game data
 app.get('/fetch-player-game-data-against-next-team/:playerId', (req, res) => {
     const { playerId } = req.params;
+    console.log(playerId)
     const pythonScriptPath = './pyfetch/fetch_nba_next_matchup.py';
 
     // Execute the Python script
@@ -75,15 +76,27 @@ app.get('/fetch-player-game-data-against-next-team/:playerId', (req, res) => {
             return;
         }
 
-        // Parse the JSON data received from the Python script
-        let playerGameData;
+        // Excepts the empty json in case cant find next matchup game.
+        let trimmedStdout = stdout.trim();
+        if (!trimmedStdout) {
+            // If trimmed stdout is empty, send an empty response
+            res.json({
+                recent_matchups: null,
+                num_games: 0
+            });
+            return;
+        }
+
+        // Parse the trimmed JSON data received from the Python script
         try {
-            playerGameData = JSON.parse(stdout);
+            playerGameData = JSON.parse(trimmedStdout);
+            console.log(playerGameData);
         } catch (parseError) {
             console.error('Error parsing JSON:', parseError);
             res.status(500).send('Internal Server Error');
             return;
         }
+
 
         // Send the player game data as JSON response
         res.json(playerGameData);

@@ -12,8 +12,10 @@ def fetch_player_game_data(player_id):
         gamelog = playergamelog.PlayerGameLog(player_id=player_id, season=SeasonAll.current_season)
         player_stats = gamelog.get_data_frames()[0]
 
-        # Convert the 'GAME_DATE' column to datetime
-        player_stats['GAME_DATE'] = pd.to_datetime(player_stats['GAME_DATE'])
+        date_format = "%b %d, %Y"
+
+        # Convert the 'GAME_DATE' column to datetime using the specified format
+        player_stats['GAME_DATE'] = pd.to_datetime(player_stats['GAME_DATE'], format=date_format)
 
         # Sort the data by game date in descending order (most recent first)
         player_stats = player_stats.sort_values(by='GAME_DATE', ascending=False)
