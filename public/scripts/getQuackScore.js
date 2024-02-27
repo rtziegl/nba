@@ -71,6 +71,8 @@ function mapStatToAbrv(statSelected) {
             return 'AST';
         case 'Rebounds':
             return 'REB';
+        case '3s':
+            return 'FG3M'
         default:
             return null; // Return null for unsupported stats
     }

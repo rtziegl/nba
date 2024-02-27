@@ -1,6 +1,3 @@
-// Define searchData as a global variable
-let searchData = []; // Initialize as an empty array to avoid 'undefined' errors
-
 function populateDropdown(searchData) {
     const searchResults = document.getElementById('searchResults');
     searchResults.innerHTML = ''; // Clear previous results
@@ -18,7 +15,6 @@ function populateDropdown(searchData) {
         searchResults.appendChild(resultItem);
     });
 }
-
 
 // Function to filter search results based on input value
 function filterResults(inputValue) {

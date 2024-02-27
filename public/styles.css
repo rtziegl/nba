@@ -44,6 +44,32 @@ body {
     box-shadow: none !important; /* Remove box shadow on hover, focus, and active */
 }
 
+#searchResults {
+    max-height: 200px; /* Adjust the height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Scrollbar Track */
+#searchResults::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+    background-color: #343a40 ;
+    border-radius: 3px;
+}
+
+/* Handle */
+#searchResults::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.1); /* Color of the scrollbar handle */
+    border-radius: 6px; /* Rounded corners */
+    
+}
+
+/* Handle on hover */
+#searchResults::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.7); /* Darker color on hover */
+}
+
+
+
 
 
 
