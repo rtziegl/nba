@@ -122,3 +122,12 @@ body {
     margin-bottom: 20px;
     /* Add margin between cards */
 }
+
+#resetButton {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#resetButton:hover {
+    transform: scale(1.1);
+}

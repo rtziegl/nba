@@ -21,20 +21,21 @@
                 <div class="card-body">
                     <h2 class="card-title">NBA Player Stat Predictor</h2>
                     <form id="myForm" class="needs-validation" novalidate>
-    
+
                         <!-- Search a player custom searchable dropdown -->
-                        <div class="mb-3 col-9">
+                        <div class="mb-3 col-12">
                             <label for="searchInput" class="form-label text-white">Search a Player</label>
                             <div class="dropdown">
-                                <input type="text" class="form-control form-select-md dropdown-toggle bg-dark text-white"
-                                    id="searchInput" data-bs-toggle="dropdown" aria-expanded="false" placeholder="Search"
-                                    required>
+                                <input type="text"
+                                    class="form-control form-select-md dropdown-toggle bg-dark text-white"
+                                    id="searchInput" data-bs-toggle="dropdown" aria-expanded="false"
+                                    placeholder="Search" required>
                                 <ul class="dropdown-menu bg-dark" aria-labelledby="searchInput" id="searchResults">
                                     <!-- Search results will be displayed here -->
                                 </ul>
                             </div>
                         </div>
-    
+
                         <!-- Select a Stat dropdown -->
                         <div class="mb-3 col-md-4">
                             <div class="dropdown">
@@ -44,22 +45,27 @@
                                 </button>
                                 <ul class="dropdown-menu bg-dark" aria-labelledby="statDropdownButton">
                                     <li><a class="dropdown-item text-white" href="#" data-value="Points">Points</a></li>
-                                    <li><a class="dropdown-item text-white" href="#" data-value="Rebounds">Rebounds</a></li>
-                                    <li><a class="dropdown-item text-white" href="#" data-value="Assists">Assists</a></li>
-                                    <li><a class="dropdown-item text-white" href="#" data-value="3 Pointers">3 Pointers</a></li>
+                                    <li><a class="dropdown-item text-white" href="#" data-value="Rebounds">Rebounds</a>
+                                    </li>
+                                    <li><a class="dropdown-item text-white" href="#" data-value="Assists">Assists</a>
+                                    </li>
+                                    <li><a class="dropdown-item text-white" href="#" data-value="3 Pointers">3
+                                            Pointers</a></li>
                                 </ul>
                             </div>
                         </div>
-    
+
                         <!-- Enter a Prop input box -->
                         <div class="mb-3 col-5">
                             <label for="propInput" class="form-label text-white">Enter a Prop</label>
-                            <input type="text" id="propInput" class="form-control bg-dark text-white" name="propInput"
-                                required>
+                            <div class="col-7">
+                                <input type="text" id="propInput" class="form-control bg-dark text-white"
+                                    name="propInput" required>
+                            </div>
                             <div class="valid-feedback">Looks good!</div>
                             <div class="invalid-feedback">Please enter a prop.</div>
                         </div>
-    
+
                         <!-- Over or under for the prop -->
                         <div class="mb-3 col-md-4">
                             <div class="dropdown">
@@ -73,14 +79,21 @@
                                 </ul>
                             </div>
                         </div>
-    
-                        <button type="submit" id="submitButton" class="btn btn-md btn-dark" disabled>Generate Quack
-                            Score</button>
-    
+
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <button type="submit" id="submitButton" class="btn btn-md btn-dark" disabled>Generate Quack Score</button>
+                            <div style="flex-grow: 1;"></div> <!-- Flexible space -->
+                            <svg xmlns="http://www.w3.org/2000/svg" id="resetButton" width="24" height="24" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                            </svg>
+                        </div>
+                        
+
                     </form>
                 </div>
             </div>
-    
+
             <div class="card bg-dark text-white">
                 <div class="card-body">
                     <div id="quackScoreDisplay" class="text-white display-6"> Listening for quack</div>
@@ -88,8 +101,8 @@
             </div>
         </div>
     </div>
-    
-    
+
+
 
 
     <script src="scripts/formDisableUntilComplete.js"></script>

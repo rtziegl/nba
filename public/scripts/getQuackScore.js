@@ -213,9 +213,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const statDropdownItems = document.querySelectorAll('#statDropdownButton + .dropdown-menu .dropdown-item');
         const overUnderDropdownItems = document.querySelectorAll('#overUnderDropdownButton + .dropdown-menu .dropdown-item');
 
-        // Disable the button
-        submitButton.disabled = true;
-
         //Logging form values for testing.
         console.log(playerName)
         console.log(statSelected)
@@ -276,14 +273,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Error processing data:', error);
             });
 
-        // Reset the form fields
-        document.getElementById('myForm').reset();
-        document.getElementById('statDropdownButton').textContent = 'Select a Stat';
-        document.getElementById('overUnderDropdownButton').textContent = 'Over/Under';
-        statDropdownItems.forEach(item => item.classList.remove('active'));
-        overUnderDropdownItems.forEach(item => item.classList.remove('active'));
+        const resetButton = document.getElementById('resetButton');
+
+        resetButton.addEventListener('click', function () {
+            // Reset the form fields
+            document.getElementById('myForm').reset();
+            document.getElementById('statDropdownButton').textContent = 'Select a Stat';
+            document.getElementById('overUnderDropdownButton').textContent = 'Over/Under';
+            statDropdownItems.forEach(item => item.classList.remove('active'));
+            overUnderDropdownItems.forEach(item => item.classList.remove('active'));
+            submitButton.disabled = true;
+        });
+
     });
 });
+
+
 
 // Function to extract player ID from playerName
 function getPlayerId(playerName) {
