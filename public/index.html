@@ -19,45 +19,50 @@
         <div class="card bg-dark text-white">
             <div class="card-body">
                 <h2 class="card-title">NBA Player Statistics</h2>
-                <form id="myForm">
-    
+                <form id="myForm" class="needs-validation" novalidate>
+
                     <!-- Search a player custom searchable dropdown -->
-                    <div class="mb-3">
+                    <div class="mb-3 col-md-4">
                         <label for="searchInput" class="form-label text-white">Search a Player</label>
                         <div class="dropdown">
-                            <input type="text" class="form-control form-select-lg dropdown-toggle bg-dark text-white"
-                                id="searchInput" data-bs-toggle="dropdown" aria-expanded="false" placeholder="Search">
+                            <input type="text" class="form-control form-select-md dropdown-toggle bg-dark text-white"
+                                id="searchInput" data-bs-toggle="dropdown" aria-expanded="false" placeholder="Search"
+                                required>
                             <ul class="dropdown-menu bg-dark" aria-labelledby="searchInput" id="searchResults">
                                 <!-- Search results will be displayed here -->
                             </ul>
                         </div>
                     </div>
-    
-                    <div class="row mb-3">
-                        <div class="col-auto">
-                            <div class="dropdown">
-                                <button class="btn btn-dark dropdown-toggle" type="button" id="statDropdownButton" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Select a Stat
-                                </button>
-                                <ul class="dropdown-menu bg-dark" aria-labelledby="statDropdownButton">
-                                    <li><a class="dropdown-item text-white" href="#" data-value="Points">Points</a></li>
-                                    <li><a class="dropdown-item text-white" href="#" data-value="Rebounds">Rebounds</a></li>
-                                    <li><a class="dropdown-item text-white" href="#" data-value="Assists">Assists</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <label for="propInput" class="form-label text-white">Enter a Prop</label>
-                            <input type="text" id="propInput" class="form-control bg-dark text-white" name="propInput">
+
+                    <!-- Select a Stat dropdown -->
+                    <div class="mb-3 col-md-4">
+                        <div class="dropdown">
+                            <button class="btn btn-dark dropdown-toggle" type="button" id="statDropdownButton"
+                                data-bs-toggle="dropdown" aria-expanded="false" required>
+                                Select a Stat
+                            </button>
+                            <ul class="dropdown-menu bg-dark" aria-labelledby="statDropdownButton">
+                                <li><a class="dropdown-item text-white" href="#" data-value="Points">Points</a></li>
+                                <li><a class="dropdown-item text-white" href="#" data-value="Rebounds">Rebounds</a></li>
+                                <li><a class="dropdown-item text-white" href="#" data-value="Assists">Assists</a></li>
+                            </ul>
                         </div>
                     </div>
-    
+
+                    <!-- Enter a Prop input box -->
+                    <div class="mb-3 col-md-4">
+                        <label for="propInput" class="form-label text-white">Enter a Prop</label>
+                        <input type="text" id="propInput" class="form-control bg-dark text-white" name="propInput"
+                            required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter a prop.</div>
+                    </div>
+
                     <!-- Over or under for the prop -->
-                    <div class="mb-3">
+                    <div class="mb-3 col-md-4">
                         <div class="dropdown">
-                            <button class="btn btn-dark dropdown-toggle" type="button" id="overUnderDropdownButton" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <button class="btn btn-dark dropdown-toggle" type="button" id="overUnderDropdownButton"
+                                data-bs-toggle="dropdown" aria-expanded="false" required>
                                 Over/Under
                             </button>
                             <ul class="dropdown-menu bg-dark" aria-labelledby="overUnderDropdownButton">
@@ -66,24 +71,71 @@
                             </ul>
                         </div>
                     </div>
-                    
-                    <button type="submit" id="submitButton" class="btn btn-lg btn-dark">Generate Quack Score</button>
-    
+
+                    <button type="submit" id="submitButton" class="btn btn-md btn-dark" disabled>Generate Quack
+                        Score</button>
+
                 </form>
             </div>
         </div>
     </div>
-    
+
     <div class="container mt-5">
-        <div class="card">
-            <div class="card-body">
-                <h2 class="card-title">Quack Score</h2>
-                <div id="quackScoreDisplay" class="text-white display-6"></div>
-            </div>
-        </div>
+        <h2 class="card-title text-white">Quack Score</h2>
+        <div id="quackScoreDisplay" class="text-white display-6"></div>
     </div>
-    
-    
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const propInput = document.getElementById('propInput');
+    const statDropdownItems = document.querySelectorAll('#statDropdownButton + .dropdown-menu .dropdown-item');
+    const overUnderDropdownItems = document.querySelectorAll('#overUnderDropdownButton + .dropdown-menu .dropdown-item');
+    const submitButton = document.getElementById('submitButton');
+
+    // Function to check if all fields are filled
+    function checkFormValidity() {
+        const searchValue = searchInput.value.trim();
+        const propValue = propInput.value.trim();
+        const isStatSelected = Array.from(statDropdownItems).some(item => item.classList.contains('active'));
+        const isOverUnderSelected = Array.from(overUnderDropdownItems).some(item => item.classList.contains('active'));
+
+        // Enable the submit button if all conditions are met
+        if (searchValue !== '' && propValue !== '' && isStatSelected && isOverUnderSelected) {
+            submitButton.disabled = false;
+        } else {
+            submitButton.disabled = true;
+        }
+    }
+
+    // Add event listeners to the necessary elements
+    searchInput.addEventListener('input', checkFormValidity);
+    propInput.addEventListener('input', checkFormValidity);
+    statDropdownItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Toggle the active class when the item is clicked
+            statDropdownItems.forEach(item => item.classList.remove('active'));
+            this.classList.add('active');
+            checkFormValidity();
+        });
+    });
+    overUnderDropdownItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Toggle the active class when the item is clicked
+            overUnderDropdownItems.forEach(item => item.classList.remove('active'));
+            this.classList.add('active');
+            checkFormValidity();
+        });
+    });
+
+    // Initial check on page load
+    checkFormValidity();
+});
+
+
+    </script>
+
+
 
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -95,7 +147,10 @@
     <!-- Include your JavaScript file -->
     <script src="scripts/customSearchableDropdown.js"></script>
     <script src="scripts/dropdowns.js"></script>
+
     <script src="scripts//getQuackScore.js"></script>
+
+
 
 </body>
 

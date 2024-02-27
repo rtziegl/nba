@@ -1,25 +1,51 @@
-body{
+body {
     background-color: black;
 }
 
 /* Custom styles for the dropdown menu */
-.dropdown-menu {
-    background-color: #343a40; /* Dark background color */
-}
+/* .dropdown-menu {
+    background-color: #343a40;
+} */
 
 .dropdown-menu li {
-    color: #fff; /* Text color */
+    color: #fff;
+    /* Text color */
 }
 
 .dropdown-menu.bg-dark .dropdown-item:hover {
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent black */
 }
 
 .dropdown-menu.bg-dark .dropdown-item {
-    color: white; /* Text color */
+    color: white;
+    /* Text color */
 }
 
+
 .dropdown-menu.bg-dark .dropdown-item:hover {
-    background-color: rgba(0, 0, 0, 0.2); /* Adjust opacity as needed */
+    background-color: rgba(0, 0, 0, 0.2);
+    /* Adjust opacity as needed */
 }
+
+/* Additional CSS styles can be added here */
+.btn-dark {
+    border-color: white;
+    /* Set border color for dark buttons */
+}
+
+/* Override Bootstrap button hover, focus, and active styles */
+.btn-dark:hover,
+.btn-dark:focus,
+.btn-dark:active {
+    background-color: #343a40 !important; /* Set background color on hover, focus, and active */
+    border-color: white !important; /* Set border color on hover, focus, and active */
+    color: white !important; /* Set text color on hover, focus, and active */
+    box-shadow: none !important; /* Remove box shadow on hover, focus, and active */
+}
+
+
+
+
+
 
