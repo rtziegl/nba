@@ -1,0 +1,17 @@
+{
+    "functions": {
+      "api/fetch-players-names-id.js": {
+        "runtime": "nodejs14.x",
+        "memory": 512
+      },
+      "api/fetch-player-game-data.js": {
+        "runtime": "nodejs14.x",
+        "memory": 512
+      },
+      "api/fetch-player-game-data-against-next-team.js": {
+        "runtime": "nodejs14.x",
+        "memory": 512
+      }
+    }
+  }
+  
