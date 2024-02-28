@@ -1,8 +1,9 @@
-// fetchPlayersNamesId.js
+// fetchPlayerNamesId.js
 const { exec } = require('child_process');
+const path = require('path'); // Import the path module
 
 module.exports = async (req, res) => {
-    const pythonScriptPath = '/pyfetch/fetch_nba_player_names_id.py';
+    const pythonScriptPath = path.join(__dirname, '..', 'pyfetch', 'fetch_nba_player_names_id.py');
 
     // Execute the Python script
     exec(`python ${pythonScriptPath}`, (error, stdout, stderr) => {

@@ -1,10 +1,11 @@
 // Import the necessary modules
 const { exec } = require('child_process');
+const path = require('path');
 
 // Define the serverless function
 module.exports = (req, res) => {
     const { playerId } = req.query; // Assuming the player ID is sent as a query parameter
-    const pythonScriptPath = './pyfetch/fetch_nba_next_matchup.py';
+    const pythonScriptPath = path.join(__dirname, '..', 'pyfetch', 'fetch_nba_next_matchup.py');
 
     // Execute the Python script
     exec(`python "${pythonScriptPath}" ${playerId}`, (error, stdout, stderr) => {
