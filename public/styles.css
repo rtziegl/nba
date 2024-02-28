@@ -223,6 +223,26 @@ body {
     transition: transform 0.3s ease;
 }
 
+.copy-alert {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #212529;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.copy-alert.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
 
 
 

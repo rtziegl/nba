@@ -204,15 +204,61 @@ function displayScoreList(tallyUpCalc, decimalPropValue, overUnderSelected, stat
 
     // Replace its content with the big text and clipboard icon
     waitingScoreDiv.innerHTML = `
-        <div class="big-text mb-3">Score History
-        <div class="float-end">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
-                <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
-                <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
-            </svg>
-        </div>
-    `;
+        <div class="d-flex justify-content-between">
+            <div class="big-text mb-3">Score History</div>
+            <div class="float-end">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clipboard2-fill clipboard-icon" viewBox="0 0 16 16">
+                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                </svg>
+            </div>
+        </div>`;
+
+        const clipboardIcon = waitingScoreDiv.querySelector('.clipboard-icon');
+        clipboardIcon.addEventListener('click', function() {
+            let copiedText = '';
+            // Iterate over each list item
+            const listItems = document.querySelectorAll('.list-group-item');
+            listItems.forEach((item) => {
+                copiedText += item.textContent + '\n';
+            });
+        
+            // Copy the concatenated text to the clipboard
+            navigator.clipboard.writeText(copiedText)
+                .then(() => {
+                    console.log('Text copied to clipboard:', copiedText);
+                    // Show a dark-themed alert at the bottom center of the screen
+                    showAlert('Score history copied to clipboard');
+                })
+                .catch((error) => {
+                    console.error('Error copying text to clipboard:', error);
+                });
+        });
+        
+        function showAlert(message) {
+            const alertDiv = document.createElement('div');
+            alertDiv.classList.add('copy-alert');
+            alertDiv.textContent = message;
+            document.body.appendChild(alertDiv);
+        
+            // Fade in the alert
+            setTimeout(() => {
+                alertDiv.style.opacity = 1;
+            }, 100);
+            
+            // Remove the alert after 3 seconds
+            setTimeout(() => {
+                alertDiv.style.opacity = 0;
+                setTimeout(() => {
+                    alertDiv.remove();
+                }, 300); // Adjust the timing to match the fade-out transition duration
+            }, 3000); // Duration of alert visibility
+        }
+        
 }
+
+
+
 
 
 
