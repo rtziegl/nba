@@ -9,6 +9,9 @@
       "api/fetchPayerDataAgainstNextTeam.js": {
         "memory": 512
       }
-    }
+    },
+    "builds": [
+        { "src": "pyfetch/*.py", "use": "@vercel/python" }
+      ]
   }
   
