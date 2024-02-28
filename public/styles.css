@@ -189,4 +189,32 @@ body {
     color: yellow;
 }
 
+.list-group-item {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: none;
+}
+
+/* Define colors */
+:root {
+    --base-color: #212529; /* Base color */
+    --lighter-color-1: #2c3036; /* Slightly lighter color 1 */
+    --lighter-color-2: #35393f; /* Slightly lighter color 2 */
+}
+
+/* Apply alternating background colors to list items */
+.list-group-item:nth-child(odd) {
+    background-color: var(--lighter-color-1) !important;
+}
+
+.list-group-item:nth-child(even) {
+    background-color: var(--lighter-color-2) !important;
+}
+
+
+
+
+
+
 

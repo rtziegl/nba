@@ -175,6 +175,49 @@ function displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls, outO
     }
 }
 
+function displayScoreList(tallyUpCalc, decimalPropValue, overUnderSelected, statSelected, playerName) {
+    // Select the list element
+    const listScoreDisplayVar = document.getElementById('listScoreDisplay');
+
+    // Create a new anchor element
+    const listItem = document.createElement('a');
+    listItem.classList.add('list-group-item', 'list-group-item-action', 'bg-dark', 'text-white');
+
+    let hashIndex = playerName.indexOf('#');
+
+    // If '#' is found, remove everything after it
+    if (hashIndex !== -1) {
+        playerName = playerName.substring(0, hashIndex).trim();
+    }
+
+    // Set the content of the list item
+    listItem.textContent = `${playerName} ${overUnderSelected} ${decimalPropValue} ${statSelected}, Score: ${tallyUpCalc.toFixed(2)}`;
+
+    // Append the new list item to the list
+    listScoreDisplayVar.appendChild(listItem);
+
+    // Update the card's body content
+    const cardBody = document.querySelector('.score-history-card-body');
+
+    // Find the waiting-score div
+    const waitingScoreDiv = cardBody.querySelector('.waiting-score');
+
+    // Replace its content with the big text and clipboard icon
+    waitingScoreDiv.innerHTML = `
+        <div class="big-text mb-3">Score History
+        <div class="float-end">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+            </svg>
+        </div>
+    `;
+}
+
+
+
+
+
 // Json data has abreviated datapoints
 function mapStatToAbrv(statSelected) {
     switch (statSelected) {
@@ -319,7 +362,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Get the selected values from the form
         const playerName = document.getElementById('searchInput').value.trim();
         const statSelected = document.getElementById('statDropdownButton').innerText.trim();
-        const propValue = document.getElementById('propInput').value.trim();
+        let propValue = document.getElementById('propInput').value.trim();
+        const decimalPropValue = propValue;
         const overUnderSelected = document.getElementById('overUnderDropdownButton').innerText.trim();
         const playerId = getPlayerId(playerName); // Function to extract player ID from playerName
         // Get the element where you want to display the Quack Score
@@ -327,6 +371,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const submitButton = document.getElementById('submitButton');
         const statDropdownItems = document.querySelectorAll('#statDropdownButton + .dropdown-menu .dropdown-item');
         const overUnderDropdownItems = document.querySelectorAll('#overUnderDropdownButton + .dropdown-menu .dropdown-item');
+
+        // Check if propValue contains .5
+        if (propValue.includes('.5')) {
+            // Convert propValue to a number and add 0.5 to it
+            propValue = (parseFloat(propValue) + 0.5).toFixed(1);
+        }
 
         //Logging form values for testing.
         console.log(playerName)
@@ -384,6 +434,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const outOfAllCalc = calculateAllGameAvg(gameCount, allGamesOverCount, allGamesUnderCount, overUnderSelected);
                 // Displays stats for card 
                 displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls, outOfAllCalc)
+                displayScoreList(tallyUpCalc, decimalPropValue, overUnderSelected, statSelected, playerName)
 
             })
             .catch(error => {
