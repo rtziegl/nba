@@ -54,7 +54,7 @@ function calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, r
 
         tallyUpCalc *= 10;
         console.log("QUack ove rmins", minsGameOver)
-        return {tallyUpCalc, minsGame};
+        return { tallyUpCalc, minsGame };
 
     }
 
@@ -94,13 +94,13 @@ function calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, r
         console.log("huntint nan", tallyUpCalc)
 
         tallyUpCalc *= 10;
-        return {tallyUpCalc, minsGame};
+        return { tallyUpCalc, minsGame };
     }
 
     // return null;
 }
 
-function calculate5GameAvg(recent5GamesOverCount, recent5GamesUnderCount, overUnderSelected){
+function calculate5GameAvg(recent5GamesOverCount, recent5GamesUnderCount, overUnderSelected) {
 
     let outOf5calc = '';
 
@@ -120,7 +120,7 @@ function displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls) {
     let consistencyRating = '';
     let consistencyColorClass = '';
 
-    if (tallyUpCalc >= 6.5 && totalFouls <= 2.5){
+    if (tallyUpCalc >= 6.5 && totalFouls <= 2.5) {
         consistencyRating = 'CONSISTENT';
         consistencyColorClass = 'consistent-color';
     }
@@ -129,19 +129,33 @@ function displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls) {
         consistencyColorClass = 'neutral-color';
     }
 
-    else if (tallyUpCalc < 6.5 || totalFouls > 2.5){
+    else if (tallyUpCalc < 6.5 || totalFouls > 2.5) {
         consistencyRating = 'INCONSISTENT';
         consistencyColorClass = 'inconsistent-color';
     }
 
     const quackScoreDisplay = document.getElementById('quackScoreDisplay');
     // Update the content of the element with the Quack Score, Minutes, and Times prop hit
-    quackScoreDisplay.innerHTML = `
-        <span class="big-text">Overall Score: ${tallyUpCalc.toFixed(2)}</span><br>
-        <span class="small-text">Mallard Consistency Rating: <span class="${consistencyColorClass}">${consistencyRating}</span></span><br>
-        <span class="small-text">Minutes/Season averaged while hitting prop: ${minsGame.toFixed(2)}</span><br>
-        <span class="small-text">Fouls/Season averaged: ${totalFouls.toFixed(2)}</span><br>
-        <span class="small-text">Prop hits out of last five games: ${outOfFiveCalc}</span>`;
+
+    console.log(minsGame)
+
+    if (!isNaN(minsGame)) {
+        // Handle the case when minsGame is not NaN
+        quackScoreDisplay.innerHTML = `
+            <span class="big-text">Overall Score: ${tallyUpCalc.toFixed(2)}</span><br>
+            <span class="small-text">Mallard Consistency Rating: <span class="${consistencyColorClass}">${consistencyRating}</span></span><br>
+            <span class="small-text">Minutes/Season averaged while hitting prop: ${minsGame.toFixed(2)}</span><br>
+            <span class="small-text">Fouls/Season averaged: ${totalFouls.toFixed(2)}</span><br>
+            <span class="small-text">Prop hits out of last five games: ${outOfFiveCalc}</span>`;
+    } else {
+        // Handle the case when minsGame is NaN
+        quackScoreDisplay.innerHTML = `
+            <span class="big-text">Overall Score: ${tallyUpCalc.toFixed(2)}</span><br>
+            <span class="small-text">Mallard Consistency Rating: <span class="${consistencyColorClass}">${consistencyRating}</span></span><br>
+            <span class="small-text"><strong>Player prop has yet to hit this season</strong></span><br>
+            <span class="small-text">Fouls/Season averaged: ${totalFouls.toFixed(2)}</span><br>
+            <span class="small-text">Prop hits out of last five games: ${outOfFiveCalc}</span>`;
+    }
 }
 
 
@@ -224,16 +238,16 @@ function countOverUnderOccurrences(gameData, statSelected, propValue) {
         console.log(statValue)
         const minsValue = game[minsMappedToAbrv];
         const foulsValue = game[foulsMappedToAbrv];
-        
+
         // Determine if the stat value is over or under the propValue for all games
         if (statValue >= propValueNumber) {
             allGamesOverCount++;
-            console.log("MINS VALUE OVER:" ,minsValue)
+            console.log("MINS VALUE OVER:", minsValue)
             minsGameOver += minsValue;
         } else if (statValue < propValueNumber) {
             allGamesUnderCount++;
             minsGameUnder += minsValue;
-            console.log("MINS VALUE UNDERR:" ,minsValue)
+            console.log("MINS VALUE UNDERR:", minsValue)
         }
 
         // Count only the first 12 games for recent games
@@ -279,7 +293,7 @@ function countOverUnderOccurrences(gameData, statSelected, propValue) {
     console.log(allGamesOverCount)
     console.log(allGamesUnderCount)
     // Return the counts of over and under occurrences for all games, recent games, and the most recent 3 games
-    return { gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount, recent5GamesOverCount, recent5GamesUnderCount , minsGameOver, minsGameUnder, totalFouls};
+    return { gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount, recent5GamesOverCount, recent5GamesUnderCount, minsGameOver, minsGameUnder, totalFouls };
 }
 
 
@@ -297,7 +311,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const overUnderSelected = document.getElementById('overUnderDropdownButton').innerText.trim();
         const playerId = getPlayerId(playerName); // Function to extract player ID from playerName
         // Get the element where you want to display the Quack Score
-        
+
         const submitButton = document.getElementById('submitButton');
         const statDropdownItems = document.querySelectorAll('#statDropdownButton + .dropdown-menu .dropdown-item');
         const overUnderDropdownItems = document.querySelectorAll('#overUnderDropdownButton + .dropdown-menu .dropdown-item');
@@ -349,21 +363,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('Matchup data:', matchupData);
 
                 // All games and recent games
-                const { gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount, recent5GamesOverCount, recent5GamesUnderCount, minsGameOver, minsGameUnder, totalFouls} = countOverUnderOccurrences(allGameData, statSelected, propValue);
-            
+                const { gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount, recent5GamesOverCount, recent5GamesUnderCount, minsGameOver, minsGameUnder, totalFouls } = countOverUnderOccurrences(allGameData, statSelected, propValue);
+
                 // Matchups
                 const { matchupGamesOverCount, matchupGamesUnderCount } = countMatchupOverUnderOccurrences(matchupData, statSelected, propValue);
-                const {tallyUpCalc, minsGame} = calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount, matchupGamesOverCount, matchupGamesUnderCount, matchupData.num_games, overUnderSelected, minsGameOver, minsGameUnder)
+                const { tallyUpCalc, minsGame } = calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount, matchupGamesOverCount, matchupGamesUnderCount, matchupData.num_games, overUnderSelected, minsGameOver, minsGameUnder)
                 const outOfFiveCalc = calculate5GameAvg(recent5GamesOverCount, recent5GamesUnderCount, overUnderSelected)
 
                 // Displays stats for card 
                 displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls)
-                
+
             })
             .catch(error => {
                 console.error('Error processing data:', error);
             });
-        
+
         // Resets form
         const resetButton = document.getElementById('resetButton');
 
