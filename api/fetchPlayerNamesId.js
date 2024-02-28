@@ -2,7 +2,7 @@
 const { exec } = require('child_process');
 
 module.exports = async (req, res) => {
-    const pythonScriptPath = './pyfetch/fetch_nba_player_names_id.py';
+    const pythonScriptPath = '/pyfetch/fetch_nba_player_names_id.py';
 
     // Execute the Python script
     exec(`python ${pythonScriptPath}`, (error, stdout, stderr) => {
