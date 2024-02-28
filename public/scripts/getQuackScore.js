@@ -100,6 +100,21 @@ function calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, r
     // return null;
 }
 
+function calculateAllGameAvg(gameCount, allGamesOverCount, allGamesUnderCount, overUnderSelected) {
+
+    let outOfAllCalc = '';
+
+    if (overUnderSelected == 'Over') {
+        outOfAllCalc = allGamesOverCount + ` / ${gameCount}`;
+    }
+    else if (overUnderSelected == 'Under') {
+        outOfAllCalc = allGamesUnderCount + ` / ${gameCount}`;
+    }
+
+    return outOfAllCalc;
+
+}
+
 function calculate5GameAvg(recent5GamesOverCount, recent5GamesUnderCount, overUnderSelected) {
 
     let outOf5calc = '';
@@ -115,7 +130,7 @@ function calculate5GameAvg(recent5GamesOverCount, recent5GamesUnderCount, overUn
 
 }
 
-function displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls) {
+function displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls, outOfAllCalc) {
 
     let consistencyRating = '';
     let consistencyColorClass = '';
@@ -146,6 +161,7 @@ function displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls) {
             <span class="small-text">Mallard Consistency Rating: <span class="${consistencyColorClass}">${consistencyRating}</span></span><br>
             <span class="small-text">Minutes/Season averaged while hitting prop: ${minsGame.toFixed(2)}</span><br>
             <span class="small-text">Fouls/Season averaged: ${totalFouls.toFixed(2)}</span><br>
+            <span class="small-text">Prop hits this season: ${outOfAllCalc}</span><br>
             <span class="small-text">Prop hits out of last five games: ${outOfFiveCalc}</span>`;
     } else {
         // Handle the case when minsGame is NaN
@@ -154,14 +170,10 @@ function displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls) {
             <span class="small-text">Mallard Consistency Rating: <span class="${consistencyColorClass}">${consistencyRating}</span></span><br>
             <span class="small-text"><strong>Player prop has yet to hit this season</strong></span><br>
             <span class="small-text">Fouls/Season averaged: ${totalFouls.toFixed(2)}</span><br>
+            <span class="small-text">Prop hits this season: ${outOfAllCalc}</span><br>
             <span class="small-text">Prop hits out of last five games: ${outOfFiveCalc}</span>`;
     }
 }
-
-
-
-
-
 
 // Json data has abreviated datapoints
 function mapStatToAbrv(statSelected) {
@@ -369,9 +381,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 const { matchupGamesOverCount, matchupGamesUnderCount } = countMatchupOverUnderOccurrences(matchupData, statSelected, propValue);
                 const { tallyUpCalc, minsGame } = calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount, matchupGamesOverCount, matchupGamesUnderCount, matchupData.num_games, overUnderSelected, minsGameOver, minsGameUnder)
                 const outOfFiveCalc = calculate5GameAvg(recent5GamesOverCount, recent5GamesUnderCount, overUnderSelected)
-
+                const outOfAllCalc = calculateAllGameAvg(gameCount, allGamesOverCount, allGamesUnderCount, overUnderSelected);
                 // Displays stats for card 
-                displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls)
+                displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls, outOfAllCalc)
 
             })
             .catch(error => {
