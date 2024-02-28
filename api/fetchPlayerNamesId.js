@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
     const pythonScriptPath = './pyfetch/fetch_nba_player_names_id.py';
 
     // Execute the Python script
-    exec(`python3 "${pythonScriptPath}"`, (error, stdout, stderr) => {
+    exec(`python "${pythonScriptPath}"`, (error, stdout, stderr) => {
         if (error) {
             console.error('Error executing Python script:', error);
             res.status(500).send('Internal Server Error');

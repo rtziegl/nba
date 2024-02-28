@@ -8,7 +8,7 @@ module.exports = (req, res) => {
     const pythonScriptPath = './pyfetch/fetch_nba_player_game_data.py';
 
     // Execute the Python script
-    exec(`python3 "${pythonScriptPath}" ${playerId}`, (error, stdout, stderr) => {
+    exec(`python "${pythonScriptPath}" ${playerId}`, (error, stdout, stderr) => {
         if (error) {
             console.error('Error executing Python script:', error);
             res.status(500).json({ error: 'Internal Server Error' });
