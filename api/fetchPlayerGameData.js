@@ -5,6 +5,7 @@ const path = require('path'); // Import the path module
 // Define the serverless function
 module.exports = (req, res) => {
     const { playerId } = req.query; // Assuming the player ID is sent as a query parameter
+    console.log("Player id serverless", playerId)
     const pythonScriptPath = path.join(__dirname, '..', 'pyfetch', 'fetch_nba_player_game_data.py');
 
     // Execute the Python script
