@@ -212,6 +212,17 @@ body {
     background-color: var(--lighter-color-2) !important;
 }
 
+/* CSS for clipboard icon */
+.bi-clipboard2-fill:hover {
+    transform: scale(1.1); /* Scale the icon */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: transform 0.3s ease-in-out;
+}
+
+.bi-clipboard2-fill {
+    transition: transform 0.3s ease;
+}
+
 
 
 
