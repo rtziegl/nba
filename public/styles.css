@@ -213,13 +213,13 @@ body {
 }
 
 /* CSS for clipboard icon */
-.bi-clipboard2-fill:hover {
+.bi-clipboard2:hover {
     transform: scale(1.1); /* Scale the icon */
     cursor: pointer; /* Change cursor to pointer on hover */
     transition: transform 0.3s ease-in-out;
 }
 
-.bi-clipboard2-fill {
+.bi-clipboard2 {
     transition: transform 0.3s ease;
 }
 
@@ -234,7 +234,7 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     opacity: 0;
-    transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.1s ease-in-out;
 }
 
 .copy-alert.show {
