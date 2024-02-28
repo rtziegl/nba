@@ -57,7 +57,7 @@ document.body.addEventListener('click', function (event) {
 });
 
 // Fetch player data from the Express.js endpoint and populate dropdown
-fetch('/fetch-players-names-id')
+fetch('/api/fetchPlayerNamesId')
     .then(response => response.json())
     .then(data => {
         searchData = data; // Assign fetched data to searchData variable
