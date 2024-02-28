@@ -1,12 +1,12 @@
 {
     "functions": {
-      "api/fetch-players-names-id.js": {
+      "api/fetchPlayerNamesId.js": {
         "memory": 512
       },
-      "api/fetch-player-game-data.js": {
+      "api/fetchPlayerGameData.js": {
         "memory": 512
       },
-      "api/fetch-player-game-data-against-next-team.js": {
+      "api/fetchPayerDataAgainstNextTeam.js": {
         "memory": 512
       }
     }
