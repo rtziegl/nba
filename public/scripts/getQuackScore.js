@@ -116,14 +116,34 @@ function calculate5GameAvg(recent5GamesOverCount, recent5GamesUnderCount, overUn
 }
 
 function displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls) {
+
+    let consistencyRating = '';
+    let consistencyColorClass = '';
+
+    if (tallyUpCalc >= 6.5 && totalFouls <= 2.5){
+        consistencyRating = 'CONSISTENT';
+        consistencyColorClass = 'consistent-color';
+    }
+    else if (tallyUpCalc >= 6.5 && totalFouls > 2.5) {
+        consistencyRating = 'NEUTRAL';
+        consistencyColorClass = 'neutral-color';
+    }
+
+    else if (tallyUpCalc < 6.5 || totalFouls > 2.5){
+        consistencyRating = 'INCONSISTENT';
+        consistencyColorClass = 'inconsistent-color';
+    }
+
     const quackScoreDisplay = document.getElementById('quackScoreDisplay');
     // Update the content of the element with the Quack Score, Minutes, and Times prop hit
     quackScoreDisplay.innerHTML = `
         <span class="big-text">Overall Score: ${tallyUpCalc.toFixed(2)}</span><br>
+        <span class="small-text">Mallard Consistency Rating: <span class="${consistencyColorClass}">${consistencyRating}</span></span><br>
         <span class="small-text">Minutes/Season averaged while hitting prop: ${minsGame.toFixed(2)}</span><br>
         <span class="small-text">Fouls/Season averaged: ${totalFouls.toFixed(2)}</span><br>
         <span class="small-text">Prop hits out of last five games: ${outOfFiveCalc}</span>`;
 }
+
 
 
 

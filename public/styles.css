@@ -160,6 +160,10 @@ body {
     width: 150px;
 }
 
+
+
+
+/* For scorecard */
 .big-text {
     font-size: 22px; /* Adjust as needed */
     font-weight: bold; /* Adjust as needed */
@@ -169,4 +173,20 @@ body {
     font-size: 15px; /* Adjust as needed */
     font-weight: normal; /* Adjust as needed */
 }
+
+/* Green color for CONSISTENT */
+.consistent-color {
+    color: green;
+}
+
+/* Red color for INCONSISTENT */
+.inconsistent-color {
+    color: red;
+}
+
+/* Yellow color for NEUTRAL */
+.neutral-color {
+    color: yellow;
+}
+
 
