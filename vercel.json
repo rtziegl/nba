@@ -8,9 +8,6 @@
       },
       "api/fetchPayerDataAgainstNextTeam.js": {
         "memory": 512
-      },
-      "api": {
-        "runtime": "python3.9"
       }
     }
   }
