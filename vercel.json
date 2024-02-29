@@ -8,17 +8,7 @@
       },
       "api/fetchPayerDataAgainstNextTeam.js": {
         "memory": 512
-      },
-      "pyfetch/fetch_nba_next_matchup.py": {
-        "memory": 512
-      },
-      "pyfetch/fetch_nba_player_game_data.py": {
-        "memory": 512
-      },
-      "pyfetch/fetch_nba_player_names_id.py": {
-        "memory": 512
-      }
-      
+      }  
     }
   }
   
