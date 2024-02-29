@@ -1,12 +1,12 @@
 {
     "functions": {
-      "api/fetchPlayerNamesId.js": {
+      "api/fetch_nba_player_names_id.py": {
         "memory": 512
       },
-      "api/fetchPlayerGameData.js": {
+      "api/fetch_nba_next_matchup.py": {
         "memory": 512
       },
-      "api/fetchPayerDataAgainstNextTeam.js": {
+      "api/fetch_nba_player_game_data.py": {
         "memory": 512
       }  
     }

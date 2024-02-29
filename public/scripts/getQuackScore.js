@@ -458,7 +458,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const fetchPromises = [];
 
         // Make a GET request to your Express.js server for all game stats
-        const fetchAllGameData = fetch(`/api/fetchPlayerGameData?playerId=${playerId}`)
+        const fetchAllGameData = fetch(`/api/fetch_nba_player_game_data?playerId=${playerId}`)
             .then(response => response.json())
             .then(data => {
                 // Return the data for further processing
@@ -473,7 +473,7 @@ document.addEventListener('DOMContentLoaded', function () {
         fetchPromises.push(fetchAllGameData);
 
         // Make a GET request to your Express.js server for matchups
-        const fetchMatchupData = fetch(`/api/fetchPayerDataAgainstNextTeam?playerId=${playerId}`)
+        const fetchMatchupData = fetch(`/api/fetch_nba_next_matchup?playerId=${playerId}`)
             .then(response => response.json())
             .then(data => {
                 // Return the data for further processing
