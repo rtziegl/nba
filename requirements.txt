@@ -1,4 +1,4 @@
-nba_api
+nba-api
 numpy
 pandas
 requests
