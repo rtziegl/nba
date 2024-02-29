@@ -1,14 +1,16 @@
 {
     "functions": {
-      "api/fetch_nba_player_names_id.py": {
-        "memory": 512
-      },
-      "api/fetch_nba_next_matchup.py": {
-        "memory": 512
-      },
-      "api/fetch_nba_player_game_data.py": {
-        "memory": 512
-      }  
+        "api/fetch_nba_player_names_id.py": {
+            "memory": 3008,
+            "maxDuration": 30
+        },
+        "api/fetch_nba_next_matchup.py": {
+            "memory": 3008,
+            "maxDuration": 30
+        },
+        "api/fetch_nba_player_game_data.py": {
+            "memory": 3008,
+            "maxDuration": 30
+        }
     }
-  }
-  
+}
