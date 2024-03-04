@@ -38,11 +38,15 @@ class handler(BaseHTTPRequestHandler):
             self.wfile.write(json_data.encode('utf-8'))
 
         except Exception as e:
-            # If an error occurs, send a 500 Internal Server Error response
+            # Send error response
             self.send_response(500)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             error_message = json.dumps({'error': str(e)})
             self.wfile.write(error_message.encode('utf-8'))
 
-        return
+# if __name__ == "__main__":
+#     from http.server import HTTPServer
+#     server = HTTPServer(('localhost', 8080), handler)
+#     print('Starting server at http://localhost:8080')
+#     server.serve_forever()

@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // Fetch player data from the Express.js endpoint and populate dropdown
-    fetch('/api/fetch_nba_player_names_id')
+    fetch('/nba_get_active_players')
         .then(response => response.json())
         .then(data => {
             searchData = data; // Assign fetched data to searchData variable

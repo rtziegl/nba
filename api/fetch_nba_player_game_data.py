@@ -29,6 +29,8 @@ class handler(BaseHTTPRequestHandler):
             # Fetch player game data
             player_game_data = self.fetch_player_game_data(player_id)
 
+            print("player game data", player_game_data)
+
             # Send response headers
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
