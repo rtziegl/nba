@@ -454,13 +454,17 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(propValue)
         console.log(overUnderSelected)
 
+        console.log('Fetching all game data...');
         // Make a GET request to your Express.js server for all game stats
         const fetchAllGameData = fetch(`/nba_get_player_game_data?playerId=${playerId}`)
             .then(response => response.json())
             .then(async allGameData => {
+                console.log('All game data fetched successfully.');
+                console.log('Fetching matchup data...');
                 // Make a GET request to your Express.js server for matchups
                 const response = await fetch(`/nba_get_next_matchup?playerId=${playerId}`);
                 const matchupData = await response.json();
+                console.log('Matchup data fetched successfully.');
                 return { allGameData, matchupData };
             })
             .catch(error => {
