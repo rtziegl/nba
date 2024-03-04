@@ -454,62 +454,42 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(propValue)
         console.log(overUnderSelected)
 
-        // Create an array to store promises for each fetch request
-        const fetchPromises = [];
-
         // Make a GET request to your Express.js server for all game stats
         const fetchAllGameData = fetch(`/nba_get_player_game_data?playerId=${playerId}`)
             .then(response => response.json())
-            .then(data => {
-                // Return the data for further processing
-                return data;
+            .then(async allGameData => {
+                // Make a GET request to your Express.js server for matchups
+                const response = await fetch(`/nba_get_next_matchup?playerId=${playerId}`);
+                const matchupData = await response.json();
+                return { allGameData, matchupData };
             })
             .catch(error => {
-                console.error('Error fetching player game data:', error);
-                throw error; // Propagate the error for Promise.all()
+                console.error('Error fetching data:', error);
+                throw error;
             });
 
-        // Push the fetch promise to the array
-        fetchPromises.push(fetchAllGameData);
+        // Process the combined data from the fetch requests
+        fetchAllGameData.then(({ allGameData, matchupData }) => {
+            // Process the combined data from all fetch requests
+            console.log('All game data:', allGameData);
+            console.log('Matchup data:', matchupData);
 
-        // Make a GET request to your Express.js server for matchups
-        const fetchMatchupData = fetch(`/nba_get_next_matchup?playerId=${playerId}`)
-            .then(response => response.json())
-            .then(data => {
-                // Return the data for further processing
-                return data;
-            })
-            .catch(error => {
-                console.error('Error fetching player matchup data:', error);
-                throw error; // Propagate the error for Promise.all()
-            });
+            // All games and recent games
+            const { gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount, recent5GamesOverCount, recent5GamesUnderCount, minsGameOver, minsGameUnder, totalFouls } = countOverUnderOccurrences(allGameData, statSelected, propValue);
 
-        // Push the fetch promise to the array
-        fetchPromises.push(fetchMatchupData);
-
-        // Use Promise.all() to wait for all fetch requests to complete
-        Promise.all(fetchPromises)
-            .then(([allGameData, matchupData]) => {
-                // Process the combined data from all fetch requests
-                console.log('All game data:', allGameData);
-                console.log('Matchup data:', matchupData);
-
-                // All games and recent games
-                const { gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount, recent5GamesOverCount, recent5GamesUnderCount, minsGameOver, minsGameUnder, totalFouls } = countOverUnderOccurrences(allGameData, statSelected, propValue);
-
-                // Matchups
-                const { matchupGamesOverCount, matchupGamesUnderCount } = countMatchupOverUnderOccurrences(matchupData, statSelected, propValue);
-                const { tallyUpCalc, minsGame } = calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount, matchupGamesOverCount, matchupGamesUnderCount, matchupData.num_games, overUnderSelected, minsGameOver, minsGameUnder)
-                const outOfFiveCalc = calculate5GameAvg(recent5GamesOverCount, recent5GamesUnderCount, overUnderSelected)
-                const outOfAllCalc = calculateAllGameAvg(gameCount, allGamesOverCount, allGamesUnderCount, overUnderSelected);
-                // Displays stats for card 
-                displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls, outOfAllCalc)
-                displayScoreList(tallyUpCalc, decimalPropValue, overUnderSelected, statSelected, playerName)
-
-            })
+            // Matchups
+            const { matchupGamesOverCount, matchupGamesUnderCount } = countMatchupOverUnderOccurrences(matchupData, statSelected, propValue);
+            const { tallyUpCalc, minsGame } = calculateQuackScore(gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount, matchupGamesOverCount, matchupGamesUnderCount, matchupData.num_games, overUnderSelected, minsGameOver, minsGameUnder)
+            const outOfFiveCalc = calculate5GameAvg(recent5GamesOverCount, recent5GamesUnderCount, overUnderSelected)
+            const outOfAllCalc = calculateAllGameAvg(gameCount, allGamesOverCount, allGamesUnderCount, overUnderSelected);
+            // Displays stats for card 
+            displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls, outOfAllCalc)
+            displayScoreList(tallyUpCalc, decimalPropValue, overUnderSelected, statSelected, playerName)
+        })
             .catch(error => {
                 console.error('Error processing data:', error);
             });
+
 
         // Resets form
         const resetButton = document.getElementById('resetButton');

@@ -1,7 +1,7 @@
 from nba_api.stats.endpoints import PlayerNextNGames, PlayerGameLog, CommonPlayerInfo
 from nba_api.stats.library.parameters import SeasonAll
 from nba_api.stats.endpoints import commonallplayers
-from nba_api.stats.static import players
+from nba_api.stats.static import players, teams
 from nba_api.stats.endpoints import playergamelog
 from datetime import datetime
 from flask import Flask, jsonify, request, render_template
@@ -16,6 +16,9 @@ CORS(app)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+# -------------------- GET MATCHUP DATA --------------------------
 
 @app.route('/nba_get_next_matchup', methods=['GET'])
 def nba_get_next_matchup():
@@ -120,29 +123,11 @@ def get_player_team_abbreviation(player_id):
     except Exception as e:
         print("Error retrieving player team abbreviation: {e}")
         return None
-    
-
+   
+# -------------------- GET ACTIVE PLAYERS --------------------------
 @app.route('/nba_get_active_players', methods=['GET'])
 def nba_get_active_players():
     try:
-        # # Get the current year
-        # current_year = datetime.now().year
-
-        # # Get the current NBA season
-        # all_players = commonallplayers.CommonAllPlayers(is_only_current_season=1)
-        # all_players_dict = all_players.get_normalized_dict()
-
-        # # Extract player IDs of players active in the current season
-        # active_player_ids = [player['PERSON_ID'] for player in all_players_dict['CommonAllPlayers']]
-
-        # # Retrieve all NBA players' data
-        # nba_players = players.get_players()
-
-        # # Filter players who are active in the current season
-        # active_players = [player for player in nba_players if player['id'] in active_player_ids]
-
-        # # Extract player names and IDs
-        # players_data = [{'full_name': player['full_name'], 'id': player['id']} for player in active_players]
      # Get all active players
         active_players = players.get_active_players()
 
@@ -156,6 +141,9 @@ def nba_get_active_players():
         # Send error response
         error_message = {'error': str(e)}
         return jsonify(error_message), 500
+    
+
+# -------------------- GET PLAYER GAME DATA --------------------------
     
 @app.route('/nba_get_player_game_data', methods=['GET'])
 def nba_get_player_game_data():
