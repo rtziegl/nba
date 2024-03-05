@@ -92,6 +92,8 @@ def get_opponent_team(player_team_abbr, player_id):
         next_games = PlayerNextNGames(player_id=player_id)
         next_games_data = next_games.get_normalized_dict()["NextNGames"]
 
+        print("NEXT GAMES DATA", next_games_data)
+
         # Check if there are any upcoming games
         if next_games_data:
             # Retrieve details of the next game
@@ -175,8 +177,12 @@ def fetch_player_game_data(player_id):
         # Sort the data by game date in descending order (most recent first)
         player_stats = player_stats.sort_values(by='GAME_DATE', ascending=False)
 
+        print("HELLO", player_stats)
+        print("First row:", player_stats.head(1))
         # Convert the selected data to JSON format
         json_data = player_stats.to_json(orient='records')
+
+        
 
         return json_data
 
