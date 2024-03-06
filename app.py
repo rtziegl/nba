@@ -3,12 +3,20 @@ from nba_api.stats.library.parameters import SeasonAll
 from nba_api.stats.endpoints import commonallplayers
 from nba_api.stats.static import players, teams
 from nba_api.stats.endpoints import playergamelog
+
 from datetime import datetime
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 
+from pymongo import MongoClient, DESCENDING
+from pymongo.server_api import ServerApi
+from dotenv import load_dotenv
+
 import pandas as pd
 import json
+import os
+import certifi
+import requests
 
 app = Flask(__name__)
 CORS(app)
@@ -130,19 +138,31 @@ def get_player_team_abbreviation(player_id):
 @app.route('/nba_get_active_players', methods=['GET'])
 def nba_get_active_players():
     try:
-     # Get all active players
-        active_players = players.get_active_players()
+        # Get all active players from the database
+        active_players = get_data_from_db('players')
 
-        # Extract player names and IDs
-        players_data = [{'full_name': player['full_name'], 'id': player['id']} for player in active_players]
+        # Sanitize player data
+        sanitized_players = []
+        for player in active_players:
+            sanitized_player = {
+                'full_name': sanitize_string(player.get('full_name', '')),
+                'id': sanitize_string(player.get('id', ''))
+            }
+            sanitized_players.append(sanitized_player)
 
-        # Convert the data to JSON format
-        return jsonify(players_data), 200
+        # Convert the sanitized data to JSON format
+        return jsonify(sanitized_players), 200
 
     except Exception as e:
         # Send error response
         error_message = {'error': str(e)}
         return jsonify(error_message), 500
+
+def sanitize_string(value):
+    """Sanitize string to prevent XSS attacks."""
+    # Example: Escape special characters using markupsafe.escape
+    from markupsafe import escape
+    return escape(value)
     
 
 # -------------------- GET PLAYER GAME DATA --------------------------
@@ -188,6 +208,24 @@ def fetch_player_game_data(player_id):
 
     except Exception as e:
         return json.dumps({'error': str(e)})
+    
+# Load environment variables from .env file
+load_dotenv()
+
+# Retrieve the MongoDB Atlas URI from the environment
+uri = os.getenv("MONGODB_URI_ENDUSER")
+
+# Create a MongoClient instance
+client = MongoClient(uri, tlsCAFile=certifi.where())
+
+db = client["nba"]
+
+
+def get_data_from_db(collection_name):
+    collection = db[collection_name]  # corrected the string formatting
+    data = collection.find()
+    data_list = list(data)  # Convert cursor to list for JSON serialization
+    return data_list
 
 if __name__ == '__main__':
     app.run(debug=True)
