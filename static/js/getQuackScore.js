@@ -152,7 +152,6 @@ function displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls, outO
     const quackScoreDisplay = document.getElementById('quackScoreDisplay');
     // Update the content of the element with the Quack Score, Minutes, and Times prop hit
 
-    console.log(minsGame)
 
     if (!isNaN(minsGame)) {
         // Handle the case when minsGame is not NaN
@@ -360,19 +359,16 @@ function countOverUnderOccurrences(gameData, statSelected, propValue) {
     gameData.forEach((game, index) => {
         // Get the value of the selected stat for the current game
         const statValue = game[statMappedToAbrv];
-        console.log(statValue)
         const minsValue = game[minsMappedToAbrv];
         const foulsValue = game[foulsMappedToAbrv];
 
         // Determine if the stat value is over or under the propValue for all games
         if (statValue >= propValueNumber) {
             allGamesOverCount++;
-            console.log("MINS VALUE OVER:", minsValue)
             minsGameOver += minsValue;
         } else if (statValue < propValueNumber) {
             allGamesUnderCount++;
             minsGameUnder += minsValue;
-            console.log("MINS VALUE UNDERR:", minsValue)
         }
 
         // Count only the first 12 games for recent games
@@ -415,8 +411,6 @@ function countOverUnderOccurrences(gameData, statSelected, propValue) {
     // Total fouls averaged fom the season.
     totalFouls /= gameCount;
 
-    console.log(allGamesOverCount)
-    console.log(allGamesUnderCount)
     // Return the counts of over and under occurrences for all games, recent games, and the most recent 3 games
     return { gameCount, allGamesOverCount, allGamesUnderCount, recent12GamesOverCount, recent12GamesUnderCount, recent3GamesOverCount, recent3GamesUnderCount, recent5GamesOverCount, recent5GamesUnderCount, minsGameOver, minsGameUnder, totalFouls };
 }
