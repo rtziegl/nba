@@ -242,7 +242,23 @@ body {
     visibility: visible;
 }
 
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo img{
+    height: 100px;
+    width: 100px;
+    object-fit:cover;
+}
 
 
 
