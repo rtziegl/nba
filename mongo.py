@@ -287,11 +287,11 @@ try:
      # Connect to MongoDB
     db = client['nba']
 
-    # nba_update_active_players(db, active_players_logger)
+    #nba_update_active_players(db, active_players_logger)
     # print("NBA PLAYER NAME and ID DATA UPDATED")
 
-    # nba_update_player_game_data(db, player_game_data_logger)
-    # print("NBA PLAYER GAME DATA UPDATED")
+    #nba_update_player_game_data(db, player_game_data_logger)
+    #print("NBA PLAYER GAME DATA UPDATED")
 
     nba_update_player_next_game_matchup(db, player_next_game_logger)
     print("NBA PLAYER MATCHUP LOG UPDATED")

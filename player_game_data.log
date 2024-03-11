@@ -1,0 +1,1697 @@
+2024-03-08 10:48:22,197 - player_game_data - INFO - ACTION COMMITTED: nba_update_player_game_data
+2024-03-08 10:48:22,504 - player_game_data - INFO - Fetched game data for player 1630173
+2024-03-08 10:48:22,706 - player_game_data - INFO - Fetched game data for player 203500
+2024-03-08 10:48:22,889 - player_game_data - INFO - Fetched game data for player 1628389
+2024-03-08 10:48:23,004 - player_game_data - INFO - Inserted game data for player: 1628389, Full Name: Bam Adebayo , Game_ID: 0022300904
+2024-03-08 10:48:23,148 - player_game_data - INFO - Fetched game data for player 1630534
+2024-03-08 10:48:23,227 - player_game_data - INFO - Inserted game data for player: 1630534, Full Name: Ochai Agbaji , Game_ID: 0022300905
+2024-03-08 10:48:23,368 - player_game_data - INFO - Fetched game data for player 1630583
+2024-03-08 10:48:23,446 - player_game_data - INFO - Inserted game data for player: 1630583, Full Name: Santi Aldama , Game_ID: 0022300896
+2024-03-08 10:48:23,674 - player_game_data - INFO - Fetched game data for player 1629638
+2024-03-08 10:48:23,749 - player_game_data - INFO - Inserted game data for player: 1629638, Full Name: Nickeil Alexander-Walker , Game_ID: 0022300903
+2024-03-08 10:48:23,943 - player_game_data - INFO - Fetched game data for player 1628960
+2024-03-08 10:48:24,021 - player_game_data - INFO - Inserted game data for player: 1628960, Full Name: Grayson Allen , Game_ID: 0022300905
+2024-03-08 10:48:24,171 - player_game_data - INFO - Fetched game data for player 1628386
+2024-03-08 10:48:24,248 - player_game_data - INFO - Inserted game data for player: 1628386, Full Name: Jarrett Allen , Game_ID: 0022300895
+2024-03-08 10:48:24,385 - player_game_data - INFO - Fetched game data for player 1630631
+2024-03-08 10:48:24,626 - player_game_data - INFO - Fetched game data for player 203937
+2024-03-08 10:48:24,702 - player_game_data - INFO - Inserted game data for player: 203937, Full Name: Kyle Anderson , Game_ID: 0022300903
+2024-03-08 10:48:24,849 - player_game_data - INFO - Fetched game data for player 203507
+2024-03-08 10:48:24,931 - player_game_data - INFO - Inserted game data for player: 203507, Full Name: Giannis Antetokounmpo , Game_ID: 0022300899
+2024-03-08 10:48:25,081 - player_game_data - INFO - Fetched game data for player 203648
+2024-03-08 10:48:25,154 - player_game_data - INFO - Inserted game data for player: 203648, Full Name: Thanasis Antetokounmpo , Game_ID: 0022300899
+2024-03-08 10:48:25,326 - player_game_data - INFO - Fetched game data for player 1630175
+2024-03-08 10:48:25,401 - player_game_data - INFO - Inserted game data for player: 1630175, Full Name: Cole Anthony , Game_ID: 0022300894
+2024-03-08 10:48:25,560 - player_game_data - INFO - Fetched game data for player 1628384
+2024-03-08 10:48:25,760 - player_game_data - INFO - Fetched game data for player 1627853
+2024-03-08 10:48:25,954 - player_game_data - INFO - Fetched game data for player 1630166
+2024-03-08 10:48:26,031 - player_game_data - INFO - Inserted game data for player: 1630166, Full Name: Deni Avdija , Game_ID: 0022300894
+2024-03-08 10:48:26,261 - player_game_data - INFO - Fetched game data for player 1629028
+2024-03-08 10:48:26,490 - player_game_data - INFO - Fetched game data for player 1628962
+2024-03-08 10:48:26,786 - player_game_data - INFO - Fetched game data for player 1628963
+2024-03-08 10:48:27,000 - player_game_data - INFO - Fetched game data for player 1641735
+2024-03-08 10:48:27,206 - player_game_data - INFO - Fetched game data for player 1631116
+2024-03-08 10:48:27,418 - player_game_data - INFO - Fetched game data for player 1630163
+2024-03-08 10:48:27,629 - player_game_data - INFO - Fetched game data for player 1628366
+2024-03-08 10:48:27,816 - player_game_data - INFO - Fetched game data for player 1628964
+2024-03-08 10:48:27,891 - player_game_data - INFO - Inserted game data for player: 1628964, Full Name: Mo Bamba , Game_ID: 0022300896
+2024-03-08 10:48:28,035 - player_game_data - INFO - Fetched game data for player 1631094
+2024-03-08 10:48:28,112 - player_game_data - INFO - Inserted game data for player: 1631094, Full Name: Paolo Banchero , Game_ID: 0022300894
+2024-03-08 10:48:28,270 - player_game_data - INFO - Fetched game data for player 1630217
+2024-03-08 10:48:28,509 - player_game_data - INFO - Fetched game data for player 1630625
+2024-03-08 10:48:28,587 - player_game_data - INFO - Inserted game data for player: 1630625, Full Name: Dalano Banton , Game_ID: 0022300900
+2024-03-08 10:48:28,746 - player_game_data - INFO - Fetched game data for player 1631230
+2024-03-08 10:48:28,837 - player_game_data - INFO - Inserted game data for player: 1631230, Full Name: Dominick Barlow , Game_ID: 0022300908
+2024-03-08 10:48:28,981 - player_game_data - INFO - Fetched game data for player 203084
+2024-03-08 10:48:29,050 - player_game_data - INFO - Inserted game data for player: 203084, Full Name: Harrison Barnes , Game_ID: 0022300908
+2024-03-08 10:48:29,191 - player_game_data - INFO - Fetched game data for player 1630567
+2024-03-08 10:48:29,387 - player_game_data - INFO - Fetched game data for player 1629628
+2024-03-08 10:48:29,467 - player_game_data - INFO - Inserted game data for player: 1629628, Full Name: RJ Barrett , Game_ID: 0022300905
+2024-03-08 10:48:29,665 - player_game_data - INFO - Fetched game data for player 1629646
+2024-03-08 10:48:29,850 - player_game_data - INFO - Fetched game data for player 1641734
+2024-03-08 10:48:30,115 - player_game_data - INFO - Fetched game data for player 1628966
+2024-03-08 10:48:30,204 - player_game_data - INFO - Inserted game data for player: 1628966, Full Name: Keita Bates-Diop , Game_ID: 0022300902
+2024-03-08 10:48:30,378 - player_game_data - INFO - Fetched game data for player 201587
+2024-03-08 10:48:30,507 - player_game_data - INFO - Inserted game data for player: 201587, Full Name: Nicolas Batum , Game_ID: 0022300896
+2024-03-08 10:48:30,665 - player_game_data - INFO - Fetched game data for player 203078
+2024-03-08 10:48:30,740 - player_game_data - INFO - Inserted game data for player: 203078, Full Name: Bradley Beal , Game_ID: 0022300905
+2024-03-08 10:48:30,910 - player_game_data - INFO - Fetched game data for player 1627736
+2024-03-08 10:48:30,996 - player_game_data - INFO - Inserted game data for player: 1627736, Full Name: Malik Beasley , Game_ID: 0022300899
+2024-03-08 10:48:31,221 - player_game_data - INFO - Fetched game data for player 1630699
+2024-03-08 10:48:31,301 - player_game_data - INFO - Inserted game data for player: 1630699, Full Name: MarJon Beauchamp , Game_ID: 0022300899
+2024-03-08 10:48:31,459 - player_game_data - INFO - Fetched game data for player 1641777
+2024-03-08 10:48:31,647 - player_game_data - INFO - Fetched game data for player 202722
+2024-03-08 10:48:31,855 - player_game_data - INFO - Fetched game data for player 201976
+2024-03-08 10:48:31,932 - player_game_data - INFO - Inserted game data for player: 201976, Full Name: Patrick Beverley , Game_ID: 0022300899
+2024-03-08 10:48:32,080 - player_game_data - INFO - Fetched game data for player 1630180
+2024-03-08 10:48:32,161 - player_game_data - INFO - Inserted game data for player: 1630180, Full Name: Saddiq Bey , Game_ID: 0022300895
+2024-03-08 10:48:32,304 - player_game_data - INFO - Fetched game data for player 1629048
+2024-03-08 10:48:32,377 - player_game_data - INFO - Inserted game data for player: 1629048, Full Name: Goga Bitadze , Game_ID: 0022300894
+2024-03-08 10:48:32,650 - player_game_data - INFO - Fetched game data for player 1641931
+2024-03-08 10:48:32,728 - player_game_data - INFO - Inserted game data for player: 1641931, Full Name: Onuralp Bitim , Game_ID: 0022300907
+2024-03-08 10:48:32,866 - player_game_data - INFO - Fetched game data for player 202687
+2024-03-08 10:48:33,113 - player_game_data - INFO - Fetched game data for player 1641710
+2024-03-08 10:48:33,213 - player_game_data - INFO - Inserted game data for player: 1641710, Full Name: Anthony Black , Game_ID: 0022300894
+2024-03-08 10:48:33,409 - player_game_data - INFO - Fetched game data for player 1641778
+2024-03-08 10:48:33,632 - player_game_data - INFO - Fetched game data for player 203992
+2024-03-08 10:48:33,727 - player_game_data - INFO - Inserted game data for player: 203992, Full Name: Bogdan Bogdanovic , Game_ID: 0022300895
+2024-03-08 10:48:33,877 - player_game_data - INFO - Fetched game data for player 202711
+2024-03-08 10:48:34,076 - player_game_data - INFO - Fetched game data for player 1629626
+2024-03-08 10:48:34,153 - player_game_data - INFO - Inserted game data for player: 1629626, Full Name: Bol Bol , Game_ID: 0022300905
+2024-03-08 10:48:34,325 - player_game_data - INFO - Fetched game data for player 1629716
+2024-03-08 10:48:34,607 - player_game_data - INFO - Fetched game data for player 1626164
+2024-03-08 10:48:34,826 - player_game_data - INFO - Fetched game data for player 1630527
+2024-03-08 10:48:35,083 - player_game_data - INFO - Fetched game data for player 1628449
+2024-03-08 10:48:35,156 - player_game_data - INFO - Inserted game data for player: 1628449, Full Name: Chris Boucher , Game_ID: 0022300905
+2024-03-08 10:48:35,306 - player_game_data - INFO - Fetched game data for player 1630547
+2024-03-08 10:48:35,509 - player_game_data - INFO - Fetched game data for player 1631103
+2024-03-08 10:48:35,583 - player_game_data - INFO - Inserted game data for player: 1631103, Full Name: Malaki Branham , Game_ID: 0022300908
+2024-03-08 10:48:35,742 - player_game_data - INFO - Fetched game data for player 1631128
+2024-03-08 10:48:35,815 - player_game_data - INFO - Inserted game data for player: 1631128, Full Name: Christian Braun , Game_ID: 0022300906
+2024-03-08 10:48:35,964 - player_game_data - INFO - Fetched game data for player 1628969
+2024-03-08 10:48:36,041 - player_game_data - INFO - Inserted game data for player: 1628969, Full Name: Mikal Bridges , Game_ID: 0022300902
+2024-03-08 10:48:36,193 - player_game_data - INFO - Fetched game data for player 1628970
+2024-03-08 10:48:36,380 - player_game_data - INFO - Fetched game data for player 1629052
+2024-03-08 10:48:36,669 - player_game_data - INFO - Fetched game data for player 1627763
+2024-03-08 10:48:36,879 - player_game_data - INFO - Fetched game data for player 1629717
+2024-03-08 10:48:37,080 - player_game_data - INFO - Fetched game data for player 1628415
+2024-03-08 10:48:37,159 - player_game_data - INFO - Inserted game data for player: 1628415, Full Name: Dillon Brooks , Game_ID: 0022300897
+2024-03-08 10:48:37,320 - player_game_data - INFO - Fetched game data for player 1628971
+2024-03-08 10:48:37,530 - player_game_data - INFO - Fetched game data for player 1627759
+2024-03-08 10:48:37,613 - player_game_data - INFO - Inserted game data for player: 1627759, Full Name: Jaylen Brown , Game_ID: 0022300906
+2024-03-08 10:48:37,768 - player_game_data - INFO - Fetched game data for player 1631112
+2024-03-08 10:48:37,976 - player_game_data - INFO - Fetched game data for player 1641738
+2024-03-08 10:48:38,243 - player_game_data - INFO - Fetched game data for player 1629650
+2024-03-08 10:48:38,506 - player_game_data - INFO - Fetched game data for player 1630535
+2024-03-08 10:48:38,729 - player_game_data - INFO - Fetched game data for player 1629718
+2024-03-08 10:48:38,961 - player_game_data - INFO - Fetched game data for player 1628972
+2024-03-08 10:48:39,175 - player_game_data - INFO - Fetched game data for player 1628973
+2024-03-08 10:48:39,375 - player_game_data - INFO - Fetched game data for player 1628418
+2024-03-08 10:48:39,448 - player_game_data - INFO - Inserted game data for player: 1628418, Full Name: Thomas Bryant , Game_ID: 0022300904
+2024-03-08 10:48:39,588 - player_game_data - INFO - Fetched game data for player 1641723
+2024-03-08 10:48:39,792 - player_game_data - INFO - Fetched game data for player 203493
+2024-03-08 10:48:39,996 - player_game_data - INFO - Fetched game data for player 202692
+2024-03-08 10:48:40,196 - player_game_data - INFO - Fetched game data for player 1630215
+2024-03-08 10:48:40,405 - player_game_data - INFO - Fetched game data for player 202710
+2024-03-08 10:48:40,526 - player_game_data - INFO - Inserted game data for player: 202710, Full Name: Jimmy Butler , Game_ID: 0022300904
+2024-03-08 10:48:40,699 - player_game_data - INFO - Fetched game data for player 1631219
+2024-03-08 10:48:40,888 - player_game_data - INFO - Fetched game data for player 1631288
+2024-03-08 10:48:41,083 - player_game_data - INFO - Fetched game data for player 203484
+2024-03-08 10:48:41,160 - player_game_data - INFO - Inserted game data for player: 203484, Full Name: Kentavious Caldwell-Pope , Game_ID: 0022300906
+2024-03-08 10:48:41,300 - player_game_data - INFO - Fetched game data for player 1641739
+2024-03-08 10:48:41,496 - player_game_data - INFO - Fetched game data for player 1628427
+2024-03-08 10:48:41,726 - player_game_data - INFO - Fetched game data for player 203991
+2024-03-08 10:48:41,802 - player_game_data - INFO - Inserted game data for player: 203991, Full Name: Clint Capela , Game_ID: 0022300895
+2024-03-08 10:48:41,942 - player_game_data - INFO - Fetched game data for player 1628975
+2024-03-08 10:48:42,016 - player_game_data - INFO - Inserted game data for player: 1628975, Full Name: Jevon Carter , Game_ID: 0022300907
+2024-03-08 10:48:42,173 - player_game_data - INFO - Fetched game data for player 1628976
+2024-03-08 10:48:42,375 - player_game_data - INFO - Fetched game data for player 1627936
+2024-03-08 10:48:42,539 - player_game_data - INFO - Inserted game data for player: 1627936, Full Name: Alex Caruso , Game_ID: 0022300907
+2024-03-08 10:48:42,695 - player_game_data - INFO - Fetched game data for player 1630658
+2024-03-08 10:48:42,900 - player_game_data - INFO - Fetched game data for player 1630608
+2024-03-08 10:48:43,087 - player_game_data - INFO - Fetched game data for player 1630577
+2024-03-08 10:48:43,160 - player_game_data - INFO - Inserted game data for player: 1630577, Full Name: Julian Champagnie , Game_ID: 0022300908
+2024-03-08 10:48:43,322 - player_game_data - INFO - Fetched game data for player 1631108
+2024-03-08 10:48:43,391 - player_game_data - INFO - Inserted game data for player: 1631108, Full Name: Max Christie , Game_ID: 0022300901
+2024-03-08 10:48:43,554 - player_game_data - INFO - Fetched game data for player 1630528
+2024-03-08 10:48:43,751 - player_game_data - INFO - Fetched game data for player 1631321
+2024-03-08 10:48:43,960 - player_game_data - INFO - Fetched game data for player 1641740
+2024-03-08 10:48:44,172 - player_game_data - INFO - Fetched game data for player 1629634
+2024-03-08 10:48:44,828 - player_game_data - INFO - Fetched game data for player 203903
+2024-03-08 10:48:44,922 - player_game_data - INFO - Inserted game data for player: 203903, Full Name: Jordan Clarkson , Game_ID: 0022300898
+2024-03-08 10:48:45,117 - player_game_data - INFO - Fetched game data for player 1629651
+2024-03-08 10:48:45,214 - player_game_data - INFO - Inserted game data for player: 1629651, Full Name: Nic Claxton , Game_ID: 0022300902
+2024-03-08 10:48:45,445 - player_game_data - INFO - Fetched game data for player 1641730
+2024-03-08 10:48:45,514 - player_game_data - INFO - Inserted game data for player: 1641730, Full Name: Noah Clowney , Game_ID: 0022300902
+2024-03-08 10:48:45,704 - player_game_data - INFO - Fetched game data for player 1629599
+2024-03-08 10:48:45,809 - player_game_data - INFO - Inserted game data for player: 1629599, Full Name: Amir Coffey , Game_ID: 0022300897
+2024-03-08 10:48:46,011 - player_game_data - INFO - Fetched game data for player 1628381
+2024-03-08 10:48:46,139 - player_game_data - INFO - Inserted game data for player: 1628381, Full Name: John Collins , Game_ID: 0022300898
+2024-03-08 10:48:46,278 - player_game_data - INFO - Fetched game data for player 1628380
+2024-03-08 10:48:46,408 - player_game_data - INFO - Inserted game data for player: 1628380, Full Name: Zach Collins , Game_ID: 0022300908
+2024-03-08 10:48:46,645 - player_game_data - INFO - Fetched game data for player 201144
+2024-03-08 10:48:46,756 - player_game_data - INFO - Inserted game data for player: 201144, Full Name: Mike Conley , Game_ID: 0022300903
+2024-03-08 10:48:46,905 - player_game_data - INFO - Fetched game data for player 1626192
+2024-03-08 10:48:47,015 - player_game_data - INFO - Inserted game data for player: 1626192, Full Name: Pat Connaughton , Game_ID: 0022300899
+2024-03-08 10:48:47,159 - player_game_data - INFO - Fetched game data for player 1641731
+2024-03-08 10:48:47,272 - player_game_data - INFO - Inserted game data for player: 1641731, Full Name: Bilal Coulibaly , Game_ID: 0022300894
+2024-03-08 10:48:47,416 - player_game_data - INFO - Fetched game data for player 1641741
+2024-03-08 10:48:47,510 - player_game_data - INFO - Inserted game data for player: 1641741, Full Name: Ricky Council IV , Game_ID: 0022300896
+2024-03-08 10:48:48,051 - player_game_data - INFO - Fetched game data for player 203496
+2024-03-08 10:48:48,259 - player_game_data - INFO - Fetched game data for player 1628470
+2024-03-08 10:48:48,334 - player_game_data - INFO - Inserted game data for player: 1628470, Full Name: Torrey Craig , Game_ID: 0022300907
+2024-03-08 10:48:48,547 - player_game_data - INFO - Fetched game data for player 203109
+2024-03-08 10:48:48,623 - player_game_data - INFO - Inserted game data for player: 203109, Full Name: Jae Crowder , Game_ID: 0022300899
+2024-03-08 10:48:48,795 - player_game_data - INFO - Fetched game data for player 1630595
+2024-03-08 10:48:48,876 - player_game_data - INFO - Inserted game data for player: 1630595, Full Name: Cade Cunningham , Game_ID: 0022300902
+2024-03-08 10:48:49,022 - player_game_data - INFO - Fetched game data for player 203552
+2024-03-08 10:48:49,216 - player_game_data - INFO - Fetched game data for player 201939
+2024-03-08 10:48:49,290 - player_game_data - INFO - Inserted game data for player: 201939, Full Name: Stephen Curry , Game_ID: 0022300907
+2024-03-08 10:48:49,527 - player_game_data - INFO - Fetched game data for player 1630700
+2024-03-08 10:48:49,725 - player_game_data - INFO - Fetched game data for player 203076
+2024-03-08 10:48:49,800 - player_game_data - INFO - Inserted game data for player: 203076, Full Name: Anthony Davis , Game_ID: 0022300901
+2024-03-08 10:48:49,941 - player_game_data - INFO - Fetched game data for player 1631098
+2024-03-08 10:48:50,014 - player_game_data - INFO - Inserted game data for player: 1631098, Full Name: Johnny Davis , Game_ID: 0022300894
+2024-03-08 10:48:50,152 - player_game_data - INFO - Fetched game data for player 1631120
+2024-03-08 10:48:50,344 - player_game_data - INFO - Fetched game data for player 201942
+2024-03-08 10:48:50,424 - player_game_data - INFO - Inserted game data for player: 201942, Full Name: DeMar DeRozan , Game_ID: 0022300907
+2024-03-08 10:48:50,643 - player_game_data - INFO - Fetched game data for player 1641926
+2024-03-08 10:48:50,942 - player_game_data - INFO - Fetched game data for player 1628978
+2024-03-08 10:48:51,172 - player_game_data - INFO - Fetched game data for player 1631217
+2024-03-08 10:48:51,393 - player_game_data - INFO - Fetched game data for player 1641711
+2024-03-08 10:48:51,521 - player_game_data - INFO - Inserted game data for player: 1641711, Full Name: Gradey Dick , Game_ID: 0022300905
+2024-03-08 10:48:51,825 - player_game_data - INFO - Fetched game data for player 1631172
+2024-03-08 10:48:52,081 - player_game_data - INFO - Fetched game data for player 203915
+2024-03-08 10:48:52,234 - player_game_data - INFO - Inserted game data for player: 203915, Full Name: Spencer Dinwiddie , Game_ID: 0022300901
+2024-03-08 10:48:52,378 - player_game_data - INFO - Fetched game data for player 1629029
+2024-03-08 10:48:52,566 - player_game_data - INFO - Inserted game data for player: 1629029, Full Name: Luka Doncic , Game_ID: 0022300904
+2024-03-08 10:48:52,722 - player_game_data - INFO - Fetched game data for player 1629652
+2024-03-08 10:48:52,800 - player_game_data - INFO - Inserted game data for player: 1629652, Full Name: Luguentz Dort , Game_ID: 0022300900
+2024-03-08 10:48:53,030 - player_game_data - INFO - Fetched game data for player 1630245
+2024-03-08 10:48:53,108 - player_game_data - INFO - Inserted game data for player: 1630245, Full Name: Ayo Dosunmu , Game_ID: 0022300907
+2024-03-08 10:48:53,329 - player_game_data - INFO - Fetched game data for player 203083
+2024-03-08 10:48:53,404 - player_game_data - INFO - Inserted game data for player: 203083, Full Name: Andre Drummond , Game_ID: 0022300907
+2024-03-08 10:48:53,562 - player_game_data - INFO - Fetched game data for player 1630537
+2024-03-08 10:48:53,760 - player_game_data - INFO - Fetched game data for player 1627739
+2024-03-08 10:48:53,842 - player_game_data - INFO - Inserted game data for player: 1627739, Full Name: Kris Dunn , Game_ID: 0022300898
+2024-03-08 10:48:53,991 - player_game_data - INFO - Fetched game data for player 201142
+2024-03-08 10:48:54,071 - player_game_data - INFO - Inserted game data for player: 201142, Full Name: Kevin Durant , Game_ID: 0022300905
+2024-03-08 10:48:54,252 - player_game_data - INFO - Fetched game data for player 1631105
+2024-03-08 10:48:54,328 - player_game_data - INFO - Inserted game data for player: 1631105, Full Name: Jalen Duren , Game_ID: 0022300902
+2024-03-08 10:48:54,528 - player_game_data - INFO - Fetched game data for player 1631106
+2024-03-08 10:48:54,771 - player_game_data - INFO - Fetched game data for player 1630162
+2024-03-08 10:48:54,867 - player_game_data - INFO - Inserted game data for player: 1630162, Full Name: Anthony Edwards , Game_ID: 0022300903
+2024-03-08 10:48:55,007 - player_game_data - INFO - Fetched game data for player 1630556
+2024-03-08 10:48:55,206 - player_game_data - INFO - Fetched game data for player 1631165
+2024-03-08 10:48:55,281 - player_game_data - INFO - Inserted game data for player: 1631165, Full Name: Keon Ellis , Game_ID: 0022300908
+2024-03-08 10:48:55,455 - player_game_data - INFO - Fetched game data for player 203954
+2024-03-08 10:48:55,663 - player_game_data - INFO - Fetched game data for player 1629234
+2024-03-08 10:48:55,746 - player_game_data - INFO - Inserted game data for player: 1629234, Full Name: Drew Eubanks , Game_ID: 0022300905
+2024-03-08 10:48:55,957 - player_game_data - INFO - Fetched game data for player 203957
+2024-03-08 10:48:56,088 - player_game_data - INFO - Inserted game data for player: 203957, Full Name: Dante Exum , Game_ID: 0022300904
+2024-03-08 10:48:56,291 - player_game_data - INFO - Fetched game data for player 1628981
+2024-03-08 10:48:56,360 - player_game_data - INFO - Inserted game data for player: 1628981, Full Name: Bruno Fernando , Game_ID: 0022300895
+2024-03-08 10:48:56,631 - player_game_data - INFO - Fetched game data for player 1627827
+2024-03-08 10:48:56,765 - player_game_data - INFO - Inserted game data for player: 1627827, Full Name: Dorian Finney-Smith , Game_ID: 0022300902
+2024-03-08 10:48:56,931 - player_game_data - INFO - Fetched game data for player 1630201
+2024-03-08 10:48:57,060 - player_game_data - INFO - Inserted game data for player: 1630201, Full Name: Malachi Flynn , Game_ID: 0022300902
+2024-03-08 10:48:57,262 - player_game_data - INFO - Fetched game data for player 1631323
+2024-03-08 10:48:57,351 - player_game_data - INFO - Inserted game data for player: 1631323, Full Name: Simone Fontecchio , Game_ID: 0022300902
+2024-03-08 10:48:57,523 - player_game_data - INFO - Fetched game data for player 1630259
+2024-03-08 10:48:57,771 - player_game_data - INFO - Fetched game data for player 1630235
+2024-03-08 10:48:57,840 - player_game_data - INFO - Inserted game data for player: 1630235, Full Name: Trent Forrest , Game_ID: 0022300895
+2024-03-08 10:48:57,979 - player_game_data - INFO - Fetched game data for player 203095
+2024-03-08 10:48:58,095 - player_game_data - INFO - Inserted game data for player: 203095, Full Name: Evan Fournier , Game_ID: 0022300902
+2024-03-08 10:48:58,280 - player_game_data - INFO - Fetched game data for player 1628368
+2024-03-08 10:48:58,375 - player_game_data - INFO - Inserted game data for player: 1628368, Full Name: De'Aaron Fox , Game_ID: 0022300908
+2024-03-08 10:48:58,642 - player_game_data - INFO - Fetched game data for player 1631241
+2024-03-08 10:48:58,723 - player_game_data - INFO - Inserted game data for player: 1631241, Full Name: Javon Freeman-Liberty , Game_ID: 0022300905
+2024-03-08 10:48:58,912 - player_game_data - INFO - Fetched game data for player 1641788
+2024-03-08 10:48:59,142 - player_game_data - INFO - Fetched game data for player 1628365
+2024-03-08 10:48:59,212 - player_game_data - INFO - Inserted game data for player: 1628365, Full Name: Markelle Fultz , Game_ID: 0022300894
+2024-03-08 10:48:59,394 - player_game_data - INFO - Fetched game data for player 1629655
+2024-03-08 10:48:59,478 - player_game_data - INFO - Inserted game data for player: 1629655, Full Name: Daniel Gafford , Game_ID: 0022300904
+2024-03-08 10:48:59,620 - player_game_data - INFO - Fetched game data for player 201568
+2024-03-08 10:48:59,698 - player_game_data - INFO - Inserted game data for player: 201568, Full Name: Danilo Gallinari , Game_ID: 0022300899
+2024-03-08 10:49:00,231 - player_game_data - INFO - Fetched game data for player 1629636
+2024-03-08 10:49:00,303 - player_game_data - INFO - Inserted game data for player: 1629636, Full Name: Darius Garland , Game_ID: 0022300895
+2024-03-08 10:49:00,537 - player_game_data - INFO - Fetched game data for player 1630586
+2024-03-08 10:49:00,760 - player_game_data - INFO - Fetched game data for player 1630568
+2024-03-08 10:49:00,941 - player_game_data - INFO - Fetched game data for player 1629232
+2024-03-08 10:49:01,136 - player_game_data - INFO - Fetched game data for player 1641718
+2024-03-08 10:49:01,354 - player_game_data - INFO - Fetched game data for player 202331
+2024-03-08 10:49:01,428 - player_game_data - INFO - Inserted game data for player: 202331, Full Name: Paul George , Game_ID: 0022300897
+2024-03-08 10:49:01,585 - player_game_data - INFO - Fetched game data for player 1630581
+2024-03-08 10:49:01,682 - player_game_data - INFO - Inserted game data for player: 1630581, Full Name: Josh Giddey , Game_ID: 0022300900
+2024-03-08 10:49:01,816 - player_game_data - INFO - Fetched game data for player 1628385
+2024-03-08 10:49:01,883 - player_game_data - INFO - Inserted game data for player: 1628385, Full Name: Harry Giles III , Game_ID: 0022300901
+2024-03-08 10:49:02,025 - player_game_data - INFO - Fetched game data for player 1628983
+2024-03-08 10:49:02,103 - player_game_data - INFO - Inserted game data for player: 1628983, Full Name: Shai Gilgeous-Alexander , Game_ID: 0022300900
+2024-03-08 10:49:02,245 - player_game_data - INFO - Fetched game data for player 1630264
+2024-03-08 10:49:02,538 - player_game_data - INFO - Fetched game data for player 1631221
+2024-03-08 10:49:02,852 - player_game_data - INFO - Fetched game data for player 1631367
+2024-03-08 10:49:03,046 - player_game_data - INFO - Fetched game data for player 203497
+2024-03-08 10:49:03,128 - player_game_data - INFO - Inserted game data for player: 203497, Full Name: Rudy Gobert , Game_ID: 0022300903
+2024-03-08 10:49:03,274 - player_game_data - INFO - Fetched game data for player 1630692
+2024-03-08 10:49:03,540 - player_game_data - INFO - Fetched game data for player 203932
+2024-03-08 10:49:03,615 - player_game_data - INFO - Inserted game data for player: 203932, Full Name: Aaron Gordon , Game_ID: 0022300906
+2024-03-08 10:49:03,770 - player_game_data - INFO - Fetched game data for player 201569
+2024-03-08 10:49:03,844 - player_game_data - INFO - Inserted game data for player: 201569, Full Name: Eric Gordon , Game_ID: 0022300905
+2024-03-08 10:49:03,990 - player_game_data - INFO - Fetched game data for player 1628984
+2024-03-08 10:49:04,187 - player_game_data - INFO - Fetched game data for player 203924
+2024-03-08 10:49:04,264 - player_game_data - INFO - Inserted game data for player: 203924, Full Name: Jerami Grant , Game_ID: 0022300900
+2024-03-08 10:49:04,414 - player_game_data - INFO - Fetched game data for player 1631260
+2024-03-08 10:49:04,562 - player_game_data - INFO - Inserted game data for player: 1631260, Full Name: AJ Green , Game_ID: 0022300899
+2024-03-08 10:49:04,710 - player_game_data - INFO - Fetched game data for player 201980
+2024-03-08 10:49:04,901 - player_game_data - INFO - Fetched game data for player 203110
+2024-03-08 10:49:04,971 - player_game_data - INFO - Inserted game data for player: 203110, Full Name: Draymond Green , Game_ID: 0022300907
+2024-03-08 10:49:05,107 - player_game_data - INFO - Fetched game data for player 1630224
+2024-03-08 10:49:05,181 - player_game_data - INFO - Inserted game data for player: 1630224, Full Name: Jalen Green , Game_ID: 0022300897
+2024-03-08 10:49:05,331 - player_game_data - INFO - Fetched game data for player 201145
+2024-03-08 10:49:05,563 - player_game_data - INFO - Fetched game data for player 1630182
+2024-03-08 10:49:05,634 - player_game_data - INFO - Inserted game data for player: 1630182, Full Name: Josh Green , Game_ID: 0022300904
+2024-03-08 10:49:05,788 - player_game_data - INFO - Fetched game data for player 1631100
+2024-03-08 10:49:05,975 - player_game_data - INFO - Fetched game data for player 1629656
+2024-03-08 10:49:06,177 - player_game_data - INFO - Fetched game data for player 1631243
+2024-03-08 10:49:06,385 - player_game_data - INFO - Fetched game data for player 1629060
+2024-03-08 10:49:06,531 - player_game_data - INFO - Inserted game data for player: 1629060, Full Name: Rui Hachimura , Game_ID: 0022300901
+2024-03-08 10:49:06,692 - player_game_data - INFO - Fetched game data for player 1630169
+2024-03-08 10:49:06,766 - player_game_data - INFO - Inserted game data for player: 1630169, Full Name: Tyrese Haliburton , Game_ID: 0022300903
+2024-03-08 10:49:06,909 - player_game_data - INFO - Fetched game data for player 1630181
+2024-03-08 10:49:07,110 - player_game_data - INFO - Fetched game data for player 203501
+2024-03-08 10:49:07,183 - player_game_data - INFO - Inserted game data for player: 203501, Full Name: Tim Hardaway Jr. , Game_ID: 0022300904
+2024-03-08 10:49:07,410 - player_game_data - INFO - Fetched game data for player 201935
+2024-03-08 10:49:07,483 - player_game_data - INFO - Inserted game data for player: 201935, Full Name: James Harden , Game_ID: 0022300897
+2024-03-08 10:49:07,634 - player_game_data - INFO - Fetched game data for player 1630702
+2024-03-08 10:49:07,846 - player_game_data - INFO - Fetched game data for player 1631199
+2024-03-08 10:49:08,037 - player_game_data - INFO - Fetched game data for player 203914
+2024-03-08 10:49:08,231 - player_game_data - INFO - Fetched game data for player 203925
+2024-03-08 10:49:08,453 - player_game_data - INFO - Fetched game data for player 1630284
+2024-03-08 10:49:08,670 - player_game_data - INFO - Fetched game data for player 202699
+2024-03-08 10:49:08,743 - player_game_data - INFO - Inserted game data for player: 202699, Full Name: Tobias Harris , Game_ID: 0022300896
+2024-03-08 10:49:08,896 - player_game_data - INFO - Fetched game data for player 1628404
+2024-03-08 10:49:09,089 - player_game_data - INFO - Fetched game data for player 1628392
+2024-03-08 10:49:09,278 - player_game_data - INFO - Fetched game data for player 1630573
+2024-03-08 10:49:09,352 - player_game_data - INFO - Inserted game data for player: 1630573, Full Name: Sam Hauser , Game_ID: 0022300906
+2024-03-08 10:49:09,511 - player_game_data - INFO - Fetched game data for player 1641722
+2024-03-08 10:49:09,750 - player_game_data - INFO - Fetched game data for player 1629637
+2024-03-08 10:49:09,828 - player_game_data - INFO - Inserted game data for player: 1629637, Full Name: Jaxson Hayes , Game_ID: 0022300901
+2024-03-08 10:49:09,971 - player_game_data - INFO - Fetched game data for player 1630165
+2024-03-08 10:49:10,223 - player_game_data - INFO - Fetched game data for player 202330
+2024-03-08 10:49:10,303 - player_game_data - INFO - Inserted game data for player: 202330, Full Name: Gordon Hayward , Game_ID: 0022300900
+2024-03-08 10:49:10,555 - player_game_data - INFO - Fetched game data for player 1630703
+2024-03-08 10:49:10,816 - player_game_data - INFO - Fetched game data for player 1641707
+2024-03-08 10:49:11,145 - player_game_data - INFO - Fetched game data for player 1629639
+2024-03-08 10:49:11,350 - player_game_data - INFO - Fetched game data for player 1627741
+2024-03-08 10:49:11,426 - player_game_data - INFO - Inserted game data for player: 1627741, Full Name: Buddy Hield , Game_ID: 0022300896
+2024-03-08 10:49:11,588 - player_game_data - INFO - Fetched game data for player 1629312
+2024-03-08 10:49:11,663 - player_game_data - INFO - Inserted game data for player: 1629312, Full Name: Haywood Highsmith , Game_ID: 0022300904
+2024-03-08 10:49:11,829 - player_game_data - INFO - Fetched game data for player 1630207
+2024-03-08 10:49:12,065 - player_game_data - INFO - Fetched game data for player 1641793
+2024-03-08 10:49:12,270 - player_game_data - INFO - Fetched game data for player 1628988
+2024-03-08 10:49:12,348 - player_game_data - INFO - Inserted game data for player: 1628988, Full Name: Aaron Holiday , Game_ID: 0022300897
+2024-03-08 10:49:12,550 - player_game_data - INFO - Fetched game data for player 201950
+2024-03-08 10:49:12,633 - player_game_data - INFO - Inserted game data for player: 201950, Full Name: Jrue Holiday , Game_ID: 0022300906
+2024-03-08 10:49:12,804 - player_game_data - INFO - Fetched game data for player 203200
+2024-03-08 10:49:12,879 - player_game_data - INFO - Inserted game data for player: 203200, Full Name: Justin Holiday , Game_ID: 0022300906
+2024-03-08 10:49:13,018 - player_game_data - INFO - Fetched game data for player 1626158
+2024-03-08 10:49:13,096 - player_game_data - INFO - Inserted game data for player: 1626158, Full Name: Richaun Holmes , Game_ID: 0022300894
+2024-03-08 10:49:13,238 - player_game_data - INFO - Fetched game data for player 1631096
+2024-03-08 10:49:13,316 - player_game_data - INFO - Inserted game data for player: 1631096, Full Name: Chet Holmgren , Game_ID: 0022300900
+2024-03-08 10:49:13,463 - player_game_data - INFO - Fetched game data for player 1641720
+2024-03-08 10:49:13,536 - player_game_data - INFO - Inserted game data for player: 1641720, Full Name: Jalen Hood-Schifino , Game_ID: 0022300901
+2024-03-08 10:49:13,728 - player_game_data - INFO - Fetched game data for player 201143
+2024-03-08 10:49:13,797 - player_game_data - INFO - Inserted game data for player: 201143, Full Name: Al Horford , Game_ID: 0022300906
+2024-03-08 10:49:13,943 - player_game_data - INFO - Fetched game data for player 1629659
+2024-03-08 10:49:14,024 - player_game_data - INFO - Inserted game data for player: 1629659, Full Name: Talen Horton-Tucker , Game_ID: 0022300898
+2024-03-08 10:49:14,215 - player_game_data - INFO - Fetched game data for player 1627863
+2024-03-08 10:49:14,397 - player_game_data - INFO - Fetched game data for player 1631216
+2024-03-08 10:49:14,539 - player_game_data - INFO - Inserted game data for player: 1631216, Full Name: Caleb Houstan , Game_ID: 0022300894
+2024-03-08 10:49:14,715 - player_game_data - INFO - Fetched game data for player 1641724
+2024-03-08 10:49:14,905 - player_game_data - INFO - Fetched game data for player 1628989
+2024-03-08 10:49:14,999 - player_game_data - INFO - Inserted game data for player: 1628989, Full Name: Kevin Huerter , Game_ID: 0022300908
+2024-03-08 10:49:15,160 - player_game_data - INFO - Fetched game data for player 1630643
+2024-03-08 10:49:15,381 - player_game_data - INFO - Fetched game data for player 1629631
+2024-03-08 10:49:15,462 - player_game_data - INFO - Inserted game data for player: 1629631, Full Name: De'Andre Hunter , Game_ID: 0022300895
+2024-03-08 10:49:15,680 - player_game_data - INFO - Fetched game data for player 1630538
+2024-03-08 10:49:15,753 - player_game_data - INFO - Inserted game data for player: 1630538, Full Name: Bones Hyland , Game_ID: 0022300897
+2024-03-08 10:49:15,905 - player_game_data - INFO - Fetched game data for player 204060
+2024-03-08 10:49:15,978 - player_game_data - INFO - Inserted game data for player: 204060, Full Name: Joe Ingles , Game_ID: 0022300894
+2024-03-08 10:49:16,119 - player_game_data - INFO - Fetched game data for player 1627742
+2024-03-08 10:49:16,337 - player_game_data - INFO - Fetched game data for player 202681
+2024-03-08 10:49:16,410 - player_game_data - INFO - Inserted game data for player: 202681, Full Name: Kyrie Irving , Game_ID: 0022300904
+2024-03-08 10:49:16,623 - player_game_data - INFO - Fetched game data for player 1628371
+2024-03-08 10:49:16,819 - player_game_data - INFO - Fetched game data for player 1631093
+2024-03-08 10:49:16,895 - player_game_data - INFO - Inserted game data for player: 1631093, Full Name: Jaden Ivey , Game_ID: 0022300902
+2024-03-08 10:49:17,034 - player_game_data - INFO - Fetched game data for player 1641713
+2024-03-08 10:49:17,108 - player_game_data - INFO - Inserted game data for player: 1641713, Full Name: GG Jackson , Game_ID: 0022300896
+2024-03-08 10:49:17,253 - player_game_data - INFO - Fetched game data for player 1630543
+2024-03-08 10:49:17,328 - player_game_data - INFO - Inserted game data for player: 1630543, Full Name: Isaiah Jackson , Game_ID: 0022300903
+2024-03-08 10:49:17,479 - player_game_data - INFO - Fetched game data for player 202704
+2024-03-08 10:49:17,555 - player_game_data - INFO - Inserted game data for player: 202704, Full Name: Reggie Jackson , Game_ID: 0022300906
+2024-03-08 10:49:17,720 - player_game_data - INFO - Fetched game data for player 1641748
+2024-03-08 10:49:17,797 - player_game_data - INFO - Inserted game data for player: 1641748, Full Name: Andre Jackson Jr. , Game_ID: 0022300899
+2024-03-08 10:49:17,969 - player_game_data - INFO - Fetched game data for player 1628991
+2024-03-08 10:49:18,043 - player_game_data - INFO - Inserted game data for player: 1628991, Full Name: Jaren Jackson Jr. , Game_ID: 0022300896
+2024-03-08 10:49:18,189 - player_game_data - INFO - Fetched game data for player 1631218
+2024-03-08 10:49:18,268 - player_game_data - INFO - Inserted game data for player: 1631218, Full Name: Trayce Jackson-Davis , Game_ID: 0022300907
+2024-03-08 10:49:18,415 - player_game_data - INFO - Fetched game data for player 2544
+2024-03-08 10:49:18,566 - player_game_data - INFO - Inserted game data for player: 2544, Full Name: LeBron James , Game_ID: 0022300901
+2024-03-08 10:49:18,728 - player_game_data - INFO - Fetched game data for player 1631170
+2024-03-08 10:49:18,803 - player_game_data - INFO - Inserted game data for player: 1631170, Full Name: Jaime Jaquez Jr. , Game_ID: 0022300904
+2024-03-08 10:49:18,966 - player_game_data - INFO - Fetched game data for player 1629610
+2024-03-08 10:49:19,159 - player_game_data - INFO - Fetched game data for player 1629660
+2024-03-08 10:49:19,361 - player_game_data - INFO - Fetched game data for player 1630198
+2024-03-08 10:49:19,435 - player_game_data - INFO - Inserted game data for player: 1630198, Full Name: Isaiah Joe , Game_ID: 0022300900
+2024-03-08 10:49:19,587 - player_game_data - INFO - Fetched game data for player 1629661
+2024-03-08 10:49:19,770 - player_game_data - INFO - Fetched game data for player 1630552
+2024-03-08 10:49:19,846 - player_game_data - INFO - Inserted game data for player: 1630552, Full Name: Jalen Johnson , Game_ID: 0022300895
+2024-03-08 10:49:19,986 - player_game_data - INFO - Fetched game data for player 1629640
+2024-03-08 10:49:20,063 - player_game_data - INFO - Inserted game data for player: 1629640, Full Name: Keldon Johnson , Game_ID: 0022300908
+2024-03-08 10:49:20,249 - player_game_data - INFO - Fetched game data for player 1630553
+2024-03-08 10:49:20,452 - player_game_data - INFO - Fetched game data for player 1641749
+2024-03-08 10:49:20,730 - player_game_data - INFO - Fetched game data for player 203999
+2024-03-08 10:49:20,819 - player_game_data - INFO - Inserted game data for player: 203999, Full Name: Nikola Jokic , Game_ID: 0022300906
+2024-03-08 10:49:20,978 - player_game_data - INFO - Fetched game data for player 1641732
+2024-03-08 10:49:21,211 - player_game_data - INFO - Fetched game data for player 1627745
+2024-03-08 10:49:21,291 - player_game_data - INFO - Inserted game data for player: 1627745, Full Name: Damian Jones , Game_ID: 0022300895
+2024-03-08 10:49:21,439 - player_game_data - INFO - Fetched game data for player 1630529
+2024-03-08 10:49:21,673 - player_game_data - INFO - Fetched game data for player 1630200
+2024-03-08 10:49:21,743 - player_game_data - INFO - Inserted game data for player: 1630200, Full Name: Tre Jones , Game_ID: 0022300908
+2024-03-08 10:49:21,879 - player_game_data - INFO - Fetched game data for player 1626145
+2024-03-08 10:49:21,964 - player_game_data - INFO - Inserted game data for player: 1626145, Full Name: Tyus Jones , Game_ID: 0022300894
+2024-03-08 10:49:22,107 - player_game_data - INFO - Fetched game data for player 1627884
+2024-03-08 10:49:22,183 - player_game_data - INFO - Inserted game data for player: 1627884, Full Name: Derrick Jones Jr. , Game_ID: 0022300904
+2024-03-08 10:49:22,331 - player_game_data - INFO - Fetched game data for player 201599
+2024-03-08 10:49:22,563 - player_game_data - INFO - Fetched game data for player 202709
+2024-03-08 10:49:22,744 - player_game_data - INFO - Fetched game data for player 1631107
+2024-03-08 10:49:22,825 - player_game_data - INFO - Inserted game data for player: 1631107, Full Name: Nikola Jovic , Game_ID: 0022300904
+2024-03-08 10:49:23,021 - player_game_data - INFO - Fetched game data for player 1630548
+2024-03-08 10:49:23,095 - player_game_data - INFO - Inserted game data for player: 1630548, Full Name: Johnny Juzang , Game_ID: 0022300898
+2024-03-08 10:49:23,241 - player_game_data - INFO - Fetched game data for player 1628379
+2024-03-08 10:49:23,312 - player_game_data - INFO - Inserted game data for player: 1628379, Full Name: Luke Kennard , Game_ID: 0022300896
+2024-03-08 10:49:23,458 - player_game_data - INFO - Fetched game data for player 1631117
+2024-03-08 10:49:23,727 - player_game_data - INFO - Fetched game data for player 1630296
+2024-03-08 10:49:23,914 - player_game_data - INFO - Fetched game data for player 1630557
+2024-03-08 10:49:23,991 - player_game_data - INFO - Inserted game data for player: 1630557, Full Name: Corey Kispert , Game_ID: 0022300894
+2024-03-08 10:49:24,151 - player_game_data - INFO - Fetched game data for player 1628467
+2024-03-08 10:49:24,223 - player_game_data - INFO - Inserted game data for player: 1628467, Full Name: Maxi Kleber , Game_ID: 0022300904
+2024-03-08 10:49:24,362 - player_game_data - INFO - Fetched game data for player 1630233
+2024-03-08 10:49:24,629 - player_game_data - INFO - Fetched game data for player 1628995
+2024-03-08 10:49:24,829 - player_game_data - INFO - Fetched game data for player 1631132
+2024-03-08 10:49:25,042 - player_game_data - INFO - Fetched game data for player 1629723
+2024-03-08 10:49:25,125 - player_game_data - INFO - Inserted game data for player: 1629723, Full Name: John Konchar , Game_ID: 0022300896
+2024-03-08 10:49:25,281 - player_game_data - INFO - Fetched game data for player 1627788
+2024-03-08 10:49:25,481 - player_game_data - INFO - Fetched game data for player 1628436
+2024-03-08 10:49:25,678 - player_game_data - INFO - Fetched game data for player 1630228
+2024-03-08 10:49:25,755 - player_game_data - INFO - Inserted game data for player: 1630228, Full Name: Jonathan Kuminga , Game_ID: 0022300907
+2024-03-08 10:49:25,910 - player_game_data - INFO - Fetched game data for player 1628398
+2024-03-08 10:49:25,982 - player_game_data - INFO - Inserted game data for player: 1628398, Full Name: Kyle Kuzma , Game_ID: 0022300894
+2024-03-08 10:49:26,184 - player_game_data - INFO - Fetched game data for player 1631222
+2024-03-08 10:49:26,256 - player_game_data - INFO - Inserted game data for player: 1631222, Full Name: Jake LaRavia , Game_ID: 0022300896
+2024-03-08 10:49:26,395 - player_game_data - INFO - Fetched game data for player 203897
+2024-03-08 10:49:26,669 - player_game_data - INFO - Fetched game data for player 1629111
+2024-03-08 10:49:26,743 - player_game_data - INFO - Inserted game data for player: 1629111, Full Name: Jock Landale , Game_ID: 0022300897
+2024-03-08 10:49:26,892 - player_game_data - INFO - Fetched game data for player 1630639
+2024-03-08 10:49:27,095 - player_game_data - INFO - Fetched game data for player 1627747
+2024-03-08 10:49:27,169 - player_game_data - INFO - Inserted game data for player: 1627747, Full Name: Caris LeVert , Game_ID: 0022300895
+2024-03-08 10:49:27,339 - player_game_data - INFO - Fetched game data for player 1627814
+2024-03-08 10:49:27,531 - player_game_data - INFO - Fetched game data for player 1630240
+2024-03-08 10:49:27,604 - player_game_data - INFO - Inserted game data for player: 1630240, Full Name: Saben Lee , Game_ID: 0022300905
+2024-03-08 10:49:27,756 - player_game_data - INFO - Fetched game data for player 203458
+2024-03-08 10:49:27,827 - player_game_data - INFO - Inserted game data for player: 203458, Full Name: Alex Len , Game_ID: 0022300908
+2024-03-08 10:49:27,975 - player_game_data - INFO - Fetched game data for player 202695
+2024-03-08 10:49:28,054 - player_game_data - INFO - Inserted game data for player: 202695, Full Name: Kawhi Leonard , Game_ID: 0022300897
+2024-03-08 10:49:28,199 - player_game_data - INFO - Fetched game data for player 1631171
+2024-03-08 10:49:28,382 - player_game_data - INFO - Fetched game data for player 1641721
+2024-03-08 10:49:28,458 - player_game_data - INFO - Inserted game data for player: 1641721, Full Name: Maxwell Lewis , Game_ID: 0022300901
+2024-03-08 10:49:28,691 - player_game_data - INFO - Fetched game data for player 1630184
+2024-03-08 10:49:28,898 - player_game_data - INFO - Fetched game data for player 1630604
+2024-03-08 10:49:29,097 - player_game_data - INFO - Fetched game data for player 203081
+2024-03-08 10:49:29,172 - player_game_data - INFO - Inserted game data for player: 203081, Full Name: Damian Lillard , Game_ID: 0022300899
+2024-03-08 10:49:29,344 - player_game_data - INFO - Fetched game data for player 1629642
+2024-03-08 10:49:29,543 - player_game_data - INFO - Fetched game data for player 1641726
+2024-03-08 10:49:29,616 - player_game_data - INFO - Inserted game data for player: 1641726, Full Name: Dereck Lively II , Game_ID: 0022300904
+2024-03-08 10:49:29,772 - player_game_data - INFO - Fetched game data for player 1630587
+2024-03-08 10:49:29,983 - player_game_data - INFO - Fetched game data for player 1641753
+2024-03-08 10:49:30,180 - player_game_data - INFO - Fetched game data for player 1631254
+2024-03-08 10:49:30,372 - player_game_data - INFO - Fetched game data for player 1626172
+2024-03-08 10:49:30,448 - player_game_data - INFO - Inserted game data for player: 1626172, Full Name: Kevon Looney , Game_ID: 0022300899
+2024-03-08 10:49:30,670 - player_game_data - INFO - Fetched game data for player 201572
+2024-03-08 10:49:30,759 - player_game_data - INFO - Inserted game data for player: 201572, Full Name: Brook Lopez , Game_ID: 0022300899
+2024-03-08 10:49:30,905 - player_game_data - INFO - Fetched game data for player 201577
+2024-03-08 10:49:31,106 - player_game_data - INFO - Fetched game data for player 201567
+2024-03-08 10:49:31,296 - player_game_data - INFO - Fetched game data for player 200768
+2024-03-08 10:49:31,476 - player_game_data - INFO - Fetched game data for player 1641754
+2024-03-08 10:49:31,668 - player_game_data - INFO - Fetched game data for player 1626168
+2024-03-08 10:49:31,748 - player_game_data - INFO - Inserted game data for player: 1626168, Full Name: Trey Lyles , Game_ID: 0022300908
+2024-03-08 10:49:31,881 - player_game_data - INFO - Fetched game data for player 1630177
+2024-03-08 10:49:32,080 - player_game_data - INFO - Fetched game data for player 1630572
+2024-03-08 10:49:32,154 - player_game_data - INFO - Inserted game data for player: 1630572, Full Name: Sandro Mamukelashvili , Game_ID: 0022300908
+2024-03-08 10:49:32,320 - player_game_data - INFO - Fetched game data for player 1629611
+2024-03-08 10:49:32,395 - player_game_data - INFO - Inserted game data for player: 1629611, Full Name: Terance Mann , Game_ID: 0022300897
+2024-03-08 10:49:32,580 - player_game_data - INFO - Fetched game data for player 1630544
+2024-03-08 10:49:32,782 - player_game_data - INFO - Fetched game data for player 1626246
+2024-03-08 10:49:32,961 - player_game_data - INFO - Fetched game data for player 1628374
+2024-03-08 10:49:33,150 - player_game_data - INFO - Fetched game data for player 1630230
+2024-03-08 10:49:33,341 - player_game_data - INFO - Fetched game data for player 1628997
+2024-03-08 10:49:33,415 - player_game_data - INFO - Inserted game data for player: 1628997, Full Name: Caleb Martin , Game_ID: 0022300904
+2024-03-08 10:49:33,569 - player_game_data - INFO - Fetched game data for player 1628998
+2024-03-08 10:49:33,803 - player_game_data - INFO - Fetched game data for player 1630231
+2024-03-08 10:49:33,899 - player_game_data - INFO - Inserted game data for player: 1630231, Full Name: KJ Martin , Game_ID: 0022300896
+2024-03-08 10:49:34,038 - player_game_data - INFO - Fetched game data for player 1629726
+2024-03-08 10:49:34,119 - player_game_data - INFO - Inserted game data for player: 1629726, Full Name: Garrison Mathews , Game_ID: 0022300895
+2024-03-08 10:49:34,272 - player_game_data - INFO - Fetched game data for player 1631097
+2024-03-08 10:49:34,463 - player_game_data - INFO - Fetched game data for player 202083
+2024-03-08 10:49:34,736 - player_game_data - INFO - Fetched game data for player 1630178
+2024-03-08 10:49:34,928 - player_game_data - INFO - Fetched game data for player 1630219
+2024-03-08 10:49:35,123 - player_game_data - INFO - Fetched game data for player 1630540
+2024-03-08 10:49:35,330 - player_game_data - INFO - Fetched game data for player 203468
+2024-03-08 10:49:35,528 - player_game_data - INFO - Fetched game data for player 204456
+2024-03-08 10:49:35,610 - player_game_data - INFO - Inserted game data for player: 204456, Full Name: T.J. McConnell , Game_ID: 0022300903
+2024-03-08 10:49:35,752 - player_game_data - INFO - Fetched game data for player 1630183
+2024-03-08 10:49:35,830 - player_game_data - INFO - Inserted game data for player: 1630183, Full Name: Jaden McDaniels , Game_ID: 0022300903
+2024-03-08 10:49:35,985 - player_game_data - INFO - Fetched game data for player 1629667
+2024-03-08 10:49:36,177 - player_game_data - INFO - Fetched game data for player 203926
+2024-03-08 10:49:36,368 - player_game_data - INFO - Fetched game data for player 201580
+2024-03-08 10:49:36,647 - player_game_data - INFO - Fetched game data for player 1631121
+2024-03-08 10:49:36,878 - player_game_data - INFO - Fetched game data for player 1629162
+2024-03-08 10:50:07,002 - player_game_data - ERROR - Error fetching game data for player 1629001: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2024-03-08 10:50:07,004 - player_game_data - ERROR - Error updating player game data: the JSON object must be str, bytes or bytearray, not tuple
+2024-03-08 12:58:35,161 - player_game_data - INFO - ACTION COMMITTED: nba_update_player_game_data
+2024-03-08 12:58:35,497 - player_game_data - INFO - Fetched game data for player 1630173
+2024-03-08 12:58:35,854 - player_game_data - INFO - Fetched game data for player 203500
+2024-03-08 12:58:36,072 - player_game_data - INFO - Fetched game data for player 1628389
+2024-03-08 12:58:36,313 - player_game_data - INFO - Fetched game data for player 1630534
+2024-03-08 12:58:36,538 - player_game_data - INFO - Fetched game data for player 1630583
+2024-03-08 12:58:36,912 - player_game_data - INFO - Fetched game data for player 1629638
+2024-03-08 12:58:37,131 - player_game_data - INFO - Fetched game data for player 1628960
+2024-03-08 12:58:37,432 - player_game_data - INFO - Fetched game data for player 1628386
+2024-03-08 12:58:37,692 - player_game_data - INFO - Fetched game data for player 1630631
+2024-03-08 12:58:37,990 - player_game_data - INFO - Fetched game data for player 203937
+2024-03-08 12:58:38,246 - player_game_data - INFO - Fetched game data for player 203507
+2024-03-08 12:58:38,494 - player_game_data - INFO - Fetched game data for player 203648
+2024-03-08 12:58:38,753 - player_game_data - INFO - Fetched game data for player 1630175
+2024-03-08 12:58:39,016 - player_game_data - INFO - Fetched game data for player 1628384
+2024-03-08 12:58:39,291 - player_game_data - INFO - Fetched game data for player 1627853
+2024-03-08 12:58:39,505 - player_game_data - INFO - Fetched game data for player 1630166
+2024-03-08 12:58:39,748 - player_game_data - INFO - Fetched game data for player 1629028
+2024-03-08 12:58:40,032 - player_game_data - INFO - Fetched game data for player 1628962
+2024-03-08 12:58:40,250 - player_game_data - INFO - Fetched game data for player 1628963
+2024-03-08 12:58:40,539 - player_game_data - INFO - Fetched game data for player 1641735
+2024-03-08 12:58:40,767 - player_game_data - INFO - Fetched game data for player 1631116
+2024-03-08 12:58:41,002 - player_game_data - INFO - Fetched game data for player 1630163
+2024-03-08 12:58:41,234 - player_game_data - INFO - Fetched game data for player 1628366
+2024-03-08 12:58:41,461 - player_game_data - INFO - Fetched game data for player 1628964
+2024-03-08 12:58:41,680 - player_game_data - INFO - Fetched game data for player 1631094
+2024-03-08 12:58:41,937 - player_game_data - INFO - Fetched game data for player 1630217
+2024-03-08 12:58:42,192 - player_game_data - INFO - Fetched game data for player 1630625
+2024-03-08 12:58:42,436 - player_game_data - INFO - Fetched game data for player 1631230
+2024-03-08 12:58:42,717 - player_game_data - INFO - Fetched game data for player 203084
+2024-03-08 12:58:42,964 - player_game_data - INFO - Fetched game data for player 1630567
+2024-03-08 12:58:43,185 - player_game_data - INFO - Fetched game data for player 1629628
+2024-03-08 12:58:43,408 - player_game_data - INFO - Fetched game data for player 1629646
+2024-03-08 12:58:43,698 - player_game_data - INFO - Fetched game data for player 1641734
+2024-03-08 12:58:43,977 - player_game_data - INFO - Fetched game data for player 1628966
+2024-03-08 12:58:44,219 - player_game_data - INFO - Fetched game data for player 201587
+2024-03-08 12:58:44,458 - player_game_data - INFO - Fetched game data for player 203078
+2024-03-08 12:58:44,688 - player_game_data - INFO - Fetched game data for player 1627736
+2024-03-08 12:58:44,931 - player_game_data - INFO - Fetched game data for player 1630699
+2024-03-08 12:58:45,186 - player_game_data - INFO - Fetched game data for player 1641777
+2024-03-08 12:58:45,503 - player_game_data - INFO - Fetched game data for player 202722
+2024-03-08 12:58:45,831 - player_game_data - INFO - Fetched game data for player 201976
+2024-03-08 12:58:46,066 - player_game_data - INFO - Fetched game data for player 1630180
+2024-03-08 12:58:46,358 - player_game_data - INFO - Fetched game data for player 1629048
+2024-03-08 12:58:46,718 - player_game_data - INFO - Fetched game data for player 1641931
+2024-03-08 12:58:46,929 - player_game_data - INFO - Fetched game data for player 202687
+2024-03-08 12:58:47,251 - player_game_data - INFO - Fetched game data for player 1641710
+2024-03-08 12:58:47,535 - player_game_data - INFO - Fetched game data for player 1641778
+2024-03-08 12:58:47,870 - player_game_data - INFO - Fetched game data for player 203992
+2024-03-08 12:58:48,130 - player_game_data - INFO - Fetched game data for player 202711
+2024-03-08 12:58:48,393 - player_game_data - INFO - Fetched game data for player 1629626
+2024-03-08 12:58:48,629 - player_game_data - INFO - Fetched game data for player 1629716
+2024-03-08 12:58:48,853 - player_game_data - INFO - Fetched game data for player 1626164
+2024-03-08 12:58:49,163 - player_game_data - INFO - Fetched game data for player 1630527
+2024-03-08 12:58:49,723 - player_game_data - INFO - Fetched game data for player 1628449
+2024-03-08 12:58:49,985 - player_game_data - INFO - Fetched game data for player 1630547
+2024-03-08 12:58:50,286 - player_game_data - INFO - Fetched game data for player 1631103
+2024-03-08 12:58:50,539 - player_game_data - INFO - Fetched game data for player 1631128
+2024-03-08 12:58:50,779 - player_game_data - INFO - Fetched game data for player 1628969
+2024-03-08 12:58:51,005 - player_game_data - INFO - Fetched game data for player 1628970
+2024-03-08 12:58:51,295 - player_game_data - INFO - Fetched game data for player 1629052
+2024-03-08 12:58:51,537 - player_game_data - INFO - Fetched game data for player 1627763
+2024-03-08 12:58:51,761 - player_game_data - INFO - Fetched game data for player 1629717
+2024-03-08 12:58:52,005 - player_game_data - INFO - Fetched game data for player 1628415
+2024-03-08 12:58:52,264 - player_game_data - INFO - Fetched game data for player 1628971
+2024-03-08 12:58:52,577 - player_game_data - INFO - Fetched game data for player 1627759
+2024-03-08 12:58:52,796 - player_game_data - INFO - Fetched game data for player 1631112
+2024-03-08 12:58:53,030 - player_game_data - INFO - Fetched game data for player 1641738
+2024-03-08 12:58:53,301 - player_game_data - INFO - Fetched game data for player 1629650
+2024-03-08 12:58:53,628 - player_game_data - INFO - Fetched game data for player 1630535
+2024-03-08 12:58:53,902 - player_game_data - INFO - Fetched game data for player 1629718
+2024-03-08 12:58:54,171 - player_game_data - INFO - Fetched game data for player 1628972
+2024-03-08 12:58:54,416 - player_game_data - INFO - Fetched game data for player 1628973
+2024-03-08 12:58:54,688 - player_game_data - INFO - Fetched game data for player 1628418
+2024-03-08 12:58:54,910 - player_game_data - INFO - Fetched game data for player 1641723
+2024-03-08 12:58:55,209 - player_game_data - INFO - Fetched game data for player 203493
+2024-03-08 12:58:55,452 - player_game_data - INFO - Fetched game data for player 202692
+2024-03-08 12:58:55,684 - player_game_data - INFO - Fetched game data for player 1630215
+2024-03-08 12:58:55,994 - player_game_data - INFO - Fetched game data for player 202710
+2024-03-08 12:58:56,271 - player_game_data - INFO - Fetched game data for player 1631219
+2024-03-08 12:58:56,529 - player_game_data - INFO - Fetched game data for player 1631288
+2024-03-08 12:58:56,761 - player_game_data - INFO - Fetched game data for player 203484
+2024-03-08 12:58:57,151 - player_game_data - INFO - Fetched game data for player 1641739
+2024-03-08 12:58:57,405 - player_game_data - INFO - Fetched game data for player 1628427
+2024-03-08 12:58:57,642 - player_game_data - INFO - Fetched game data for player 203991
+2024-03-08 12:58:57,919 - player_game_data - INFO - Fetched game data for player 1628975
+2024-03-08 12:58:58,155 - player_game_data - INFO - Fetched game data for player 1628976
+2024-03-08 12:58:58,410 - player_game_data - INFO - Fetched game data for player 1627936
+2024-03-08 12:58:58,625 - player_game_data - INFO - Fetched game data for player 1630658
+2024-03-08 12:58:58,866 - player_game_data - INFO - Fetched game data for player 1630608
+2024-03-08 12:58:59,093 - player_game_data - INFO - Fetched game data for player 1630577
+2024-03-08 12:58:59,336 - player_game_data - INFO - Fetched game data for player 1631108
+2024-03-08 12:58:59,556 - player_game_data - INFO - Fetched game data for player 1630528
+2024-03-08 12:58:59,803 - player_game_data - INFO - Fetched game data for player 1631321
+2024-03-08 12:59:00,178 - player_game_data - INFO - Fetched game data for player 1641740
+2024-03-08 12:59:00,394 - player_game_data - INFO - Fetched game data for player 1629634
+2024-03-08 12:59:00,614 - player_game_data - INFO - Fetched game data for player 203903
+2024-03-08 12:59:00,878 - player_game_data - INFO - Fetched game data for player 1629651
+2024-03-08 12:59:01,134 - player_game_data - INFO - Fetched game data for player 1641730
+2024-03-08 12:59:01,344 - player_game_data - INFO - Fetched game data for player 1629599
+2024-03-08 12:59:01,596 - player_game_data - INFO - Fetched game data for player 1628381
+2024-03-08 12:59:01,886 - player_game_data - INFO - Fetched game data for player 1628380
+2024-03-08 12:59:02,144 - player_game_data - INFO - Fetched game data for player 201144
+2024-03-08 12:59:02,384 - player_game_data - INFO - Fetched game data for player 1626192
+2024-03-08 12:59:02,630 - player_game_data - INFO - Fetched game data for player 1641731
+2024-03-08 12:59:02,951 - player_game_data - INFO - Fetched game data for player 1641741
+2024-03-08 12:59:03,177 - player_game_data - INFO - Fetched game data for player 203496
+2024-03-08 12:59:03,431 - player_game_data - INFO - Fetched game data for player 1628470
+2024-03-08 12:59:03,653 - player_game_data - INFO - Fetched game data for player 203109
+2024-03-08 12:59:03,953 - player_game_data - INFO - Fetched game data for player 1630595
+2024-03-08 12:59:04,285 - player_game_data - INFO - Fetched game data for player 203552
+2024-03-08 12:59:04,513 - player_game_data - INFO - Fetched game data for player 201939
+2024-03-08 12:59:04,769 - player_game_data - INFO - Fetched game data for player 1630700
+2024-03-08 12:59:05,015 - player_game_data - INFO - Fetched game data for player 203076
+2024-03-08 12:59:05,276 - player_game_data - INFO - Fetched game data for player 1631098
+2024-03-08 12:59:05,510 - player_game_data - INFO - Fetched game data for player 1631120
+2024-03-08 12:59:05,789 - player_game_data - INFO - Fetched game data for player 201942
+2024-03-08 12:59:06,062 - player_game_data - INFO - Fetched game data for player 1641926
+2024-03-08 12:59:06,299 - player_game_data - INFO - Fetched game data for player 1628978
+2024-03-08 12:59:06,558 - player_game_data - INFO - Fetched game data for player 1631217
+2024-03-08 12:59:06,811 - player_game_data - INFO - Fetched game data for player 1641711
+2024-03-08 12:59:07,089 - player_game_data - INFO - Fetched game data for player 1631172
+2024-03-08 12:59:07,342 - player_game_data - INFO - Fetched game data for player 203915
+2024-03-08 12:59:07,803 - player_game_data - INFO - Fetched game data for player 1629029
+2024-03-08 12:59:08,148 - player_game_data - INFO - Fetched game data for player 1629652
+2024-03-08 12:59:08,400 - player_game_data - INFO - Fetched game data for player 1630245
+2024-03-08 12:59:08,663 - player_game_data - INFO - Fetched game data for player 203083
+2024-03-08 12:59:08,903 - player_game_data - INFO - Fetched game data for player 1630537
+2024-03-08 12:59:09,204 - player_game_data - INFO - Fetched game data for player 1627739
+2024-03-08 12:59:09,444 - player_game_data - INFO - Fetched game data for player 201142
+2024-03-08 12:59:09,697 - player_game_data - INFO - Fetched game data for player 1631105
+2024-03-08 12:59:10,013 - player_game_data - INFO - Fetched game data for player 1631106
+2024-03-08 12:59:10,251 - player_game_data - INFO - Fetched game data for player 1630162
+2024-03-08 12:59:10,489 - player_game_data - INFO - Fetched game data for player 1630556
+2024-03-08 12:59:10,717 - player_game_data - INFO - Fetched game data for player 1631165
+2024-03-08 12:59:10,940 - player_game_data - INFO - Fetched game data for player 203954
+2024-03-08 12:59:11,161 - player_game_data - INFO - Fetched game data for player 1629234
+2024-03-08 12:59:11,444 - player_game_data - INFO - Fetched game data for player 203957
+2024-03-08 12:59:11,666 - player_game_data - INFO - Fetched game data for player 1628981
+2024-03-08 12:59:11,923 - player_game_data - INFO - Fetched game data for player 1627827
+2024-03-08 12:59:12,239 - player_game_data - INFO - Fetched game data for player 1630201
+2024-03-08 12:59:12,469 - player_game_data - INFO - Fetched game data for player 1631323
+2024-03-08 12:59:12,829 - player_game_data - INFO - Fetched game data for player 1630259
+2024-03-08 12:59:13,109 - player_game_data - INFO - Fetched game data for player 1630235
+2024-03-08 12:59:13,334 - player_game_data - INFO - Fetched game data for player 203095
+2024-03-08 12:59:13,568 - player_game_data - INFO - Fetched game data for player 1628368
+2024-03-08 12:59:13,811 - player_game_data - INFO - Fetched game data for player 1631241
+2024-03-08 12:59:14,140 - player_game_data - INFO - Fetched game data for player 1641788
+2024-03-08 12:59:14,395 - player_game_data - INFO - Fetched game data for player 1628365
+2024-03-08 12:59:14,611 - player_game_data - INFO - Fetched game data for player 1629655
+2024-03-08 12:59:14,854 - player_game_data - INFO - Fetched game data for player 201568
+2024-03-08 12:59:15,071 - player_game_data - INFO - Fetched game data for player 1629636
+2024-03-08 12:59:15,308 - player_game_data - INFO - Fetched game data for player 1630586
+2024-03-08 12:59:15,546 - player_game_data - INFO - Fetched game data for player 1630568
+2024-03-08 12:59:15,781 - player_game_data - INFO - Fetched game data for player 1629232
+2024-03-08 12:59:16,419 - player_game_data - INFO - Fetched game data for player 1641718
+2024-03-08 12:59:16,710 - player_game_data - INFO - Fetched game data for player 202331
+2024-03-08 12:59:16,972 - player_game_data - INFO - Fetched game data for player 1630581
+2024-03-08 12:59:17,193 - player_game_data - INFO - Fetched game data for player 1628385
+2024-03-08 12:59:17,431 - player_game_data - INFO - Fetched game data for player 1628983
+2024-03-08 12:59:17,687 - player_game_data - INFO - Fetched game data for player 1630264
+2024-03-08 12:59:18,023 - player_game_data - INFO - Fetched game data for player 1631221
+2024-03-08 12:59:18,262 - player_game_data - INFO - Fetched game data for player 1631367
+2024-03-08 12:59:18,493 - player_game_data - INFO - Fetched game data for player 203497
+2024-03-08 12:59:18,782 - player_game_data - INFO - Fetched game data for player 1630692
+2024-03-08 12:59:19,025 - player_game_data - INFO - Fetched game data for player 203932
+2024-03-08 12:59:19,386 - player_game_data - INFO - Fetched game data for player 201569
+2024-03-08 12:59:19,662 - player_game_data - INFO - Fetched game data for player 1628984
+2024-03-08 12:59:20,019 - player_game_data - INFO - Fetched game data for player 203924
+2024-03-08 12:59:20,278 - player_game_data - INFO - Fetched game data for player 1631260
+2024-03-08 12:59:20,511 - player_game_data - INFO - Fetched game data for player 201980
+2024-03-08 12:59:20,753 - player_game_data - INFO - Fetched game data for player 203110
+2024-03-08 12:59:21,127 - player_game_data - INFO - Fetched game data for player 1630224
+2024-03-08 12:59:21,420 - player_game_data - INFO - Fetched game data for player 201145
+2024-03-08 12:59:21,712 - player_game_data - INFO - Fetched game data for player 1630182
+2024-03-08 12:59:22,134 - player_game_data - INFO - Fetched game data for player 1631100
+2024-03-08 12:59:22,458 - player_game_data - INFO - Fetched game data for player 1629656
+2024-03-08 12:59:22,685 - player_game_data - INFO - Fetched game data for player 1631243
+2024-03-08 12:59:22,936 - player_game_data - INFO - Fetched game data for player 1629060
+2024-03-08 12:59:23,275 - player_game_data - INFO - Fetched game data for player 1630169
+2024-03-08 12:59:23,553 - player_game_data - INFO - Fetched game data for player 1630181
+2024-03-08 12:59:24,030 - player_game_data - INFO - Fetched game data for player 203501
+2024-03-08 12:59:24,348 - player_game_data - INFO - Fetched game data for player 201935
+2024-03-08 12:59:24,745 - player_game_data - INFO - Fetched game data for player 1630702
+2024-03-08 12:59:25,071 - player_game_data - INFO - Fetched game data for player 1631199
+2024-03-08 12:59:25,436 - player_game_data - INFO - Fetched game data for player 203914
+2024-03-08 12:59:25,706 - player_game_data - INFO - Fetched game data for player 203925
+2024-03-08 12:59:26,095 - player_game_data - INFO - Fetched game data for player 1630284
+2024-03-08 12:59:26,313 - player_game_data - INFO - Fetched game data for player 202699
+2024-03-08 12:59:26,601 - player_game_data - INFO - Fetched game data for player 1628404
+2024-03-08 12:59:26,834 - player_game_data - INFO - Fetched game data for player 1628392
+2024-03-08 12:59:27,060 - player_game_data - INFO - Fetched game data for player 1630573
+2024-03-08 12:59:27,272 - player_game_data - INFO - Fetched game data for player 1641722
+2024-03-08 12:59:27,509 - player_game_data - INFO - Fetched game data for player 1629637
+2024-03-08 12:59:27,751 - player_game_data - INFO - Fetched game data for player 1630165
+2024-03-08 12:59:28,029 - player_game_data - INFO - Fetched game data for player 202330
+2024-03-08 12:59:28,296 - player_game_data - INFO - Fetched game data for player 1630703
+2024-03-08 12:59:28,577 - player_game_data - INFO - Fetched game data for player 1641707
+2024-03-08 12:59:28,820 - player_game_data - INFO - Fetched game data for player 1629639
+2024-03-08 12:59:29,042 - player_game_data - INFO - Fetched game data for player 1627741
+2024-03-08 12:59:29,286 - player_game_data - INFO - Fetched game data for player 1629312
+2024-03-08 12:59:29,549 - player_game_data - INFO - Fetched game data for player 1630207
+2024-03-08 12:59:29,766 - player_game_data - INFO - Fetched game data for player 1641793
+2024-03-08 12:59:30,104 - player_game_data - INFO - Fetched game data for player 1628988
+2024-03-08 12:59:30,460 - player_game_data - INFO - Fetched game data for player 201950
+2024-03-08 12:59:30,755 - player_game_data - INFO - Fetched game data for player 203200
+2024-03-08 12:59:31,015 - player_game_data - INFO - Fetched game data for player 1626158
+2024-03-08 12:59:31,264 - player_game_data - INFO - Fetched game data for player 1631096
+2024-03-08 12:59:31,482 - player_game_data - INFO - Fetched game data for player 1641720
+2024-03-08 12:59:31,757 - player_game_data - INFO - Fetched game data for player 201143
+2024-03-08 12:59:32,095 - player_game_data - INFO - Fetched game data for player 1629659
+2024-03-08 12:59:32,348 - player_game_data - INFO - Fetched game data for player 1627863
+2024-03-08 12:59:32,599 - player_game_data - INFO - Fetched game data for player 1631216
+2024-03-08 12:59:32,827 - player_game_data - INFO - Fetched game data for player 1641724
+2024-03-08 12:59:33,054 - player_game_data - INFO - Fetched game data for player 1628989
+2024-03-08 12:59:33,343 - player_game_data - INFO - Fetched game data for player 1630643
+2024-03-08 12:59:33,577 - player_game_data - INFO - Fetched game data for player 1629631
+2024-03-08 12:59:33,918 - player_game_data - INFO - Fetched game data for player 1630538
+2024-03-08 12:59:34,203 - player_game_data - INFO - Fetched game data for player 204060
+2024-03-08 12:59:34,504 - player_game_data - INFO - Fetched game data for player 1627742
+2024-03-08 12:59:34,780 - player_game_data - INFO - Fetched game data for player 202681
+2024-03-08 12:59:35,012 - player_game_data - INFO - Fetched game data for player 1628371
+2024-03-08 12:59:35,250 - player_game_data - INFO - Fetched game data for player 1631093
+2024-03-08 12:59:35,613 - player_game_data - INFO - Fetched game data for player 1641713
+2024-03-08 12:59:35,971 - player_game_data - INFO - Fetched game data for player 1630543
+2024-03-08 12:59:36,241 - player_game_data - INFO - Fetched game data for player 202704
+2024-03-08 12:59:36,474 - player_game_data - INFO - Fetched game data for player 1641748
+2024-03-08 12:59:36,712 - player_game_data - INFO - Fetched game data for player 1628991
+2024-03-08 12:59:36,990 - player_game_data - INFO - Fetched game data for player 1631218
+2024-03-08 12:59:37,238 - player_game_data - INFO - Fetched game data for player 2544
+2024-03-08 12:59:37,480 - player_game_data - INFO - Fetched game data for player 1631170
+2024-03-08 12:59:37,705 - player_game_data - INFO - Fetched game data for player 1629610
+2024-03-08 12:59:37,997 - player_game_data - INFO - Fetched game data for player 1629660
+2024-03-08 12:59:38,215 - player_game_data - INFO - Fetched game data for player 1630198
+2024-03-08 12:59:38,465 - player_game_data - INFO - Fetched game data for player 1629661
+2024-03-08 12:59:38,685 - player_game_data - INFO - Fetched game data for player 1630552
+2024-03-08 12:59:38,992 - player_game_data - INFO - Fetched game data for player 1629640
+2024-03-08 12:59:39,217 - player_game_data - INFO - Fetched game data for player 1630553
+2024-03-08 12:59:39,439 - player_game_data - INFO - Fetched game data for player 1641749
+2024-03-08 12:59:39,698 - player_game_data - INFO - Fetched game data for player 203999
+2024-03-08 12:59:40,008 - player_game_data - INFO - Fetched game data for player 1641732
+2024-03-08 12:59:40,243 - player_game_data - INFO - Fetched game data for player 1627745
+2024-03-08 12:59:40,476 - player_game_data - INFO - Fetched game data for player 1630529
+2024-03-08 12:59:40,724 - player_game_data - INFO - Fetched game data for player 1630200
+2024-03-08 12:59:40,980 - player_game_data - INFO - Fetched game data for player 1626145
+2024-03-08 12:59:41,234 - player_game_data - INFO - Fetched game data for player 1627884
+2024-03-08 12:59:41,467 - player_game_data - INFO - Fetched game data for player 201599
+2024-03-08 12:59:41,708 - player_game_data - INFO - Fetched game data for player 202709
+2024-03-08 12:59:42,047 - player_game_data - INFO - Fetched game data for player 1631107
+2024-03-08 12:59:42,275 - player_game_data - INFO - Fetched game data for player 1630548
+2024-03-08 12:59:42,534 - player_game_data - INFO - Fetched game data for player 1628379
+2024-03-08 12:59:42,818 - player_game_data - INFO - Fetched game data for player 1631117
+2024-03-08 12:59:43,067 - player_game_data - INFO - Fetched game data for player 1630296
+2024-03-08 12:59:43,289 - player_game_data - INFO - Fetched game data for player 1630557
+2024-03-08 12:59:43,580 - player_game_data - INFO - Fetched game data for player 1628467
+2024-03-08 12:59:43,838 - player_game_data - INFO - Fetched game data for player 1630233
+2024-03-08 12:59:44,100 - player_game_data - INFO - Fetched game data for player 1628995
+2024-03-08 12:59:44,336 - player_game_data - INFO - Fetched game data for player 1631132
+2024-03-08 12:59:44,566 - player_game_data - INFO - Fetched game data for player 1629723
+2024-03-08 12:59:44,806 - player_game_data - INFO - Fetched game data for player 1627788
+2024-03-08 12:59:45,031 - player_game_data - INFO - Fetched game data for player 1628436
+2024-03-08 12:59:45,284 - player_game_data - INFO - Fetched game data for player 1630228
+2024-03-08 12:59:45,706 - player_game_data - INFO - Fetched game data for player 1628398
+2024-03-08 12:59:45,958 - player_game_data - INFO - Fetched game data for player 1631222
+2024-03-08 12:59:46,236 - player_game_data - INFO - Fetched game data for player 203897
+2024-03-08 12:59:46,465 - player_game_data - INFO - Fetched game data for player 1629111
+2024-03-08 12:59:46,691 - player_game_data - INFO - Fetched game data for player 1630639
+2024-03-08 12:59:46,899 - player_game_data - INFO - Fetched game data for player 1627747
+2024-03-08 12:59:47,166 - player_game_data - INFO - Fetched game data for player 1627814
+2024-03-08 12:59:47,477 - player_game_data - INFO - Fetched game data for player 1630240
+2024-03-08 12:59:47,737 - player_game_data - INFO - Fetched game data for player 203458
+2024-03-08 12:59:48,110 - player_game_data - INFO - Fetched game data for player 202695
+2024-03-08 12:59:48,348 - player_game_data - INFO - Fetched game data for player 1631171
+2024-03-08 12:59:48,601 - player_game_data - INFO - Fetched game data for player 1641721
+2024-03-08 12:59:48,908 - player_game_data - INFO - Fetched game data for player 1630184
+2024-03-08 12:59:49,172 - player_game_data - INFO - Fetched game data for player 1630604
+2024-03-08 12:59:49,457 - player_game_data - INFO - Fetched game data for player 203081
+2024-03-08 12:59:49,705 - player_game_data - INFO - Fetched game data for player 1629642
+2024-03-08 12:59:49,952 - player_game_data - INFO - Fetched game data for player 1641726
+2024-03-08 12:59:50,190 - player_game_data - INFO - Fetched game data for player 1630587
+2024-03-08 12:59:50,472 - player_game_data - INFO - Fetched game data for player 1641753
+2024-03-08 12:59:50,682 - player_game_data - INFO - Fetched game data for player 1631254
+2024-03-08 12:59:50,970 - player_game_data - INFO - Fetched game data for player 1626172
+2024-03-08 12:59:51,208 - player_game_data - INFO - Fetched game data for player 201572
+2024-03-08 12:59:51,398 - player_game_data - INFO - Fetched game data for player 201577
+2024-03-08 12:59:51,657 - player_game_data - INFO - Fetched game data for player 201567
+2024-03-08 12:59:51,858 - player_game_data - INFO - Fetched game data for player 200768
+2024-03-08 12:59:52,207 - player_game_data - INFO - Fetched game data for player 1641754
+2024-03-08 12:59:52,428 - player_game_data - INFO - Fetched game data for player 1626168
+2024-03-08 12:59:52,747 - player_game_data - INFO - Fetched game data for player 1630177
+2024-03-08 12:59:52,966 - player_game_data - INFO - Fetched game data for player 1630572
+2024-03-08 12:59:53,180 - player_game_data - INFO - Fetched game data for player 1629611
+2024-03-08 12:59:53,415 - player_game_data - INFO - Fetched game data for player 1630544
+2024-03-08 12:59:53,630 - player_game_data - INFO - Fetched game data for player 1626246
+2024-03-08 12:59:53,836 - player_game_data - INFO - Fetched game data for player 1628374
+2024-03-08 12:59:54,074 - player_game_data - INFO - Fetched game data for player 1630230
+2024-03-08 12:59:54,366 - player_game_data - INFO - Fetched game data for player 1628997
+2024-03-08 12:59:54,580 - player_game_data - INFO - Fetched game data for player 1628998
+2024-03-08 12:59:54,782 - player_game_data - INFO - Fetched game data for player 1630231
+2024-03-08 12:59:54,980 - player_game_data - INFO - Fetched game data for player 1629726
+2024-03-08 12:59:55,167 - player_game_data - INFO - Fetched game data for player 1631097
+2024-03-08 12:59:55,411 - player_game_data - INFO - Fetched game data for player 202083
+2024-03-08 12:59:55,626 - player_game_data - INFO - Fetched game data for player 1630178
+2024-03-08 12:59:55,838 - player_game_data - INFO - Fetched game data for player 1630219
+2024-03-08 12:59:56,089 - player_game_data - INFO - Fetched game data for player 1630540
+2024-03-08 12:59:56,332 - player_game_data - INFO - Fetched game data for player 203468
+2024-03-08 12:59:56,530 - player_game_data - INFO - Fetched game data for player 204456
+2024-03-08 12:59:56,732 - player_game_data - INFO - Fetched game data for player 1630183
+2024-03-08 12:59:56,949 - player_game_data - INFO - Fetched game data for player 1629667
+2024-03-08 12:59:57,180 - player_game_data - INFO - Fetched game data for player 203926
+2024-03-08 12:59:57,384 - player_game_data - INFO - Fetched game data for player 201580
+2024-03-08 12:59:57,590 - player_game_data - INFO - Fetched game data for player 1631121
+2024-03-08 12:59:57,796 - player_game_data - INFO - Fetched game data for player 1629162
+2024-03-08 12:59:58,102 - player_game_data - INFO - Fetched game data for player 1629001
+2024-03-08 12:59:58,299 - player_game_data - INFO - Fetched game data for player 1630241
+2024-03-08 12:59:58,381 - player_game_data - INFO - Inserted game data for player: 1630241, Full Name: Sam Merrill , Game_ID: 0022300895
+2024-03-08 12:59:58,514 - player_game_data - INFO - Fetched game data for player 1629002
+2024-03-08 12:59:58,731 - player_game_data - INFO - Fetched game data for player 203995
+2024-03-08 12:59:58,960 - player_game_data - INFO - Fetched game data for player 203114
+2024-03-08 12:59:59,165 - player_game_data - INFO - Fetched game data for player 1641706
+2024-03-08 12:59:59,389 - player_game_data - INFO - Fetched game data for player 1641757
+2024-03-08 12:59:59,589 - player_game_data - INFO - Fetched game data for player 1631159
+2024-03-08 12:59:59,824 - player_game_data - INFO - Fetched game data for player 201988
+2024-03-08 13:00:00,089 - player_game_data - INFO - Fetched game data for player 1629003
+2024-03-08 13:00:00,356 - player_game_data - INFO - Fetched game data for player 1631303
+2024-03-08 13:00:00,546 - player_game_data - INFO - Fetched game data for player 1631169
+2024-03-08 13:00:00,748 - player_game_data - INFO - Fetched game data for player 1630558
+2024-03-08 13:00:00,895 - player_game_data - INFO - Inserted game data for player: 1630558, Full Name: Davion Mitchell , Game_ID: 0022300908
+2024-03-08 13:00:01,042 - player_game_data - INFO - Fetched game data for player 1628378
+2024-03-08 13:00:01,324 - player_game_data - INFO - Fetched game data for player 1630596
+2024-03-08 13:00:01,552 - player_game_data - INFO - Fetched game data for player 1630600
+2024-03-08 13:00:01,808 - player_game_data - INFO - Fetched game data for player 1628370
+2024-03-08 13:00:01,967 - player_game_data - INFO - Inserted game data for player: 1628370, Full Name: Malik Monk , Game_ID: 0022300908
+2024-03-08 13:00:02,119 - player_game_data - INFO - Fetched game data for player 1630541
+2024-03-08 13:00:02,199 - player_game_data - INFO - Inserted game data for player: 1630541, Full Name: Moses Moody , Game_ID: 0022300907
+2024-03-08 13:00:02,350 - player_game_data - INFO - Fetched game data for player 1631111
+2024-03-08 13:00:02,591 - player_game_data - INFO - Fetched game data for player 1629630
+2024-03-08 13:00:32,734 - player_game_data - ERROR - Error fetching game data for player 202693: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2024-03-08 13:00:32,737 - player_game_data - ERROR - Error updating player game data: the JSON object must be str, bytes or bytearray, not tuple
+2024-03-11 13:07:52,786 - player_game_data - INFO - ACTION COMMITTED: nba_update_player_game_data
+2024-03-11 13:07:53,041 - player_game_data - INFO - Fetched game data for player 1630173
+2024-03-11 13:07:53,207 - player_game_data - INFO - Inserted game data for player: 1630173, Full Name: Precious Achiuwa , Game_ID: 0022300927
+2024-03-11 13:07:53,339 - player_game_data - INFO - Fetched game data for player 203500
+2024-03-11 13:07:53,504 - player_game_data - INFO - Fetched game data for player 1628389
+2024-03-11 13:07:53,578 - player_game_data - INFO - Inserted game data for player: 1628389, Full Name: Bam Adebayo , Game_ID: 0022300926
+2024-03-11 13:07:53,749 - player_game_data - INFO - Fetched game data for player 1630534
+2024-03-11 13:07:53,816 - player_game_data - INFO - Inserted game data for player: 1630534, Full Name: Ochai Agbaji , Game_ID: 0022300923
+2024-03-11 13:07:54,122 - player_game_data - INFO - Fetched game data for player 1630583
+2024-03-11 13:07:54,224 - player_game_data - INFO - Inserted game data for player: 1630583, Full Name: Santi Aldama , Game_ID: 0022300931
+2024-03-11 13:07:54,433 - player_game_data - INFO - Fetched game data for player 1629638
+2024-03-11 13:07:54,514 - player_game_data - INFO - Inserted game data for player: 1629638, Full Name: Nickeil Alexander-Walker , Game_ID: 0022300932
+2024-03-11 13:07:54,905 - player_game_data - INFO - Fetched game data for player 1628960
+2024-03-11 13:07:54,990 - player_game_data - INFO - Inserted game data for player: 1628960, Full Name: Grayson Allen , Game_ID: 0022300920
+2024-03-11 13:07:55,146 - player_game_data - INFO - Fetched game data for player 1628386
+2024-03-11 13:07:55,220 - player_game_data - INFO - Inserted game data for player: 1628386, Full Name: Jarrett Allen , Game_ID: 0022300930
+2024-03-11 13:07:55,361 - player_game_data - INFO - Fetched game data for player 1630631
+2024-03-11 13:07:55,426 - player_game_data - INFO - Inserted game data for player: 1630631, Full Name: Jose Alvarado , Game_ID: 0022300925
+2024-03-11 13:07:55,581 - player_game_data - INFO - Fetched game data for player 203937
+2024-03-11 13:07:55,644 - player_game_data - INFO - Inserted game data for player: 203937, Full Name: Kyle Anderson , Game_ID: 0022300911
+2024-03-11 13:07:55,785 - player_game_data - INFO - Fetched game data for player 203507
+2024-03-11 13:07:55,852 - player_game_data - INFO - Inserted game data for player: 203507, Full Name: Giannis Antetokounmpo , Game_ID: 0022300924
+2024-03-11 13:07:56,063 - player_game_data - INFO - Fetched game data for player 203648
+2024-03-11 13:07:56,286 - player_game_data - INFO - Fetched game data for player 1630175
+2024-03-11 13:07:56,371 - player_game_data - INFO - Inserted game data for player: 1630175, Full Name: Cole Anthony , Game_ID: 0022300928
+2024-03-11 13:07:56,504 - player_game_data - INFO - Fetched game data for player 1628384
+2024-03-11 13:07:56,721 - player_game_data - INFO - Fetched game data for player 1627853
+2024-03-11 13:07:56,901 - player_game_data - INFO - Fetched game data for player 1630166
+2024-03-11 13:07:56,967 - player_game_data - INFO - Inserted game data for player: 1630166, Full Name: Deni Avdija , Game_ID: 0022300926
+2024-03-11 13:07:57,130 - player_game_data - INFO - Fetched game data for player 1629028
+2024-03-11 13:07:57,206 - player_game_data - INFO - Inserted game data for player: 1629028, Full Name: Deandre Ayton , Game_ID: 0022300923
+2024-03-11 13:07:57,362 - player_game_data - INFO - Fetched game data for player 1628962
+2024-03-11 13:07:57,580 - player_game_data - INFO - Fetched game data for player 1628963
+2024-03-11 13:07:57,767 - player_game_data - INFO - Fetched game data for player 1641735
+2024-03-11 13:07:57,940 - player_game_data - INFO - Fetched game data for player 1631116
+2024-03-11 13:07:58,003 - player_game_data - INFO - Inserted game data for player: 1631116, Full Name: Patrick Baldwin Jr. , Game_ID: 0022300926
+2024-03-11 13:07:58,198 - player_game_data - INFO - Fetched game data for player 1630163
+2024-03-11 13:07:58,428 - player_game_data - INFO - Fetched game data for player 1628366
+2024-03-11 13:07:58,716 - player_game_data - INFO - Fetched game data for player 1628964
+2024-03-11 13:07:58,796 - player_game_data - INFO - Inserted game data for player: 1628964, Full Name: Mo Bamba , Game_ID: 0022300927
+2024-03-11 13:07:58,941 - player_game_data - INFO - Fetched game data for player 1631094
+2024-03-11 13:07:59,018 - player_game_data - INFO - Inserted game data for player: 1631094, Full Name: Paolo Banchero , Game_ID: 0022300928
+2024-03-11 13:07:59,166 - player_game_data - INFO - Fetched game data for player 1630217
+2024-03-11 13:07:59,381 - player_game_data - INFO - Fetched game data for player 1630625
+2024-03-11 13:07:59,454 - player_game_data - INFO - Inserted game data for player: 1630625, Full Name: Dalano Banton , Game_ID: 0022300923
+2024-03-11 13:07:59,647 - player_game_data - INFO - Fetched game data for player 1631230
+2024-03-11 13:07:59,726 - player_game_data - INFO - Inserted game data for player: 1631230, Full Name: Dominick Barlow , Game_ID: 0022300921
+2024-03-11 13:07:59,911 - player_game_data - INFO - Fetched game data for player 203084
+2024-03-11 13:08:00,009 - player_game_data - INFO - Inserted game data for player: 203084, Full Name: Harrison Barnes , Game_ID: 0022300929
+2024-03-11 13:08:00,140 - player_game_data - INFO - Fetched game data for player 1630567
+2024-03-11 13:08:00,336 - player_game_data - INFO - Fetched game data for player 1629628
+2024-03-11 13:08:00,498 - player_game_data - INFO - Fetched game data for player 1629646
+2024-03-11 13:08:00,669 - player_game_data - INFO - Fetched game data for player 1641734
+2024-03-11 13:08:00,740 - player_game_data - INFO - Inserted game data for player: 1641734, Full Name: Emoni Bates , Game_ID: 0022300930
+2024-03-11 13:08:00,904 - player_game_data - INFO - Fetched game data for player 1628966
+2024-03-11 13:08:01,005 - player_game_data - INFO - Inserted game data for player: 1628966, Full Name: Keita Bates-Diop , Game_ID: 0022300930
+2024-03-11 13:08:01,167 - player_game_data - INFO - Fetched game data for player 201587
+2024-03-11 13:08:01,242 - player_game_data - INFO - Inserted game data for player: 201587, Full Name: Nicolas Batum , Game_ID: 0022300927
+2024-03-11 13:08:01,418 - player_game_data - INFO - Fetched game data for player 203078
+2024-03-11 13:08:01,508 - player_game_data - INFO - Inserted game data for player: 203078, Full Name: Bradley Beal , Game_ID: 0022300920
+2024-03-11 13:08:01,646 - player_game_data - INFO - Fetched game data for player 1627736
+2024-03-11 13:08:01,721 - player_game_data - INFO - Inserted game data for player: 1627736, Full Name: Malik Beasley , Game_ID: 0022300924
+2024-03-11 13:08:01,880 - player_game_data - INFO - Fetched game data for player 1630699
+2024-03-11 13:08:02,104 - player_game_data - INFO - Fetched game data for player 1641777
+2024-03-11 13:08:02,315 - player_game_data - INFO - Fetched game data for player 202722
+2024-03-11 13:08:02,378 - player_game_data - INFO - Inserted game data for player: 202722, Full Name: Davis Bertans , Game_ID: 0022300918
+2024-03-11 13:08:02,529 - player_game_data - INFO - Fetched game data for player 201976
+2024-03-11 13:08:02,630 - player_game_data - INFO - Inserted game data for player: 201976, Full Name: Patrick Beverley , Game_ID: 0022300924
+2024-03-11 13:08:02,789 - player_game_data - INFO - Fetched game data for player 1630180
+2024-03-11 13:08:02,858 - player_game_data - INFO - Inserted game data for player: 1630180, Full Name: Saddiq Bey , Game_ID: 0022300925
+2024-03-11 13:08:03,019 - player_game_data - INFO - Fetched game data for player 1629048
+2024-03-11 13:08:03,083 - player_game_data - INFO - Inserted game data for player: 1629048, Full Name: Goga Bitadze , Game_ID: 0022300912
+2024-03-11 13:08:03,314 - player_game_data - INFO - Fetched game data for player 1641931
+2024-03-11 13:08:03,375 - player_game_data - INFO - Inserted game data for player: 1641931, Full Name: Onuralp Bitim , Game_ID: 0022300917
+2024-03-11 13:08:03,516 - player_game_data - INFO - Fetched game data for player 202687
+2024-03-11 13:08:03,585 - player_game_data - INFO - Inserted game data for player: 202687, Full Name: Bismack Biyombo , Game_ID: 0022300931
+2024-03-11 13:08:03,730 - player_game_data - INFO - Fetched game data for player 1641710
+2024-03-11 13:08:03,797 - player_game_data - INFO - Inserted game data for player: 1641710, Full Name: Anthony Black , Game_ID: 0022300928
+2024-03-11 13:08:03,997 - player_game_data - INFO - Fetched game data for player 1641778
+2024-03-11 13:08:04,208 - player_game_data - INFO - Fetched game data for player 203992
+2024-03-11 13:08:04,359 - player_game_data - INFO - Inserted game data for player: 203992, Full Name: Bogdan Bogdanovic , Game_ID: 0022300925
+2024-03-11 13:08:04,512 - player_game_data - INFO - Fetched game data for player 202711
+2024-03-11 13:08:04,582 - player_game_data - INFO - Inserted game data for player: 202711, Full Name: Bojan Bogdanovic , Game_ID: 0022300927
+2024-03-11 13:08:04,764 - player_game_data - INFO - Fetched game data for player 1629626
+2024-03-11 13:08:04,831 - player_game_data - INFO - Inserted game data for player: 1629626, Full Name: Bol Bol , Game_ID: 0022300920
+2024-03-11 13:08:04,971 - player_game_data - INFO - Fetched game data for player 1629716
+2024-03-11 13:08:05,332 - player_game_data - INFO - Fetched game data for player 1626164
+2024-03-11 13:08:05,506 - player_game_data - INFO - Fetched game data for player 1630527
+2024-03-11 13:08:05,566 - player_game_data - INFO - Inserted game data for player: 1630527, Full Name: Brandon Boston Jr. , Game_ID: 0022300924
+2024-03-11 13:08:05,680 - player_game_data - INFO - Fetched game data for player 1628449
+2024-03-11 13:08:05,758 - player_game_data - INFO - Inserted game data for player: 1628449, Full Name: Chris Boucher , Game_ID: 0022300923
+2024-03-11 13:08:05,929 - player_game_data - INFO - Fetched game data for player 1630547
+2024-03-11 13:08:06,131 - player_game_data - INFO - Fetched game data for player 1631103
+2024-03-11 13:08:06,198 - player_game_data - INFO - Inserted game data for player: 1631103, Full Name: Malaki Branham , Game_ID: 0022300921
+2024-03-11 13:08:06,366 - player_game_data - INFO - Fetched game data for player 1631128
+2024-03-11 13:08:06,611 - player_game_data - INFO - Inserted game data for player: 1631128, Full Name: Christian Braun , Game_ID: 0022300922
+2024-03-11 13:08:06,750 - player_game_data - INFO - Fetched game data for player 1628969
+2024-03-11 13:08:06,848 - player_game_data - INFO - Inserted game data for player: 1628969, Full Name: Mikal Bridges , Game_ID: 0022300930
+2024-03-11 13:08:07,028 - player_game_data - INFO - Fetched game data for player 1628970
+2024-03-11 13:08:07,095 - player_game_data - INFO - Inserted game data for player: 1628970, Full Name: Miles Bridges , Game_ID: 0022300918
+2024-03-11 13:08:07,302 - player_game_data - INFO - Fetched game data for player 1629052
+2024-03-11 13:08:07,476 - player_game_data - INFO - Fetched game data for player 1627763
+2024-03-11 13:08:07,650 - player_game_data - INFO - Fetched game data for player 1629717
+2024-03-11 13:08:07,885 - player_game_data - INFO - Fetched game data for player 1628415
+2024-03-11 13:08:07,967 - player_game_data - INFO - Inserted game data for player: 1628415, Full Name: Dillon Brooks , Game_ID: 0022300929
+2024-03-11 13:08:08,116 - player_game_data - INFO - Fetched game data for player 1628971
+2024-03-11 13:08:08,336 - player_game_data - INFO - Fetched game data for player 1627759
+2024-03-11 13:08:08,404 - player_game_data - INFO - Inserted game data for player: 1627759, Full Name: Jaylen Brown , Game_ID: 0022300920
+2024-03-11 13:08:08,554 - player_game_data - INFO - Fetched game data for player 1631112
+2024-03-11 13:08:08,719 - player_game_data - INFO - Fetched game data for player 1641738
+2024-03-11 13:08:08,796 - player_game_data - INFO - Inserted game data for player: 1641738, Full Name: Kobe Brown , Game_ID: 0022300917
+2024-03-11 13:08:08,944 - player_game_data - INFO - Fetched game data for player 1629650
+2024-03-11 13:08:09,006 - player_game_data - INFO - Inserted game data for player: 1629650, Full Name: Moses Brown , Game_ID: 0022300916
+2024-03-11 13:08:09,199 - player_game_data - INFO - Fetched game data for player 1630535
+2024-03-11 13:08:09,563 - player_game_data - INFO - Fetched game data for player 1629718
+2024-03-11 13:08:09,622 - player_game_data - INFO - Inserted game data for player: 1629718, Full Name: Charlie Brown Jr. , Game_ID: 0022300912
+2024-03-11 13:08:09,756 - player_game_data - INFO - Fetched game data for player 1628972
+2024-03-11 13:08:09,837 - player_game_data - INFO - Inserted game data for player: 1628972, Full Name: Troy Brown Jr. , Game_ID: 0022300919
+2024-03-11 13:08:09,986 - player_game_data - INFO - Fetched game data for player 1628973
+2024-03-11 13:08:10,045 - player_game_data - INFO - Inserted game data for player: 1628973, Full Name: Jalen Brunson , Game_ID: 0022300927
+2024-03-11 13:08:10,183 - player_game_data - INFO - Fetched game data for player 1628418
+2024-03-11 13:08:10,396 - player_game_data - INFO - Fetched game data for player 1641723
+2024-03-11 13:08:10,562 - player_game_data - INFO - Fetched game data for player 203493
+2024-03-11 13:08:10,788 - player_game_data - INFO - Fetched game data for player 202692
+2024-03-11 13:08:10,858 - player_game_data - INFO - Inserted game data for player: 202692, Full Name: Alec Burks , Game_ID: 0022300927
+2024-03-11 13:08:11,011 - player_game_data - INFO - Fetched game data for player 1630215
+2024-03-11 13:08:11,173 - player_game_data - INFO - Fetched game data for player 202710
+2024-03-11 13:08:11,241 - player_game_data - INFO - Inserted game data for player: 202710, Full Name: Jimmy Butler , Game_ID: 0022300926
+2024-03-11 13:08:11,370 - player_game_data - INFO - Fetched game data for player 1631219
+2024-03-11 13:08:11,563 - player_game_data - INFO - Fetched game data for player 1631288
+2024-03-11 13:08:11,797 - player_game_data - INFO - Fetched game data for player 203484
+2024-03-11 13:08:11,872 - player_game_data - INFO - Inserted game data for player: 203484, Full Name: Kentavious Caldwell-Pope , Game_ID: 0022300922
+2024-03-11 13:08:12,003 - player_game_data - INFO - Fetched game data for player 1641739
+2024-03-11 13:08:12,074 - player_game_data - INFO - Inserted game data for player: 1641739, Full Name: Toumani Camara , Game_ID: 0022300923
+2024-03-11 13:08:12,200 - player_game_data - INFO - Fetched game data for player 1628427
+2024-03-11 13:08:12,427 - player_game_data - INFO - Fetched game data for player 203991
+2024-03-11 13:08:12,501 - player_game_data - INFO - Inserted game data for player: 203991, Full Name: Clint Capela , Game_ID: 0022300925
+2024-03-11 13:08:12,698 - player_game_data - INFO - Fetched game data for player 1628975
+2024-03-11 13:08:12,766 - player_game_data - INFO - Inserted game data for player: 1628975, Full Name: Jevon Carter , Game_ID: 0022300917
+2024-03-11 13:08:12,927 - player_game_data - INFO - Fetched game data for player 1628976
+2024-03-11 13:08:13,008 - player_game_data - INFO - Inserted game data for player: 1628976, Full Name: Wendell Carter Jr. , Game_ID: 0022300928
+2024-03-11 13:08:13,171 - player_game_data - INFO - Fetched game data for player 1627936
+2024-03-11 13:08:13,231 - player_game_data - INFO - Inserted game data for player: 1627936, Full Name: Alex Caruso , Game_ID: 0022300917
+2024-03-11 13:08:13,363 - player_game_data - INFO - Fetched game data for player 1630658
+2024-03-11 13:08:13,541 - player_game_data - INFO - Fetched game data for player 1630608
+2024-03-11 13:08:13,745 - player_game_data - INFO - Fetched game data for player 1630577
+2024-03-11 13:08:13,812 - player_game_data - INFO - Inserted game data for player: 1630577, Full Name: Julian Champagnie , Game_ID: 0022300921
+2024-03-11 13:08:13,943 - player_game_data - INFO - Fetched game data for player 1631108
+2024-03-11 13:08:14,007 - player_game_data - INFO - Inserted game data for player: 1631108, Full Name: Max Christie , Game_ID: 0022300932
+2024-03-11 13:08:14,149 - player_game_data - INFO - Fetched game data for player 1630528
+2024-03-11 13:08:14,379 - player_game_data - INFO - Fetched game data for player 1631321
+2024-03-11 13:08:14,601 - player_game_data - INFO - Fetched game data for player 1641740
+2024-03-11 13:08:14,780 - player_game_data - INFO - Fetched game data for player 1629634
+2024-03-11 13:08:14,950 - player_game_data - INFO - Fetched game data for player 203903
+2024-03-11 13:08:15,029 - player_game_data - INFO - Inserted game data for player: 203903, Full Name: Jordan Clarkson , Game_ID: 0022300922
+2024-03-11 13:08:15,166 - player_game_data - INFO - Fetched game data for player 1629651
+2024-03-11 13:08:15,230 - player_game_data - INFO - Inserted game data for player: 1629651, Full Name: Nic Claxton , Game_ID: 0022300930
+2024-03-11 13:08:15,367 - player_game_data - INFO - Fetched game data for player 1641730
+2024-03-11 13:08:15,426 - player_game_data - INFO - Inserted game data for player: 1641730, Full Name: Noah Clowney , Game_ID: 0022300930
+2024-03-11 13:08:15,549 - player_game_data - INFO - Fetched game data for player 1629599
+2024-03-11 13:08:15,610 - player_game_data - INFO - Inserted game data for player: 1629599, Full Name: Amir Coffey , Game_ID: 0022300924
+2024-03-11 13:08:15,734 - player_game_data - INFO - Fetched game data for player 1628381
+2024-03-11 13:08:15,805 - player_game_data - INFO - Inserted game data for player: 1628381, Full Name: John Collins , Game_ID: 0022300922
+2024-03-11 13:08:15,943 - player_game_data - INFO - Fetched game data for player 1628380
+2024-03-11 13:08:16,005 - player_game_data - INFO - Inserted game data for player: 1628380, Full Name: Zach Collins , Game_ID: 0022300921
+2024-03-11 13:08:16,179 - player_game_data - INFO - Fetched game data for player 201144
+2024-03-11 13:08:16,280 - player_game_data - INFO - Inserted game data for player: 201144, Full Name: Mike Conley , Game_ID: 0022300932
+2024-03-11 13:08:16,412 - player_game_data - INFO - Fetched game data for player 1626192
+2024-03-11 13:08:16,480 - player_game_data - INFO - Inserted game data for player: 1626192, Full Name: Pat Connaughton , Game_ID: 0022300924
+2024-03-11 13:08:16,667 - player_game_data - INFO - Fetched game data for player 1641731
+2024-03-11 13:08:16,743 - player_game_data - INFO - Inserted game data for player: 1641731, Full Name: Bilal Coulibaly , Game_ID: 0022300926
+2024-03-11 13:08:16,865 - player_game_data - INFO - Fetched game data for player 1641741
+2024-03-11 13:08:16,931 - player_game_data - INFO - Inserted game data for player: 1641741, Full Name: Ricky Council IV , Game_ID: 0022300909
+2024-03-11 13:08:17,084 - player_game_data - INFO - Fetched game data for player 203496
+2024-03-11 13:08:17,285 - player_game_data - INFO - Fetched game data for player 1628470
+2024-03-11 13:08:17,351 - player_game_data - INFO - Inserted game data for player: 1628470, Full Name: Torrey Craig , Game_ID: 0022300917
+2024-03-11 13:08:17,632 - player_game_data - INFO - Fetched game data for player 203109
+2024-03-11 13:08:17,699 - player_game_data - INFO - Inserted game data for player: 203109, Full Name: Jae Crowder , Game_ID: 0022300924
+2024-03-11 13:08:17,851 - player_game_data - INFO - Fetched game data for player 1630595
+2024-03-11 13:08:17,921 - player_game_data - INFO - Inserted game data for player: 1630595, Full Name: Cade Cunningham , Game_ID: 0022300919
+2024-03-11 13:08:18,066 - player_game_data - INFO - Fetched game data for player 203552
+2024-03-11 13:08:18,285 - player_game_data - INFO - Fetched game data for player 201939
+2024-03-11 13:08:18,457 - player_game_data - INFO - Fetched game data for player 1630700
+2024-03-11 13:08:18,633 - player_game_data - INFO - Fetched game data for player 203076
+2024-03-11 13:08:18,723 - player_game_data - INFO - Inserted game data for player: 203076, Full Name: Anthony Davis , Game_ID: 0022300932
+2024-03-11 13:08:18,888 - player_game_data - INFO - Fetched game data for player 1631098
+2024-03-11 13:08:18,955 - player_game_data - INFO - Inserted game data for player: 1631098, Full Name: Johnny Davis , Game_ID: 0022300926
+2024-03-11 13:08:19,110 - player_game_data - INFO - Fetched game data for player 1631120
+2024-03-11 13:08:19,172 - player_game_data - INFO - Inserted game data for player: 1631120, Full Name: JD Davison , Game_ID: 0022300920
+2024-03-11 13:08:19,301 - player_game_data - INFO - Fetched game data for player 201942
+2024-03-11 13:08:19,390 - player_game_data - INFO - Inserted game data for player: 201942, Full Name: DeMar DeRozan , Game_ID: 0022300917
+2024-03-11 13:08:19,547 - player_game_data - INFO - Fetched game data for player 1641926
+2024-03-11 13:08:19,755 - player_game_data - INFO - Fetched game data for player 1628978
+2024-03-11 13:08:19,822 - player_game_data - INFO - Inserted game data for player: 1628978, Full Name: Donte DiVincenzo , Game_ID: 0022300927
+2024-03-11 13:08:19,988 - player_game_data - INFO - Fetched game data for player 1631217
+2024-03-11 13:08:20,166 - player_game_data - INFO - Fetched game data for player 1641711
+2024-03-11 13:08:20,255 - player_game_data - INFO - Inserted game data for player: 1641711, Full Name: Gradey Dick , Game_ID: 0022300923
+2024-03-11 13:08:20,385 - player_game_data - INFO - Fetched game data for player 1631172
+2024-03-11 13:08:20,451 - player_game_data - INFO - Inserted game data for player: 1631172, Full Name: Ousmane Dieng , Game_ID: 0022300931
+2024-03-11 13:08:20,592 - player_game_data - INFO - Fetched game data for player 203915
+2024-03-11 13:08:20,656 - player_game_data - INFO - Inserted game data for player: 203915, Full Name: Spencer Dinwiddie , Game_ID: 0022300932
+2024-03-11 13:08:20,816 - player_game_data - INFO - Fetched game data for player 1629029
+2024-03-11 13:08:20,881 - player_game_data - INFO - Inserted game data for player: 1629029, Full Name: Luka Doncic , Game_ID: 0022300919
+2024-03-11 13:08:21,032 - player_game_data - INFO - Fetched game data for player 1629652
+2024-03-11 13:08:21,100 - player_game_data - INFO - Inserted game data for player: 1629652, Full Name: Luguentz Dort , Game_ID: 0022300931
+2024-03-11 13:08:21,247 - player_game_data - INFO - Fetched game data for player 1630245
+2024-03-11 13:08:21,314 - player_game_data - INFO - Inserted game data for player: 1630245, Full Name: Ayo Dosunmu , Game_ID: 0022300917
+2024-03-11 13:08:21,485 - player_game_data - INFO - Fetched game data for player 203083
+2024-03-11 13:08:21,569 - player_game_data - INFO - Inserted game data for player: 203083, Full Name: Andre Drummond , Game_ID: 0022300917
+2024-03-11 13:08:21,716 - player_game_data - INFO - Fetched game data for player 1630537
+2024-03-11 13:08:21,887 - player_game_data - INFO - Fetched game data for player 1627739
+2024-03-11 13:08:21,948 - player_game_data - INFO - Inserted game data for player: 1627739, Full Name: Kris Dunn , Game_ID: 0022300922
+2024-03-11 13:08:22,079 - player_game_data - INFO - Fetched game data for player 201142
+2024-03-11 13:08:22,477 - player_game_data - INFO - Inserted game data for player: 201142, Full Name: Kevin Durant , Game_ID: 0022300920
+2024-03-11 13:08:22,632 - player_game_data - INFO - Fetched game data for player 1631105
+2024-03-11 13:08:22,699 - player_game_data - INFO - Inserted game data for player: 1631105, Full Name: Jalen Duren , Game_ID: 0022300919
+2024-03-11 13:08:22,835 - player_game_data - INFO - Fetched game data for player 1631106
+2024-03-11 13:08:23,025 - player_game_data - INFO - Fetched game data for player 1630162
+2024-03-11 13:08:23,094 - player_game_data - INFO - Inserted game data for player: 1630162, Full Name: Anthony Edwards , Game_ID: 0022300932
+2024-03-11 13:08:23,227 - player_game_data - INFO - Fetched game data for player 1630556
+2024-03-11 13:08:23,414 - player_game_data - INFO - Fetched game data for player 1631165
+2024-03-11 13:08:23,474 - player_game_data - INFO - Inserted game data for player: 1631165, Full Name: Keon Ellis , Game_ID: 0022300929
+2024-03-11 13:08:23,830 - player_game_data - INFO - Fetched game data for player 203954
+2024-03-11 13:08:24,020 - player_game_data - INFO - Fetched game data for player 1629234
+2024-03-11 13:08:24,086 - player_game_data - INFO - Inserted game data for player: 1629234, Full Name: Drew Eubanks , Game_ID: 0022300920
+2024-03-11 13:08:24,229 - player_game_data - INFO - Fetched game data for player 203957
+2024-03-11 13:08:24,321 - player_game_data - INFO - Inserted game data for player: 203957, Full Name: Dante Exum , Game_ID: 0022300919
+2024-03-11 13:08:24,467 - player_game_data - INFO - Fetched game data for player 1628981
+2024-03-11 13:08:24,530 - player_game_data - INFO - Inserted game data for player: 1628981, Full Name: Bruno Fernando , Game_ID: 0022300925
+2024-03-11 13:08:24,679 - player_game_data - INFO - Fetched game data for player 1627827
+2024-03-11 13:08:24,758 - player_game_data - INFO - Inserted game data for player: 1627827, Full Name: Dorian Finney-Smith , Game_ID: 0022300930
+2024-03-11 13:08:24,933 - player_game_data - INFO - Fetched game data for player 1630201
+2024-03-11 13:08:25,011 - player_game_data - INFO - Inserted game data for player: 1630201, Full Name: Malachi Flynn , Game_ID: 0022300919
+2024-03-11 13:08:25,137 - player_game_data - INFO - Fetched game data for player 1631323
+2024-03-11 13:08:25,206 - player_game_data - INFO - Inserted game data for player: 1631323, Full Name: Simone Fontecchio , Game_ID: 0022300919
+2024-03-11 13:08:25,364 - player_game_data - INFO - Fetched game data for player 1630259
+2024-03-11 13:08:25,546 - player_game_data - INFO - Fetched game data for player 1630235
+2024-03-11 13:08:25,610 - player_game_data - INFO - Inserted game data for player: 1630235, Full Name: Trent Forrest , Game_ID: 0022300925
+2024-03-11 13:08:25,734 - player_game_data - INFO - Fetched game data for player 203095
+2024-03-11 13:08:25,812 - player_game_data - INFO - Inserted game data for player: 203095, Full Name: Evan Fournier , Game_ID: 0022300919
+2024-03-11 13:08:26,127 - player_game_data - INFO - Fetched game data for player 1628368
+2024-03-11 13:08:26,201 - player_game_data - INFO - Inserted game data for player: 1628368, Full Name: De'Aaron Fox , Game_ID: 0022300929
+2024-03-11 13:08:26,382 - player_game_data - INFO - Fetched game data for player 1631241
+2024-03-11 13:08:26,453 - player_game_data - INFO - Inserted game data for player: 1631241, Full Name: Javon Freeman-Liberty , Game_ID: 0022300923
+2024-03-11 13:08:26,589 - player_game_data - INFO - Fetched game data for player 1641788
+2024-03-11 13:08:26,771 - player_game_data - INFO - Fetched game data for player 1628365
+2024-03-11 13:08:26,836 - player_game_data - INFO - Inserted game data for player: 1628365, Full Name: Markelle Fultz , Game_ID: 0022300912
+2024-03-11 13:08:27,017 - player_game_data - INFO - Fetched game data for player 1629655
+2024-03-11 13:08:27,079 - player_game_data - INFO - Inserted game data for player: 1629655, Full Name: Daniel Gafford , Game_ID: 0022300919
+2024-03-11 13:08:27,215 - player_game_data - INFO - Fetched game data for player 201568
+2024-03-11 13:08:27,284 - player_game_data - INFO - Inserted game data for player: 201568, Full Name: Danilo Gallinari , Game_ID: 0022300924
+2024-03-11 13:08:27,417 - player_game_data - INFO - Fetched game data for player 1629636
+2024-03-11 13:08:27,475 - player_game_data - INFO - Inserted game data for player: 1629636, Full Name: Darius Garland , Game_ID: 0022300930
+2024-03-11 13:08:27,617 - player_game_data - INFO - Fetched game data for player 1630586
+2024-03-11 13:08:28,002 - player_game_data - INFO - Fetched game data for player 1630568
+2024-03-11 13:08:28,080 - player_game_data - INFO - Inserted game data for player: 1630568, Full Name: Luka Garza , Game_ID: 0022300932
+2024-03-11 13:08:28,278 - player_game_data - INFO - Fetched game data for player 1629232
+2024-03-11 13:08:28,456 - player_game_data - INFO - Fetched game data for player 1641718
+2024-03-11 13:08:28,524 - player_game_data - INFO - Inserted game data for player: 1641718, Full Name: Keyonte George , Game_ID: 0022300922
+2024-03-11 13:08:28,648 - player_game_data - INFO - Fetched game data for player 202331
+2024-03-11 13:08:28,727 - player_game_data - INFO - Inserted game data for player: 202331, Full Name: Paul George , Game_ID: 0022300917
+2024-03-11 13:08:28,872 - player_game_data - INFO - Fetched game data for player 1630581
+2024-03-11 13:08:28,937 - player_game_data - INFO - Inserted game data for player: 1630581, Full Name: Josh Giddey , Game_ID: 0022300931
+2024-03-11 13:08:29,132 - player_game_data - INFO - Fetched game data for player 1628385
+2024-03-11 13:08:29,204 - player_game_data - INFO - Inserted game data for player: 1628385, Full Name: Harry Giles III , Game_ID: 0022300932
+2024-03-11 13:08:29,367 - player_game_data - INFO - Fetched game data for player 1628983
+2024-03-11 13:08:29,439 - player_game_data - INFO - Inserted game data for player: 1628983, Full Name: Shai Gilgeous-Alexander , Game_ID: 0022300931
+2024-03-11 13:08:29,587 - player_game_data - INFO - Fetched game data for player 1630264
+2024-03-11 13:08:29,655 - player_game_data - INFO - Inserted game data for player: 1630264, Full Name: Anthony Gill , Game_ID: 0022300926
+2024-03-11 13:08:29,803 - player_game_data - INFO - Fetched game data for player 1631221
+2024-03-11 13:08:30,016 - player_game_data - INFO - Fetched game data for player 1631367
+2024-03-11 13:08:30,185 - player_game_data - INFO - Fetched game data for player 203497
+2024-03-11 13:08:30,273 - player_game_data - INFO - Inserted game data for player: 203497, Full Name: Rudy Gobert , Game_ID: 0022300911
+2024-03-11 13:08:30,427 - player_game_data - INFO - Fetched game data for player 1630692
+2024-03-11 13:08:30,494 - player_game_data - INFO - Inserted game data for player: 1630692, Full Name: Jordan Goodwin , Game_ID: 0022300913
+2024-03-11 13:08:30,617 - player_game_data - INFO - Fetched game data for player 203932
+2024-03-11 13:08:30,683 - player_game_data - INFO - Inserted game data for player: 203932, Full Name: Aaron Gordon , Game_ID: 0022300922
+2024-03-11 13:08:30,839 - player_game_data - INFO - Fetched game data for player 201569
+2024-03-11 13:08:30,920 - player_game_data - INFO - Inserted game data for player: 201569, Full Name: Eric Gordon , Game_ID: 0022300920
+2024-03-11 13:08:31,067 - player_game_data - INFO - Fetched game data for player 1628984
+2024-03-11 13:08:31,128 - player_game_data - INFO - Inserted game data for player: 1628984, Full Name: Devonte' Graham , Game_ID: 0022300921
+2024-03-11 13:08:31,284 - player_game_data - INFO - Fetched game data for player 203924
+2024-03-11 13:08:31,453 - player_game_data - INFO - Fetched game data for player 1631260
+2024-03-11 13:08:31,622 - player_game_data - INFO - Fetched game data for player 201980
+2024-03-11 13:08:31,808 - player_game_data - INFO - Fetched game data for player 203110
+2024-03-11 13:08:31,875 - player_game_data - INFO - Inserted game data for player: 203110, Full Name: Draymond Green , Game_ID: 0022300921
+2024-03-11 13:08:32,016 - player_game_data - INFO - Fetched game data for player 1630224
+2024-03-11 13:08:32,091 - player_game_data - INFO - Inserted game data for player: 1630224, Full Name: Jalen Green , Game_ID: 0022300929
+2024-03-11 13:08:32,280 - player_game_data - INFO - Fetched game data for player 201145
+2024-03-11 13:08:32,356 - player_game_data - INFO - Inserted game data for player: 201145, Full Name: Jeff Green , Game_ID: 0022300929
+2024-03-11 13:08:32,510 - player_game_data - INFO - Fetched game data for player 1630182
+2024-03-11 13:08:32,588 - player_game_data - INFO - Inserted game data for player: 1630182, Full Name: Josh Green , Game_ID: 0022300919
+2024-03-11 13:08:32,713 - player_game_data - INFO - Fetched game data for player 1631100
+2024-03-11 13:08:32,885 - player_game_data - INFO - Fetched game data for player 1629656
+2024-03-11 13:08:33,047 - player_game_data - INFO - Fetched game data for player 1631243
+2024-03-11 13:08:33,235 - player_game_data - INFO - Fetched game data for player 1629060
+2024-03-11 13:08:33,324 - player_game_data - INFO - Inserted game data for player: 1629060, Full Name: Rui Hachimura , Game_ID: 0022300932
+2024-03-11 13:08:33,479 - player_game_data - INFO - Fetched game data for player 1630169
+2024-03-11 13:08:33,551 - player_game_data - INFO - Inserted game data for player: 1630169, Full Name: Tyrese Haliburton , Game_ID: 0022300928
+2024-03-11 13:08:33,695 - player_game_data - INFO - Fetched game data for player 1630181
+2024-03-11 13:08:33,906 - player_game_data - INFO - Fetched game data for player 203501
+2024-03-11 13:08:33,977 - player_game_data - INFO - Inserted game data for player: 203501, Full Name: Tim Hardaway Jr. , Game_ID: 0022300919
+2024-03-11 13:08:34,152 - player_game_data - INFO - Fetched game data for player 201935
+2024-03-11 13:08:34,213 - player_game_data - INFO - Inserted game data for player: 201935, Full Name: James Harden , Game_ID: 0022300924
+2024-03-11 13:08:34,416 - player_game_data - INFO - Fetched game data for player 1630702
+2024-03-11 13:08:34,487 - player_game_data - INFO - Inserted game data for player: 1630702, Full Name: Jaden Hardy , Game_ID: 0022300919
+2024-03-11 13:08:34,724 - player_game_data - INFO - Fetched game data for player 1631199
+2024-03-11 13:08:34,881 - player_game_data - INFO - Fetched game data for player 203914
+2024-03-11 13:08:34,953 - player_game_data - INFO - Inserted game data for player: 203914, Full Name: Gary Harris , Game_ID: 0022300928
+2024-03-11 13:08:35,089 - player_game_data - INFO - Fetched game data for player 203925
+2024-03-11 13:08:35,254 - player_game_data - INFO - Fetched game data for player 1630284
+2024-03-11 13:08:35,420 - player_game_data - INFO - Fetched game data for player 202699
+2024-03-11 13:08:35,482 - player_game_data - INFO - Inserted game data for player: 202699, Full Name: Tobias Harris , Game_ID: 0022300927
+2024-03-11 13:08:35,645 - player_game_data - INFO - Fetched game data for player 1628404
+2024-03-11 13:08:35,710 - player_game_data - INFO - Inserted game data for player: 1628404, Full Name: Josh Hart , Game_ID: 0022300927
+2024-03-11 13:08:35,851 - player_game_data - INFO - Fetched game data for player 1628392
+2024-03-11 13:08:35,921 - player_game_data - INFO - Inserted game data for player: 1628392, Full Name: Isaiah Hartenstein , Game_ID: 0022300927
+2024-03-11 13:08:36,099 - player_game_data - INFO - Fetched game data for player 1630573
+2024-03-11 13:08:36,167 - player_game_data - INFO - Inserted game data for player: 1630573, Full Name: Sam Hauser , Game_ID: 0022300920
+2024-03-11 13:08:36,363 - player_game_data - INFO - Fetched game data for player 1641722
+2024-03-11 13:08:36,579 - player_game_data - INFO - Fetched game data for player 1629637
+2024-03-11 13:08:36,643 - player_game_data - INFO - Inserted game data for player: 1629637, Full Name: Jaxson Hayes , Game_ID: 0022300932
+2024-03-11 13:08:36,768 - player_game_data - INFO - Fetched game data for player 1630165
+2024-03-11 13:08:36,981 - player_game_data - INFO - Fetched game data for player 202330
+2024-03-11 13:08:37,056 - player_game_data - INFO - Inserted game data for player: 202330, Full Name: Gordon Hayward , Game_ID: 0022300931
+2024-03-11 13:08:37,249 - player_game_data - INFO - Fetched game data for player 1630703
+2024-03-11 13:08:37,324 - player_game_data - INFO - Inserted game data for player: 1630703, Full Name: Scoot Henderson , Game_ID: 0022300923
+2024-03-11 13:08:37,531 - player_game_data - INFO - Fetched game data for player 1641707
+2024-03-11 13:08:37,726 - player_game_data - INFO - Fetched game data for player 1629639
+2024-03-11 13:08:38,003 - player_game_data - INFO - Fetched game data for player 1627741
+2024-03-11 13:08:38,102 - player_game_data - INFO - Inserted game data for player: 1627741, Full Name: Buddy Hield , Game_ID: 0022300927
+2024-03-11 13:08:38,240 - player_game_data - INFO - Fetched game data for player 1629312
+2024-03-11 13:08:38,330 - player_game_data - INFO - Inserted game data for player: 1629312, Full Name: Haywood Highsmith , Game_ID: 0022300926
+2024-03-11 13:08:38,468 - player_game_data - INFO - Fetched game data for player 1630207
+2024-03-11 13:08:38,645 - player_game_data - INFO - Fetched game data for player 1641793
+2024-03-11 13:08:38,911 - player_game_data - INFO - Fetched game data for player 1628988
+2024-03-11 13:08:38,974 - player_game_data - INFO - Inserted game data for player: 1628988, Full Name: Aaron Holiday , Game_ID: 0022300929
+2024-03-11 13:08:39,111 - player_game_data - INFO - Fetched game data for player 201950
+2024-03-11 13:08:39,193 - player_game_data - INFO - Inserted game data for player: 201950, Full Name: Jrue Holiday , Game_ID: 0022300920
+2024-03-11 13:08:39,322 - player_game_data - INFO - Fetched game data for player 203200
+2024-03-11 13:08:39,382 - player_game_data - INFO - Inserted game data for player: 203200, Full Name: Justin Holiday , Game_ID: 0022300922
+2024-03-11 13:08:39,514 - player_game_data - INFO - Fetched game data for player 1626158
+2024-03-11 13:08:39,586 - player_game_data - INFO - Inserted game data for player: 1626158, Full Name: Richaun Holmes , Game_ID: 0022300910
+2024-03-11 13:08:39,715 - player_game_data - INFO - Fetched game data for player 1631096
+2024-03-11 13:08:39,804 - player_game_data - INFO - Inserted game data for player: 1631096, Full Name: Chet Holmgren , Game_ID: 0022300931
+2024-03-11 13:08:39,966 - player_game_data - INFO - Fetched game data for player 1641720
+2024-03-11 13:08:40,169 - player_game_data - INFO - Fetched game data for player 201143
+2024-03-11 13:08:40,245 - player_game_data - INFO - Inserted game data for player: 201143, Full Name: Al Horford , Game_ID: 0022300920
+2024-03-11 13:08:40,434 - player_game_data - INFO - Fetched game data for player 1629659
+2024-03-11 13:08:40,510 - player_game_data - INFO - Inserted game data for player: 1629659, Full Name: Talen Horton-Tucker , Game_ID: 0022300922
+2024-03-11 13:08:40,645 - player_game_data - INFO - Fetched game data for player 1627863
+2024-03-11 13:08:40,843 - player_game_data - INFO - Fetched game data for player 1631216
+2024-03-11 13:08:40,908 - player_game_data - INFO - Inserted game data for player: 1631216, Full Name: Caleb Houstan , Game_ID: 0022300928
+2024-03-11 13:08:41,033 - player_game_data - INFO - Fetched game data for player 1641724
+2024-03-11 13:08:41,265 - player_game_data - INFO - Fetched game data for player 1628989
+2024-03-11 13:08:41,334 - player_game_data - INFO - Inserted game data for player: 1628989, Full Name: Kevin Huerter , Game_ID: 0022300929
+2024-03-11 13:08:41,563 - player_game_data - INFO - Fetched game data for player 1630643
+2024-03-11 13:08:41,635 - player_game_data - INFO - Inserted game data for player: 1630643, Full Name: Jay Huff , Game_ID: 0022300922
+2024-03-11 13:08:41,769 - player_game_data - INFO - Fetched game data for player 1629631
+2024-03-11 13:08:41,831 - player_game_data - INFO - Inserted game data for player: 1629631, Full Name: De'Andre Hunter , Game_ID: 0022300925
+2024-03-11 13:08:41,992 - player_game_data - INFO - Fetched game data for player 1630538
+2024-03-11 13:08:42,058 - player_game_data - INFO - Inserted game data for player: 1630538, Full Name: Bones Hyland , Game_ID: 0022300924
+2024-03-11 13:08:42,257 - player_game_data - INFO - Fetched game data for player 204060
+2024-03-11 13:08:42,372 - player_game_data - INFO - Inserted game data for player: 204060, Full Name: Joe Ingles , Game_ID: 0022300928
+2024-03-11 13:08:42,504 - player_game_data - INFO - Fetched game data for player 1627742
+2024-03-11 13:08:42,571 - player_game_data - INFO - Inserted game data for player: 1627742, Full Name: Brandon Ingram , Game_ID: 0022300925
+2024-03-11 13:08:42,729 - player_game_data - INFO - Fetched game data for player 202681
+2024-03-11 13:08:42,795 - player_game_data - INFO - Inserted game data for player: 202681, Full Name: Kyrie Irving , Game_ID: 0022300919
+2024-03-11 13:08:42,963 - player_game_data - INFO - Fetched game data for player 1628371
+2024-03-11 13:08:43,040 - player_game_data - INFO - Inserted game data for player: 1628371, Full Name: Jonathan Isaac , Game_ID: 0022300928
+2024-03-11 13:08:43,189 - player_game_data - INFO - Fetched game data for player 1631093
+2024-03-11 13:08:43,258 - player_game_data - INFO - Inserted game data for player: 1631093, Full Name: Jaden Ivey , Game_ID: 0022300919
+2024-03-11 13:08:43,400 - player_game_data - INFO - Fetched game data for player 1641713
+2024-03-11 13:08:43,459 - player_game_data - INFO - Inserted game data for player: 1641713, Full Name: GG Jackson , Game_ID: 0022300931
+2024-03-11 13:08:43,615 - player_game_data - INFO - Fetched game data for player 1630543
+2024-03-11 13:08:43,683 - player_game_data - INFO - Inserted game data for player: 1630543, Full Name: Isaiah Jackson , Game_ID: 0022300928
+2024-03-11 13:08:43,851 - player_game_data - INFO - Fetched game data for player 202704
+2024-03-11 13:08:43,926 - player_game_data - INFO - Inserted game data for player: 202704, Full Name: Reggie Jackson , Game_ID: 0022300922
+2024-03-11 13:08:44,108 - player_game_data - INFO - Fetched game data for player 1641748
+2024-03-11 13:08:44,305 - player_game_data - INFO - Fetched game data for player 1628991
+2024-03-11 13:08:44,395 - player_game_data - INFO - Inserted game data for player: 1628991, Full Name: Jaren Jackson Jr. , Game_ID: 0022300931
+2024-03-11 13:08:44,532 - player_game_data - INFO - Fetched game data for player 1631218
+2024-03-11 13:08:44,610 - player_game_data - INFO - Inserted game data for player: 1631218, Full Name: Trayce Jackson-Davis , Game_ID: 0022300921
+2024-03-11 13:08:44,765 - player_game_data - INFO - Fetched game data for player 2544
+2024-03-11 13:08:44,835 - player_game_data - INFO - Inserted game data for player: 2544, Full Name: LeBron James , Game_ID: 0022300932
+2024-03-11 13:08:44,981 - player_game_data - INFO - Fetched game data for player 1631170
+2024-03-11 13:08:45,056 - player_game_data - INFO - Inserted game data for player: 1631170, Full Name: Jaime Jaquez Jr. , Game_ID: 0022300926
+2024-03-11 13:08:45,179 - player_game_data - INFO - Fetched game data for player 1629610
+2024-03-11 13:08:45,369 - player_game_data - INFO - Fetched game data for player 1629660
+2024-03-11 13:08:45,547 - player_game_data - INFO - Fetched game data for player 1630198
+2024-03-11 13:08:45,621 - player_game_data - INFO - Inserted game data for player: 1630198, Full Name: Isaiah Joe , Game_ID: 0022300931
+2024-03-11 13:08:45,763 - player_game_data - INFO - Fetched game data for player 1629661
+2024-03-11 13:08:45,939 - player_game_data - INFO - Fetched game data for player 1630552
+2024-03-11 13:08:46,115 - player_game_data - INFO - Fetched game data for player 1629640
+2024-03-11 13:08:46,194 - player_game_data - INFO - Inserted game data for player: 1629640, Full Name: Keldon Johnson , Game_ID: 0022300921
+2024-03-11 13:08:46,427 - player_game_data - INFO - Fetched game data for player 1630553
+2024-03-11 13:08:46,633 - player_game_data - INFO - Fetched game data for player 1641749
+2024-03-11 13:08:46,801 - player_game_data - INFO - Fetched game data for player 203999
+2024-03-11 13:08:46,869 - player_game_data - INFO - Inserted game data for player: 203999, Full Name: Nikola Jokic , Game_ID: 0022300922
+2024-03-11 13:08:47,014 - player_game_data - INFO - Fetched game data for player 1641732
+2024-03-11 13:08:47,178 - player_game_data - INFO - Fetched game data for player 1627745
+2024-03-11 13:08:47,241 - player_game_data - INFO - Inserted game data for player: 1627745, Full Name: Damian Jones , Game_ID: 0022300930
+2024-03-11 13:08:47,388 - player_game_data - INFO - Fetched game data for player 1630529
+2024-03-11 13:08:47,467 - player_game_data - INFO - Inserted game data for player: 1630529, Full Name: Herbert Jones , Game_ID: 0022300925
+2024-03-11 13:08:47,623 - player_game_data - INFO - Fetched game data for player 1630200
+2024-03-11 13:08:47,684 - player_game_data - INFO - Inserted game data for player: 1630200, Full Name: Tre Jones , Game_ID: 0022300921
+2024-03-11 13:08:47,820 - player_game_data - INFO - Fetched game data for player 1626145
+2024-03-11 13:08:47,892 - player_game_data - INFO - Inserted game data for player: 1626145, Full Name: Tyus Jones , Game_ID: 0022300926
+2024-03-11 13:08:48,039 - player_game_data - INFO - Fetched game data for player 1627884
+2024-03-11 13:08:48,107 - player_game_data - INFO - Inserted game data for player: 1627884, Full Name: Derrick Jones Jr. , Game_ID: 0022300919
+2024-03-11 13:08:48,304 - player_game_data - INFO - Fetched game data for player 201599
+2024-03-11 13:08:48,480 - player_game_data - INFO - Fetched game data for player 202709
+2024-03-11 13:08:48,657 - player_game_data - INFO - Fetched game data for player 1631107
+2024-03-11 13:08:48,724 - player_game_data - INFO - Inserted game data for player: 1631107, Full Name: Nikola Jovic , Game_ID: 0022300926
+2024-03-11 13:08:48,852 - player_game_data - INFO - Fetched game data for player 1630548
+2024-03-11 13:08:48,914 - player_game_data - INFO - Inserted game data for player: 1630548, Full Name: Johnny Juzang , Game_ID: 0022300922
+2024-03-11 13:08:49,050 - player_game_data - INFO - Fetched game data for player 1628379
+2024-03-11 13:08:49,114 - player_game_data - INFO - Inserted game data for player: 1628379, Full Name: Luke Kennard , Game_ID: 0022300931
+2024-03-11 13:08:49,249 - player_game_data - INFO - Fetched game data for player 1631117
+2024-03-11 13:08:49,326 - player_game_data - INFO - Inserted game data for player: 1631117, Full Name: Walker Kessler , Game_ID: 0022300922
+2024-03-11 13:08:49,514 - player_game_data - INFO - Fetched game data for player 1630296
+2024-03-11 13:08:49,694 - player_game_data - INFO - Fetched game data for player 1630557
+2024-03-11 13:08:49,775 - player_game_data - INFO - Inserted game data for player: 1630557, Full Name: Corey Kispert , Game_ID: 0022300926
+2024-03-11 13:08:50,056 - player_game_data - INFO - Fetched game data for player 1628467
+2024-03-11 13:08:50,123 - player_game_data - INFO - Inserted game data for player: 1628467, Full Name: Maxi Kleber , Game_ID: 0022300919
+2024-03-11 13:08:50,258 - player_game_data - INFO - Fetched game data for player 1630233
+2024-03-11 13:08:50,600 - player_game_data - INFO - Fetched game data for player 1628995
+2024-03-11 13:08:50,789 - player_game_data - INFO - Fetched game data for player 1631132
+2024-03-11 13:08:51,019 - player_game_data - INFO - Fetched game data for player 1629723
+2024-03-11 13:08:51,121 - player_game_data - INFO - Inserted game data for player: 1629723, Full Name: John Konchar , Game_ID: 0022300913
+2024-03-11 13:08:51,281 - player_game_data - INFO - Fetched game data for player 1627788
+2024-03-11 13:08:51,547 - player_game_data - INFO - Fetched game data for player 1628436
+2024-03-11 13:08:51,615 - player_game_data - INFO - Inserted game data for player: 1628436, Full Name: Luke Kornet , Game_ID: 0022300920
+2024-03-11 13:08:51,784 - player_game_data - INFO - Fetched game data for player 1630228
+2024-03-11 13:08:51,857 - player_game_data - INFO - Inserted game data for player: 1630228, Full Name: Jonathan Kuminga , Game_ID: 0022300921
+2024-03-11 13:08:51,985 - player_game_data - INFO - Fetched game data for player 1628398
+2024-03-11 13:08:52,048 - player_game_data - INFO - Inserted game data for player: 1628398, Full Name: Kyle Kuzma , Game_ID: 0022300926
+2024-03-11 13:08:52,206 - player_game_data - INFO - Fetched game data for player 1631222
+2024-03-11 13:08:52,314 - player_game_data - INFO - Inserted game data for player: 1631222, Full Name: Jake LaRavia , Game_ID: 0022300931
+2024-03-11 13:08:52,489 - player_game_data - INFO - Fetched game data for player 203897
+2024-03-11 13:08:52,712 - player_game_data - INFO - Fetched game data for player 1629111
+2024-03-11 13:08:52,776 - player_game_data - INFO - Inserted game data for player: 1629111, Full Name: Jock Landale , Game_ID: 0022300929
+2024-03-11 13:08:52,936 - player_game_data - INFO - Fetched game data for player 1630639
+2024-03-11 13:08:53,005 - player_game_data - INFO - Inserted game data for player: 1630639, Full Name: A.J. Lawson , Game_ID: 0022300919
+2024-03-11 13:08:53,159 - player_game_data - INFO - Fetched game data for player 1627747
+2024-03-11 13:08:53,240 - player_game_data - INFO - Inserted game data for player: 1627747, Full Name: Caris LeVert , Game_ID: 0022300930
+2024-03-11 13:08:53,417 - player_game_data - INFO - Fetched game data for player 1627814
+2024-03-11 13:08:53,607 - player_game_data - INFO - Fetched game data for player 1630240
+2024-03-11 13:08:53,694 - player_game_data - INFO - Inserted game data for player: 1630240, Full Name: Saben Lee , Game_ID: 0022300920
+2024-03-11 13:08:53,818 - player_game_data - INFO - Fetched game data for player 203458
+2024-03-11 13:08:53,895 - player_game_data - INFO - Inserted game data for player: 203458, Full Name: Alex Len , Game_ID: 0022300929
+2024-03-11 13:08:54,029 - player_game_data - INFO - Fetched game data for player 202695
+2024-03-11 13:08:54,091 - player_game_data - INFO - Inserted game data for player: 202695, Full Name: Kawhi Leonard , Game_ID: 0022300917
+2024-03-11 13:08:54,227 - player_game_data - INFO - Fetched game data for player 1631171
+2024-03-11 13:08:54,471 - player_game_data - INFO - Fetched game data for player 1641721
+2024-03-11 13:08:54,540 - player_game_data - INFO - Inserted game data for player: 1641721, Full Name: Maxwell Lewis , Game_ID: 0022300932
+2024-03-11 13:08:54,706 - player_game_data - INFO - Fetched game data for player 1630184
+2024-03-11 13:08:54,930 - player_game_data - INFO - Fetched game data for player 1630604
+2024-03-11 13:08:55,113 - player_game_data - INFO - Fetched game data for player 203081
+2024-03-11 13:08:55,212 - player_game_data - INFO - Inserted game data for player: 203081, Full Name: Damian Lillard , Game_ID: 0022300924
+2024-03-11 13:08:55,430 - player_game_data - INFO - Fetched game data for player 1629642
+2024-03-11 13:08:55,673 - player_game_data - INFO - Fetched game data for player 1641726
+2024-03-11 13:08:55,869 - player_game_data - INFO - Fetched game data for player 1630587
+2024-03-11 13:08:56,061 - player_game_data - INFO - Fetched game data for player 1641753
+2024-03-11 13:08:56,262 - player_game_data - INFO - Fetched game data for player 1631254
+2024-03-11 13:08:56,501 - player_game_data - INFO - Fetched game data for player 1626172
+2024-03-11 13:08:56,698 - player_game_data - INFO - Fetched game data for player 201572
+2024-03-11 13:08:56,769 - player_game_data - INFO - Inserted game data for player: 201572, Full Name: Brook Lopez , Game_ID: 0022300924
+2024-03-11 13:08:56,927 - player_game_data - INFO - Fetched game data for player 201577
+2024-03-11 13:08:57,086 - player_game_data - INFO - Fetched game data for player 201567
+2024-03-11 13:08:57,333 - player_game_data - INFO - Fetched game data for player 200768
+2024-03-11 13:08:57,411 - player_game_data - INFO - Inserted game data for player: 200768, Full Name: Kyle Lowry , Game_ID: 0022300927
+2024-03-11 13:08:57,611 - player_game_data - INFO - Fetched game data for player 1641754
+2024-03-11 13:08:57,814 - player_game_data - INFO - Fetched game data for player 1626168
+2024-03-11 13:08:57,949 - player_game_data - INFO - Inserted game data for player: 1626168, Full Name: Trey Lyles , Game_ID: 0022300929
+2024-03-11 13:08:58,117 - player_game_data - INFO - Fetched game data for player 1630177
+2024-03-11 13:08:58,337 - player_game_data - INFO - Fetched game data for player 1630572
+2024-03-11 13:08:58,422 - player_game_data - INFO - Inserted game data for player: 1630572, Full Name: Sandro Mamukelashvili , Game_ID: 0022300921
+2024-03-11 13:08:58,570 - player_game_data - INFO - Fetched game data for player 1629611
+2024-03-11 13:08:58,643 - player_game_data - INFO - Inserted game data for player: 1629611, Full Name: Terance Mann , Game_ID: 0022300924
+2024-03-11 13:08:58,837 - player_game_data - INFO - Fetched game data for player 1630544
+2024-03-11 13:08:59,028 - player_game_data - INFO - Fetched game data for player 1626246
+2024-03-11 13:08:59,217 - player_game_data - INFO - Fetched game data for player 1628374
+2024-03-11 13:08:59,412 - player_game_data - INFO - Fetched game data for player 1630230
+2024-03-11 13:08:59,486 - player_game_data - INFO - Inserted game data for player: 1630230, Full Name: Naji Marshall , Game_ID: 0022300925
+2024-03-11 13:08:59,632 - player_game_data - INFO - Fetched game data for player 1628997
+2024-03-11 13:08:59,699 - player_game_data - INFO - Inserted game data for player: 1628997, Full Name: Caleb Martin , Game_ID: 0022300926
+2024-03-11 13:08:59,931 - player_game_data - INFO - Fetched game data for player 1628998
+2024-03-11 13:09:00,104 - player_game_data - INFO - Fetched game data for player 1630231
+2024-03-11 13:09:00,171 - player_game_data - INFO - Inserted game data for player: 1630231, Full Name: KJ Martin , Game_ID: 0022300927
+2024-03-11 13:09:00,331 - player_game_data - INFO - Fetched game data for player 1629726
+2024-03-11 13:09:00,399 - player_game_data - INFO - Inserted game data for player: 1629726, Full Name: Garrison Mathews , Game_ID: 0022300925
+2024-03-11 13:09:00,550 - player_game_data - INFO - Fetched game data for player 1631097
+2024-03-11 13:09:00,752 - player_game_data - INFO - Fetched game data for player 202083
+2024-03-11 13:09:00,816 - player_game_data - INFO - Inserted game data for player: 202083, Full Name: Wesley Matthews , Game_ID: 0022300925
+2024-03-11 13:09:00,951 - player_game_data - INFO - Fetched game data for player 1630178
+2024-03-11 13:09:01,148 - player_game_data - INFO - Fetched game data for player 1630219
+2024-03-11 13:09:01,215 - player_game_data - INFO - Inserted game data for player: 1630219, Full Name: Skylar Mays , Game_ID: 0022300932
+2024-03-11 13:09:01,406 - player_game_data - INFO - Fetched game data for player 1630540
+2024-03-11 13:09:01,473 - player_game_data - INFO - Inserted game data for player: 1630540, Full Name: Miles McBride , Game_ID: 0022300927
+2024-03-11 13:09:01,618 - player_game_data - INFO - Fetched game data for player 203468
+2024-03-11 13:09:01,696 - player_game_data - INFO - Inserted game data for player: 203468, Full Name: CJ McCollum , Game_ID: 0022300925
+2024-03-11 13:09:01,845 - player_game_data - INFO - Fetched game data for player 204456
+2024-03-11 13:09:01,918 - player_game_data - INFO - Inserted game data for player: 204456, Full Name: T.J. McConnell , Game_ID: 0022300928
+2024-03-11 13:09:02,068 - player_game_data - INFO - Fetched game data for player 1630183
+2024-03-11 13:09:02,140 - player_game_data - INFO - Inserted game data for player: 1630183, Full Name: Jaden McDaniels , Game_ID: 0022300932
+2024-03-11 13:09:02,483 - player_game_data - INFO - Fetched game data for player 1629667
+2024-03-11 13:09:02,554 - player_game_data - INFO - Inserted game data for player: 1629667, Full Name: Jalen McDaniels , Game_ID: 0022300923
+2024-03-11 13:09:02,719 - player_game_data - INFO - Fetched game data for player 203926
+2024-03-11 13:09:02,902 - player_game_data - INFO - Fetched game data for player 201580
+2024-03-11 13:09:03,078 - player_game_data - INFO - Fetched game data for player 1631121
+2024-03-11 13:09:03,148 - player_game_data - INFO - Inserted game data for player: 1631121, Full Name: Bryce McGowens , Game_ID: 0022300910
+2024-03-11 13:09:03,302 - player_game_data - INFO - Fetched game data for player 1629162
+2024-03-11 13:09:03,366 - player_game_data - INFO - Inserted game data for player: 1629162, Full Name: Jordan McLaughlin , Game_ID: 0022300932
+2024-03-11 13:09:03,499 - player_game_data - INFO - Fetched game data for player 1629001
+2024-03-11 13:09:03,681 - player_game_data - INFO - Fetched game data for player 1630241
+2024-03-11 13:09:03,751 - player_game_data - INFO - Inserted game data for player: 1630241, Full Name: Sam Merrill , Game_ID: 0022300930
+2024-03-11 13:09:03,910 - player_game_data - INFO - Fetched game data for player 1629002
+2024-03-11 13:09:04,097 - player_game_data - INFO - Fetched game data for player 203995
+2024-03-11 13:09:04,157 - player_game_data - INFO - Inserted game data for player: 203995, Full Name: Vasilije Micic , Game_ID: 0022300918
+2024-03-11 13:09:04,337 - player_game_data - INFO - Fetched game data for player 203114
+2024-03-11 13:09:04,519 - player_game_data - INFO - Fetched game data for player 1641706
+2024-03-11 13:09:04,587 - player_game_data - INFO - Inserted game data for player: 1641706, Full Name: Brandon Miller , Game_ID: 0022300918
+2024-03-11 13:09:04,735 - player_game_data - INFO - Fetched game data for player 1641757
+2024-03-11 13:09:04,800 - player_game_data - INFO - Inserted game data for player: 1641757, Full Name: Jordan Miller , Game_ID: 0022300917
+2024-03-11 13:09:04,922 - player_game_data - INFO - Fetched game data for player 1631159
+2024-03-11 13:09:05,134 - player_game_data - INFO - Fetched game data for player 201988
+2024-03-11 13:09:05,201 - player_game_data - INFO - Inserted game data for player: 201988, Full Name: Patty Mills , Game_ID: 0022300926
+2024-03-11 13:09:05,332 - player_game_data - INFO - Fetched game data for player 1629003
+2024-03-11 13:09:05,405 - player_game_data - INFO - Inserted game data for player: 1629003, Full Name: Shake Milton , Game_ID: 0022300912
+2024-03-11 13:09:05,529 - player_game_data - INFO - Fetched game data for player 1631303
+2024-03-11 13:09:05,586 - player_game_data - INFO - Inserted game data for player: 1631303, Full Name: Justin Minaya , Game_ID: 0022300916
+2024-03-11 13:09:05,746 - player_game_data - INFO - Fetched game data for player 1631169
+2024-03-11 13:09:05,814 - player_game_data - INFO - Inserted game data for player: 1631169, Full Name: Josh Minott , Game_ID: 0022300932
+2024-03-11 13:09:05,954 - player_game_data - INFO - Fetched game data for player 1630558
+2024-03-11 13:09:06,016 - player_game_data - INFO - Inserted game data for player: 1630558, Full Name: Davion Mitchell , Game_ID: 0022300929
+2024-03-11 13:09:06,146 - player_game_data - INFO - Fetched game data for player 1628378
+2024-03-11 13:09:06,432 - player_game_data - INFO - Fetched game data for player 1630596
+2024-03-11 13:09:06,616 - player_game_data - INFO - Fetched game data for player 1630600
+2024-03-11 13:09:06,684 - player_game_data - INFO - Inserted game data for player: 1630600, Full Name: Isaiah Mobley , Game_ID: 0022300930
+2024-03-11 13:09:06,836 - player_game_data - INFO - Fetched game data for player 1628370
+2024-03-11 13:09:06,902 - player_game_data - INFO - Inserted game data for player: 1628370, Full Name: Malik Monk , Game_ID: 0022300929
+2024-03-11 13:09:07,177 - player_game_data - INFO - Fetched game data for player 1630541
+2024-03-11 13:09:07,241 - player_game_data - INFO - Inserted game data for player: 1630541, Full Name: Moses Moody , Game_ID: 0022300921
+2024-03-11 13:09:07,397 - player_game_data - INFO - Fetched game data for player 1631111
+2024-03-11 13:09:07,456 - player_game_data - INFO - Inserted game data for player: 1631111, Full Name: Wendell Moore Jr. , Game_ID: 0022300932
+2024-03-11 13:09:07,601 - player_game_data - INFO - Fetched game data for player 1629630
+2024-03-11 13:09:07,796 - player_game_data - INFO - Fetched game data for player 202693
+2024-03-11 13:09:07,856 - player_game_data - INFO - Inserted game data for player: 202693, Full Name: Markieff Morris , Game_ID: 0022300919
+2024-03-11 13:09:08,012 - player_game_data - INFO - Fetched game data for player 1628420
+2024-03-11 13:09:08,095 - player_game_data - INFO - Inserted game data for player: 1628420, Full Name: Monte Morris , Game_ID: 0022300903
+2024-03-11 13:09:08,234 - player_game_data - INFO - Fetched game data for player 202694
+2024-03-11 13:09:08,449 - player_game_data - INFO - Fetched game data for player 1630530
+2024-03-11 13:09:08,515 - player_game_data - INFO - Inserted game data for player: 1630530, Full Name: Trey Murphy III , Game_ID: 0022300925
+2024-03-11 13:09:08,648 - player_game_data - INFO - Fetched game data for player 1627749
+2024-03-11 13:09:08,715 - player_game_data - INFO - Inserted game data for player: 1627749, Full Name: Dejounte Murray , Game_ID: 0022300925
+2024-03-11 13:09:08,915 - player_game_data - INFO - Fetched game data for player 1627750
+2024-03-11 13:09:08,991 - player_game_data - INFO - Inserted game data for player: 1627750, Full Name: Jamal Murray , Game_ID: 0022300922
+2024-03-11 13:09:09,134 - player_game_data - INFO - Fetched game data for player 1631099
+2024-03-11 13:09:09,201 - player_game_data - INFO - Inserted game data for player: 1631099, Full Name: Keegan Murray , Game_ID: 0022300929
+2024-03-11 13:09:09,353 - player_game_data - INFO - Fetched game data for player 1631200
+2024-03-11 13:09:09,424 - player_game_data - INFO - Inserted game data for player: 1631200, Full Name: Kris Murray , Game_ID: 0022300923
+2024-03-11 13:09:09,572 - player_game_data - INFO - Fetched game data for player 203488
+2024-03-11 13:09:09,640 - player_game_data - INFO - Inserted game data for player: 203488, Full Name: Mike Muscala , Game_ID: 0022300931
+2024-03-11 13:09:09,767 - player_game_data - INFO - Fetched game data for player 1629004
+2024-03-11 13:09:09,948 - player_game_data - INFO - Fetched game data for player 1626204
+2024-03-11 13:09:10,012 - player_game_data - INFO - Inserted game data for player: 1626204, Full Name: Larry Nance Jr. , Game_ID: 0022300925
+2024-03-11 13:09:10,151 - player_game_data - INFO - Fetched game data for player 1629614
+2024-03-11 13:09:10,221 - player_game_data - INFO - Inserted game data for player: 1629614, Full Name: Andrew Nembhard , Game_ID: 0022300928
+2024-03-11 13:09:10,451 - player_game_data - INFO - Fetched game data for player 1630174
+2024-03-11 13:09:10,527 - player_game_data - INFO - Inserted game data for player: 1630174, Full Name: Aaron Nesmith , Game_ID: 0022300928
+2024-03-11 13:09:10,654 - player_game_data - INFO - Fetched game data for player 1627777
+2024-03-11 13:09:10,724 - player_game_data - INFO - Inserted game data for player: 1627777, Full Name: Georges Niang , Game_ID: 0022300930
+2024-03-11 13:09:10,876 - player_game_data - INFO - Fetched game data for player 1630227
+2024-03-11 13:09:10,956 - player_game_data - INFO - Inserted game data for player: 1630227, Full Name: Daishen Nix , Game_ID: 0022300932
+2024-03-11 13:09:11,086 - player_game_data - INFO - Fetched game data for player 1630192
+2024-03-11 13:09:11,159 - player_game_data - INFO - Inserted game data for player: 1630192, Full Name: Zeke Nnaji , Game_ID: 0022300922
+2024-03-11 13:09:11,305 - player_game_data - INFO - Fetched game data for player 1641936
+2024-03-11 13:09:11,480 - player_game_data - INFO - Fetched game data for player 1641806
+2024-03-11 13:09:11,651 - player_game_data - INFO - Fetched game data for player 1628373
+2024-03-11 13:09:11,873 - player_game_data - INFO - Fetched game data for player 203994
+2024-03-11 13:09:11,941 - player_game_data - INFO - Inserted game data for player: 203994, Full Name: Jusuf Nurkic , Game_ID: 0022300920
+2024-03-11 13:09:12,080 - player_game_data - INFO - Fetched game data for player 1629670
+2024-03-11 13:09:12,156 - player_game_data - INFO - Inserted game data for player: 1629670, Full Name: Jordan Nwora , Game_ID: 0022300923
+2024-03-11 13:09:12,301 - player_game_data - INFO - Fetched game data for player 1626220
+2024-03-11 13:09:12,400 - player_game_data - INFO - Inserted game data for player: 1626220, Full Name: Royce O'Neale , Game_ID: 0022300920
+2024-03-11 13:09:12,540 - player_game_data - INFO - Fetched game data for player 1629643
+2024-03-11 13:09:12,606 - player_game_data - INFO - Inserted game data for player: 1629643, Full Name: Chuma Okeke , Game_ID: 0022300912
+2024-03-11 13:09:12,740 - player_game_data - INFO - Fetched game data for player 1629006
+2024-03-11 13:09:12,939 - player_game_data - INFO - Fetched game data for player 1630168
+2024-03-11 13:09:13,284 - player_game_data - INFO - Fetched game data for player 1630171
+2024-03-11 13:09:13,355 - player_game_data - INFO - Inserted game data for player: 1630171, Full Name: Isaac Okoro , Game_ID: 0022300930
+2024-03-11 13:09:13,553 - player_game_data - INFO - Fetched game data for player 203506
+2024-03-11 13:09:13,749 - player_game_data - INFO - Fetched game data for player 203482
+2024-03-11 13:09:13,840 - player_game_data - INFO - Inserted game data for player: 203482, Full Name: Kelly Olynyk , Game_ID: 0022300923
+2024-03-11 13:09:13,995 - player_game_data - INFO - Fetched game data for player 1630647
+2024-03-11 13:09:14,065 - player_game_data - INFO - Inserted game data for player: 1630647, Full Name: Eugene Omoruyi , Game_ID: 0022300926
+2024-03-11 13:09:14,200 - player_game_data - INFO - Fetched game data for player 1626224
+2024-03-11 13:09:14,272 - player_game_data - INFO - Inserted game data for player: 1626224, Full Name: Cedi Osman , Game_ID: 0022300908
+2024-03-11 13:09:14,445 - player_game_data - INFO - Fetched game data for player 1626162
+2024-03-11 13:09:14,511 - player_game_data - INFO - Inserted game data for player: 1626162, Full Name: Kelly Oubre Jr. , Game_ID: 0022300927
+2024-03-11 13:09:14,636 - player_game_data - INFO - Fetched game data for player 101108
+2024-03-11 13:09:14,723 - player_game_data - INFO - Inserted game data for player: 101108, Full Name: Chris Paul , Game_ID: 0022300921
+2024-03-11 13:09:14,853 - player_game_data - INFO - Fetched game data for player 1626166
+2024-03-11 13:09:14,924 - player_game_data - INFO - Inserted game data for player: 1626166, Full Name: Cameron Payne , Game_ID: 0022300927
+2024-03-11 13:09:15,088 - player_game_data - INFO - Fetched game data for player 1627780
+2024-03-11 13:09:15,155 - player_game_data - INFO - Inserted game data for player: 1627780, Full Name: Gary Payton II , Game_ID: 0022300907
+2024-03-11 13:09:15,294 - player_game_data - INFO - Fetched game data for player 1630196
+2024-03-11 13:09:15,528 - player_game_data - INFO - Fetched game data for player 1641763
+2024-03-11 13:09:15,603 - player_game_data - INFO - Inserted game data for player: 1641763, Full Name: Julian Phillips , Game_ID: 0022300917
+2024-03-11 13:09:15,759 - player_game_data - INFO - Fetched game data for player 1629618
+2024-03-11 13:09:15,819 - player_game_data - INFO - Inserted game data for player: 1629618, Full Name: Jalen Pickett , Game_ID: 0022300922
+2024-03-11 13:09:15,987 - player_game_data - INFO - Fetched game data for player 203486
+2024-03-11 13:09:16,050 - player_game_data - INFO - Inserted game data for player: 203486, Full Name: Mason Plumlee , Game_ID: 0022300924
+2024-03-11 13:09:16,216 - player_game_data - INFO - Fetched game data for player 1641764
+2024-03-11 13:09:16,279 - player_game_data - INFO - Inserted game data for player: 1641764, Full Name: Brandin Podziemski , Game_ID: 0022300921
+2024-03-11 13:09:16,467 - player_game_data - INFO - Fetched game data for player 1627751
+2024-03-11 13:09:16,656 - player_game_data - INFO - Fetched game data for player 1630197
+2024-03-11 13:09:16,727 - player_game_data - INFO - Inserted game data for player: 1630197, Full Name: Aleksej Pokusevski , Game_ID: 0022300918
+2024-03-11 13:09:16,870 - player_game_data - INFO - Fetched game data for player 1629673
+2024-03-11 13:09:16,931 - player_game_data - INFO - Inserted game data for player: 1629673, Full Name: Jordan Poole , Game_ID: 0022300926
+2024-03-11 13:09:17,102 - player_game_data - INFO - Fetched game data for player 1641854
+2024-03-11 13:09:17,173 - player_game_data - INFO - Inserted game data for player: 1641854, Full Name: Craig Porter , Game_ID: 0022300930
+2024-03-11 13:09:17,299 - player_game_data - INFO - Fetched game data for player 1629008
+2024-03-11 13:09:17,365 - player_game_data - INFO - Inserted game data for player: 1629008, Full Name: Michael Porter Jr. , Game_ID: 0022300922
+2024-03-11 13:09:17,502 - player_game_data - INFO - Fetched game data for player 203490
+2024-03-11 13:09:17,705 - player_game_data - INFO - Fetched game data for player 1626171
+2024-03-11 13:09:17,800 - player_game_data - INFO - Inserted game data for player: 1626171, Full Name: Bobby Portis , Game_ID: 0022300924
+2024-03-11 13:09:17,961 - player_game_data - INFO - Fetched game data for player 204001
+2024-03-11 13:09:18,026 - player_game_data - INFO - Inserted game data for player: 204001, Full Name: Kristaps Porzingis , Game_ID: 0022300906
+2024-03-11 13:09:18,182 - player_game_data - INFO - Fetched game data for player 1630695
+2024-03-11 13:09:18,376 - player_game_data - INFO - Fetched game data for player 203939
+2024-03-11 13:09:18,440 - player_game_data - INFO - Inserted game data for player: 203939, Full Name: Dwight Powell , Game_ID: 0022300919
+2024-03-11 13:09:18,625 - player_game_data - INFO - Fetched game data for player 1626181
+2024-03-11 13:09:18,689 - player_game_data - INFO - Inserted game data for player: 1626181, Full Name: Norman Powell , Game_ID: 0022300924
+2024-03-11 13:09:18,830 - player_game_data - INFO - Fetched game data for player 1630563
+2024-03-11 13:09:19,002 - player_game_data - INFO - Fetched game data for player 1627752
+2024-03-11 13:09:19,105 - player_game_data - INFO - Inserted game data for player: 1627752, Full Name: Taurean Prince , Game_ID: 0022300932
+2024-03-11 13:09:19,247 - player_game_data - INFO - Fetched game data for player 1630202
+2024-03-11 13:09:19,323 - player_game_data - INFO - Inserted game data for player: 1630202, Full Name: Payton Pritchard , Game_ID: 0022300920
+2024-03-11 13:09:19,463 - player_game_data - INFO - Fetched game data for player 1641765
+2024-03-11 13:09:19,646 - player_game_data - INFO - Fetched game data for player 1630243
+2024-03-11 13:09:19,818 - player_game_data - INFO - Fetched game data for player 1629674
+2024-03-11 13:09:20,095 - player_game_data - INFO - Fetched game data for player 1630193
+2024-03-11 13:09:20,173 - player_game_data - INFO - Inserted game data for player: 1630193, Full Name: Immanuel Quickley , Game_ID: 0022300923
+2024-03-11 13:09:20,359 - player_game_data - INFO - Fetched game data for player 1631311
+2024-03-11 13:09:20,424 - player_game_data - INFO - Inserted game data for player: 1631311, Full Name: Lester Quinones , Game_ID: 0022300921
+2024-03-11 13:09:20,563 - player_game_data - INFO - Fetched game data for player 203944
+2024-03-11 13:09:20,745 - player_game_data - INFO - Fetched game data for player 1641871
+2024-03-11 13:09:20,824 - player_game_data - INFO - Inserted game data for player: 1641871, Full Name: Duop Reath , Game_ID: 0022300923
+2024-03-11 13:09:21,011 - player_game_data - INFO - Fetched game data for player 1630559
+2024-03-11 13:09:21,084 - player_game_data - INFO - Inserted game data for player: 1630559, Full Name: Austin Reaves , Game_ID: 0022300932
+2024-03-11 13:09:21,253 - player_game_data - INFO - Fetched game data for player 1629629
+2024-03-11 13:09:21,325 - player_game_data - INFO - Inserted game data for player: 1629629, Full Name: Cam Reddish , Game_ID: 0022300915
+2024-03-11 13:09:21,501 - player_game_data - INFO - Fetched game data for player 1630194
+2024-03-11 13:09:21,570 - player_game_data - INFO - Inserted game data for player: 1630194, Full Name: Paul Reed , Game_ID: 0022300927
+2024-03-11 13:09:21,697 - player_game_data - INFO - Fetched game data for player 1629675
+2024-03-11 13:09:21,766 - player_game_data - INFO - Inserted game data for player: 1629675, Full Name: Naz Reid , Game_ID: 0022300932
+2024-03-11 13:09:21,901 - player_game_data - INFO - Fetched game data for player 1631197
+2024-03-11 13:09:22,108 - player_game_data - INFO - Fetched game data for player 1641811
+2024-03-11 13:09:22,279 - player_game_data - INFO - Fetched game data for player 1630208
+2024-03-11 13:09:22,391 - player_game_data - INFO - Inserted game data for player: 1630208, Full Name: Nick Richards , Game_ID: 0022300918
+2024-03-11 13:09:22,512 - player_game_data - INFO - Fetched game data for player 1626196
+2024-03-11 13:09:22,696 - player_game_data - INFO - Fetched game data for player 1629130
+2024-03-11 13:09:22,773 - player_game_data - INFO - Inserted game data for player: 1629130, Full Name: Duncan Robinson , Game_ID: 0022300926
+2024-03-11 13:09:22,904 - player_game_data - INFO - Fetched game data for player 1629010
+2024-03-11 13:09:22,963 - player_game_data - INFO - Inserted game data for player: 1629010, Full Name: Jerome Robinson , Game_ID: 0022300921
+2024-03-11 13:09:23,121 - player_game_data - INFO - Fetched game data for player 1629011
+2024-03-11 13:09:23,561 - player_game_data - INFO - Fetched game data for player 1631115
+2024-03-11 13:09:23,622 - player_game_data - INFO - Inserted game data for player: 1631115, Full Name: Orlando Robinson , Game_ID: 0022300926
+2024-03-11 13:09:23,751 - player_game_data - INFO - Fetched game data for player 1630526
+2024-03-11 13:09:23,978 - player_game_data - INFO - Fetched game data for player 1631223
+2024-03-11 13:09:24,044 - player_game_data - INFO - Inserted game data for player: 1631223, Full Name: David Roddy , Game_ID: 0022300920
+2024-03-11 13:09:24,178 - player_game_data - INFO - Fetched game data for player 1631157
+2024-03-11 13:09:24,365 - player_game_data - INFO - Fetched game data for player 201565
+2024-03-11 13:09:24,690 - player_game_data - INFO - Fetched game data for player 1626179
+2024-03-11 13:09:24,751 - player_game_data - INFO - Inserted game data for player: 1626179, Full Name: Terry Rozier , Game_ID: 0022300926
+2024-03-11 13:09:24,930 - player_game_data - INFO - Fetched game data for player 201937
+2024-03-11 13:09:25,116 - player_game_data - INFO - Fetched game data for player 1641712
+2024-03-11 13:09:25,184 - player_game_data - INFO - Inserted game data for player: 1641712, Full Name: Rayan Rupert , Game_ID: 0022300923
+2024-03-11 13:09:25,343 - player_game_data - INFO - Fetched game data for player 1626156
+2024-03-11 13:09:25,406 - player_game_data - INFO - Inserted game data for player: 1626156, Full Name: D'Angelo Russell , Game_ID: 0022300932
+2024-03-11 13:09:25,537 - player_game_data - INFO - Fetched game data for player 1630346
+2024-03-11 13:09:25,711 - player_game_data - INFO - Fetched game data for player 1627734
+2024-03-11 13:09:25,770 - player_game_data - INFO - Inserted game data for player: 1627734, Full Name: Domantas Sabonis , Game_ID: 0022300929
+2024-03-11 13:09:25,879 - player_game_data - INFO - Fetched game data for player 1629677
+2024-03-11 13:09:25,942 - player_game_data - INFO - Inserted game data for player: 1629677, Full Name: Luka Samanic , Game_ID: 0022300922
+2024-03-11 13:09:26,075 - player_game_data - INFO - Fetched game data for player 1631257
+2024-03-11 13:09:26,207 - player_game_data - INFO - Fetched game data for player 1641766
+2024-03-11 13:09:26,361 - player_game_data - INFO - Fetched game data for player 1630611
+2024-03-11 13:09:26,419 - player_game_data - INFO - Inserted game data for player: 1630611, Full Name: Gui Santos , Game_ID: 0022300921
+2024-03-11 13:09:26,547 - player_game_data - INFO - Fetched game data for player 203967
+2024-03-11 13:09:26,605 - player_game_data - INFO - Inserted game data for player: 203967, Full Name: Dario Saric , Game_ID: 0022300921
+2024-03-11 13:09:26,717 - player_game_data - INFO - Fetched game data for player 1630846
+2024-03-11 13:09:26,915 - player_game_data - INFO - Fetched game data for player 1631204
+2024-03-11 13:09:26,975 - player_game_data - INFO - Inserted game data for player: 1631204, Full Name: Marcus Sasser , Game_ID: 0022300919
+2024-03-11 13:09:27,129 - player_game_data - INFO - Fetched game data for player 1629678
+2024-03-11 13:09:27,186 - player_game_data - INFO - Inserted game data for player: 1629678, Full Name: Admiral Schofield , Game_ID: 0022300912
+2024-03-11 13:09:27,299 - player_game_data - INFO - Fetched game data for player 203471
+2024-03-11 13:09:27,370 - player_game_data - INFO - Inserted game data for player: 203471, Full Name: Dennis Schroder , Game_ID: 0022300930
+2024-03-11 13:09:27,480 - player_game_data - INFO - Fetched game data for player 1631220
+2024-03-11 13:09:27,624 - player_game_data - INFO - Fetched game data for player 1630578
+2024-03-11 13:09:27,687 - player_game_data - INFO - Inserted game data for player: 1630578, Full Name: Alperen Sengun , Game_ID: 0022300929
+2024-03-11 13:09:27,788 - player_game_data - INFO - Fetched game data for player 1641729
+2024-03-11 13:09:27,850 - player_game_data - INFO - Inserted game data for player: 1641729, Full Name: Brice Sensabaugh , Game_ID: 0022300922
+2024-03-11 13:09:27,970 - player_game_data - INFO - Fetched game data for player 1629012
+2024-03-11 13:09:28,034 - player_game_data - INFO - Inserted game data for player: 1629012, Full Name: Collin Sexton , Game_ID: 0022300922
+2024-03-11 13:09:28,162 - player_game_data - INFO - Fetched game data for player 1629013
+2024-03-11 13:09:28,220 - player_game_data - INFO - Inserted game data for player: 1629013, Full Name: Landry Shamet , Game_ID: 0022300926
+2024-03-11 13:09:28,358 - player_game_data - INFO - Fetched game data for player 1630549
+2024-03-11 13:09:28,432 - player_game_data - INFO - Inserted game data for player: 1630549, Full Name: Day'Ron Sharpe , Game_ID: 0022300930
+2024-03-11 13:09:28,588 - player_game_data - INFO - Fetched game data for player 1631101
+2024-03-11 13:09:28,725 - player_game_data - INFO - Fetched game data for player 1641767
+2024-03-11 13:09:28,787 - player_game_data - INFO - Inserted game data for player: 1641767, Full Name: Ben Sheppard , Game_ID: 0022300928
+2024-03-11 13:09:28,935 - player_game_data - INFO - Fetched game data for player 1627783
+2024-03-11 13:09:28,999 - player_game_data - INFO - Inserted game data for player: 1627783, Full Name: Pascal Siakam , Game_ID: 0022300928
+2024-03-11 13:09:29,144 - player_game_data - INFO - Fetched game data for player 1627732
+2024-03-11 13:09:29,328 - player_game_data - INFO - Fetched game data for player 1629014
+2024-03-11 13:09:29,398 - player_game_data - INFO - Inserted game data for player: 1629014, Full Name: Anfernee Simons , Game_ID: 0022300923
+2024-03-11 13:09:29,539 - player_game_data - INFO - Fetched game data for player 1630579
+2024-03-11 13:09:29,605 - player_game_data - INFO - Inserted game data for player: 1630579, Full Name: Jericho Sims , Game_ID: 0022300927
+2024-03-11 13:09:29,758 - player_game_data - INFO - Fetched game data for player 1641771
+2024-03-11 13:09:29,925 - player_game_data - INFO - Fetched game data for player 1630606
+2024-03-11 13:09:30,097 - player_game_data - INFO - Fetched game data for player 203935
+2024-03-11 13:09:30,278 - player_game_data - INFO - Fetched game data for player 1630696
+2024-03-11 13:09:30,483 - player_game_data - INFO - Fetched game data for player 202397
+2024-03-11 13:09:30,654 - player_game_data - INFO - Fetched game data for player 1630188
+2024-03-11 13:09:30,713 - player_game_data - INFO - Inserted game data for player: 1630188, Full Name: Jalen Smith , Game_ID: 0022300903
+2024-03-11 13:09:30,830 - player_game_data - INFO - Fetched game data for player 1631173
+2024-03-11 13:09:30,976 - player_game_data - INFO - Fetched game data for player 1628372
+2024-03-11 13:09:31,044 - player_game_data - INFO - Inserted game data for player: 1628372, Full Name: Dennis Smith Jr. , Game_ID: 0022300930
+2024-03-11 13:09:31,177 - player_game_data - INFO - Fetched game data for player 1631095
+2024-03-11 13:09:31,243 - player_game_data - INFO - Inserted game data for player: 1631095, Full Name: Jabari Smith Jr. , Game_ID: 0022300929
+2024-03-11 13:09:31,349 - player_game_data - INFO - Fetched game data for player 1641733
+2024-03-11 13:09:31,408 - player_game_data - INFO - Inserted game data for player: 1641733, Full Name: Nick Smith Jr. , Game_ID: 0022300918
+2024-03-11 13:09:31,513 - player_game_data - INFO - Fetched game data for player 1631110
+2024-03-11 13:09:31,575 - player_game_data - INFO - Inserted game data for player: 1631110, Full Name: Jeremy Sochan , Game_ID: 0022300921
+2024-03-11 13:09:31,698 - player_game_data - INFO - Fetched game data for player 1630531
+2024-03-11 13:09:31,766 - player_game_data - INFO - Inserted game data for player: 1630531, Full Name: Jaden Springer , Game_ID: 0022300920
+2024-03-11 13:09:31,875 - player_game_data - INFO - Fetched game data for player 1630205
+2024-03-11 13:09:31,935 - player_game_data - INFO - Inserted game data for player: 1630205, Full Name: Lamar Stevens , Game_ID: 0022300931
+2024-03-11 13:09:32,075 - player_game_data - INFO - Fetched game data for player 1630191
+2024-03-11 13:09:32,135 - player_game_data - INFO - Inserted game data for player: 1630191, Full Name: Isaiah Stewart , Game_ID: 0022300919
+2024-03-11 13:09:32,263 - player_game_data - INFO - Fetched game data for player 1631124
+2024-03-11 13:09:32,355 - player_game_data - INFO - Inserted game data for player: 1631124, Full Name: Julian Strawther , Game_ID: 0022300922
+2024-03-11 13:09:32,471 - player_game_data - INFO - Fetched game data for player 1629622
+2024-03-11 13:09:32,659 - player_game_data - INFO - Fetched game data for player 1630591
+2024-03-11 13:09:32,718 - player_game_data - INFO - Inserted game data for player: 1630591, Full Name: Jalen Suggs , Game_ID: 0022300894
+2024-03-11 13:09:32,827 - player_game_data - INFO - Fetched game data for player 1631306
+2024-03-11 13:09:32,982 - player_game_data - INFO - Fetched game data for player 1630256
+2024-03-11 13:09:33,045 - player_game_data - INFO - Inserted game data for player: 1630256, Full Name: Jae'Sean Tate , Game_ID: 0022300897
+2024-03-11 13:09:33,149 - player_game_data - INFO - Fetched game data for player 1628369
+2024-03-11 13:09:33,211 - player_game_data - INFO - Inserted game data for player: 1628369, Full Name: Jayson Tatum , Game_ID: 0022300920
+2024-03-11 13:09:33,338 - player_game_data - INFO - Fetched game data for player 1630678
+2024-03-11 13:09:33,402 - player_game_data - INFO - Inserted game data for player: 1630678, Full Name: Terry Taylor , Game_ID: 0022300917
+2024-03-11 13:09:33,544 - player_game_data - INFO - Fetched game data for player 202066
+2024-03-11 13:09:33,707 - player_game_data - INFO - Fetched game data for player 1631207
+2024-03-11 13:09:33,768 - player_game_data - INFO - Inserted game data for player: 1631207, Full Name: Dalen Terry , Game_ID: 0022300917
+2024-03-11 13:09:33,900 - player_game_data - INFO - Fetched game data for player 1628464
+2024-03-11 13:09:33,976 - player_game_data - INFO - Inserted game data for player: 1628464, Full Name: Daniel Theis , Game_ID: 0022300924
+2024-03-11 13:09:34,184 - player_game_data - INFO - Fetched game data for player 1630560
+2024-03-11 13:09:34,258 - player_game_data - INFO - Inserted game data for player: 1630560, Full Name: Cam Thomas , Game_ID: 0022300930
+2024-03-11 13:09:34,380 - player_game_data - INFO - Fetched game data for player 1641708
+2024-03-11 13:09:34,438 - player_game_data - INFO - Inserted game data for player: 1641708, Full Name: Amen Thompson , Game_ID: 0022300929
+2024-03-11 13:09:34,550 - player_game_data - INFO - Fetched game data for player 1641709
+2024-03-11 13:09:34,617 - player_game_data - INFO - Inserted game data for player: 1641709, Full Name: Ausar Thompson , Game_ID: 0022300919
+2024-03-11 13:09:34,759 - player_game_data - INFO - Fetched game data for player 202691
+2024-03-11 13:09:34,823 - player_game_data - INFO - Inserted game data for player: 202691, Full Name: Klay Thompson , Game_ID: 0022300921
+2024-03-11 13:09:34,942 - player_game_data - INFO - Fetched game data for player 202684
+2024-03-11 13:09:35,088 - player_game_data - INFO - Fetched game data for player 1630550
+2024-03-11 13:09:35,153 - player_game_data - INFO - Inserted game data for player: 1630550, Full Name: JT Thor , Game_ID: 0022300918
+2024-03-11 13:09:35,285 - player_game_data - INFO - Fetched game data for player 1629680
+2024-03-11 13:09:35,346 - player_game_data - INFO - Inserted game data for player: 1629680, Full Name: Matisse Thybulle , Game_ID: 0022300923
+2024-03-11 13:09:35,476 - player_game_data - INFO - Fetched game data for player 1630214
+2024-03-11 13:09:35,536 - player_game_data - INFO - Inserted game data for player: 1630214, Full Name: Xavier Tillman , Game_ID: 0022300906
+2024-03-11 13:09:35,660 - player_game_data - INFO - Fetched game data for player 1631210
+2024-03-11 13:09:35,722 - player_game_data - INFO - Inserted game data for player: 1631210, Full Name: Jacob Toppin , Game_ID: 0022300912
+2024-03-11 13:09:35,855 - player_game_data - INFO - Fetched game data for player 1630167
+2024-03-11 13:09:35,926 - player_game_data - INFO - Inserted game data for player: 1630167, Full Name: Obi Toppin , Game_ID: 0022300928
+2024-03-11 13:09:36,067 - player_game_data - INFO - Fetched game data for player 1626157
+2024-03-11 13:09:36,247 - player_game_data - INFO - Fetched game data for player 1629018
+2024-03-11 13:09:36,310 - player_game_data - INFO - Inserted game data for player: 1629018, Full Name: Gary Trent Jr. , Game_ID: 0022300923
+2024-03-11 13:09:36,482 - player_game_data - INFO - Fetched game data for player 1631131
+2024-03-11 13:09:36,629 - player_game_data - INFO - Fetched game data for player 200782
+2024-03-11 13:09:36,699 - player_game_data - INFO - Inserted game data for player: 200782, Full Name: P.J. Tucker , Game_ID: 0022300924
+2024-03-11 13:09:36,859 - player_game_data - INFO - Fetched game data for player 1626167
+2024-03-11 13:09:36,927 - player_game_data - INFO - Inserted game data for player: 1626167, Full Name: Myles Turner , Game_ID: 0022300928
+2024-03-11 13:09:37,039 - player_game_data - INFO - Fetched game data for player 1641816
+2024-03-11 13:09:37,098 - player_game_data - INFO - Inserted game data for player: 1641816, Full Name: Hunter Tyson , Game_ID: 0022300922
+2024-03-11 13:09:37,213 - player_game_data - INFO - Fetched game data for player 1630649
+2024-03-11 13:09:37,283 - player_game_data - INFO - Inserted game data for player: 1630649, Full Name: Stanley Umude , Game_ID: 0022300919
+2024-03-11 13:09:37,398 - player_game_data - INFO - Fetched game data for player 202685
+2024-03-11 13:09:37,458 - player_game_data - INFO - Inserted game data for player: 202685, Full Name: Jonas Valanciunas , Game_ID: 0022300925
+2024-03-11 13:09:37,581 - player_game_data - INFO - Fetched game data for player 1627832
+2024-03-11 13:09:37,643 - player_game_data - INFO - Inserted game data for player: 1627832, Full Name: Fred VanVleet , Game_ID: 0022300929
+2024-03-11 13:09:37,755 - player_game_data - INFO - Fetched game data for player 1629020
+2024-03-11 13:09:37,925 - player_game_data - INFO - Fetched game data for player 1630170
+2024-03-11 13:09:37,997 - player_game_data - INFO - Inserted game data for player: 1630170, Full Name: Devin Vassell , Game_ID: 0022300908
+2024-03-11 13:09:38,111 - player_game_data - INFO - Fetched game data for player 1628426
+2024-03-11 13:09:38,259 - player_game_data - INFO - Fetched game data for player 1629216
+2024-03-11 13:09:38,440 - player_game_data - INFO - Fetched game data for player 202696
+2024-03-11 13:09:38,500 - player_game_data - INFO - Inserted game data for player: 202696, Full Name: Nikola Vucevic , Game_ID: 0022300917
+2024-03-11 13:09:38,627 - player_game_data - INFO - Fetched game data for player 1629731
+2024-03-11 13:09:38,695 - player_game_data - INFO - Inserted game data for player: 1629731, Full Name: Dean Wade , Game_ID: 0022300911
+2024-03-11 13:09:38,841 - player_game_data - INFO - Fetched game data for player 1630532
+2024-03-11 13:09:38,901 - player_game_data - INFO - Inserted game data for player: 1630532, Full Name: Franz Wagner , Game_ID: 0022300928
+2024-03-11 13:09:39,022 - player_game_data - INFO - Fetched game data for player 1629021
+2024-03-11 13:09:39,078 - player_game_data - INFO - Inserted game data for player: 1629021, Full Name: Moritz Wagner , Game_ID: 0022300928
+2024-03-11 13:09:39,189 - player_game_data - INFO - Fetched game data for player 1630688
+2024-03-11 13:09:39,335 - player_game_data - INFO - Fetched game data for player 1631133
+2024-03-11 13:09:39,417 - player_game_data - INFO - Inserted game data for player: 1631133, Full Name: Jabari Walker , Game_ID: 0022300900
+2024-03-11 13:09:39,533 - player_game_data - INFO - Fetched game data for player 1641716
+2024-03-11 13:09:39,591 - player_game_data - INFO - Inserted game data for player: 1641716, Full Name: Jarace Walker , Game_ID: 0022300928
+2024-03-11 13:09:39,710 - player_game_data - INFO - Fetched game data for player 1629022
+2024-03-11 13:09:39,771 - player_game_data - INFO - Inserted game data for player: 1629022, Full Name: Lonnie Walker IV , Game_ID: 0022300930
+2024-03-11 13:09:39,937 - player_game_data - INFO - Fetched game data for player 1641717
+2024-03-11 13:09:40,004 - player_game_data - INFO - Inserted game data for player: 1641717, Full Name: Cason Wallace , Game_ID: 0022300931
+2024-03-11 13:09:40,134 - player_game_data - INFO - Fetched game data for player 1641775
+2024-03-11 13:09:40,304 - player_game_data - INFO - Fetched game data for player 1629023
+2024-03-11 13:09:40,399 - player_game_data - INFO - Inserted game data for player: 1629023, Full Name: P.J. Washington , Game_ID: 0022300919
+2024-03-11 13:09:40,563 - player_game_data - INFO - Fetched game data for player 1630613
+2024-03-11 13:09:40,825 - player_game_data - INFO - Fetched game data for player 1631102
+2024-03-11 13:09:41,009 - player_game_data - INFO - Fetched game data for player 1629139
+2024-03-11 13:09:41,170 - player_game_data - INFO - Fetched game data for player 1630322
+2024-03-11 13:09:41,234 - player_game_data - INFO - Inserted game data for player: 1630322, Full Name: Lindy Waters III , Game_ID: 0022300931
+2024-03-11 13:09:41,378 - player_game_data - INFO - Fetched game data for player 1630570
+2024-03-11 13:09:41,442 - player_game_data - INFO - Inserted game data for player: 1630570, Full Name: Trendon Watford , Game_ID: 0022300930
+2024-03-11 13:09:41,561 - player_game_data - INFO - Fetched game data for player 1631212
+2024-03-11 13:09:41,625 - player_game_data - INFO - Inserted game data for player: 1631212, Full Name: Peyton Watson , Game_ID: 0022300922
+2024-03-11 13:09:41,729 - player_game_data - INFO - Fetched game data for player 1641705
+2024-03-11 13:09:41,890 - player_game_data - INFO - Fetched game data for player 1631104
+2024-03-11 13:09:41,961 - player_game_data - INFO - Inserted game data for player: 1631104, Full Name: Blake Wesley , Game_ID: 0022300921
+2024-03-11 13:09:42,098 - player_game_data - INFO - Fetched game data for player 201566
+2024-03-11 13:09:42,237 - player_game_data - INFO - Fetched game data for player 1629632
+2024-03-11 13:09:42,299 - player_game_data - INFO - Inserted game data for player: 1629632, Full Name: Coby White , Game_ID: 0022300917
+2024-03-11 13:09:42,450 - player_game_data - INFO - Fetched game data for player 1628401
+2024-03-11 13:09:42,510 - player_game_data - INFO - Inserted game data for player: 1628401, Full Name: Derrick White , Game_ID: 0022300920
+2024-03-11 13:09:42,628 - player_game_data - INFO - Fetched game data for player 1641727
+2024-03-11 13:09:42,782 - player_game_data - INFO - Fetched game data for player 1641715
+2024-03-11 13:09:42,858 - player_game_data - INFO - Inserted game data for player: 1641715, Full Name: Cam Whitmore , Game_ID: 0022300929
+2024-03-11 13:09:42,961 - player_game_data - INFO - Fetched game data for player 1630598
+2024-03-11 13:09:43,018 - player_game_data - INFO - Inserted game data for player: 1630598, Full Name: Aaron Wiggins , Game_ID: 0022300931
+2024-03-11 13:09:43,132 - player_game_data - INFO - Fetched game data for player 203952
+2024-03-11 13:09:43,194 - player_game_data - INFO - Inserted game data for player: 203952, Full Name: Andrew Wiggins , Game_ID: 0022300921
+2024-03-11 13:09:43,604 - player_game_data - INFO - Fetched game data for player 1629623
+2024-03-11 13:09:43,754 - player_game_data - INFO - Fetched game data for player 1629684
+2024-03-11 13:09:43,814 - player_game_data - INFO - Inserted game data for player: 1629684, Full Name: Grant Williams , Game_ID: 0022300918
+2024-03-11 13:09:43,925 - player_game_data - INFO - Fetched game data for player 1631114
+2024-03-11 13:09:43,989 - player_game_data - INFO - Inserted game data for player: 1631114, Full Name: Jalen Williams , Game_ID: 0022300931
+2024-03-11 13:09:44,136 - player_game_data - INFO - Fetched game data for player 1631119
+2024-03-11 13:09:44,202 - player_game_data - INFO - Inserted game data for player: 1631119, Full Name: Jaylin Williams , Game_ID: 0022300931
+2024-03-11 13:09:44,333 - player_game_data - INFO - Fetched game data for player 1629026
+2024-03-11 13:09:44,435 - player_game_data - INFO - Inserted game data for player: 1629026, Full Name: Kenrich Williams , Game_ID: 0022300931
+2024-03-11 13:09:44,546 - player_game_data - INFO - Fetched game data for player 1631109
+2024-03-11 13:09:44,683 - player_game_data - INFO - Fetched game data for player 1631466
+2024-03-11 13:09:44,746 - player_game_data - INFO - Inserted game data for player: 1631466, Full Name: Nate Williams , Game_ID: 0022300916
+2024-03-11 13:09:44,896 - player_game_data - INFO - Fetched game data for player 1630172
+2024-03-11 13:09:45,078 - player_game_data - INFO - Fetched game data for player 1630533
+2024-03-11 13:09:45,265 - player_game_data - INFO - Fetched game data for player 1629057
+2024-03-11 13:09:45,447 - player_game_data - INFO - Fetched game data for player 1631246
+2024-03-11 13:09:45,529 - player_game_data - INFO - Inserted game data for player: 1631246, Full Name: Vince Williams Jr. , Game_ID: 0022300913
+2024-03-11 13:09:45,671 - player_game_data - INFO - Fetched game data for player 1629627
+2024-03-11 13:09:45,735 - player_game_data - INFO - Inserted game data for player: 1629627, Full Name: Zion Williamson , Game_ID: 0022300925
+2024-03-11 13:09:45,875 - player_game_data - INFO - Fetched game data for player 1630592
+2024-03-11 13:09:45,943 - player_game_data - INFO - Inserted game data for player: 1630592, Full Name: Jalen Wilson , Game_ID: 0022300930
+2024-03-11 13:09:46,089 - player_game_data - INFO - Fetched game data for player 1629685
+2024-03-11 13:09:46,263 - player_game_data - INFO - Fetched game data for player 1630164
+2024-03-11 13:09:46,332 - player_game_data - INFO - Inserted game data for player: 1630164, Full Name: James Wiseman , Game_ID: 0022300919
+2024-03-11 13:09:46,491 - player_game_data - INFO - Fetched game data for player 1631209
+2024-03-11 13:09:46,663 - player_game_data - INFO - Fetched game data for player 1626174
+2024-03-11 13:09:46,855 - player_game_data - INFO - Fetched game data for player 1626153
+2024-03-11 13:09:46,993 - player_game_data - INFO - Fetched game data for player 201152
+2024-03-11 13:09:47,178 - player_game_data - INFO - Fetched game data for player 1629027
+2024-03-11 13:09:47,318 - player_game_data - INFO - Fetched game data for player 1630209
+2024-03-11 13:09:47,396 - player_game_data - INFO - Inserted game data for player: 1630209, Full Name: Omer Yurtseven , Game_ID: 0022300922
+2024-03-11 13:09:47,516 - player_game_data - INFO - Fetched game data for player 203469
+2024-03-11 13:09:47,671 - player_game_data - INFO - Fetched game data for player 1627826
+2024-03-11 13:09:47,731 - player_game_data - INFO - Inserted game data for player: 1627826, Full Name: Ivica Zubac , Game_ID: 0022300924
