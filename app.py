@@ -103,13 +103,16 @@ def nba_get_player_game_data():
         # Player games from DB
         player_game_collection = get_data_from_db('playersgamelog')
         
+        
         # Filter player game data based on player ID
         for game in player_game_collection:
             if game['player_id'] == player_id:
                 # Convert ObjectId to string
                 game['_id'] = str(game['_id'])
                 player_game_data.append(game)
-
+                
+        # Sort player game data based on 'GAME_DATE' in descending order (most recent first)
+        player_game_data.sort(key=lambda x: x['GAME_DATE'], reverse=True)
         return jsonify(player_game_data), 200
     
     except Exception as e:

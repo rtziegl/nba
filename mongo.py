@@ -81,6 +81,8 @@ def nba_update_player_game_data(db, logging):
         for player in players:
             player_id = player['id']
             full_name = player['full_name']
+            
+            print("fetching game data for", full_name)
 
             # Fetch game data for the player from the API
             player_game_data_from_api = fetch_player_game_data(player_id, logging)
@@ -94,44 +96,43 @@ def nba_update_player_game_data(db, logging):
             # Extract existing game IDs for the player
             existing_game_ids = {game['Game_ID'] for game in existing_game_data}
 
-            # Check and insert new game data
-            for game in game_data_from_api:
-                game_id = game['Game_ID']
+            # Identify new games not present in the existing game data
+            new_games = [game for game in game_data_from_api if game['Game_ID'] not in existing_game_ids]
 
-                # Check if the game already exists in the player_games collection
-                if game_id not in existing_game_ids:
-                    # Insert the new game data
-                    db.playersgamelog.insert_one({
-                        "player_id": player_id,
-                        "Game_ID": game_id,
-                        "AST": game.get('AST', 0),
-                        "BLK": game.get('BLK', 0),
-                        "DREB": game.get('DREB', 0),
-                        "FG3A": game.get('FG3A', 0),
-                        "FG3M": game.get('FG3M', 0),
-                        "FG3_PCT": game.get('FG3_PCT', 0),
-                        "FGA": game.get('FGA', 0),
-                        "FGM": game.get('FGM', 0),
-                        "FG_PCT": game.get('FG_PCT', 0),
-                        "FTA": game.get('FTA', 0),
-                        "FTM": game.get('FTM', 0),
-                        "FT_PCT": game.get('FT_PCT', 0),
-                        "GAME_DATE": game.get('GAME_DATE', ''),
-                        "Game_ID": game.get('Game_ID', ''),
-                        "MATCHUP": game.get('MATCHUP', ''),
-                        "MIN": game.get('MIN', ''),
-                        "OREB": game.get('OREB', 0),
-                        "PF": game.get('PF', 0),
-                        "PLUS_MINUS": game.get('PLUS_MINUS', 0),
-                        "PTS": game.get('PTS', 0),
-                        "REB": game.get('REB', 0),
-                        "SEASON_ID": game.get('SEASON_ID', ''),
-                        "STL": game.get('STL', 0),
-                        "TOV": game.get('TOV', 0),
-                        "WL": game.get('WL', ''),
-                    })
+            # Insert new game data
+            for game in new_games:
+                # Insert the new game data
+                db.playersgamelog.insert_one({
+                    "player_id": player_id,
+                    "Game_ID": game['Game_ID'],
+                    "AST": game.get('AST', 0),
+                    "BLK": game.get('BLK', 0),
+                    "DREB": game.get('DREB', 0),
+                    "FG3A": game.get('FG3A', 0),
+                    "FG3M": game.get('FG3M', 0),
+                    "FG3_PCT": game.get('FG3_PCT', 0),
+                    "FGA": game.get('FGA', 0),
+                    "FGM": game.get('FGM', 0),
+                    "FG_PCT": game.get('FG_PCT', 0),
+                    "FTA": game.get('FTA', 0),
+                    "FTM": game.get('FTM', 0),
+                    "FT_PCT": game.get('FT_PCT', 0),
+                    "GAME_DATE": game.get('GAME_DATE', ''),
+                    "MATCHUP": game.get('MATCHUP', ''),
+                    "MIN": game.get('MIN', ''),
+                    "OREB": game.get('OREB', 0),
+                    "PF": game.get('PF', 0),
+                    "PLUS_MINUS": game.get('PLUS_MINUS', 0),
+                    "PTS": game.get('PTS', 0),
+                    "REB": game.get('REB', 0),
+                    "SEASON_ID": game.get('SEASON_ID', ''),
+                    "STL": game.get('STL', 0),
+                    "TOV": game.get('TOV', 0),
+                    "WL": game.get('WL', ''),
+                })
 
-                    logging.info(f"Inserted game data for player: {player_id}, Full Name: {full_name} , Game_ID: {game_id}")
+                # Log the insertion of game data
+                logging.info(f"Inserted game data: Player ID: {player_id}, Player Name: {full_name}, Game ID: {game['Game_ID']}, Game Date: {game.get('GAME_DATE', 'N/A')}, Matchup: {game.get('MATCHUP', 'N/A')}")
 
         # Return success response
         response = {'message': 'Players added or updated in the database successfully.'}
@@ -146,6 +147,8 @@ def fetch_player_game_data(player_id, logging):
         # Retrieve player game logs for the entire season
         gamelog = playergamelog.PlayerGameLog(player_id=player_id, season=SeasonAll.current_season)
         player_stats = gamelog.get_data_frames()[0]
+        
+        print(player_stats)
 
         date_format = "%b %d, %Y"
 
@@ -155,8 +158,8 @@ def fetch_player_game_data(player_id, logging):
         # Sort the data by game date in descending order (most recent first)
         player_stats = player_stats.sort_values(by='GAME_DATE', ascending=False)
 
-        # Convert the most recent game to JSON format [0] or head(1)
-        json_data = player_stats.head(1).to_json(orient='records')
+        # Convert the game data to JSON format
+        json_data = player_stats.to_json(orient='records')
 
         logging.info(f"Fetched game data for player {player_id}")
 
@@ -166,7 +169,8 @@ def fetch_player_game_data(player_id, logging):
         # Send error response
         logging.error(f"Error fetching game data for player {player_id}: {str(e)}")
         error_message = {'error': str(e)}
-        return json.dumps(error_message), 500, {'Content-Type': 'application/json'} 
+        return json.dumps(error_message), 500, {'Content-Type': 'application/json'}
+
     
 
 #---- UPDATE NEXT MATCHUP DATA FROM PREVIOUS DAY ----#
@@ -290,11 +294,11 @@ try:
     #nba_update_active_players(db, active_players_logger)
     # print("NBA PLAYER NAME and ID DATA UPDATED")
 
-    #nba_update_player_game_data(db, player_game_data_logger)
-    #print("NBA PLAYER GAME DATA UPDATED")
+    nba_update_player_game_data(db, player_game_data_logger)
+    print("NBA PLAYER GAME DATA UPDATED")
 
-    nba_update_player_next_game_matchup(db, player_next_game_logger)
-    print("NBA PLAYER MATCHUP LOG UPDATED")
+    #nba_update_player_next_game_matchup(db, player_next_game_logger)
+   # print("NBA PLAYER MATCHUP LOG UPDATED")
 
     client.close()
 
