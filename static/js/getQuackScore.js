@@ -146,7 +146,7 @@ function displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls, outO
             consistencyColorClass = 'neutral-color';
         }
 
-        else if (tallyUpCalc < 6.5 || totalFouls > 2.5) {
+        else if (tallyUpCalc < 6.5) {
             consistencyRating = 'INCONSISTENT';
             consistencyColorClass = 'inconsistent-color';
         }
@@ -155,16 +155,12 @@ function displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls, outO
 
     else if (overUnderSelected == 'Under') {
 
-        if (tallyUpCalc >= 6.5 && totalFouls >= 2.5) {
+        if (tallyUpCalc >= 6.5) {
             consistencyRating = 'CONSISTENT';
             consistencyColorClass = 'consistent-color';
         }
-        else if (tallyUpCalc >= 6.5 && totalFouls < 2.5) {
-            consistencyRating = 'NEUTRAL';
-            consistencyColorClass = 'neutral-color';
-        }
 
-        else if (tallyUpCalc < 6.5 || totalFouls < 2.5) {
+        else if (tallyUpCalc < 6.5) {
             consistencyRating = 'INCONSISTENT';
             consistencyColorClass = 'inconsistent-color';
         }
