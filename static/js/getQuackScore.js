@@ -130,23 +130,45 @@ function calculate5GameAvg(recent5GamesOverCount, recent5GamesUnderCount, overUn
 
 }
 
-function displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls, outOfAllCalc) {
+function displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls, outOfAllCalc, overUnderSelected) {
 
     let consistencyRating = '';
     let consistencyColorClass = '';
 
-    if (tallyUpCalc >= 6.5 && totalFouls <= 2.5) {
-        consistencyRating = 'CONSISTENT';
-        consistencyColorClass = 'consistent-color';
-    }
-    else if (tallyUpCalc >= 6.5 && totalFouls > 2.5) {
-        consistencyRating = 'NEUTRAL';
-        consistencyColorClass = 'neutral-color';
+    if (overUnderSelected == 'Over') {
+
+        if (tallyUpCalc >= 6.5 && totalFouls <= 2.5) {
+            consistencyRating = 'CONSISTENT';
+            consistencyColorClass = 'consistent-color';
+        }
+        else if (tallyUpCalc >= 6.5 && totalFouls > 2.5) {
+            consistencyRating = 'NEUTRAL';
+            consistencyColorClass = 'neutral-color';
+        }
+
+        else if (tallyUpCalc < 6.5 || totalFouls > 2.5) {
+            consistencyRating = 'INCONSISTENT';
+            consistencyColorClass = 'inconsistent-color';
+        }
+
     }
 
-    else if (tallyUpCalc < 6.5 || totalFouls > 2.5) {
-        consistencyRating = 'INCONSISTENT';
-        consistencyColorClass = 'inconsistent-color';
+    else if (overUnderSelected == 'Under') {
+
+        if (tallyUpCalc >= 6.5 && totalFouls >= 2.5) {
+            consistencyRating = 'CONSISTENT';
+            consistencyColorClass = 'consistent-color';
+        }
+        else if (tallyUpCalc >= 6.5 && totalFouls < 2.5) {
+            consistencyRating = 'NEUTRAL';
+            consistencyColorClass = 'neutral-color';
+        }
+
+        else if (tallyUpCalc < 6.5 || totalFouls < 2.5) {
+            consistencyRating = 'INCONSISTENT';
+            consistencyColorClass = 'inconsistent-color';
+        }
+
     }
 
     const quackScoreDisplay = document.getElementById('quackScoreDisplay');
@@ -481,7 +503,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const outOfFiveCalc = calculate5GameAvg(recent5GamesOverCount, recent5GamesUnderCount, overUnderSelected)
             const outOfAllCalc = calculateAllGameAvg(gameCount, allGamesOverCount, allGamesUnderCount, overUnderSelected);
             // Displays stats for card 
-            displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls, outOfAllCalc)
+            displayScorecard(tallyUpCalc, minsGame, outOfFiveCalc, totalFouls, outOfAllCalc, overUnderSelected)
             displayScoreList(tallyUpCalc, decimalPropValue, overUnderSelected, statSelected, playerName)
         })
             .catch(error => {
