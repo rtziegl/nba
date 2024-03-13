@@ -82,7 +82,8 @@ def nba_get_active_players():
             try:
                 sanitized_player = {
                     'full_name': sanitize_string(player.get('full_name', '')),
-                    'id': sanitize_string(player.get('id', ''))
+                    'id': sanitize_string(player.get('id', '')),
+                    'last_game': sanitize_string(player.get('last_game', ''))
                 }
                 sanitized_players.append(sanitized_player)
             except Exception as e:
