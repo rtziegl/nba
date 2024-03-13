@@ -91,12 +91,12 @@ body {
     height: auto;
 } */
 
-.container {
+/* .container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-}
+} */
 
 .dropdown-item {
     display: flex; /* Use flexbox layout */
