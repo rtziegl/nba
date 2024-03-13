@@ -267,6 +267,40 @@ def finding_abrv_compare_insert(db, player_id, matchup_data, logging):
     except Exception as e:
         logging.error(f"Error finding_abrv_and_compare from DB: {str(e)}")
         print("Error:", str(e))
+        
+def update_players_last_played_game(db, logging):
+    try:
+        # Get all players from the players collection
+        players = db.players.find()
+
+        for player in players:
+            player_id = player['id']
+            full_name = player['full_name']
+
+            # Find the most recent game for the player
+            most_recent_game = db.playersgamelog.find_one({'player_id': player_id}, sort=[('GAME_DATE', DESCENDING)])
+
+            if most_recent_game:
+                # Extract the most recent game date
+                most_recent_game_date = most_recent_game['GAME_DATE']
+
+                # Update or create the lastgame field in the player document
+                db.players.update_one(
+                    {'_id': player['_id']},
+                    {'$set': {'lastgame': most_recent_game_date}},
+                    upsert=True
+                )
+
+                logging.info(f"Updated lastgame for player: {player_id}, Full Name: {full_name}, Last Game Date: {most_recent_game_date}")
+            else:
+                logging.warning(f"No game data found for player: {player_id}, Full Name: {full_name}")
+
+        return True
+
+    except Exception as e:
+        logging.error(f"Error updating players' last game: {str(e)}")
+        return False
+
 
 # Load environment variables from .env file
 load_dotenv()
@@ -283,6 +317,7 @@ print(client)
 player_next_game_logger = setup_logger('player_next_game', 'player_next_game.log')
 player_game_data_logger = setup_logger('player_game_data', 'player_game_data.log')
 active_players_logger = setup_logger('active_players', 'active_players.log')
+player_recent_game_logger = setup_logger('player_recent_game', 'player_recent_game.log')
 
 # Send a ping to confirm a successful connection
 try:
@@ -292,14 +327,16 @@ try:
     db = client['nba']
 
     #nba_update_active_players(db, active_players_logger)
-    # print("NBA PLAYER NAME and ID DATA UPDATED")
+   # print("NBA PLAYER NAME and ID DATA UPDATED")
 
     nba_update_player_game_data(db, player_game_data_logger)
     print("NBA PLAYER GAME DATA UPDATED")
 
-    #nba_update_player_next_game_matchup(db, player_next_game_logger)
-   # print("NBA PLAYER MATCHUP LOG UPDATED")
-
+    nba_update_player_next_game_matchup(db, player_next_game_logger)
+    print("NBA PLAYER MATCHUP LOG UPDATED")
+   
+    update_players_last_played_game(db, player_recent_game_logger)
+    print("Updated players most recent game")
     client.close()
 
 except Exception as e:

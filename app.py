@@ -133,7 +133,7 @@ def sanitize_string(value):
     """Sanitize string to prevent XSS attacks."""
     # Example: Escape special characters using markupsafe.escape
     from markupsafe import escape
-    return escape(value)
+    return escape(value, quote=True)
     
     
 # Load environment variables from .env file
