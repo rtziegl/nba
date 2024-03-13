@@ -287,7 +287,7 @@ def update_players_last_played_game(db, logging):
                 # Update or create the lastgame field in the player document
                 db.players.update_one(
                     {'_id': player['_id']},
-                    {'$set': {'lastgame': most_recent_game_date}},
+                    {'$set': {'last_game': most_recent_game_date}},
                     upsert=True
                 )
 
@@ -329,14 +329,17 @@ try:
     #nba_update_active_players(db, active_players_logger)
    # print("NBA PLAYER NAME and ID DATA UPDATED")
 
-    nba_update_player_game_data(db, player_game_data_logger)
-    print("NBA PLAYER GAME DATA UPDATED")
+    # nba_update_player_game_data(db, player_game_data_logger)
+    # print("NBA PLAYER GAME DATA UPDATED")
 
-    nba_update_player_next_game_matchup(db, player_next_game_logger)
-    print("NBA PLAYER MATCHUP LOG UPDATED")
+    # nba_update_player_next_game_matchup(db, player_next_game_logger)
+    # print("NBA PLAYER MATCHUP LOG UPDATED")
    
-    update_players_last_played_game(db, player_recent_game_logger)
-    print("Updated players most recent game")
+    # update_players_last_played_game(db, player_recent_game_logger)
+    # print("Updated players most recent game")
+    
+    # db.players.update_many({}, {'$rename': {'lastgame': 'last_game'}})
+
     client.close()
 
 except Exception as e:

@@ -17,7 +17,7 @@ import json
 import os
 import certifi
 import requests
-
+import html
 app = Flask(__name__)
 CORS(app)
 
@@ -71,15 +71,22 @@ def nba_get_active_players():
     try:
         # Get all active players from the database
         active_players = get_data_from_db('players')
+        
+        if not active_players:
+            print("active_players is empty")
+
 
         # Sanitize player data
         sanitized_players = []
         for player in active_players:
-            sanitized_player = {
-                'full_name': sanitize_string(player.get('full_name', '')),
-                'id': sanitize_string(player.get('id', ''))
-            }
-            sanitized_players.append(sanitized_player)
+            try:
+                sanitized_player = {
+                    'full_name': sanitize_string(player.get('full_name', '')),
+                    'id': sanitize_string(player.get('id', ''))
+                }
+                sanitized_players.append(sanitized_player)
+            except Exception as e:
+                print(f"Error sanitizing player: {e}")
 
         # Convert the sanitized data to JSON format
         return jsonify(sanitized_players), 200
@@ -131,9 +138,12 @@ def get_data_from_db(collection_name):
 # Sanatize
 def sanitize_string(value):
     """Sanitize string to prevent XSS attacks."""
-    # Example: Escape special characters using markupsafe.escape
-    from markupsafe import escape
-    return escape(value, quote=True)
+    if isinstance(value, str):
+        # Escape special characters for strings
+        return html.escape(value, quote=False)
+    else:
+        # If value is not a string, return it as is
+        return value
     
     
 # Load environment variables from .env file
