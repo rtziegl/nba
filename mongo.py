@@ -147,8 +147,6 @@ def fetch_player_game_data(player_id, logging):
         # Retrieve player game logs for the entire season
         gamelog = playergamelog.PlayerGameLog(player_id=player_id, season=SeasonAll.current_season)
         player_stats = gamelog.get_data_frames()[0]
-        
-        print(player_stats)
 
         date_format = "%b %d, %Y"
 
@@ -232,8 +230,6 @@ def finding_abrv_compare_insert(db, player_id, matchup_data, logging):
         recent_matchups = []
         home_team_abbr = matchup_data['HOME_TEAM_ABBREVIATION']
         visitor_team_abbr = matchup_data['VISITOR_TEAM_ABBREVIATION']
-
-        print(player_id, home_team_abbr, visitor_team_abbr)
 
         player_logs = db.playersgamelog.find({"player_id": player_id}, sort=[("GAME_DATE", DESCENDING)])
         for log in player_logs:
@@ -329,14 +325,14 @@ try:
     #nba_update_active_players(db, active_players_logger)
    # print("NBA PLAYER NAME and ID DATA UPDATED")
 
-    # nba_update_player_game_data(db, player_game_data_logger)
-    # print("NBA PLAYER GAME DATA UPDATED")
+    nba_update_player_game_data(db, player_game_data_logger)
+    print("NBA PLAYER GAME DATA UPDATED")
 
-    # nba_update_player_next_game_matchup(db, player_next_game_logger)
-    # print("NBA PLAYER MATCHUP LOG UPDATED")
+    nba_update_player_next_game_matchup(db, player_next_game_logger)
+    print("NBA PLAYER MATCHUP LOG UPDATED")
    
-    # update_players_last_played_game(db, player_recent_game_logger)
-    # print("Updated players most recent game")
+    update_players_last_played_game(db, player_recent_game_logger)
+    print("Updated players most recent game")
     
     # db.players.update_many({}, {'$rename': {'lastgame': 'last_game'}})
 

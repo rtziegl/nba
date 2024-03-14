@@ -278,8 +278,9 @@ img{
 }
 
 nav{
-    border: 2px solid white;
+    /* border: 2px solid white; */
     --bs-navbar-padding-y: 0px;
+    background-color: #212529;
 }
 
 
