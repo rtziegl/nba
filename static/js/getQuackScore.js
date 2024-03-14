@@ -273,6 +273,7 @@ function displayScoreList(tallyUpCalc, decimalPropValue, overUnderSelected, stat
         // Style the elements for inline display
         alertDiv.style.display = 'flex';
         alertDiv.style.alignItems = 'center';
+        alertDiv.style.width = '75%';
         alertDiv.style.gap = '5px';
         checkMarkIcon.style.display = 'inline';
 

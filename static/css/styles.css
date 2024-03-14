@@ -259,11 +259,30 @@ nav{
     align-items: center;
 }
 
-.logo img{
-    height: 100px;
-    width: 100px;
+img{
+    height: 50px;
+    width: 50px;
     object-fit:cover;
 }
+
+.socials-container{
+    display: flex;
+    gap: 25px;
+    padding-right: 10px;
+}
+
+.title-icon{
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+nav{
+    border: 2px solid white;
+    --bs-navbar-padding-y: 0px;
+}
+
+
 
 
 
