@@ -2406,3 +2406,590 @@
 2024-03-14 12:33:03,661 - player_next_game - INFO - Next game Matchup data for player is updated for 1630209
 2024-03-14 12:33:04,267 - player_next_game - INFO - Next game Matchup data for player is updated for 203469
 2024-03-14 12:33:04,637 - player_next_game - INFO - Next game Matchup data for player is updated for 1627826
+2024-03-16 11:03:06,185 - player_next_game - INFO - ACTION COMMITTED: nba_update_player_next_game_matchup
+2024-03-16 11:03:06,701 - player_next_game - INFO - Next game Matchup data for player is updated for 1630173
+2024-03-16 11:03:07,046 - player_next_game - INFO - Next game Matchup data for player is updated for 203500
+2024-03-16 11:03:07,534 - player_next_game - INFO - Next game Matchup data for player is updated for 1628389
+2024-03-16 11:03:08,143 - player_next_game - INFO - Next game Matchup data for player is updated for 1630534
+2024-03-16 11:03:08,730 - player_next_game - INFO - Next game Matchup data for player is updated for 1630583
+2024-03-16 11:03:09,167 - player_next_game - INFO - Next game Matchup data for player is updated for 1629638
+2024-03-16 11:03:09,546 - player_next_game - INFO - Next game Matchup data for player is updated for 1628960
+2024-03-16 11:03:10,000 - player_next_game - INFO - Next game Matchup data for player is updated for 1628386
+2024-03-16 11:03:10,501 - player_next_game - INFO - Next game Matchup data for player is updated for 1630631
+2024-03-16 11:03:10,928 - player_next_game - INFO - Next game Matchup data for player is updated for 203937
+2024-03-16 11:03:11,375 - player_next_game - INFO - Next game Matchup data for player is updated for 203507
+2024-03-16 11:03:11,779 - player_next_game - INFO - Next game Matchup data for player is updated for 203648
+2024-03-16 11:03:12,271 - player_next_game - INFO - Next game Matchup data for player is updated for 1630175
+2024-03-16 11:03:12,757 - player_next_game - INFO - Next game Matchup data for player is updated for 1628384
+2024-03-16 11:03:13,183 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:03:13,219 - player_next_game - INFO - Couldn't find Next Game for 1627853
+2024-03-16 11:03:13,712 - player_next_game - INFO - Next game Matchup data for player is updated for 1630166
+2024-03-16 11:03:14,041 - player_next_game - INFO - Next game Matchup data for player is updated for 1629028
+2024-03-16 11:03:14,617 - player_next_game - INFO - Next game Matchup data for player is updated for 1628962
+2024-03-16 11:03:15,032 - player_next_game - INFO - Next game Matchup data for player is updated for 1628963
+2024-03-16 11:03:15,506 - player_next_game - INFO - Next game Matchup data for player is updated for 1641735
+2024-03-16 11:03:15,872 - player_next_game - INFO - Next game Matchup data for player is updated for 1631116
+2024-03-16 11:03:16,203 - player_next_game - INFO - Next game Matchup data for player is updated for 1630163
+2024-03-16 11:03:16,710 - player_next_game - INFO - Next game Matchup data for player is updated for 1628366
+2024-03-16 11:03:17,125 - player_next_game - INFO - Next game Matchup data for player is updated for 1628964
+2024-03-16 11:03:17,451 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:03:17,479 - player_next_game - INFO - Couldn't find Next Game for 1631094
+2024-03-16 11:03:17,842 - player_next_game - INFO - Next game Matchup data for player is updated for 1630217
+2024-03-16 11:03:18,252 - player_next_game - INFO - Next game Matchup data for player is updated for 1630625
+2024-03-16 11:03:18,703 - player_next_game - INFO - Next game Matchup data for player is updated for 1631230
+2024-03-16 11:03:19,022 - player_next_game - INFO - Next game Matchup data for player is updated for 203084
+2024-03-16 11:03:19,731 - player_next_game - INFO - Next game Matchup data for player is updated for 1630567
+2024-03-16 11:03:20,076 - player_next_game - INFO - Next game Matchup data for player is updated for 1629628
+2024-03-16 11:03:20,562 - player_next_game - INFO - Next game Matchup data for player is updated for 1629646
+2024-03-16 11:03:20,862 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:03:20,888 - player_next_game - INFO - Couldn't find Next Game for 1641734
+2024-03-16 11:03:21,460 - player_next_game - INFO - Next game Matchup data for player is updated for 1628966
+2024-03-16 11:03:21,815 - player_next_game - INFO - Next game Matchup data for player is updated for 201587
+2024-03-16 11:03:22,201 - player_next_game - INFO - Next game Matchup data for player is updated for 203078
+2024-03-16 11:03:22,530 - player_next_game - INFO - Next game Matchup data for player is updated for 1627736
+2024-03-16 11:03:23,051 - player_next_game - INFO - Next game Matchup data for player is updated for 1630699
+2024-03-16 11:03:23,259 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:03:23,283 - player_next_game - INFO - Couldn't find Next Game for 1641777
+2024-03-16 11:03:23,549 - player_next_game - INFO - Next game Matchup data for player is updated for 202722
+2024-03-16 11:03:24,026 - player_next_game - INFO - Next game Matchup data for player is updated for 201976
+2024-03-16 11:03:24,487 - player_next_game - INFO - Next game Matchup data for player is updated for 1630180
+2024-03-16 11:03:24,865 - player_next_game - INFO - Next game Matchup data for player is updated for 1629048
+2024-03-16 11:03:25,186 - player_next_game - INFO - Next game Matchup data for player is updated for 1641931
+2024-03-16 11:03:25,735 - player_next_game - INFO - Next game Matchup data for player is updated for 202687
+2024-03-16 11:03:26,166 - player_next_game - INFO - Next game Matchup data for player is updated for 1641710
+2024-03-16 11:03:26,427 - player_next_game - INFO - Next game Matchup data for player is updated for 1641778
+2024-03-16 11:03:26,727 - player_next_game - INFO - Next game Matchup data for player is updated for 203992
+2024-03-16 11:03:27,104 - player_next_game - INFO - Next game Matchup data for player is updated for 202711
+2024-03-16 11:03:27,454 - player_next_game - INFO - Next game Matchup data for player is updated for 1629626
+2024-03-16 11:03:27,808 - player_next_game - INFO - Next game Matchup data for player is updated for 1629716
+2024-03-16 11:03:28,147 - player_next_game - INFO - Next game Matchup data for player is updated for 1626164
+2024-03-16 11:03:28,630 - player_next_game - INFO - Next game Matchup data for player is updated for 1630527
+2024-03-16 11:03:28,951 - player_next_game - INFO - Next game Matchup data for player is updated for 1628449
+2024-03-16 11:03:29,282 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:03:29,309 - player_next_game - INFO - Couldn't find Next Game for 1630547
+2024-03-16 11:03:29,573 - player_next_game - INFO - Next game Matchup data for player is updated for 1631103
+2024-03-16 11:03:29,967 - player_next_game - INFO - Next game Matchup data for player is updated for 1631128
+2024-03-16 11:03:30,418 - player_next_game - INFO - Next game Matchup data for player is updated for 1628969
+2024-03-16 11:03:30,770 - player_next_game - INFO - Next game Matchup data for player is updated for 1628970
+2024-03-16 11:03:31,085 - player_next_game - INFO - Next game Matchup data for player is updated for 1629052
+2024-03-16 11:03:31,421 - player_next_game - INFO - Next game Matchup data for player is updated for 1627763
+2024-03-16 11:03:31,728 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:03:31,752 - player_next_game - INFO - Couldn't find Next Game for 1629717
+2024-03-16 11:03:32,128 - player_next_game - INFO - Next game Matchup data for player is updated for 1628415
+2024-03-16 11:03:32,516 - player_next_game - INFO - Next game Matchup data for player is updated for 1628971
+2024-03-16 11:03:33,042 - player_next_game - INFO - Next game Matchup data for player is updated for 1627759
+2024-03-16 11:03:33,492 - player_next_game - INFO - Next game Matchup data for player is updated for 1631112
+2024-03-16 11:03:33,891 - player_next_game - INFO - Next game Matchup data for player is updated for 1641738
+2024-03-16 11:03:34,216 - player_next_game - INFO - Next game Matchup data for player is updated for 1629650
+2024-03-16 11:03:34,533 - player_next_game - INFO - Next game Matchup data for player is updated for 1630535
+2024-03-16 11:03:34,866 - player_next_game - INFO - Next game Matchup data for player is updated for 1629718
+2024-03-16 11:03:35,331 - player_next_game - INFO - Next game Matchup data for player is updated for 1628972
+2024-03-16 11:03:35,717 - player_next_game - INFO - Next game Matchup data for player is updated for 1628973
+2024-03-16 11:03:36,045 - player_next_game - INFO - Next game Matchup data for player is updated for 1628418
+2024-03-16 11:03:36,512 - player_next_game - INFO - Next game Matchup data for player is updated for 1641723
+2024-03-16 11:03:37,359 - player_next_game - INFO - Next game Matchup data for player is updated for 203493
+2024-03-16 11:03:37,667 - player_next_game - INFO - Next game Matchup data for player is updated for 202692
+2024-03-16 11:03:38,017 - player_next_game - INFO - Next game Matchup data for player is updated for 1630215
+2024-03-16 11:03:38,376 - player_next_game - INFO - Next game Matchup data for player is updated for 202710
+2024-03-16 11:03:38,606 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:03:38,631 - player_next_game - INFO - Couldn't find Next Game for 1631219
+2024-03-16 11:03:38,904 - player_next_game - INFO - Next game Matchup data for player is updated for 1631288
+2024-03-16 11:03:39,468 - player_next_game - INFO - Next game Matchup data for player is updated for 203484
+2024-03-16 11:03:39,967 - player_next_game - INFO - Next game Matchup data for player is updated for 1641739
+2024-03-16 11:03:40,221 - player_next_game - INFO - Next game Matchup data for player is updated for 1628427
+2024-03-16 11:03:40,626 - player_next_game - INFO - Next game Matchup data for player is updated for 203991
+2024-03-16 11:03:40,934 - player_next_game - INFO - Next game Matchup data for player is updated for 1628975
+2024-03-16 11:03:41,249 - player_next_game - INFO - Next game Matchup data for player is updated for 1628976
+2024-03-16 11:03:41,847 - player_next_game - INFO - Next game Matchup data for player is updated for 1627936
+2024-03-16 11:03:42,343 - player_next_game - INFO - Next game Matchup data for player is updated for 1630658
+2024-03-16 11:03:42,667 - player_next_game - INFO - Next game Matchup data for player is updated for 1630608
+2024-03-16 11:03:43,023 - player_next_game - INFO - Next game Matchup data for player is updated for 1630577
+2024-03-16 11:03:43,518 - player_next_game - INFO - Next game Matchup data for player is updated for 1631108
+2024-03-16 11:03:43,961 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:03:43,999 - player_next_game - INFO - Couldn't find Next Game for 1630528
+2024-03-16 11:03:44,801 - player_next_game - INFO - Next game Matchup data for player is updated for 1631321
+2024-03-16 11:03:45,192 - player_next_game - INFO - Next game Matchup data for player is updated for 1641740
+2024-03-16 11:03:45,527 - player_next_game - INFO - Next game Matchup data for player is updated for 1629634
+2024-03-16 11:03:46,195 - player_next_game - INFO - Next game Matchup data for player is updated for 203903
+2024-03-16 11:03:46,669 - player_next_game - INFO - Next game Matchup data for player is updated for 1629651
+2024-03-16 11:03:46,986 - player_next_game - INFO - Next game Matchup data for player is updated for 1641730
+2024-03-16 11:03:47,414 - player_next_game - INFO - Next game Matchup data for player is updated for 1629599
+2024-03-16 11:03:47,886 - player_next_game - INFO - Next game Matchup data for player is updated for 1628381
+2024-03-16 11:03:48,173 - player_next_game - INFO - Next game Matchup data for player is updated for 1628380
+2024-03-16 11:03:48,557 - player_next_game - INFO - Next game Matchup data for player is updated for 201144
+2024-03-16 11:03:48,937 - player_next_game - INFO - Next game Matchup data for player is updated for 1626192
+2024-03-16 11:03:49,148 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:03:49,178 - player_next_game - INFO - Couldn't find Next Game for 1641731
+2024-03-16 11:03:49,501 - player_next_game - INFO - Next game Matchup data for player is updated for 1641741
+2024-03-16 11:03:49,920 - player_next_game - INFO - Next game Matchup data for player is updated for 203496
+2024-03-16 11:03:50,279 - player_next_game - INFO - Next game Matchup data for player is updated for 1628470
+2024-03-16 11:03:50,656 - player_next_game - INFO - Next game Matchup data for player is updated for 203109
+2024-03-16 11:03:51,066 - player_next_game - INFO - Next game Matchup data for player is updated for 1630595
+2024-03-16 11:03:51,724 - player_next_game - INFO - Next game Matchup data for player is updated for 203552
+2024-03-16 11:03:52,044 - player_next_game - INFO - Next game Matchup data for player is updated for 201939
+2024-03-16 11:03:52,370 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:03:52,398 - player_next_game - INFO - Couldn't find Next Game for 1630700
+2024-03-16 11:03:52,729 - player_next_game - INFO - Next game Matchup data for player is updated for 203076
+2024-03-16 11:03:53,209 - player_next_game - INFO - Next game Matchup data for player is updated for 1631098
+2024-03-16 11:03:53,767 - player_next_game - INFO - Next game Matchup data for player is updated for 1631120
+2024-03-16 11:03:54,137 - player_next_game - INFO - Next game Matchup data for player is updated for 201942
+2024-03-16 11:03:54,472 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:03:54,512 - player_next_game - INFO - Couldn't find Next Game for 1641926
+2024-03-16 11:03:55,018 - player_next_game - INFO - Next game Matchup data for player is updated for 1628978
+2024-03-16 11:03:55,335 - player_next_game - INFO - Next game Matchup data for player is updated for 1631217
+2024-03-16 11:03:55,785 - player_next_game - INFO - Next game Matchup data for player is updated for 1641711
+2024-03-16 11:03:56,178 - player_next_game - INFO - Next game Matchup data for player is updated for 1631172
+2024-03-16 11:03:56,664 - player_next_game - INFO - Next game Matchup data for player is updated for 203915
+2024-03-16 11:03:56,907 - player_next_game - INFO - Next game Matchup data for player is updated for 1629029
+2024-03-16 11:03:57,311 - player_next_game - INFO - Next game Matchup data for player is updated for 1629652
+2024-03-16 11:03:57,760 - player_next_game - INFO - Next game Matchup data for player is updated for 1630245
+2024-03-16 11:03:58,165 - player_next_game - INFO - Next game Matchup data for player is updated for 203083
+2024-03-16 11:03:58,465 - player_next_game - INFO - Next game Matchup data for player is updated for 1630537
+2024-03-16 11:03:59,008 - player_next_game - INFO - Next game Matchup data for player is updated for 1627739
+2024-03-16 11:03:59,338 - player_next_game - INFO - Next game Matchup data for player is updated for 201142
+2024-03-16 11:03:59,523 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:03:59,547 - player_next_game - INFO - Couldn't find Next Game for 1631105
+2024-03-16 11:04:00,338 - player_next_game - INFO - Next game Matchup data for player is updated for 1631106
+2024-03-16 11:04:00,812 - player_next_game - INFO - Next game Matchup data for player is updated for 1630162
+2024-03-16 11:04:01,206 - player_next_game - INFO - Next game Matchup data for player is updated for 1630556
+2024-03-16 11:04:01,574 - player_next_game - INFO - Next game Matchup data for player is updated for 1631165
+2024-03-16 11:04:01,971 - player_next_game - INFO - Next game Matchup data for player is updated for 203954
+2024-03-16 11:04:02,457 - player_next_game - INFO - Next game Matchup data for player is updated for 1629234
+2024-03-16 11:04:02,941 - player_next_game - INFO - Next game Matchup data for player is updated for 203957
+2024-03-16 11:04:03,397 - player_next_game - INFO - Next game Matchup data for player is updated for 1628981
+2024-03-16 11:04:03,835 - player_next_game - INFO - Next game Matchup data for player is updated for 1627827
+2024-03-16 11:04:04,064 - player_next_game - INFO - Next game Matchup data for player is updated for 1630201
+2024-03-16 11:04:04,326 - player_next_game - INFO - Next game Matchup data for player is updated for 1631323
+2024-03-16 11:04:04,603 - player_next_game - INFO - Next game Matchup data for player is updated for 1630259
+2024-03-16 11:04:05,006 - player_next_game - INFO - Next game Matchup data for player is updated for 1630235
+2024-03-16 11:04:05,486 - player_next_game - INFO - Next game Matchup data for player is updated for 203095
+2024-03-16 11:04:05,862 - player_next_game - INFO - Next game Matchup data for player is updated for 1628368
+2024-03-16 11:04:06,169 - player_next_game - INFO - Next game Matchup data for player is updated for 1631241
+2024-03-16 11:04:06,588 - player_next_game - INFO - Next game Matchup data for player is updated for 1641788
+2024-03-16 11:04:06,876 - player_next_game - INFO - Next game Matchup data for player is updated for 1628365
+2024-03-16 11:04:07,234 - player_next_game - INFO - Next game Matchup data for player is updated for 1629655
+2024-03-16 11:04:07,450 - player_next_game - INFO - Next game Matchup data for player is updated for 201568
+2024-03-16 11:04:07,862 - player_next_game - INFO - Next game Matchup data for player is updated for 1629636
+2024-03-16 11:04:08,227 - player_next_game - INFO - Next game Matchup data for player is updated for 1630586
+2024-03-16 11:04:08,629 - player_next_game - INFO - Next game Matchup data for player is updated for 1630568
+2024-03-16 11:04:08,910 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:08,939 - player_next_game - INFO - Couldn't find Next Game for 1629232
+2024-03-16 11:04:09,114 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:09,140 - player_next_game - INFO - Couldn't find Next Game for 1641718
+2024-03-16 11:04:09,619 - player_next_game - INFO - Next game Matchup data for player is updated for 202331
+2024-03-16 11:04:10,419 - player_next_game - INFO - Next game Matchup data for player is updated for 1630581
+2024-03-16 11:04:10,785 - player_next_game - INFO - Next game Matchup data for player is updated for 1628385
+2024-03-16 11:04:11,175 - player_next_game - INFO - Next game Matchup data for player is updated for 1628983
+2024-03-16 11:04:11,599 - player_next_game - INFO - Next game Matchup data for player is updated for 1630264
+2024-03-16 11:04:12,145 - player_next_game - INFO - Next game Matchup data for player is updated for 1631221
+2024-03-16 11:04:12,608 - player_next_game - INFO - Next game Matchup data for player is updated for 1631367
+2024-03-16 11:04:12,969 - player_next_game - INFO - Next game Matchup data for player is updated for 203497
+2024-03-16 11:04:13,430 - player_next_game - INFO - Next game Matchup data for player is updated for 1630692
+2024-03-16 11:04:13,753 - player_next_game - INFO - Next game Matchup data for player is updated for 203932
+2024-03-16 11:04:14,197 - player_next_game - INFO - Next game Matchup data for player is updated for 201569
+2024-03-16 11:04:14,644 - player_next_game - INFO - Next game Matchup data for player is updated for 1628984
+2024-03-16 11:04:15,119 - player_next_game - INFO - Next game Matchup data for player is updated for 203924
+2024-03-16 11:04:15,529 - player_next_game - INFO - Next game Matchup data for player is updated for 1631260
+2024-03-16 11:04:15,781 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:15,810 - player_next_game - INFO - Couldn't find Next Game for 201980
+2024-03-16 11:04:16,458 - player_next_game - INFO - Next game Matchup data for player is updated for 203110
+2024-03-16 11:04:16,851 - player_next_game - INFO - Next game Matchup data for player is updated for 1630224
+2024-03-16 11:04:17,228 - player_next_game - INFO - Next game Matchup data for player is updated for 201145
+2024-03-16 11:04:17,617 - player_next_game - INFO - Next game Matchup data for player is updated for 1630182
+2024-03-16 11:04:18,246 - player_next_game - INFO - Next game Matchup data for player is updated for 1631100
+2024-03-16 11:04:18,571 - player_next_game - INFO - Next game Matchup data for player is updated for 1629656
+2024-03-16 11:04:18,888 - player_next_game - INFO - Next game Matchup data for player is updated for 1631243
+2024-03-16 11:04:19,349 - player_next_game - INFO - Next game Matchup data for player is updated for 1629060
+2024-03-16 11:04:19,914 - player_next_game - INFO - Next game Matchup data for player is updated for 1630169
+2024-03-16 11:04:20,279 - player_next_game - INFO - Next game Matchup data for player is updated for 1630181
+2024-03-16 11:04:20,714 - player_next_game - INFO - Next game Matchup data for player is updated for 203501
+2024-03-16 11:04:21,041 - player_next_game - INFO - Next game Matchup data for player is updated for 201935
+2024-03-16 11:04:22,079 - player_next_game - INFO - Next game Matchup data for player is updated for 1630702
+2024-03-16 11:04:22,342 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:22,368 - player_next_game - INFO - Couldn't find Next Game for 1631199
+2024-03-16 11:04:22,649 - player_next_game - INFO - Next game Matchup data for player is updated for 203914
+2024-03-16 11:04:22,977 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:23,001 - player_next_game - INFO - Couldn't find Next Game for 203925
+2024-03-16 11:04:23,257 - player_next_game - INFO - Next game Matchup data for player is updated for 1630284
+2024-03-16 11:04:23,627 - player_next_game - INFO - Next game Matchup data for player is updated for 202699
+2024-03-16 11:04:24,145 - player_next_game - INFO - Next game Matchup data for player is updated for 1628404
+2024-03-16 11:04:24,478 - player_next_game - INFO - Next game Matchup data for player is updated for 1628392
+2024-03-16 11:04:24,888 - player_next_game - INFO - Next game Matchup data for player is updated for 1630573
+2024-03-16 11:04:25,098 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:25,126 - player_next_game - INFO - Couldn't find Next Game for 1641722
+2024-03-16 11:04:25,515 - player_next_game - INFO - Next game Matchup data for player is updated for 1629637
+2024-03-16 11:04:25,798 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:25,826 - player_next_game - INFO - Couldn't find Next Game for 1630165
+2024-03-16 11:04:26,105 - player_next_game - INFO - Next game Matchup data for player is updated for 202330
+2024-03-16 11:04:26,269 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:26,294 - player_next_game - INFO - Couldn't find Next Game for 1630703
+2024-03-16 11:04:26,587 - player_next_game - INFO - Next game Matchup data for player is updated for 1641707
+2024-03-16 11:04:26,848 - player_next_game - INFO - Next game Matchup data for player is updated for 1629639
+2024-03-16 11:04:27,275 - player_next_game - INFO - Next game Matchup data for player is updated for 1627741
+2024-03-16 11:04:27,764 - player_next_game - INFO - Next game Matchup data for player is updated for 1629312
+2024-03-16 11:04:28,053 - player_next_game - INFO - Next game Matchup data for player is updated for 1630207
+2024-03-16 11:04:28,392 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:28,414 - player_next_game - INFO - Couldn't find Next Game for 1641793
+2024-03-16 11:04:28,703 - player_next_game - INFO - Next game Matchup data for player is updated for 1628988
+2024-03-16 11:04:29,026 - player_next_game - INFO - Next game Matchup data for player is updated for 201950
+2024-03-16 11:04:29,412 - player_next_game - INFO - Next game Matchup data for player is updated for 203200
+2024-03-16 11:04:29,864 - player_next_game - INFO - Next game Matchup data for player is updated for 1626158
+2024-03-16 11:04:30,197 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:30,222 - player_next_game - INFO - Couldn't find Next Game for 1631096
+2024-03-16 11:04:30,597 - player_next_game - INFO - Next game Matchup data for player is updated for 1641720
+2024-03-16 11:04:31,054 - player_next_game - INFO - Next game Matchup data for player is updated for 201143
+2024-03-16 11:04:31,670 - player_next_game - INFO - Next game Matchup data for player is updated for 1629659
+2024-03-16 11:04:32,233 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:32,266 - player_next_game - INFO - Couldn't find Next Game for 1627863
+2024-03-16 11:04:32,660 - player_next_game - INFO - Next game Matchup data for player is updated for 1631216
+2024-03-16 11:04:32,924 - player_next_game - INFO - Next game Matchup data for player is updated for 1641724
+2024-03-16 11:04:34,083 - player_next_game - INFO - Next game Matchup data for player is updated for 1628989
+2024-03-16 11:04:34,380 - player_next_game - INFO - Next game Matchup data for player is updated for 1630643
+2024-03-16 11:04:34,633 - player_next_game - INFO - Next game Matchup data for player is updated for 1629631
+2024-03-16 11:04:34,881 - player_next_game - INFO - Next game Matchup data for player is updated for 1630538
+2024-03-16 11:04:35,179 - player_next_game - INFO - Next game Matchup data for player is updated for 204060
+2024-03-16 11:04:35,675 - player_next_game - INFO - Next game Matchup data for player is updated for 1627742
+2024-03-16 11:04:36,184 - player_next_game - INFO - Next game Matchup data for player is updated for 202681
+2024-03-16 11:04:36,520 - player_next_game - INFO - Next game Matchup data for player is updated for 1628371
+2024-03-16 11:04:36,697 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:36,725 - player_next_game - INFO - Couldn't find Next Game for 1631093
+2024-03-16 11:04:37,013 - player_next_game - INFO - Next game Matchup data for player is updated for 1641713
+2024-03-16 11:04:37,373 - player_next_game - INFO - Next game Matchup data for player is updated for 1630543
+2024-03-16 11:04:37,836 - player_next_game - INFO - Next game Matchup data for player is updated for 202704
+2024-03-16 11:04:38,156 - player_next_game - INFO - Next game Matchup data for player is updated for 1641748
+2024-03-16 11:04:38,561 - player_next_game - INFO - Next game Matchup data for player is updated for 1628991
+2024-03-16 11:04:38,921 - player_next_game - INFO - Next game Matchup data for player is updated for 1631218
+2024-03-16 11:04:39,334 - player_next_game - INFO - Next game Matchup data for player is updated for 2544
+2024-03-16 11:04:39,626 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:39,651 - player_next_game - INFO - Couldn't find Next Game for 1631170
+2024-03-16 11:04:40,056 - player_next_game - INFO - Next game Matchup data for player is updated for 1629610
+2024-03-16 11:04:40,370 - player_next_game - INFO - Next game Matchup data for player is updated for 1629660
+2024-03-16 11:04:40,768 - player_next_game - INFO - Next game Matchup data for player is updated for 1630198
+2024-03-16 11:04:41,269 - player_next_game - INFO - Next game Matchup data for player is updated for 1629661
+2024-03-16 11:04:41,522 - player_next_game - INFO - Next game Matchup data for player is updated for 1630552
+2024-03-16 11:04:41,929 - player_next_game - INFO - Next game Matchup data for player is updated for 1629640
+2024-03-16 11:04:42,375 - player_next_game - INFO - Next game Matchup data for player is updated for 1630553
+2024-03-16 11:04:42,757 - player_next_game - INFO - Next game Matchup data for player is updated for 1641749
+2024-03-16 11:04:43,201 - player_next_game - INFO - Next game Matchup data for player is updated for 203999
+2024-03-16 11:04:44,089 - player_next_game - INFO - Next game Matchup data for player is updated for 1641732
+2024-03-16 11:04:44,468 - player_next_game - INFO - Next game Matchup data for player is updated for 1627745
+2024-03-16 11:04:44,877 - player_next_game - INFO - Next game Matchup data for player is updated for 1630529
+2024-03-16 11:04:45,193 - player_next_game - INFO - Next game Matchup data for player is updated for 1630200
+2024-03-16 11:04:46,184 - player_next_game - INFO - Next game Matchup data for player is updated for 1626145
+2024-03-16 11:04:46,445 - player_next_game - INFO - Next game Matchup data for player is updated for 1627884
+2024-03-16 11:04:46,744 - player_next_game - INFO - Next game Matchup data for player is updated for 201599
+2024-03-16 11:04:46,921 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:46,961 - player_next_game - INFO - Couldn't find Next Game for 202709
+2024-03-16 11:04:47,268 - player_next_game - INFO - Next game Matchup data for player is updated for 1631107
+2024-03-16 11:04:47,680 - player_next_game - INFO - Next game Matchup data for player is updated for 1630548
+2024-03-16 11:04:48,201 - player_next_game - INFO - Next game Matchup data for player is updated for 1628379
+2024-03-16 11:04:48,392 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:48,410 - player_next_game - INFO - Couldn't find Next Game for 1631117
+2024-03-16 11:04:48,694 - player_next_game - INFO - Next game Matchup data for player is updated for 1630296
+2024-03-16 11:04:49,108 - player_next_game - INFO - Next game Matchup data for player is updated for 1630557
+2024-03-16 11:04:49,410 - player_next_game - INFO - Next game Matchup data for player is updated for 1628467
+2024-03-16 11:04:49,625 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:49,656 - player_next_game - INFO - Couldn't find Next Game for 1630233
+2024-03-16 11:04:49,877 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:49,903 - player_next_game - INFO - Couldn't find Next Game for 1628995
+2024-03-16 11:04:50,115 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:50,140 - player_next_game - INFO - Couldn't find Next Game for 1631132
+2024-03-16 11:04:50,413 - player_next_game - INFO - Next game Matchup data for player is updated for 1629723
+2024-03-16 11:04:50,611 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:50,637 - player_next_game - INFO - Couldn't find Next Game for 1627788
+2024-03-16 11:04:50,945 - player_next_game - INFO - Next game Matchup data for player is updated for 1628436
+2024-03-16 11:04:51,281 - player_next_game - INFO - Next game Matchup data for player is updated for 1630228
+2024-03-16 11:04:51,875 - player_next_game - INFO - Next game Matchup data for player is updated for 1628398
+2024-03-16 11:04:52,205 - player_next_game - INFO - Next game Matchup data for player is updated for 1631222
+2024-03-16 11:04:52,591 - player_next_game - INFO - Next game Matchup data for player is updated for 203897
+2024-03-16 11:04:53,005 - player_next_game - INFO - Next game Matchup data for player is updated for 1629111
+2024-03-16 11:04:53,303 - player_next_game - INFO - Next game Matchup data for player is updated for 1630639
+2024-03-16 11:04:53,879 - player_next_game - INFO - Next game Matchup data for player is updated for 1627747
+2024-03-16 11:04:54,306 - player_next_game - INFO - Next game Matchup data for player is updated for 1627814
+2024-03-16 11:04:54,547 - player_next_game - INFO - Next game Matchup data for player is updated for 1630240
+2024-03-16 11:04:55,057 - player_next_game - INFO - Next game Matchup data for player is updated for 203458
+2024-03-16 11:04:56,157 - player_next_game - INFO - Next game Matchup data for player is updated for 202695
+2024-03-16 11:04:56,467 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:56,521 - player_next_game - INFO - Couldn't find Next Game for 1631171
+2024-03-16 11:04:56,920 - player_next_game - INFO - Next game Matchup data for player is updated for 1641721
+2024-03-16 11:04:57,236 - player_next_game - INFO - Next game Matchup data for player is updated for 1630184
+2024-03-16 11:04:58,431 - player_next_game - INFO - Next game Matchup data for player is updated for 1630604
+2024-03-16 11:04:58,945 - player_next_game - INFO - Next game Matchup data for player is updated for 203081
+2024-03-16 11:04:59,220 - player_next_game - INFO - Next game Matchup data for player is updated for 1629642
+2024-03-16 11:04:59,434 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:04:59,462 - player_next_game - INFO - Couldn't find Next Game for 1641726
+2024-03-16 11:04:59,817 - player_next_game - INFO - Next game Matchup data for player is updated for 1630587
+2024-03-16 11:05:00,283 - player_next_game - INFO - Next game Matchup data for player is updated for 1641753
+2024-03-16 11:05:00,730 - player_next_game - INFO - Next game Matchup data for player is updated for 1631254
+2024-03-16 11:05:01,266 - player_next_game - INFO - Next game Matchup data for player is updated for 1626172
+2024-03-16 11:05:01,649 - player_next_game - INFO - Next game Matchup data for player is updated for 201572
+2024-03-16 11:05:01,811 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:05:01,835 - player_next_game - INFO - Couldn't find Next Game for 201577
+2024-03-16 11:05:02,290 - player_next_game - INFO - Next game Matchup data for player is updated for 201567
+2024-03-16 11:05:02,650 - player_next_game - INFO - Next game Matchup data for player is updated for 200768
+2024-03-16 11:05:03,934 - player_next_game - INFO - Next game Matchup data for player is updated for 1641754
+2024-03-16 11:05:04,698 - player_next_game - INFO - Next game Matchup data for player is updated for 1626168
+2024-03-16 11:05:05,126 - player_next_game - INFO - Next game Matchup data for player is updated for 1630177
+2024-03-16 11:05:05,419 - player_next_game - INFO - Next game Matchup data for player is updated for 1630572
+2024-03-16 11:05:05,717 - player_next_game - INFO - Next game Matchup data for player is updated for 1629611
+2024-03-16 11:05:06,030 - player_next_game - INFO - Next game Matchup data for player is updated for 1630544
+2024-03-16 11:05:06,300 - player_next_game - INFO - Next game Matchup data for player is updated for 1626246
+2024-03-16 11:05:06,743 - player_next_game - INFO - Next game Matchup data for player is updated for 1628374
+2024-03-16 11:05:07,073 - player_next_game - INFO - Next game Matchup data for player is updated for 1630230
+2024-03-16 11:05:07,672 - player_next_game - INFO - Next game Matchup data for player is updated for 1628997
+2024-03-16 11:05:08,863 - player_next_game - INFO - Next game Matchup data for player is updated for 1628998
+2024-03-16 11:05:09,599 - player_next_game - INFO - Next game Matchup data for player is updated for 1630231
+2024-03-16 11:05:10,410 - player_next_game - INFO - Next game Matchup data for player is updated for 1629726
+2024-03-16 11:05:10,734 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:05:10,768 - player_next_game - INFO - Couldn't find Next Game for 1631097
+2024-03-16 11:05:11,039 - player_next_game - INFO - Next game Matchup data for player is updated for 202083
+2024-03-16 11:05:11,287 - player_next_game - INFO - Next game Matchup data for player is updated for 1630178
+2024-03-16 11:05:11,706 - player_next_game - INFO - Next game Matchup data for player is updated for 1630219
+2024-03-16 11:05:12,231 - player_next_game - INFO - Next game Matchup data for player is updated for 1630540
+2024-03-16 11:05:12,559 - player_next_game - INFO - Next game Matchup data for player is updated for 203468
+2024-03-16 11:05:12,924 - player_next_game - INFO - Next game Matchup data for player is updated for 204456
+2024-03-16 11:05:13,376 - player_next_game - INFO - Next game Matchup data for player is updated for 1630183
+2024-03-16 11:05:14,009 - player_next_game - INFO - Next game Matchup data for player is updated for 1629667
+2024-03-16 11:05:14,310 - player_next_game - INFO - Next game Matchup data for player is updated for 203926
+2024-03-16 11:05:14,624 - player_next_game - INFO - Next game Matchup data for player is updated for 201580
+2024-03-16 11:05:14,919 - player_next_game - INFO - Next game Matchup data for player is updated for 1631121
+2024-03-16 11:05:15,245 - player_next_game - INFO - Next game Matchup data for player is updated for 1629162
+2024-03-16 11:05:15,510 - player_next_game - INFO - Next game Matchup data for player is updated for 1629001
+2024-03-16 11:05:15,986 - player_next_game - INFO - Next game Matchup data for player is updated for 1630241
+2024-03-16 11:05:16,327 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:05:16,369 - player_next_game - INFO - Couldn't find Next Game for 1629002
+2024-03-16 11:05:16,886 - player_next_game - INFO - Next game Matchup data for player is updated for 203995
+2024-03-16 11:05:17,307 - player_next_game - INFO - Next game Matchup data for player is updated for 203114
+2024-03-16 11:05:17,504 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:05:17,530 - player_next_game - INFO - Couldn't find Next Game for 1641706
+2024-03-16 11:05:17,896 - player_next_game - INFO - Next game Matchup data for player is updated for 1641757
+2024-03-16 11:05:18,230 - player_next_game - INFO - Next game Matchup data for player is updated for 1631159
+2024-03-16 11:05:18,604 - player_next_game - INFO - Next game Matchup data for player is updated for 201988
+2024-03-16 11:05:18,948 - player_next_game - INFO - Next game Matchup data for player is updated for 1629003
+2024-03-16 11:05:19,294 - player_next_game - INFO - Next game Matchup data for player is updated for 1631303
+2024-03-16 11:05:20,320 - player_next_game - INFO - Next game Matchup data for player is updated for 1631169
+2024-03-16 11:05:20,728 - player_next_game - INFO - Next game Matchup data for player is updated for 1630558
+2024-03-16 11:05:21,219 - player_next_game - INFO - Next game Matchup data for player is updated for 1628378
+2024-03-16 11:05:21,584 - player_next_game - INFO - Next game Matchup data for player is updated for 1630596
+2024-03-16 11:05:22,020 - player_next_game - INFO - Next game Matchup data for player is updated for 1630600
+2024-03-16 11:05:22,307 - player_next_game - INFO - Next game Matchup data for player is updated for 1628370
+2024-03-16 11:05:22,544 - player_next_game - INFO - Next game Matchup data for player is updated for 1630541
+2024-03-16 11:05:22,808 - player_next_game - INFO - Next game Matchup data for player is updated for 1631111
+2024-03-16 11:05:23,182 - player_next_game - INFO - Next game Matchup data for player is updated for 1629630
+2024-03-16 11:05:23,408 - player_next_game - INFO - Next game Matchup data for player is updated for 202693
+2024-03-16 11:05:23,891 - player_next_game - INFO - Next game Matchup data for player is updated for 1628420
+2024-03-16 11:05:24,152 - player_next_game - INFO - Next game Matchup data for player is updated for 202694
+2024-03-16 11:05:24,509 - player_next_game - INFO - Next game Matchup data for player is updated for 1630530
+2024-03-16 11:05:24,959 - player_next_game - INFO - Next game Matchup data for player is updated for 1627749
+2024-03-16 11:05:25,546 - player_next_game - INFO - Next game Matchup data for player is updated for 1627750
+2024-03-16 11:05:25,853 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:05:25,881 - player_next_game - INFO - Couldn't find Next Game for 1631099
+2024-03-16 11:05:26,252 - player_next_game - INFO - Next game Matchup data for player is updated for 1631200
+2024-03-16 11:05:26,559 - player_next_game - INFO - Next game Matchup data for player is updated for 203488
+2024-03-16 11:05:26,976 - player_next_game - INFO - Next game Matchup data for player is updated for 1629004
+2024-03-16 11:05:27,275 - player_next_game - INFO - Next game Matchup data for player is updated for 1626204
+2024-03-16 11:05:27,537 - player_next_game - INFO - Next game Matchup data for player is updated for 1629614
+2024-03-16 11:05:27,934 - player_next_game - INFO - Next game Matchup data for player is updated for 1630174
+2024-03-16 11:05:28,216 - player_next_game - INFO - Next game Matchup data for player is updated for 1627777
+2024-03-16 11:05:28,455 - player_next_game - INFO - Next game Matchup data for player is updated for 1630227
+2024-03-16 11:05:28,711 - player_next_game - INFO - Next game Matchup data for player is updated for 1630192
+2024-03-16 11:05:28,866 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:05:28,888 - player_next_game - INFO - Couldn't find Next Game for 1641936
+2024-03-16 11:05:29,235 - player_next_game - INFO - Next game Matchup data for player is updated for 1641806
+2024-03-16 11:05:29,529 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:05:29,554 - player_next_game - INFO - Couldn't find Next Game for 1628373
+2024-03-16 11:05:30,142 - player_next_game - INFO - Next game Matchup data for player is updated for 203994
+2024-03-16 11:05:30,405 - player_next_game - INFO - Next game Matchup data for player is updated for 1629670
+2024-03-16 11:05:30,811 - player_next_game - INFO - Next game Matchup data for player is updated for 1626220
+2024-03-16 11:05:31,139 - player_next_game - INFO - Next game Matchup data for player is updated for 1629643
+2024-03-16 11:05:31,518 - player_next_game - INFO - Next game Matchup data for player is updated for 1629006
+2024-03-16 11:05:31,908 - player_next_game - INFO - Next game Matchup data for player is updated for 1630168
+2024-03-16 11:05:32,258 - player_next_game - INFO - Next game Matchup data for player is updated for 1630171
+2024-03-16 11:05:32,792 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:05:32,815 - player_next_game - INFO - Couldn't find Next Game for 203506
+2024-03-16 11:05:33,179 - player_next_game - INFO - Next game Matchup data for player is updated for 203482
+2024-03-16 11:05:33,455 - player_next_game - INFO - Next game Matchup data for player is updated for 1630647
+2024-03-16 11:05:33,845 - player_next_game - INFO - Next game Matchup data for player is updated for 1626224
+2024-03-16 11:05:34,139 - player_next_game - INFO - Next game Matchup data for player is updated for 1626162
+2024-03-16 11:05:34,464 - player_next_game - INFO - Next game Matchup data for player is updated for 101108
+2024-03-16 11:05:34,835 - player_next_game - INFO - Next game Matchup data for player is updated for 1626166
+2024-03-16 11:05:35,097 - player_next_game - INFO - Next game Matchup data for player is updated for 1627780
+2024-03-16 11:05:35,288 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:05:35,311 - player_next_game - INFO - Couldn't find Next Game for 1630196
+2024-03-16 11:05:35,618 - player_next_game - INFO - Next game Matchup data for player is updated for 1641763
+2024-03-16 11:05:36,004 - player_next_game - INFO - Next game Matchup data for player is updated for 1629618
+2024-03-16 11:05:36,510 - player_next_game - INFO - Next game Matchup data for player is updated for 203486
+2024-03-16 11:05:36,787 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:05:36,812 - player_next_game - INFO - Couldn't find Next Game for 1641764
+2024-03-16 11:05:37,061 - player_next_game - INFO - Next game Matchup data for player is updated for 1627751
+2024-03-16 11:05:37,331 - player_next_game - INFO - Next game Matchup data for player is updated for 1630197
+2024-03-16 11:05:37,607 - player_next_game - INFO - Next game Matchup data for player is updated for 1629673
+2024-03-16 11:05:37,954 - player_next_game - INFO - Next game Matchup data for player is updated for 1641854
+2024-03-16 11:05:38,391 - player_next_game - INFO - Next game Matchup data for player is updated for 1629008
+2024-03-16 11:05:38,642 - player_next_game - INFO - Next game Matchup data for player is updated for 203490
+2024-03-16 11:05:38,963 - player_next_game - INFO - Next game Matchup data for player is updated for 1626171
+2024-03-16 11:05:39,300 - player_next_game - INFO - Next game Matchup data for player is updated for 204001
+2024-03-16 11:05:39,624 - player_next_game - INFO - Next game Matchup data for player is updated for 1630695
+2024-03-16 11:05:40,080 - player_next_game - INFO - Next game Matchup data for player is updated for 203939
+2024-03-16 11:05:40,395 - player_next_game - INFO - Next game Matchup data for player is updated for 1626181
+2024-03-16 11:05:40,682 - player_next_game - INFO - Next game Matchup data for player is updated for 1630563
+2024-03-16 11:05:41,164 - player_next_game - INFO - Next game Matchup data for player is updated for 1627752
+2024-03-16 11:05:41,428 - player_next_game - INFO - Next game Matchup data for player is updated for 1630202
+2024-03-16 11:05:41,818 - player_next_game - INFO - Next game Matchup data for player is updated for 1641765
+2024-03-16 11:05:42,125 - player_next_game - INFO - Next game Matchup data for player is updated for 1630243
+2024-03-16 11:05:42,361 - player_next_game - INFO - Next game Matchup data for player is updated for 1629674
+2024-03-16 11:05:42,588 - player_next_game - INFO - Next game Matchup data for player is updated for 1630193
+2024-03-16 11:05:42,963 - player_next_game - INFO - Next game Matchup data for player is updated for 1631311
+2024-03-16 11:05:43,231 - player_next_game - INFO - Next game Matchup data for player is updated for 203944
+2024-03-16 11:05:43,497 - player_next_game - INFO - Next game Matchup data for player is updated for 1641871
+2024-03-16 11:05:43,960 - player_next_game - INFO - Next game Matchup data for player is updated for 1630559
+2024-03-16 11:05:44,297 - player_next_game - INFO - Next game Matchup data for player is updated for 1629629
+2024-03-16 11:05:44,759 - player_next_game - INFO - Next game Matchup data for player is updated for 1630194
+2024-03-16 11:05:44,990 - player_next_game - INFO - Next game Matchup data for player is updated for 1629675
+2024-03-16 11:05:45,328 - player_next_game - INFO - Next game Matchup data for player is updated for 1631197
+2024-03-16 11:05:45,486 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:05:45,508 - player_next_game - INFO - Couldn't find Next Game for 1641811
+2024-03-16 11:05:46,203 - player_next_game - INFO - Next game Matchup data for player is updated for 1630208
+2024-03-16 11:05:46,593 - player_next_game - INFO - Next game Matchup data for player is updated for 1626196
+2024-03-16 11:05:47,030 - player_next_game - INFO - Next game Matchup data for player is updated for 1629130
+2024-03-16 11:05:47,473 - player_next_game - INFO - Next game Matchup data for player is updated for 1629010
+2024-03-16 11:05:47,961 - player_next_game - INFO - Next game Matchup data for player is updated for 1629011
+2024-03-16 11:05:48,325 - player_next_game - INFO - Next game Matchup data for player is updated for 1631115
+2024-03-16 11:05:48,667 - player_next_game - INFO - Next game Matchup data for player is updated for 1630526
+2024-03-16 11:05:48,893 - player_next_game - INFO - Next game Matchup data for player is updated for 1631223
+2024-03-16 11:05:49,178 - player_next_game - INFO - Next game Matchup data for player is updated for 1631157
+2024-03-16 11:05:49,609 - player_next_game - INFO - Next game Matchup data for player is updated for 201565
+2024-03-16 11:05:49,904 - player_next_game - INFO - Next game Matchup data for player is updated for 1626179
+2024-03-16 11:05:50,063 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:05:50,104 - player_next_game - INFO - Couldn't find Next Game for 201937
+2024-03-16 11:05:50,369 - player_next_game - INFO - Next game Matchup data for player is updated for 1641712
+2024-03-16 11:05:50,647 - player_next_game - INFO - Next game Matchup data for player is updated for 1626156
+2024-03-16 11:05:51,039 - player_next_game - INFO - Next game Matchup data for player is updated for 1630346
+2024-03-16 11:05:51,321 - player_next_game - INFO - Next game Matchup data for player is updated for 1627734
+2024-03-16 11:05:51,587 - player_next_game - INFO - Next game Matchup data for player is updated for 1629677
+2024-03-16 11:05:52,004 - player_next_game - INFO - Next game Matchup data for player is updated for 1631257
+2024-03-16 11:05:52,365 - player_next_game - INFO - Next game Matchup data for player is updated for 1641766
+2024-03-16 11:05:52,747 - player_next_game - INFO - Next game Matchup data for player is updated for 1630611
+2024-03-16 11:05:53,314 - player_next_game - INFO - Next game Matchup data for player is updated for 203967
+2024-03-16 11:05:53,771 - player_next_game - INFO - Next game Matchup data for player is updated for 1630846
+2024-03-16 11:05:54,140 - player_next_game - INFO - Next game Matchup data for player is updated for 1631204
+2024-03-16 11:05:54,741 - player_next_game - INFO - Next game Matchup data for player is updated for 1629678
+2024-03-16 11:05:55,194 - player_next_game - INFO - Next game Matchup data for player is updated for 203471
+2024-03-16 11:05:55,670 - player_next_game - INFO - Next game Matchup data for player is updated for 1631220
+2024-03-16 11:05:56,202 - player_next_game - INFO - Next game Matchup data for player is updated for 1630578
+2024-03-16 11:05:56,494 - player_next_game - INFO - Next game Matchup data for player is updated for 1641729
+2024-03-16 11:05:58,080 - player_next_game - INFO - Next game Matchup data for player is updated for 1629012
+2024-03-16 11:05:58,404 - player_next_game - INFO - Next game Matchup data for player is updated for 1629013
+2024-03-16 11:05:58,783 - player_next_game - INFO - Next game Matchup data for player is updated for 1630549
+2024-03-16 11:05:59,053 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:05:59,077 - player_next_game - INFO - Couldn't find Next Game for 1631101
+2024-03-16 11:05:59,353 - player_next_game - INFO - Next game Matchup data for player is updated for 1641767
+2024-03-16 11:05:59,647 - player_next_game - INFO - Next game Matchup data for player is updated for 1627783
+2024-03-16 11:05:59,969 - player_next_game - INFO - Next game Matchup data for player is updated for 1627732
+2024-03-16 11:06:00,246 - player_next_game - INFO - Next game Matchup data for player is updated for 1629014
+2024-03-16 11:06:00,643 - player_next_game - INFO - Next game Matchup data for player is updated for 1630579
+2024-03-16 11:06:00,965 - player_next_game - INFO - Next game Matchup data for player is updated for 1641771
+2024-03-16 11:06:01,415 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:06:01,445 - player_next_game - INFO - Couldn't find Next Game for 1630606
+2024-03-16 11:06:01,756 - player_next_game - INFO - Next game Matchup data for player is updated for 203935
+2024-03-16 11:06:02,053 - player_next_game - INFO - Next game Matchup data for player is updated for 1630696
+2024-03-16 11:06:02,369 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:06:02,393 - player_next_game - INFO - Couldn't find Next Game for 202397
+2024-03-16 11:06:02,752 - player_next_game - INFO - Next game Matchup data for player is updated for 1630188
+2024-03-16 11:06:03,055 - player_next_game - INFO - Next game Matchup data for player is updated for 1631173
+2024-03-16 11:06:03,369 - player_next_game - INFO - Next game Matchup data for player is updated for 1628372
+2024-03-16 11:06:03,712 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:06:03,736 - player_next_game - INFO - Couldn't find Next Game for 1631095
+2024-03-16 11:06:04,120 - player_next_game - INFO - Next game Matchup data for player is updated for 1641733
+2024-03-16 11:06:04,289 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:06:04,319 - player_next_game - INFO - Couldn't find Next Game for 1631110
+2024-03-16 11:06:04,779 - player_next_game - INFO - Next game Matchup data for player is updated for 1630531
+2024-03-16 11:06:05,164 - player_next_game - INFO - Next game Matchup data for player is updated for 1630205
+2024-03-16 11:06:05,661 - player_next_game - INFO - Next game Matchup data for player is updated for 1630191
+2024-03-16 11:06:06,004 - player_next_game - INFO - Next game Matchup data for player is updated for 1631124
+2024-03-16 11:06:06,253 - player_next_game - INFO - Next game Matchup data for player is updated for 1629622
+2024-03-16 11:06:06,799 - player_next_game - INFO - Next game Matchup data for player is updated for 1630591
+2024-03-16 11:06:07,222 - player_next_game - INFO - Next game Matchup data for player is updated for 1631306
+2024-03-16 11:06:07,620 - player_next_game - INFO - Next game Matchup data for player is updated for 1630256
+2024-03-16 11:06:08,074 - player_next_game - INFO - Next game Matchup data for player is updated for 1628369
+2024-03-16 11:06:08,390 - player_next_game - INFO - Next game Matchup data for player is updated for 1630678
+2024-03-16 11:06:08,663 - player_next_game - INFO - Next game Matchup data for player is updated for 202066
+2024-03-16 11:06:08,951 - player_next_game - INFO - Next game Matchup data for player is updated for 1631207
+2024-03-16 11:06:09,331 - player_next_game - INFO - Next game Matchup data for player is updated for 1628464
+2024-03-16 11:06:09,717 - player_next_game - INFO - Next game Matchup data for player is updated for 1630560
+2024-03-16 11:06:10,230 - player_next_game - INFO - Next game Matchup data for player is updated for 1641708
+2024-03-16 11:06:10,579 - player_next_game - INFO - Next game Matchup data for player is updated for 1641709
+2024-03-16 11:06:10,895 - player_next_game - INFO - Next game Matchup data for player is updated for 202691
+2024-03-16 11:06:11,160 - player_next_game - INFO - Next game Matchup data for player is updated for 202684
+2024-03-16 11:06:11,416 - player_next_game - INFO - Next game Matchup data for player is updated for 1630550
+2024-03-16 11:06:11,996 - player_next_game - INFO - Next game Matchup data for player is updated for 1629680
+2024-03-16 11:06:12,412 - player_next_game - INFO - Next game Matchup data for player is updated for 1630214
+2024-03-16 11:06:12,670 - player_next_game - INFO - Next game Matchup data for player is updated for 1631210
+2024-03-16 11:06:13,148 - player_next_game - INFO - Next game Matchup data for player is updated for 1630167
+2024-03-16 11:06:13,392 - player_next_game - INFO - Next game Matchup data for player is updated for 1626157
+2024-03-16 11:06:13,929 - player_next_game - INFO - Next game Matchup data for player is updated for 1629018
+2024-03-16 11:06:14,232 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:06:14,282 - player_next_game - INFO - Couldn't find Next Game for 1631131
+2024-03-16 11:06:14,623 - player_next_game - INFO - Next game Matchup data for player is updated for 200782
+2024-03-16 11:06:15,077 - player_next_game - INFO - Next game Matchup data for player is updated for 1626167
+2024-03-16 11:06:15,615 - player_next_game - INFO - Next game Matchup data for player is updated for 1641816
+2024-03-16 11:06:16,026 - player_next_game - INFO - Next game Matchup data for player is updated for 1630649
+2024-03-16 11:06:16,483 - player_next_game - INFO - Next game Matchup data for player is updated for 202685
+2024-03-16 11:06:16,907 - player_next_game - INFO - Next game Matchup data for player is updated for 1627832
+2024-03-16 11:06:18,385 - player_next_game - INFO - Next game Matchup data for player is updated for 1629020
+2024-03-16 11:06:18,873 - player_next_game - INFO - Next game Matchup data for player is updated for 1630170
+2024-03-16 11:06:19,161 - player_next_game - INFO - Next game Matchup data for player is updated for 1628426
+2024-03-16 11:06:19,389 - player_next_game - INFO - Next game Matchup data for player is updated for 1629216
+2024-03-16 11:06:19,709 - player_next_game - INFO - Next game Matchup data for player is updated for 202696
+2024-03-16 11:06:20,129 - player_next_game - INFO - Next game Matchup data for player is updated for 1629731
+2024-03-16 11:06:20,579 - player_next_game - INFO - Next game Matchup data for player is updated for 1630532
+2024-03-16 11:06:20,997 - player_next_game - INFO - Next game Matchup data for player is updated for 1629021
+2024-03-16 11:06:21,321 - player_next_game - INFO - Next game Matchup data for player is updated for 1630688
+2024-03-16 11:06:21,733 - player_next_game - INFO - Next game Matchup data for player is updated for 1631133
+2024-03-16 11:06:21,993 - player_next_game - INFO - Next game Matchup data for player is updated for 1641716
+2024-03-16 11:06:22,661 - player_next_game - INFO - Next game Matchup data for player is updated for 1629022
+2024-03-16 11:06:22,859 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:06:22,885 - player_next_game - INFO - Couldn't find Next Game for 1641717
+2024-03-16 11:06:23,321 - player_next_game - INFO - Next game Matchup data for player is updated for 1641775
+2024-03-16 11:06:23,713 - player_next_game - INFO - Next game Matchup data for player is updated for 1629023
+2024-03-16 11:06:23,976 - player_next_game - INFO - Next game Matchup data for player is updated for 1630613
+2024-03-16 11:06:25,081 - player_next_game - INFO - Next game Matchup data for player is updated for 1631102
+2024-03-16 11:06:25,340 - player_next_game - INFO - Next game Matchup data for player is updated for 1629139
+2024-03-16 11:06:25,718 - player_next_game - INFO - Next game Matchup data for player is updated for 1630322
+2024-03-16 11:06:26,171 - player_next_game - INFO - Next game Matchup data for player is updated for 1630570
+2024-03-16 11:06:26,595 - player_next_game - INFO - Next game Matchup data for player is updated for 1631212
+2024-03-16 11:06:26,794 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:06:26,837 - player_next_game - INFO - Couldn't find Next Game for 1641705
+2024-03-16 11:06:27,211 - player_next_game - INFO - Next game Matchup data for player is updated for 1631104
+2024-03-16 11:06:27,657 - player_next_game - INFO - Next game Matchup data for player is updated for 201566
+2024-03-16 11:06:27,980 - player_next_game - INFO - Next game Matchup data for player is updated for 1629632
+2024-03-16 11:06:28,708 - player_next_game - INFO - Next game Matchup data for player is updated for 1628401
+2024-03-16 11:06:29,075 - player_next_game - INFO - Next game Matchup data for player is updated for 1641727
+2024-03-16 11:06:29,503 - player_next_game - INFO - Next game Matchup data for player is updated for 1641715
+2024-03-16 11:06:30,024 - player_next_game - INFO - Next game Matchup data for player is updated for 1630598
+2024-03-16 11:06:30,374 - player_next_game - INFO - Next game Matchup data for player is updated for 203952
+2024-03-16 11:06:30,580 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:06:30,611 - player_next_game - INFO - Couldn't find Next Game for 1629623
+2024-03-16 11:06:31,127 - player_next_game - INFO - Next game Matchup data for player is updated for 1629684
+2024-03-16 11:06:31,353 - player_next_game - ERROR - Error get_upcoming_game_matchup from api Matchup data: Expecting value: line 1 column 1 (char 0)
+2024-03-16 11:06:31,381 - player_next_game - INFO - Couldn't find Next Game for 1631114
+2024-03-16 11:06:32,029 - player_next_game - INFO - Next game Matchup data for player is updated for 1631119
+2024-03-16 11:06:32,304 - player_next_game - INFO - Next game Matchup data for player is updated for 1629026
+2024-03-16 11:06:32,644 - player_next_game - INFO - Next game Matchup data for player is updated for 1631109
+2024-03-16 11:06:33,067 - player_next_game - INFO - Next game Matchup data for player is updated for 1631466
+2024-03-16 11:06:33,549 - player_next_game - INFO - Next game Matchup data for player is updated for 1630172
+2024-03-16 11:06:33,929 - player_next_game - INFO - Next game Matchup data for player is updated for 1630533
+2024-03-16 11:06:34,455 - player_next_game - INFO - Next game Matchup data for player is updated for 1629057
+2024-03-16 11:06:34,841 - player_next_game - INFO - Next game Matchup data for player is updated for 1631246
+2024-03-16 11:06:35,123 - player_next_game - INFO - Next game Matchup data for player is updated for 1629627
+2024-03-16 11:06:35,388 - player_next_game - INFO - Next game Matchup data for player is updated for 1630592
+2024-03-16 11:06:35,626 - player_next_game - INFO - Next game Matchup data for player is updated for 1629685
+2024-03-16 11:06:36,045 - player_next_game - INFO - Next game Matchup data for player is updated for 1630164
+2024-03-16 11:06:36,454 - player_next_game - INFO - Next game Matchup data for player is updated for 1631209
+2024-03-16 11:06:36,738 - player_next_game - INFO - Next game Matchup data for player is updated for 1626174
+2024-03-16 11:06:37,243 - player_next_game - INFO - Next game Matchup data for player is updated for 1626153
+2024-03-16 11:06:37,719 - player_next_game - INFO - Next game Matchup data for player is updated for 201152
+2024-03-16 11:06:38,039 - player_next_game - INFO - Next game Matchup data for player is updated for 1629027
+2024-03-16 11:06:38,306 - player_next_game - INFO - Next game Matchup data for player is updated for 1630209
+2024-03-16 11:06:38,758 - player_next_game - INFO - Next game Matchup data for player is updated for 203469
+2024-03-16 11:06:39,181 - player_next_game - INFO - Next game Matchup data for player is updated for 1627826

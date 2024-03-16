@@ -311,12 +311,17 @@ function mapStatToAbrv(statSelected) {
     switch (statSelected) {
         case 'Points':
             return 'PTS';
+        case '3 Pointers':
+            return 'FG3M'
         case 'Assists':
             return 'AST';
         case 'Rebounds':
             return 'REB';
-        case '3 Pointers':
-            return 'FG3M'
+        case 'Blocks':
+            return 'BLK';
+        case 'Steals':
+            return 'STL';
+
         default:
             return null; // Return null for unsupported stats
     }
@@ -519,6 +524,7 @@ document.addEventListener('DOMContentLoaded', function () {
             statDropdownItems.forEach(item => item.classList.remove('active'));
             overUnderDropdownItems.forEach(item => item.classList.remove('active'));
             submitButton.disabled = true;
+            console.log("RESET BUTTON CLICKED")
         });
 
     });
