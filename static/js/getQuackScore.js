@@ -512,21 +512,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Error processing data:', error);
             });
 
-
-        // Resets form
-        const resetButton = document.getElementById('resetButton');
-
-        resetButton.addEventListener('click', function () {
-            // Reset the form fields
-            document.getElementById('myForm').reset();
-            document.getElementById('statDropdownButton').textContent = 'Select a Stat';
-            document.getElementById('overUnderDropdownButton').textContent = 'Over/Under';
-            statDropdownItems.forEach(item => item.classList.remove('active'));
-            overUnderDropdownItems.forEach(item => item.classList.remove('active'));
-            submitButton.disabled = true;
-            console.log("RESET BUTTON CLICKED")
-        });
-
     });
 });
 
