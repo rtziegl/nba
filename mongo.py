@@ -6,6 +6,10 @@ from nba_api.stats.static import players
 from nba_api.stats.endpoints import playergamelog
 from nba_api.stats.endpoints import PlayerNextNGames, PlayerGameLog, CommonPlayerInfo
 from nba_api.stats.library.parameters import SeasonAll
+from nba_api.stats.endpoints import AllTimeLeadersGrids
+from nba_api.stats.endpoints.leagueleaders import LeagueLeaders
+import datetime
+
 
 from flask import Flask, jsonify, request, render_template
 
@@ -325,14 +329,45 @@ try:
     #nba_update_active_players(db, active_players_logger)
    # print("NBA PLAYER NAME and ID DATA UPDATED")
 
-    nba_update_player_game_data(db, player_game_data_logger)
-    print("NBA PLAYER GAME DATA UPDATED")
+    # nba_update_player_game_data(db, player_game_data_logger)
+    # print("NBA PLAYER GAME DATA UPDATED")
 
-    nba_update_player_next_game_matchup(db, player_next_game_logger)
-    print("NBA PLAYER MATCHUP LOG UPDATED")
+    # nba_update_player_next_game_matchup(db, player_next_game_logger)
+    # print("NBA PLAYER MATCHUP LOG UPDATED")
    
-    update_players_last_played_game(db, player_recent_game_logger)
-    print("Updated players most recent game")
+    # update_players_last_played_game(db, player_recent_game_logger)
+    # print("Updated players most recent game")
+    
+   # Get the current season
+    current_year = datetime.datetime.now().year
+    current_season = f"{current_year - 1}-{str(current_year)[-2:]}"
+    print(current_season)
+
+    # Define the required parameters
+    league_id = "00"  # NBA league ID
+    per_mode = "Totals"  # Per mode (e.g., totals)
+    scope = "S"  # Scope (e.g., S for regular season)
+    season = current_season  # Current season
+    season_type = "Regular Season"  # Season type
+
+    league_leaders_fg_pct = LeagueLeaders(
+    league_id=league_id,
+    per_mode48=per_mode,
+    scope=scope,
+    season=season,
+    season_type_all_star=season_type,
+    stat_category_abbreviation="FG_PCT"
+)
+
+# Get the data
+    league_leaders_fg_pct_data = league_leaders_fg_pct.get_data_frames()[0]  # Get the first DataFrame
+# Get the top player for field goal percentage
+    top_10_fg_pct_players = league_leaders_fg_pct_data.head(25)
+
+# Display the top player for field goal percentage
+    print("Top 25 players for FG_PCT:")
+    for index, player in top_10_fg_pct_players.iterrows():
+        print(f"{player['PLAYER']} - {player['FG_PCT']}")
     
     # db.players.update_many({}, {'$rename': {'lastgame': 'last_game'}})
 
@@ -340,11 +375,54 @@ try:
 
 except Exception as e:
     print(e)
+    
 
 
+from nba_api.stats.endpoints.homepagev2 import HomePageV2
+
+# Define the parameters
+params = {
+    'game_scope_detailed': 'Season',
+    'league_id': '00',
+    'player_or_team': 'Team',
+    'player_scope': 'All Players',
+    'season': '2023-24',
+    'season_type_playoffs': 'Regular Season',
+    'stat_type': 'Traditional'
+}
+
+# Create an instance of HomePageV2 with the parameters
+homepage = HomePageV2(**params)
+
+# Retrieve the data as pandas DataFrame objects
+data_frames = homepage.get_data_frames()
+print(data_frames)
 
 
+from nba_api.stats.endpoints.teamestimatedmetrics import TeamEstimatedMetrics
 
+# Define the parameters
+params = {
+    "league_id": "00",
+    "season": "2023-24",
+    "season_type": "Regular Season"
+}
+
+try:
+    # Create an instance of the TeamEstimatedMetrics class with the parameters
+    team_estimated_metrics = TeamEstimatedMetrics(**params)
+
+    # Call the API and get the response
+    data = team_estimated_metrics.get_data_frames()[0]
+
+    # Sort the data frame by the 'E_OFF_RATING' column in descending order
+    sorted_data = data.sort_values(by='E_OFF_RATING', ascending=False)
+
+    # Print the sorted response
+    print(sorted_data)
+
+except Exception as e:
+    print("Error:", e)
 
 
 
