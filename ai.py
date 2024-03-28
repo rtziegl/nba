@@ -121,62 +121,10 @@ def get_regular_season_data_per_team(team_id):
             (regular_season_data['GAME_DATE'] <= '2024-04-30')
         ]
 
+        team_id_and_game_ids = []
         # Extract game IDs
         game_ids = regular_season_data['GAME_ID'].tolist()
-
-        # Create an instance of the TeamEstimatedMetrics class with the parameters
-        metrics_params = {
-            "league_id": "00",
-            "season": "2023-24",
-            "season_type": "Regular Season"
-        }
-        team_estimated_metrics = TeamEstimatedMetrics(**metrics_params)
-
-        # Call the API and get the response
-        metrics_data = team_estimated_metrics.get_data_frames()[0]
-        desired_columns = ['TEAM_NAME', 'TEAM_ID', 'W_PCT', 'E_OFF_RATING', 'E_DEF_RATING', 'E_NET_RATING', 
-                   'E_AST_RATIO', 'E_OREB_PCT', 'E_DREB_PCT', 'E_REB_PCT', 'E_TM_TOV_PCT', 'E_PACE']
-        team_stats = metrics_data[desired_columns]
-        
-        for index, row in team_stats.iterrows():
-            team_data = {
-                "TEAM_NAME": row["TEAM_NAME"],
-                "TEAM_ID": row["TEAM_ID"],
-                "W_PCT": row["W_PCT"],
-                "E_OFF_RATING": row["E_OFF_RATING"],
-                "E_DEF_RATING": row["E_DEF_RATING"],
-                "E_NET_RATING": row["E_NET_RATING"],
-                "E_AST_RATIO": row["E_AST_RATIO"],
-                "E_OREB_PCT": row["E_OREB_PCT"],
-                "E_DREB_PCT": row["E_DREB_PCT"],
-                "E_REB_PCT": row["E_REB_PCT"],
-                "E_TM_TOV_PCT": row["E_TM_TOV_PCT"],
-                "E_PACE": row["E_PACE"]
-            }
-            print(team_data)
-    
-    # In
-        
-        # Filter data for the desired team ID
-        team_metrics_data = metrics_data[metrics_data['TEAM_ID'] == team_id]
-
-        # Extract relevant metrics
-        team_metrics = team_metrics_data.iloc[0]  # Assuming only one row per team
-
-        # Extract desired estimated metrics
-        team_metrics_dict = {
-            'E_OFF_RATING': team_metrics['E_OFF_RATING'],
-            'E_DEF_RATING': team_metrics['E_DEF_RATING'],
-            'E_NET_RATING': team_metrics['E_NET_RATING'],
-            'E_PACE': team_metrics['E_PACE'],
-            'E_AST_RATIO': team_metrics['E_AST_RATIO'],
-            'E_OREB_PCT': team_metrics['E_OREB_PCT'],
-            'E_DREB_PCT': team_metrics['E_DREB_PCT'],
-            'E_REB_PCT': team_metrics['E_REB_PCT'],
-            'E_TM_TOV_PCT': team_metrics['E_TM_TOV_PCT']
-        }
-
-        return game_ids, team_metrics_dict
+        return game_ids
 
     except Exception as e:
         print("Error:", e)
@@ -196,6 +144,7 @@ print(uri)
 # Create a MongoClient instance
 client = MongoClient(uri, tlsCAFile=certifi.where())
 print(client)
+
 # Get todays matchups
 matchups = get_todays_matchups()
 todays_team_ids = get_todays_team_ids(matchups)
@@ -206,17 +155,50 @@ print(todays_team_ids)
 
 # Initialize a dictionary to store regular season data for each team
 all_regular_season_data_dict = {}
+# Define your features
+features = ["TEAM1_TEAM_NAME", "TEAM1_TEAM_ABBREVIATION", "TEAM1_WL", "TEAM1_HOMEORAWAY", 
+            "TEAM1_FGM", "TEAM1_FGA", "TEAM1_FG_PCT", "TEAM1_FG3M", "TEAM1_FG3A",
+            "TEAM1_FG3_PCT", "TEAM1_FTM", "TEAM1_FTA", "TEAM1_FT_PCT", "TEAM1_OREB", 
+            "TEAM1_DREB", "TEAM1_REB", "TEAM1_AST", "TEAM1_STL", "TEAM1_BLK", "TEAM1_TOV",
+            "TEAM1_PF", "TEAM1_PLUS_MINUS", "TEAM2_TEAM_NAME", "TEAM2_TEAM_ABBREVIATION", 
+            "TEAM2_WL", "TEAM2_HOMEORAWAY", "TEAM2_FGM", "TEAM2_FGA", "TEAM2_FG_PCT", 
+            "TEAM2_FG3M", "TEAM2_FG3A", "TEAM2_FG3_PCT", "TEAM2_FTM", "TEAM2_FTA", 
+            "TEAM2_FT_PCT", "TEAM2_OREB", "TEAM2_DREB", "TEAM2_REB", "TEAM2_AST", 
+            "TEAM2_STL", "TEAM2_BLK", "TEAM2_TOV", "TEAM2_PF", "TEAM2_PLUS_MINUS", 
+            "TARGET"]
+
+# Create an empty DataFrame with the specified features
+prepared_data = pd.DataFrame(columns=features)
+
+# Print the empty DataFrame
+print(prepared_data)
 
 try:
     client.admin.command('ping')
     print("Pinged your deployment. You successfully connected to MongoDB!")
-     # Connect to MongoDB
+    # Connect to MongoDB
     db = client['nba']
     
     for team_id in todays_team_ids:
-        game_ids, team_metrics = get_regular_season_data_per_team(team_id)
+        game_ids = get_regular_season_data_per_team(team_id)
         game_stats = {}
 
+        # Fetch team ranking data from the database
+        team_ranks_data = {}
+        for rank_data in db.teamsranks.find():
+            team_ranks_data[rank_data["TEAM_ID"]] = {
+                "W_PCT": rank_data["W_PCT"],
+                "E_OFF_RATING": rank_data["E_OFF_RATING"],
+                "E_DEF_RATING": rank_data["E_DEF_RATING"],
+                "E_NET_RATING": rank_data["E_NET_RATING"],
+                "E_AST_RATIO": rank_data["E_AST_RATIO"],
+                "E_OREB_PCT": rank_data["E_OREB_PCT"],
+                "E_DREB_PCT": rank_data["E_DREB_PCT"],
+                "E_REB_PCT": rank_data["E_REB_PCT"],
+                "E_TM_TOV_PCT": rank_data["E_TM_TOV_PCT"],
+                "E_PACE": rank_data["E_PACE"]
+            }
+            
         for game_id in game_ids:
             game_data = db.games.find_one({"game_id": game_id})
             if game_data:
@@ -226,13 +208,95 @@ try:
                     team_id = team_info['team_id']
                     team_stats[team_id] = team_info['statistics']
 
+                # Merge team statistics with team ranking data
+                for team_id, stats in team_stats.items():
+                    # Check if ranking data is available for the team
+                    if team_id in team_ranks_data:
+                        # Merge statistics with ranking data
+                        stats.update(team_ranks_data[team_id])
+
                 # Add the game stats to the dictionary
                 game_stats[game_id] = team_stats
             else:
                 print(f"No data found for game ID: {game_id}")
-                
-        # print(game_stats)
         
+        
+        for game_id, teams_data in game_stats.items():
+            try:
+                print("Game ID:", game_id)
+                print("Teams data:", teams_data)
+
+                # Ensure there are statistics for two distinct teams in the game
+                if len(teams_data) != 2:
+                    raise ValueError("Invalid number of teams in game data")
+
+                # Determine which team is team_1 for this game
+                team1_id = team_id  # The current team_id from the loop is team_1
+
+                # Extract team statistics for team 1 and team 2
+                team1_stats = teams_data[team1_id]
+                team2_id = [t_id for t_id in teams_data.keys() if t_id != team1_id][0]
+                team2_stats = teams_data[team2_id]
+
+                # Extract target variable (outcome)
+                target = team1_stats['WL']  # Assuming team1's win/loss is the target
+                
+                # Combine team statistics into a single dictionary
+                row_data = {}
+                row_data.update({f"TEAM1_{key}": value for key, value in team1_stats.items()})
+                row_data.update({f"TEAM2_{key}": value for key, value in team2_stats.items()})
+                row_data['TARGET'] = target
+
+                # Convert the dictionary to a DataFrame
+                row_df = pd.DataFrame(row_data, index=[0])
+
+                # Concatenate the row DataFrame with the prepared_data DataFrame
+                prepared_data = pd.concat([prepared_data, row_df], ignore_index=True)
+                
+                print(prepared_data)
+
+                # Print team statistics for debugging
+                print("Team 1 stats:", team1_stats)
+                print("Team 2 stats:", team2_stats)
+            except Exception as e:
+                print("Error processing game data:", e)
+    
+    
+    # Drop the original team name and team abbreviation columns
+    prepared_data.drop(columns=['TEAM1_TEAM_NAME', 'TEAM1_TEAM_ABBREVIATION', 'TEAM2_TEAM_NAME', 'TEAM2_TEAM_ABBREVIATION'], inplace=True)
+
+    # Convert the target variable y to integer type
+    prepared_data['TARGET'] = prepared_data['TARGET'].astype(int)
+
+    # 3. Train Model
+    from sklearn.model_selection import train_test_split
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.metrics import classification_report
+    from sklearn.preprocessing import MinMaxScaler
+
+    # Separate features and target variable
+    X = prepared_data.drop(columns=['TARGET'])
+    y = prepared_data['TARGET']
+
+    # Apply Min-Max scaling to features
+    scaler = MinMaxScaler()
+    X_scaled = scaler.fit_transform(X)
+
+    # Split scaled data into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+
+    # Initialize and train the model
+    model = LogisticRegression()
+    model.fit(X_train, y_train)
+
+    # 4. Evaluate Model
+    # Make predictions on the test set
+    y_pred = model.predict(X_test)
+
+    # Evaluate the model
+    print(classification_report(y_test, y_pred))
+
+    
     client.close()
 
 except Exception as e:
