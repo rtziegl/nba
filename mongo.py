@@ -8,6 +8,7 @@ from nba_api.stats.endpoints import PlayerNextNGames, PlayerGameLog, CommonPlaye
 from nba_api.stats.library.parameters import SeasonAll
 from nba_api.stats.endpoints import AllTimeLeadersGrids
 from nba_api.stats.endpoints import LeagueGameFinder
+from nba_api.stats.endpoints.teamestimatedmetrics import TeamEstimatedMetrics
 from nba_api.stats.endpoints.leagueleaders import LeagueLeaders
 import datetime
 
@@ -386,7 +387,61 @@ def update_team_game_data(db, logging):
 
     except Exception as e:
         logging.error(f"Error updating game data: {str(e)}")
+
+def update_team_ranks_data(db,logging):
+    try:
+     # Create an instance of the TeamEstimatedMetrics class with the parameters
+        metrics_params = {
+            "league_id": "00",
+            "season": "2023-24",
+            "season_type": "Regular Season"
+        }
+        team_estimated_metrics = TeamEstimatedMetrics(**metrics_params)
+
+        # Call the API and get the response
+        metrics_data = team_estimated_metrics.get_data_frames()[0]
         
+        desired_columns = ['TEAM_NAME', 'TEAM_ID', 'W_PCT', 'E_OFF_RATING', 'E_DEF_RATING', 'E_NET_RATING', 
+                   'E_AST_RATIO', 'E_OREB_PCT', 'E_DREB_PCT', 'E_REB_PCT', 'E_TM_TOV_PCT', 'E_PACE']
+        
+        team_stats = metrics_data[desired_columns]
+        
+        collection = db['teamsranks']  # Replace 'your_collection' with your actual collection name
+        
+        # Clear the collection
+        collection.delete_many({})
+        
+        # Create a list to hold team data
+        team_data_list = []
+
+        for index, row in team_stats.iterrows():
+            team_data = {
+                "TEAM_NAME": row["TEAM_NAME"],
+                "TEAM_ID": row["TEAM_ID"],
+                "W_PCT": row["W_PCT"],
+                "E_OFF_RATING": row["E_OFF_RATING"],
+                "E_DEF_RATING": row["E_DEF_RATING"],
+                "E_NET_RATING": row["E_NET_RATING"],
+                "E_AST_RATIO": row["E_AST_RATIO"],
+                "E_OREB_PCT": row["E_OREB_PCT"],
+                "E_DREB_PCT": row["E_DREB_PCT"],
+                "E_REB_PCT": row["E_REB_PCT"],
+                "E_TM_TOV_PCT": row["E_TM_TOV_PCT"],
+                "E_PACE": row["E_PACE"]
+            }
+            # Append the team data to the list
+            team_data_list.append(team_data)
+            # Log the updated game data
+            logging.info("Team ranks updated: %s", row['TEAM_ID'])
+
+        # Insert all team data into the collection
+        collection.insert_many(team_data_list)
+         # Log success message
+        logging.info("All team ranks updated")
+            
+    except Exception as e:
+        logging.error(f"Error updating team rank data: {str(e)}")
+      
 # Load environment variables from .env file
 load_dotenv()
 
@@ -404,6 +459,7 @@ player_game_data_logger = setup_logger('player_game_data', 'player_game_data.log
 active_players_logger = setup_logger('active_players', 'active_players.log')
 player_recent_game_logger = setup_logger('player_recent_game', 'player_recent_game.log')
 team_game_data_logger = setup_logger('team_game_data', 'team_game_data.log')
+team_rank_data_logger = setup_logger('team_rank_data', 'team_rank_data.log')
 
 # Send a ping to confirm a successful connection
 try:
@@ -424,8 +480,11 @@ try:
     # update_players_last_played_game(db, player_recent_game_logger)
     # print("UPDATED PLAYERS MOST RECENT GAME")
     
-    update_team_game_data(db , team_game_data_logger)
-    print("UPDATED TEAM GAME DATA")
+    # update_team_game_data(db , team_game_data_logger)
+    # print("UPDATED TEAM GAME DATA")
+    
+    update_team_ranks_data(db , team_rank_data_logger)
+    print("UPDATED TEAM RANK DATA")
 
     client.close()
 

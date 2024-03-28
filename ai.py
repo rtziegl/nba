@@ -4,7 +4,19 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression
 from nba_api.stats.endpoints import ScoreboardV2
 from datetime import datetime
+
+from pymongo import MongoClient, DESCENDING
+from pymongo.server_api import ServerApi
+from dotenv import load_dotenv
+
 import json
+import json
+import os
+import certifi
+import requests
+import pandas as pd
+import logging
+
 
 def get_todays_matchups():
     try:
@@ -87,15 +99,11 @@ def get_todays_team_ids(matchups):
     return team_ids
 
 def get_regular_season_data_per_team(team_id):
-    # Define the features you want to use for training the model
-    features = ['FGM', 'FGA', 'FG_PCT', 'FG3M', 'FG3A', 'FG3_PCT', 
-            'FTM', 'FTA', 'FT_PCT', 'OREB', 'DREB', 'REB', 'AST', 'STL', 
-            'BLK', 'TOV', 'PF', 'PLUS_MINUS']
     try:
         # Define parameters for game search
         params = {
+            "team_id_nullable": team_id,
             "player_or_team_abbreviation": "T",  # T for team
-            "league_id_nullable": '00' 
         }
 
         # Create LeagueGameFinder instance with parameters
@@ -113,64 +121,42 @@ def get_regular_season_data_per_team(team_id):
             (regular_season_data['GAME_DATE'] <= '2024-04-30')
         ]
 
-        # Map WL column to 1 for W (win) and 0 for L (loss)
-        regular_season_data['WL'] = regular_season_data['WL'].map({'W': 1, 'L': 0})
+        # Extract game IDs
+        game_ids = regular_season_data['GAME_ID'].tolist()
 
-        # Add a new column 'HomeOrAway' based on the 'Matchup' column
-        regular_season_data['HOMEORAWAY'] = regular_season_data['MATCHUP'].apply(lambda x: 1 if 'vs.' in x else 0)
-        
-        print(regular_season_data)
-        
-        # Group the DataFrame by game ID
-        grouped_data = regular_season_data.groupby('GAME_ID')
-
-        # Initialize an empty list to store game information
-        all_games_info = []
-
-        # Iterate over each group and construct the JSON structure
-        for game_id, group in grouped_data:
-            game_info = {
-                "game_id": game_id,
-                "date": group['GAME_DATE'].iloc[0],
-                "teams": []
-            }
-            
-            # Iterate over each row in the group
-            for index, row in group.iterrows():
-                team_data = {
-                    "team_id": row['TEAM_ID'],
-                    "statistics": {
-                        "TEAM_NAME": row['TEAM_NAME'],
-                        "TEAM_ABBREVIATION": row['TEAM_ABBREVIATION'],
-                        "WL": row['WL'],
-                        "HOMEORAWAY": row['HOMEORAWAY'],
-                        **{feature: row[feature] for feature in features}
-                    }
-                }
-                game_info["teams"].append(team_data)
-            
-            # Append the game information to the list
-            all_games_info.append(game_info)
-
-        # Convert the list of game information to JSON format
-        all_games_json = json.dumps(all_games_info, indent=4)
-
-        # Print the JSON structure
-        print(all_games_json)
-        
-        # Define the parameters for estimated metrics
+        # Create an instance of the TeamEstimatedMetrics class with the parameters
         metrics_params = {
             "league_id": "00",
             "season": "2023-24",
             "season_type": "Regular Season"
         }
-
-        # Create an instance of the TeamEstimatedMetrics class with the parameters
         team_estimated_metrics = TeamEstimatedMetrics(**metrics_params)
 
         # Call the API and get the response
         metrics_data = team_estimated_metrics.get_data_frames()[0]
-
+        desired_columns = ['TEAM_NAME', 'TEAM_ID', 'W_PCT', 'E_OFF_RATING', 'E_DEF_RATING', 'E_NET_RATING', 
+                   'E_AST_RATIO', 'E_OREB_PCT', 'E_DREB_PCT', 'E_REB_PCT', 'E_TM_TOV_PCT', 'E_PACE']
+        team_stats = metrics_data[desired_columns]
+        
+        for index, row in team_stats.iterrows():
+            team_data = {
+                "TEAM_NAME": row["TEAM_NAME"],
+                "TEAM_ID": row["TEAM_ID"],
+                "W_PCT": row["W_PCT"],
+                "E_OFF_RATING": row["E_OFF_RATING"],
+                "E_DEF_RATING": row["E_DEF_RATING"],
+                "E_NET_RATING": row["E_NET_RATING"],
+                "E_AST_RATIO": row["E_AST_RATIO"],
+                "E_OREB_PCT": row["E_OREB_PCT"],
+                "E_DREB_PCT": row["E_DREB_PCT"],
+                "E_REB_PCT": row["E_REB_PCT"],
+                "E_TM_TOV_PCT": row["E_TM_TOV_PCT"],
+                "E_PACE": row["E_PACE"]
+            }
+            print(team_data)
+    
+    # In
+        
         # Filter data for the desired team ID
         team_metrics_data = metrics_data[metrics_data['TEAM_ID'] == team_id]
 
@@ -178,198 +164,240 @@ def get_regular_season_data_per_team(team_id):
         team_metrics = team_metrics_data.iloc[0]  # Assuming only one row per team
 
         # Extract desired estimated metrics
-        regular_season_data['E_OFF_RATING'] = team_metrics['E_OFF_RATING']
-        regular_season_data['E_DEF_RATING'] = team_metrics['E_DEF_RATING']
-        regular_season_data['E_NET_RATING'] = team_metrics['E_NET_RATING']
-        regular_season_data['E_PACE'] = team_metrics['E_PACE']
-        regular_season_data['E_AST_RATIO'] = team_metrics['E_AST_RATIO']
-        regular_season_data['E_OREB_PCT'] = team_metrics['E_OREB_PCT']
-        regular_season_data['E_DREB_PCT'] = team_metrics['E_DREB_PCT']
-        regular_season_data['E_REB_PCT'] = team_metrics['E_REB_PCT']
-        regular_season_data['E_TM_TOV_PCT'] = team_metrics['E_TM_TOV_PCT']
-        
+        team_metrics_dict = {
+            'E_OFF_RATING': team_metrics['E_OFF_RATING'],
+            'E_DEF_RATING': team_metrics['E_DEF_RATING'],
+            'E_NET_RATING': team_metrics['E_NET_RATING'],
+            'E_PACE': team_metrics['E_PACE'],
+            'E_AST_RATIO': team_metrics['E_AST_RATIO'],
+            'E_OREB_PCT': team_metrics['E_OREB_PCT'],
+            'E_DREB_PCT': team_metrics['E_DREB_PCT'],
+            'E_REB_PCT': team_metrics['E_REB_PCT'],
+            'E_TM_TOV_PCT': team_metrics['E_TM_TOV_PCT']
+        }
 
-        return regular_season_data
+        return game_ids, team_metrics_dict
 
     except Exception as e:
         print("Error:", e)
+        return None, None
 
 # Predict win probabilities for each team using the logistic regression model
 def predict_win_probabilities(model, X):
     return model.predict_proba(X)[:, 1]  # Predict probabilities for class 1 (win)
 
+# Load environment variables from .env file
+load_dotenv()
 
+# Retrieve the MongoDB Atlas URI from the environment
+uri = os.getenv("MONGODB_URI")
+print(uri)
+
+# Create a MongoClient instance
+client = MongoClient(uri, tlsCAFile=certifi.where())
+print(client)
 # Get todays matchups
 matchups = get_todays_matchups()
 todays_team_ids = get_todays_team_ids(matchups)
 print(matchups)
 print(todays_team_ids)
 
-from sklearn.linear_model import LogisticRegression
+# from sklearn.linear_model import LogisticRegression
 
 # Initialize a dictionary to store regular season data for each team
 all_regular_season_data_dict = {}
 
-# Loop through each team ID in team_ids
-for team_id in todays_team_ids:
-    # Get regular season data for the current team ID
-    regular_season_data = get_regular_season_data_per_team(team_id)
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+     # Connect to MongoDB
+    db = client['nba']
     
-    # Store the regular season data in the dictionary
-    all_regular_season_data_dict[team_id] = regular_season_data
+    for team_id in todays_team_ids:
+        game_ids, team_metrics = get_regular_season_data_per_team(team_id)
+        game_stats = {}
 
+        for game_id in game_ids:
+            game_data = db.games.find_one({"game_id": game_id})
+            if game_data:
+                # Extract team statistics from the game data
+                team_stats = {}
+                for team_info in game_data['teams']:
+                    team_id = team_info['team_id']
+                    team_stats[team_id] = team_info['statistics']
 
-# Define the features you want to use for training the model
-features = ['MIN', 'FGM', 'FGA', 'FG_PCT', 'FG3M', 'FG3A', 'FG3_PCT', 
-            'FTM', 'FTA', 'FT_PCT', 'OREB', 'DREB', 'REB', 'AST', 'STL', 
-            'BLK', 'TOV', 'PF', 'PLUS_MINUS']
+                # Add the game stats to the dictionary
+                game_stats[game_id] = team_stats
+            else:
+                print(f"No data found for game ID: {game_id}")
+                
+        # print(game_stats)
+        
+    client.close()
 
-continuous_ratings = ['E_OFF_RATING', 'E_DEF_RATING', 'E_NET_RATING', 'E_PACE', 
-                      'E_AST_RATIO', 'E_OREB_PCT', 'E_DREB_PCT', 'E_REB_PCT', 'E_TM_TOV_PCT']
-
-
-from sklearn.linear_model import LogisticRegression
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
-import numpy as np
-
-# Initialize lists to store features and labels
-X_train = []
-y_train = []
-
-# Loop through each matchup
-for game_id, teams_info in matchups:
-    home_team_info = teams_info[0] if teams_info[0][2] == 1 else teams_info[1]
-    away_team_info = teams_info[0] if teams_info[0][2] == 0 else teams_info[1]
+except Exception as e:
+    print(e)
+        
+# # Loop through each team ID in team_ids
+# for team_id in todays_team_ids:
+#     # Get regular season data for the current team ID
+#     regular_season_data = get_regular_season_data_per_team(team_id)
     
-    home_team_id, _, _ = home_team_info
-    away_team_id, _, _ = away_team_info
+#     # Store the regular season data in the dictionary
+#     all_regular_season_data_dict[team_id] = regular_season_data
 
-    # Get historical game data for home and away teams
-    home_team_games = all_regular_season_data_dict[home_team_id]
-    away_team_games = all_regular_season_data_dict[away_team_id]
 
-    # Calculate mean performance for home and away teams
-    home_team_avg = home_team_games[features].mean(axis=0)
-    away_team_avg = away_team_games[features].mean(axis=0)
+# # Define the features you want to use for training the model
+# features = ['MIN', 'FGM', 'FGA', 'FG_PCT', 'FG3M', 'FG3A', 'FG3_PCT', 
+#             'FTM', 'FTA', 'FT_PCT', 'OREB', 'DREB', 'REB', 'AST', 'STL', 
+#             'BLK', 'TOV', 'PF', 'PLUS_MINUS']
 
-    # Calculate mean continuous ratings for home and away teams
-    home_team_ratings = home_team_games[continuous_ratings].mean(axis=0)
-    away_team_ratings = away_team_games[continuous_ratings].mean(axis=0)
+# continuous_ratings = ['E_OFF_RATING', 'E_DEF_RATING', 'E_NET_RATING', 'E_PACE', 
+#                       'E_AST_RATIO', 'E_OREB_PCT', 'E_DREB_PCT', 'E_REB_PCT', 'E_TM_TOV_PCT']
 
-    # Calculate rating differences ensuring correct alignment
-    rating_diffs = np.where(home_team_ratings > away_team_ratings, home_team_ratings - away_team_ratings, away_team_ratings - home_team_ratings)
 
-    # Combine home and away team data as features along with rating differences
-    combined_features = np.concatenate((home_team_avg, away_team_avg, rating_diffs))
+# from sklearn.linear_model import LogisticRegression
+# from sklearn.preprocessing import MinMaxScaler
+# from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+# import numpy as np
 
-    # Determine label based on the outcome of historical matchups
-    # If the home team won more games, label = 1, else label = 0
-    home_team_wins = (home_team_games['WL'] == 1).sum()
-    away_team_wins = (away_team_games['WL'] == 1).sum()
+# # Initialize lists to store features and labels
+# X_train = []
+# y_train = []
+
+# # Loop through each matchup
+# for game_id, teams_info in matchups:
+#     home_team_info = teams_info[0] if teams_info[0][2] == 1 else teams_info[1]
+#     away_team_info = teams_info[0] if teams_info[0][2] == 0 else teams_info[1]
+    
+#     home_team_id, _, _ = home_team_info
+#     away_team_id, _, _ = away_team_info
+
+#     # Get historical game data for home and away teams
+#     home_team_games = all_regular_season_data_dict[home_team_id]
+#     away_team_games = all_regular_season_data_dict[away_team_id]
+
+#     # Calculate mean performance for home and away teams
+#     home_team_avg = home_team_games[features].mean(axis=0)
+#     away_team_avg = away_team_games[features].mean(axis=0)
+
+#     # Calculate mean continuous ratings for home and away teams
+#     home_team_ratings = home_team_games[continuous_ratings].mean(axis=0)
+#     away_team_ratings = away_team_games[continuous_ratings].mean(axis=0)
+
+#     # Calculate rating differences ensuring correct alignment
+#     rating_diffs = np.where(home_team_ratings > away_team_ratings, home_team_ratings - away_team_ratings, away_team_ratings - home_team_ratings)
+
+#     # Combine home and away team data as features along with rating differences
+#     combined_features = np.concatenate((home_team_avg, away_team_avg, rating_diffs))
+
+#     # Determine label based on the outcome of historical matchups
+#     # If the home team won more games, label = 1, else label = 0
+#     home_team_wins = (home_team_games['WL'] == 1).sum()
+#     away_team_wins = (away_team_games['WL'] == 1).sum()
     
 
-    # Determine label based on the average performance of home and away teams
-    weight_avg = 0.7  # Weight for average performance
-    weight_ratings = 0.3  # Weight for ratings
+#     # Determine label based on the average performance of home and away teams
+#     weight_avg = 0.7  # Weight for average performance
+#     weight_ratings = 0.3  # Weight for ratings
 
-    home_team_score = np.mean(home_team_avg) * weight_avg + np.mean(home_team_ratings) * weight_ratings
-    away_team_score = np.mean(away_team_avg) * weight_avg + np.mean(away_team_ratings) * weight_ratings
+#     home_team_score = np.mean(home_team_avg) * weight_avg + np.mean(home_team_ratings) * weight_ratings
+#     away_team_score = np.mean(away_team_avg) * weight_avg + np.mean(away_team_ratings) * weight_ratings
 
-    if home_team_score > away_team_score:
-        # Home team has higher weighted score
-        X_train.append(np.concatenate((home_team_avg, away_team_avg, rating_diffs)))
-        y_train.append(1)  # Assign label 1 for home team win
-    else:
-        # Away team has higher or equal weighted score
-        X_train.append(np.concatenate((home_team_avg, away_team_avg, rating_diffs)))
-        y_train.append(0)  # Assign label 0 for home team loss or tie
+#     if home_team_score > away_team_score:
+#         # Home team has higher weighted score
+#         X_train.append(np.concatenate((home_team_avg, away_team_avg, rating_diffs)))
+#         y_train.append(1)  # Assign label 1 for home team win
+#     else:
+#         # Away team has higher or equal weighted score
+#         X_train.append(np.concatenate((home_team_avg, away_team_avg, rating_diffs)))
+#         y_train.append(0)  # Assign label 0 for home team loss or tie
     
     
-# Convert lists to arrays
-X_train = np.array(X_train)
-y_train = np.array(y_train)
+# # Convert lists to arrays
+# X_train = np.array(X_train)
+# y_train = np.array(y_train)
 
-# Normalize features
-scaler = MinMaxScaler()
-X_train_normalized = scaler.fit_transform(X_train)
+# # Normalize features
+# scaler = MinMaxScaler()
+# X_train_normalized = scaler.fit_transform(X_train)
 
-# Initialize Logistic Regression with default hyperparameters
-logistic_model = LogisticRegression()
+# # Initialize Logistic Regression with default hyperparameters
+# logistic_model = LogisticRegression()
 
-# Fit the model to the entire normalized dataset
-logistic_model.fit(X_train_normalized, y_train)
+# # Fit the model to the entire normalized dataset
+# logistic_model.fit(X_train_normalized, y_train)
 
-# Predict probabilities for the normalized data
-y_pred_proba = logistic_model.predict_proba(X_train_normalized)
+# # Predict probabilities for the normalized data
+# y_pred_proba = logistic_model.predict_proba(X_train_normalized)
 
-# Extract probability of home team winning
-home_win_probabilities = y_pred_proba[:, 1]
+# # Extract probability of home team winning
+# home_win_probabilities = y_pred_proba[:, 1]
 
-# Calculate probability of away team winning
-away_win_probabilities = y_pred_proba[:, 0]
+# # Calculate probability of away team winning
+# away_win_probabilities = y_pred_proba[:, 0]
 
-total_win_probability = 0
-num_predicted_wins = 0
+# total_win_probability = 0
+# num_predicted_wins = 0
 
-# Loop through each matchup
-for idx, (game_id, teams_info) in enumerate(matchups):
-    home_team_info = teams_info[0] if teams_info[0][2] == 1 else teams_info[1]
-    away_team_info = teams_info[0] if teams_info[0][2] == 0 else teams_info[1]
+# # Loop through each matchup
+# for idx, (game_id, teams_info) in enumerate(matchups):
+#     home_team_info = teams_info[0] if teams_info[0][2] == 1 else teams_info[1]
+#     away_team_info = teams_info[0] if teams_info[0][2] == 0 else teams_info[1]
 
-    home_win_probability = home_win_probabilities[idx]
-    away_win_probability = away_win_probabilities[idx]
+#     home_win_probability = home_win_probabilities[idx]
+#     away_win_probability = away_win_probabilities[idx]
     
-    home_team_name = home_team_info[1]
-    away_team_name = away_team_info[1]
+#     home_team_name = home_team_info[1]
+#     away_team_name = away_team_info[1]
 
 
-    # Print game ID and win probabilities
-    print(f"Game ID: {game_id}")
-    print(f"{home_team_name} Win Probability (Logistic Regression): {home_win_probability:.2f}")
-    print(f"{away_team_name} Win Probability (Logistic Regression): {away_win_probability:.2f}")
+#     # Print game ID and win probabilities
+#     print(f"Game ID: {game_id}")
+#     print(f"{home_team_name} Win Probability (Logistic Regression): {home_win_probability:.2f}")
+#     print(f"{away_team_name} Win Probability (Logistic Regression): {away_win_probability:.2f}")
 
-    # Check if either home or away team is predicted to win
-    if home_win_probability > 0.5:
-        total_win_probability += home_win_probability
-        num_predicted_wins += 1
-    elif away_win_probability > 0.5:
-        total_win_probability += away_win_probability
-        num_predicted_wins += 1
+#     # Check if either home or away team is predicted to win
+#     if home_win_probability > 0.5:
+#         total_win_probability += home_win_probability
+#         num_predicted_wins += 1
+#     elif away_win_probability > 0.5:
+#         total_win_probability += away_win_probability
+#         num_predicted_wins += 1
 
-# Calculate the average win probability of the predicted winning teams
-if num_predicted_wins > 0:
-    average_win_probability = total_win_probability / num_predicted_wins
-    print(f"\nAverage Win Probability of Predicted Winning Teams: {average_win_probability:.2f}")
-else:
-    print("\nNo teams are predicted to win with probability greater than 0.5.")
+# # Calculate the average win probability of the predicted winning teams
+# if num_predicted_wins > 0:
+#     average_win_probability = total_win_probability / num_predicted_wins
+#     print(f"\nAverage Win Probability of Predicted Winning Teams: {average_win_probability:.2f}")
+# else:
+#     print("\nNo teams are predicted to win with probability greater than 0.5.")
 
 
-# Evaluate the model using metrics
-accuracy = accuracy_score(y_train, logistic_model.predict(X_train_normalized))
-precision = precision_score(y_train, logistic_model.predict(X_train_normalized))
-recall = recall_score(y_train, logistic_model.predict(X_train_normalized))
-f1 = f1_score(y_train, logistic_model.predict(X_train_normalized))
-roc_auc = roc_auc_score(y_train, home_win_probabilities)
+# # Evaluate the model using metrics
+# accuracy = accuracy_score(y_train, logistic_model.predict(X_train_normalized))
+# precision = precision_score(y_train, logistic_model.predict(X_train_normalized))
+# recall = recall_score(y_train, logistic_model.predict(X_train_normalized))
+# f1 = f1_score(y_train, logistic_model.predict(X_train_normalized))
+# roc_auc = roc_auc_score(y_train, home_win_probabilities)
 
-# Print evaluation metrics
-print('Evaluation Metrics (Logistic Regression):')
-print(f'Accuracy: {accuracy:.2f}')
-print(f'Precision: {precision:.2f}')
-print(f'Recall: {recall:.2f}')
-print(f'F1 Score: {f1:.2f}')
-print(f'ROC AUC: {roc_auc:.2f}')
+# # Print evaluation metrics
+# print('Evaluation Metrics (Logistic Regression):')
+# print(f'Accuracy: {accuracy:.2f}')
+# print(f'Precision: {precision:.2f}')
+# print(f'Recall: {recall:.2f}')
+# print(f'F1 Score: {f1:.2f}')
+# print(f'ROC AUC: {roc_auc:.2f}')
 
-# Get the coefficients of the logistic regression model
-coefficients = logistic_model.coef_[0]
+# # Get the coefficients of the logistic regression model
+# coefficients = logistic_model.coef_[0]
 
-# Get the feature names
-feature_names = ['Home Team Avg ' + str(i) for i in range(len(home_team_avg))] + ['Away Team Avg ' + str(i) for i in range(len(away_team_avg))] + ['Rating Difference ' + str(i) for i in range(len(rating_diffs))]
+# # Get the feature names
+# feature_names = ['Home Team Avg ' + str(i) for i in range(len(home_team_avg))] + ['Away Team Avg ' + str(i) for i in range(len(away_team_avg))] + ['Rating Difference ' + str(i) for i in range(len(rating_diffs))]
 
-# Print the feature names and their corresponding coefficients
-print("Feature Importance (Logistic Regression):")
-for feature_name, coef in zip(feature_names, coefficients):
-    print(f"{feature_name}: {coef:.2f}")
+# # Print the feature names and their corresponding coefficients
+# print("Feature Importance (Logistic Regression):")
+# for feature_name, coef in zip(feature_names, coefficients):
+#     print(f"{feature_name}: {coef:.2f}")
 
 
 
