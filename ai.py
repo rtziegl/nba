@@ -87,14 +87,16 @@ def get_todays_team_ids(matchups):
     # Initialize an empty list to store team IDs
     team_ids = []
 
-    # Extract team IDs from matchups and populate team_ids list
-    for _, teams_info in matchups:
-        for team_info in teams_info:
-            team_id = team_info[0]
-            team_ids.append(team_id)
-
-    # Remove duplicates by converting to set and back to list
-    team_ids = list(set(team_ids))
+    for matchup in matchups:
+        print(matchup[1])
+        # Extract team IDs from the matchup tuple
+        team1_id = matchup[1][0][0]
+        print("TEAM ID 1" ,team1_id)
+        team2_id = matchup[1][1][0]
+        print("TEAM ID 2" ,team2_id)
+        
+        # Append the team IDs as a tuple to the team_ids list
+        team_ids.append((team1_id, team2_id))
 
     return team_ids
 
@@ -134,6 +136,97 @@ def get_regular_season_data_per_team(team_id):
 def predict_win_probabilities(model, X):
     return model.predict_proba(X)[:, 1]  # Predict probabilities for class 1 (win)
 
+def get_team_game_stats(team_id, db):
+    """
+    Fetches regular season game statistics for a given team ID from the database.
+    Returns a dictionary containing game statistics keyed by game ID.
+    """
+    game_ids = get_regular_season_data_per_team(team_id)
+    game_stats = {}
+
+    # Fetch team ranking data from the database
+    team_ranks_data = {}
+    for rank_data in db.teamsranks.find():
+        team_ranks_data[rank_data["TEAM_ID"]] = {
+            "W_PCT": rank_data["W_PCT"],
+            "E_OFF_RATING": rank_data["E_OFF_RATING"],
+            "E_DEF_RATING": rank_data["E_DEF_RATING"],
+            "E_NET_RATING": rank_data["E_NET_RATING"],
+            "E_AST_RATIO": rank_data["E_AST_RATIO"],
+            "E_OREB_PCT": rank_data["E_OREB_PCT"],
+            "E_DREB_PCT": rank_data["E_DREB_PCT"],
+            "E_REB_PCT": rank_data["E_REB_PCT"],
+            "E_TM_TOV_PCT": rank_data["E_TM_TOV_PCT"],
+            "E_PACE": rank_data["E_PACE"]
+        }
+
+    # Process data for the team
+    for game_id in game_ids:
+        game_data = db.games.find_one({"game_id": game_id})
+        if game_data:
+            # Extract team statistics from the game data
+            team_stats = {}
+            for team_info in game_data['teams']:
+                team_id = team_info['team_id']
+                team_stats[team_id] = team_info['statistics']
+
+            # Merge team statistics with team ranking data
+            for team_id, stats in team_stats.items():
+                # Check if ranking data is available for the team
+                if team_id in team_ranks_data:
+                    # Merge statistics with ranking data
+                    stats.update(team_ranks_data[team_id])
+
+            # Add the game stats to the dictionary
+            game_stats[game_id] = team_stats
+        else:
+            print(f"No data found for game ID: {game_id}")
+
+    return game_stats
+
+def prepare_matchup_data(team1_game_stats, team1_id):
+    flattened_rows = []
+
+    # Iterate over each game in the dictionary
+    for game_id, game_data in team1_game_stats.items():
+        # Iterate over each team in the game
+        for team_id, team_stats in game_data.items():
+            # Create a new dictionary for the flattened row
+            flattened_row = {'game_id': game_id, 'team_id': team_id}
+            # Update the dictionary with team statistics
+            flattened_row.update(team_stats)
+            # Append the flattened row to the list
+            flattened_rows.append(flattened_row)
+
+    # Convert the list of dictionaries into a DataFrame
+    flattened_df = pd.DataFrame(flattened_rows)
+
+    # Filter the DataFrame to get matchups where team1_id is the target team
+    team1_vs_opponent_df = flattened_df[flattened_df['team_id'] == team1_id].copy()
+
+    # Duplicate the rows for the target team
+    duplicated_team1_df = team1_vs_opponent_df.copy()
+
+    # Get the unique opponent team IDs
+    opponent_team_ids = flattened_df[flattened_df['team_id'] != team1_id]['team_id'].unique()
+
+    # Create a DataFrame for each opponent team
+    opponent_dfs = []
+    for opponent_id in opponent_team_ids:
+        opponent_df = flattened_df[flattened_df['team_id'] == opponent_id].copy()
+        # Mark the rows corresponding to the opponent team
+        opponent_df['is_target_team'] = 0
+        opponent_dfs.append(opponent_df)
+
+    # Concatenate all opponent DataFrames
+    opponents_df = pd.concat(opponent_dfs)
+
+    # Concatenate both DataFrames to get the final DataFrame with both target team and opponent data
+    final_df = pd.concat([team1_vs_opponent_df, opponents_df], ignore_index=True)
+    final_df['is_target_team'] = final_df['is_target_team'].apply(lambda x: 0 if x == 0 else 1)
+    
+    return final_df
+
 # Load environment variables from .env file
 load_dotenv()
 
@@ -148,10 +241,14 @@ print(client)
 # Get todays matchups
 matchups = get_todays_matchups()
 todays_team_ids = get_todays_team_ids(matchups)
-print(matchups)
 print(todays_team_ids)
 
-# from sklearn.linear_model import LogisticRegression
+todays_team_ids = todays_team_ids[:2]
+print(todays_team_ids)
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+
 
 # Initialize a dictionary to store regular season data for each team
 all_regular_season_data_dict = {}
@@ -179,477 +276,88 @@ try:
     # Connect to MongoDB
     db = client['nba']
     
-    for team_id in todays_team_ids:
-        game_ids = get_regular_season_data_per_team(team_id)
-        game_stats = {}
+    for team1_id, team2_id in todays_team_ids:
+        print("Team 1 ID:", team1_id)
+        print("Team 2 ID:", team2_id)
 
-        # Fetch team ranking data from the database
-        team_ranks_data = {}
-        for rank_data in db.teamsranks.find():
-            team_ranks_data[rank_data["TEAM_ID"]] = {
-                "W_PCT": rank_data["W_PCT"],
-                "E_OFF_RATING": rank_data["E_OFF_RATING"],
-                "E_DEF_RATING": rank_data["E_DEF_RATING"],
-                "E_NET_RATING": rank_data["E_NET_RATING"],
-                "E_AST_RATIO": rank_data["E_AST_RATIO"],
-                "E_OREB_PCT": rank_data["E_OREB_PCT"],
-                "E_DREB_PCT": rank_data["E_DREB_PCT"],
-                "E_REB_PCT": rank_data["E_REB_PCT"],
-                "E_TM_TOV_PCT": rank_data["E_TM_TOV_PCT"],
-                "E_PACE": rank_data["E_PACE"]
-            }
-            
-        for game_id in game_ids:
-            game_data = db.games.find_one({"game_id": game_id})
-            if game_data:
-                # Extract team statistics from the game data
-                team_stats = {}
-                for team_info in game_data['teams']:
-                    team_id = team_info['team_id']
-                    team_stats[team_id] = team_info['statistics']
-
-                # Merge team statistics with team ranking data
-                for team_id, stats in team_stats.items():
-                    # Check if ranking data is available for the team
-                    if team_id in team_ranks_data:
-                        # Merge statistics with ranking data
-                        stats.update(team_ranks_data[team_id])
-
-                # Add the game stats to the dictionary
-                game_stats[game_id] = team_stats
-            else:
-                print(f"No data found for game ID: {game_id}")
+        # Get regular season game stats for team 1
+        team1_game_stats = get_team_game_stats(team1_id, db)
+        # Prepare team1 df
+        team1_df = prepare_matchup_data(team1_game_stats, team1_id)
         
+        # Get regular season game stats for team 2
+        team2_game_stats = get_team_game_stats(team2_id, db)
+        # Prepare team2 df
+        team2_df = prepare_matchup_data(team2_game_stats, team2_id)
         
-        for game_id, teams_data in game_stats.items():
-            try:
-                print("Game ID:", game_id)
-                print("Teams data:", teams_data)
+        # Add is_team1 column for team1_df
+        team1_df['is_team1'] = 1
 
-                # Ensure there are statistics for two distinct teams in the game
-                if len(teams_data) != 2:
-                    raise ValueError("Invalid number of teams in game data")
+        # Add is_team1 column for team2_df
+        team2_df['is_team1'] = 0
 
-                # Determine which team is team_1 for this game
-                team1_id = team_id  # The current team_id from the loop is team_1
+        # Concatenate team1_df and team2_df
+        combined_df = pd.concat([team1_df, team2_df], ignore_index=True)
 
-                # Extract team statistics for team 1 and team 2
-                team1_stats = teams_data[team1_id]
-                team2_id = [t_id for t_id in teams_data.keys() if t_id != team1_id][0]
-                team2_stats = teams_data[team2_id]
+        from sklearn.preprocessing import MinMaxScaler
 
-                # Extract target variable (outcome)
-                target = team1_stats['WL']  # Assuming team1's win/loss is the target
-                
-                # Combine team statistics into a single dictionary
-                row_data = {}
-                row_data.update({f"TEAM1_{key}": value for key, value in team1_stats.items()})
-                row_data.update({f"TEAM2_{key}": value for key, value in team2_stats.items()})
-                row_data['TARGET'] = target
+        # Drop unnecessary columns
+        columns_to_drop = ['team_id', 'TEAM_NAME', 'TEAM_ABBREVIATION']  # Adjust this list as needed
+        combined_df.drop(columns=columns_to_drop, inplace=True)
 
-                # Convert the dictionary to a DataFrame
-                row_df = pd.DataFrame(row_data, index=[0])
+        # Scale numerical features
+        scaler = MinMaxScaler()
+        numerical_columns = ['HOMEORAWAY', 'FGM', 'FGA', 'FG_PCT', 'FG3M', 'FG3A', 'FG3_PCT', 'FTM', 'FTA', 'FT_PCT',
+                            'OREB', 'DREB', 'REB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PLUS_MINUS', 'W_PCT',
+                            'E_OFF_RATING', 'E_DEF_RATING', 'E_NET_RATING', 'E_AST_RATIO', 'E_OREB_PCT', 'E_DREB_PCT',
+                            'E_REB_PCT', 'E_TM_TOV_PCT', 'E_PACE']
+        combined_df[numerical_columns] = scaler.fit_transform(combined_df[numerical_columns])
+        
+        from sklearn.model_selection import train_test_split
+        from sklearn.linear_model import LogisticRegression
 
-                # Concatenate the row DataFrame with the prepared_data DataFrame
-                prepared_data = pd.concat([prepared_data, row_df], ignore_index=True)
-                
-                print(prepared_data)
+        # Split data into features (X) and target variable (y)
+        X = combined_df.drop(columns=['WL'])  # Drop 'WL' column to get features
+        y = combined_df['WL']  # Target variable
 
-                # Print team statistics for debugging
-                print("Team 1 stats:", team1_stats)
-                print("Team 2 stats:", team2_stats)
-            except Exception as e:
-                print("Error processing game data:", e)
-    
-    
-    # Drop the original team name and team abbreviation columns
-    prepared_data.drop(columns=['TEAM1_TEAM_NAME', 'TEAM1_TEAM_ABBREVIATION', 'TEAM2_TEAM_NAME', 'TEAM2_TEAM_ABBREVIATION'], inplace=True)
+        # Split data into training and testing sets
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    # Convert the target variable y to integer type
-    prepared_data['TARGET'] = prepared_data['TARGET'].astype(int)
+        # Train the model
+        model = LogisticRegression()  # Example: Logistic Regression
+        model.fit(X_train, y_train)
+        
+         # Step 3: Make predictions on the testing data
+        y_pred = model.predict(X_test)
 
-    # 3. Train Model
-    from sklearn.model_selection import train_test_split
-    from sklearn.linear_model import LogisticRegression
-    from sklearn.metrics import classification_report
-    from sklearn.preprocessing import MinMaxScaler
+        # Step 4: Calculate evaluation metrics
+        accuracy = accuracy_score(y_test, y_pred)
+        precision = precision_score(y_test, y_pred)
+        recall = recall_score(y_test, y_pred)
+        f1 = f1_score(y_test, y_pred)
+        conf_matrix = confusion_matrix(y_test, y_pred)
 
-    # Separate features and target variable
-    X = prepared_data.drop(columns=['TARGET'])
-    y = prepared_data['TARGET']
+        # Step 5: Display evaluation metrics
+        print("Accuracy:", accuracy)
+        print("Precision:", precision)
+        print("Recall:", recall)
+        print("F1 Score:", f1)
+        print("Confusion Matrix:")
+        print(conf_matrix)
+        
+        # Extract features for the matchup between team1 and team2
+        matchup_features_team1 = combined_df[combined_df['is_team1'] == 1].drop(columns=['WL'])  # Exclude the target variable 'WL'
+        matchup_features_team2 = combined_df[combined_df['is_team1'] == 0].drop(columns=['WL'])  # Exclude the target variable 'WL'
 
-    # Apply Min-Max scaling to features
-    scaler = MinMaxScaler()
-    X_scaled = scaler.fit_transform(X)
+        # Predict the outcome for team1
+        predicted_probability_team1 = model.predict_proba(matchup_features_team1)[:, 1]  # Probability of team1 winning
+        print("Predicted Probability of Team 1 Winning:", predicted_probability_team1[0])
 
-    # Split scaled data into training and testing sets
-    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
-
-    # Initialize and train the model
-    model = LogisticRegression()
-    model.fit(X_train, y_train)
-
-    # 4. Evaluate Model
-    # Make predictions on the test set
-    y_pred = model.predict(X_test)
-
-    # Evaluate the model
-    print(classification_report(y_test, y_pred))
-
-    
+        # Predict the outcome for team2
+        predicted_probability_team2 = model.predict_proba(matchup_features_team2)[:, 1]  # Probability of team2 winning
+        print("Predicted Probability of Team 2 Winning:", 1 - predicted_probability_team1[0]) 
+        
     client.close()
 
 except Exception as e:
-    print(e)
-        
-# # Loop through each team ID in team_ids
-# for team_id in todays_team_ids:
-#     # Get regular season data for the current team ID
-#     regular_season_data = get_regular_season_data_per_team(team_id)
-    
-#     # Store the regular season data in the dictionary
-#     all_regular_season_data_dict[team_id] = regular_season_data
-
-
-# # Define the features you want to use for training the model
-# features = ['MIN', 'FGM', 'FGA', 'FG_PCT', 'FG3M', 'FG3A', 'FG3_PCT', 
-#             'FTM', 'FTA', 'FT_PCT', 'OREB', 'DREB', 'REB', 'AST', 'STL', 
-#             'BLK', 'TOV', 'PF', 'PLUS_MINUS']
-
-# continuous_ratings = ['E_OFF_RATING', 'E_DEF_RATING', 'E_NET_RATING', 'E_PACE', 
-#                       'E_AST_RATIO', 'E_OREB_PCT', 'E_DREB_PCT', 'E_REB_PCT', 'E_TM_TOV_PCT']
-
-
-# from sklearn.linear_model import LogisticRegression
-# from sklearn.preprocessing import MinMaxScaler
-# from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
-# import numpy as np
-
-# # Initialize lists to store features and labels
-# X_train = []
-# y_train = []
-
-# # Loop through each matchup
-# for game_id, teams_info in matchups:
-#     home_team_info = teams_info[0] if teams_info[0][2] == 1 else teams_info[1]
-#     away_team_info = teams_info[0] if teams_info[0][2] == 0 else teams_info[1]
-    
-#     home_team_id, _, _ = home_team_info
-#     away_team_id, _, _ = away_team_info
-
-#     # Get historical game data for home and away teams
-#     home_team_games = all_regular_season_data_dict[home_team_id]
-#     away_team_games = all_regular_season_data_dict[away_team_id]
-
-#     # Calculate mean performance for home and away teams
-#     home_team_avg = home_team_games[features].mean(axis=0)
-#     away_team_avg = away_team_games[features].mean(axis=0)
-
-#     # Calculate mean continuous ratings for home and away teams
-#     home_team_ratings = home_team_games[continuous_ratings].mean(axis=0)
-#     away_team_ratings = away_team_games[continuous_ratings].mean(axis=0)
-
-#     # Calculate rating differences ensuring correct alignment
-#     rating_diffs = np.where(home_team_ratings > away_team_ratings, home_team_ratings - away_team_ratings, away_team_ratings - home_team_ratings)
-
-#     # Combine home and away team data as features along with rating differences
-#     combined_features = np.concatenate((home_team_avg, away_team_avg, rating_diffs))
-
-#     # Determine label based on the outcome of historical matchups
-#     # If the home team won more games, label = 1, else label = 0
-#     home_team_wins = (home_team_games['WL'] == 1).sum()
-#     away_team_wins = (away_team_games['WL'] == 1).sum()
-    
-
-#     # Determine label based on the average performance of home and away teams
-#     weight_avg = 0.7  # Weight for average performance
-#     weight_ratings = 0.3  # Weight for ratings
-
-#     home_team_score = np.mean(home_team_avg) * weight_avg + np.mean(home_team_ratings) * weight_ratings
-#     away_team_score = np.mean(away_team_avg) * weight_avg + np.mean(away_team_ratings) * weight_ratings
-
-#     if home_team_score > away_team_score:
-#         # Home team has higher weighted score
-#         X_train.append(np.concatenate((home_team_avg, away_team_avg, rating_diffs)))
-#         y_train.append(1)  # Assign label 1 for home team win
-#     else:
-#         # Away team has higher or equal weighted score
-#         X_train.append(np.concatenate((home_team_avg, away_team_avg, rating_diffs)))
-#         y_train.append(0)  # Assign label 0 for home team loss or tie
-    
-    
-# # Convert lists to arrays
-# X_train = np.array(X_train)
-# y_train = np.array(y_train)
-
-# # Normalize features
-# scaler = MinMaxScaler()
-# X_train_normalized = scaler.fit_transform(X_train)
-
-# # Initialize Logistic Regression with default hyperparameters
-# logistic_model = LogisticRegression()
-
-# # Fit the model to the entire normalized dataset
-# logistic_model.fit(X_train_normalized, y_train)
-
-# # Predict probabilities for the normalized data
-# y_pred_proba = logistic_model.predict_proba(X_train_normalized)
-
-# # Extract probability of home team winning
-# home_win_probabilities = y_pred_proba[:, 1]
-
-# # Calculate probability of away team winning
-# away_win_probabilities = y_pred_proba[:, 0]
-
-# total_win_probability = 0
-# num_predicted_wins = 0
-
-# # Loop through each matchup
-# for idx, (game_id, teams_info) in enumerate(matchups):
-#     home_team_info = teams_info[0] if teams_info[0][2] == 1 else teams_info[1]
-#     away_team_info = teams_info[0] if teams_info[0][2] == 0 else teams_info[1]
-
-#     home_win_probability = home_win_probabilities[idx]
-#     away_win_probability = away_win_probabilities[idx]
-    
-#     home_team_name = home_team_info[1]
-#     away_team_name = away_team_info[1]
-
-
-#     # Print game ID and win probabilities
-#     print(f"Game ID: {game_id}")
-#     print(f"{home_team_name} Win Probability (Logistic Regression): {home_win_probability:.2f}")
-#     print(f"{away_team_name} Win Probability (Logistic Regression): {away_win_probability:.2f}")
-
-#     # Check if either home or away team is predicted to win
-#     if home_win_probability > 0.5:
-#         total_win_probability += home_win_probability
-#         num_predicted_wins += 1
-#     elif away_win_probability > 0.5:
-#         total_win_probability += away_win_probability
-#         num_predicted_wins += 1
-
-# # Calculate the average win probability of the predicted winning teams
-# if num_predicted_wins > 0:
-#     average_win_probability = total_win_probability / num_predicted_wins
-#     print(f"\nAverage Win Probability of Predicted Winning Teams: {average_win_probability:.2f}")
-# else:
-#     print("\nNo teams are predicted to win with probability greater than 0.5.")
-
-
-# # Evaluate the model using metrics
-# accuracy = accuracy_score(y_train, logistic_model.predict(X_train_normalized))
-# precision = precision_score(y_train, logistic_model.predict(X_train_normalized))
-# recall = recall_score(y_train, logistic_model.predict(X_train_normalized))
-# f1 = f1_score(y_train, logistic_model.predict(X_train_normalized))
-# roc_auc = roc_auc_score(y_train, home_win_probabilities)
-
-# # Print evaluation metrics
-# print('Evaluation Metrics (Logistic Regression):')
-# print(f'Accuracy: {accuracy:.2f}')
-# print(f'Precision: {precision:.2f}')
-# print(f'Recall: {recall:.2f}')
-# print(f'F1 Score: {f1:.2f}')
-# print(f'ROC AUC: {roc_auc:.2f}')
-
-# # Get the coefficients of the logistic regression model
-# coefficients = logistic_model.coef_[0]
-
-# # Get the feature names
-# feature_names = ['Home Team Avg ' + str(i) for i in range(len(home_team_avg))] + ['Away Team Avg ' + str(i) for i in range(len(away_team_avg))] + ['Rating Difference ' + str(i) for i in range(len(rating_diffs))]
-
-# # Print the feature names and their corresponding coefficients
-# print("Feature Importance (Logistic Regression):")
-# for feature_name, coef in zip(feature_names, coefficients):
-#     print(f"{feature_name}: {coef:.2f}")
-
-
-
-
-
-
-
-
-
-
-# X_points_train = []
-# y_points_train = []
-
-# # Extract features and target for predicting total points for each team
-# for game_id, teams_info in matchups:
-#     home_team_id, away_team_id = teams_info[0][0], teams_info[1][0]
-    
-#     home_team_data = all_regular_season_data_dict[home_team_id][features].mean().values
-#     away_team_data = all_regular_season_data_dict[away_team_id][features].mean().values
-    
-#     home_team_ratings = all_regular_season_data_dict[home_team_id][continuous_ratings].mean().values
-#     away_team_ratings = all_regular_season_data_dict[away_team_id][continuous_ratings].mean().values
-    
-#     home_rating_diffs = home_team_ratings - away_team_ratings
-#     away_rating_diffs = away_team_ratings - home_team_ratings
-    
-#     # Combine features for both home and away teams along with rating differences
-#     combined_features_home = np.concatenate((home_team_data, away_team_data, home_rating_diffs))
-#     combined_features_away = np.concatenate((away_team_data, home_team_data, away_rating_diffs))
-    
-#     X_points_train.append(combined_features_home)  # For home team
-#     X_points_train.append(combined_features_away)  # For away team
-    
-#     # Calculate average points for the home and away teams
-#     home_points = all_regular_season_data_dict[home_team_id]['PTS'].mean()
-#     away_points = all_regular_season_data_dict[away_team_id]['PTS'].mean()
-    
-#     y_points_train.append(home_points)
-#     y_points_train.append(away_points)
-
-# # Train the Linear Regression Model for Total Points Prediction
-# points_model = LinearRegression()
-# points_model.fit(X_points_train, y_points_train)
-
-# # Step 3: Make Predictions
-# matchup_predictions = []
-
-# for game_id, teams_info in matchups:
-#     # Extract home and away team information
-#     home_team_info = None
-#     away_team_info = None
-    
-#     for team_info in teams_info:
-#         team_id, team_name, is_home = team_info
-
-#         if is_home == 1:
-#             home_team_info = {"id": team_id, "name": team_name}
-#         else:
-#             away_team_info = {"id": team_id, "name": team_name}
-
-#     # Prepare data for the home team
-#     home_team_id = home_team_info["id"]
-#     home_team_data = all_regular_season_data_dict[home_team_id][features].mean().values
-#     home_team_ratings = all_regular_season_data_dict[home_team_id][continuous_ratings].mean().values
-
-#     # Prepare data for the away team
-#     away_team_id = away_team_info["id"]
-#     away_team_data = all_regular_season_data_dict[away_team_id][features].mean().values
-#     away_team_ratings = all_regular_season_data_dict[away_team_id][continuous_ratings].mean().values
-
-#     # Calculate rating differences after obtaining both teams' ratings
-#     home_rating_diffs = home_team_ratings - away_team_ratings
-#     away_rating_diffs = away_team_ratings - home_team_ratings
-
-#     # Combine features and rating differences for the home team
-#     home_combined_features = np.concatenate((home_team_data, away_team_data, home_rating_diffs)).reshape(1, -1)
-
-#     # Combine features and rating differences for the away team
-#     away_combined_features = np.concatenate((away_team_data, home_team_data, away_rating_diffs)).reshape(1, -1)
-
-#      # Ensure that the input data has 65 features
-#     assert home_combined_features.shape[1] == 65
-#     assert away_combined_features.shape[1] == 65
-#     # Predict points for the home and away teams
-#     home_team_predicted_points = points_model.predict(home_combined_features)[0]
-#     away_team_predicted_points = points_model.predict(away_combined_features)[0]
-
-#     # Calculate spread
-#     spread = abs(home_team_predicted_points - away_team_predicted_points)
-    
-#     # Predict win probabilities for the home and away teams
-#     home_win_probability = predict_win_probabilities(model, home_combined_features)[0]
-#     away_win_probability = predict_win_probabilities(model, away_combined_features)[0]
-
-#     # Append predictions to the list
-#      # Append predictions to the list
-#     matchup_predictions.append({
-#         "Game ID": game_id,
-#         "Home Team ID": home_team_info["id"],
-#         "Home Team Name": home_team_info["name"],
-#         "Away Team ID": away_team_info["id"],
-#         "Away Team Name": away_team_info["name"],
-#         "Home Team Predicted Points": home_team_predicted_points,
-#         "Away Team Predicted Points": away_team_predicted_points,
-#         "Home Team Win Probability": home_win_probability,
-#         "Away Team Win Probability": away_win_probability,
-#         "Spread": spread
-#     })
-
-# # Print matchup predictions
-# for prediction in matchup_predictions:
-#     print("Game ID:", prediction["Game ID"])
-#     print("-----------------------------------------------------------------")
-#     print("Home Team Name:", prediction["Home Team Name"])
-#     print("Home Team Predicted Points:", round(prediction["Home Team Predicted Points"], 2))
-#     print("Home Team Win Probability:", round(prediction["Home Team Win Probability"] * 100, 2), "%")
-#     print("---------------------------------------------------------------")
-#     print("Away Team Name:", prediction["Away Team Name"])
-#     print("Away Team Predicted Points:", round(prediction["Away Team Predicted Points"], 2))
-#     print("Away Team Win Probability:", round(prediction["Away Team Win Probability"] * 100, 2), "%")
-#     print("---------------------------------------------------------------")
-#     print("Spread:", round(prediction["Spread"], 2))
-#     print()
-
-
-
-
-
-
-######## TESTING MODEL ACCURACY ##########
-
-# from sklearn.metrics import accuracy_score, mean_squared_error, mean_absolute_error
-
-# # Evaluation of the models' performance
-# # Initialize lists to store actual and predicted outcomes for evaluation
-# actual_outcomes = []
-# predicted_outcomes = []
-
-# # Initialize lists to store actual and predicted total points for evaluation
-# actual_total_points = []
-# predicted_total_points = []
-
-# print("Team IDs in all_regular_season_data_dict:", list(all_regular_season_data_dict.keys()))
-
-# # Make predictions and evaluate performance for each matchup
-# for prediction in matchup_predictions:
-#     # Extract actual outcome (whether the home team won or not)
-#     actual_outcome = int(all_regular_season_data_dict[prediction["Home Team ID"]]['WL'].mean() > 0.5)
-#     actual_outcomes.append(actual_outcome)
-
-#     # Predicted win probabilities for the home team
-#     predicted_home_win_probability = prediction["Home Team Win Probability"]
-
-#     # Predicted outcome (1 if predicted win probability is greater than 0.5, else 0)
-#     predicted_outcome = int(predicted_home_win_probability > 0.5)
-#     predicted_outcomes.append(predicted_outcome)
-
-#     # Actual and predicted total points
-#     actual_total_points.append(all_regular_season_data_dict[prediction["Home Team ID"]]['PTS'].mean())
-#     actual_total_points.append(all_regular_season_data_dict[prediction["Away Team ID"]]['PTS'].mean())
-#     predicted_total_points.append(prediction["Home Team Predicted Points"])
-#     predicted_total_points.append(prediction["Away Team Predicted Points"])
-
-# # Evaluate logistic regression model performance
-# logistic_regression_accuracy = accuracy_score(actual_outcomes, predicted_outcomes)
-# print("Logistic Regression Model Performance:")
-# print("Accuracy:", logistic_regression_accuracy)
-
-# # Evaluate linear regression model performance
-# linear_regression_mse = mean_squared_error(actual_total_points, predicted_total_points)
-# linear_regression_mae = mean_absolute_error(actual_total_points, predicted_total_points)
-# print("Linear Regression Model Performance:")
-# print("Mean Squared Error:", linear_regression_mse)
-# print("Mean Absolute Error:", linear_regression_mae)
-
-
-# # Retrieve coefficients for logistic regression
-# logistic_regression_coefficients = model.coef_[0]  # Assuming model is your logistic regression model
-
-# # Retrieve coefficients for linear regression
-# linear_regression_coefficients = points_model.coef_  # Assuming points_model is your linear regression model
-
-# # Print coefficients for logistic regression
-# print("Logistic Regression Coefficients:")
-# for feature, coef in zip(features, logistic_regression_coefficients):
-#     print(f"{feature}: {coef}")
-
-# # Print coefficients for linear regression
-# print("\nLinear Regression Coefficients:")
-# for feature, coef in zip(features, linear_regression_coefficients):
-#     print(f"{feature}: {coef}")
+    print("An error occurred:", e)

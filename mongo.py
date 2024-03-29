@@ -468,20 +468,20 @@ try:
      # Connect to MongoDB
     db = client['nba']
 
-    # nba_update_active_players(db, active_players_logger)
-    # print("NBA PLAYER NAME and ID DATA UPDATED")
+    nba_update_active_players(db, active_players_logger)
+    print("NBA PLAYER NAME and ID DATA UPDATED")
 
-    # nba_update_player_game_data(db, player_game_data_logger)
-    # print("NBA PLAYER GAME DATA UPDATED")
+    nba_update_player_game_data(db, player_game_data_logger)
+    print("NBA PLAYER GAME DATA UPDATED")
 
-    # nba_update_player_next_game_matchup(db, player_next_game_logger)
-    # print("NBA PLAYER MATCHUP LOG UPDATED")
+    nba_update_player_next_game_matchup(db, player_next_game_logger)
+    print("NBA PLAYER MATCHUP LOG UPDATED")
    
-    # update_players_last_played_game(db, player_recent_game_logger)
-    # print("UPDATED PLAYERS MOST RECENT GAME")
+    update_players_last_played_game(db, player_recent_game_logger)
+    print("UPDATED PLAYERS MOST RECENT GAME")
     
-    # update_team_game_data(db , team_game_data_logger)
-    # print("UPDATED TEAM GAME DATA")
+    update_team_game_data(db , team_game_data_logger)
+    print("UPDATED TEAM GAME DATA")
     
     update_team_ranks_data(db , team_rank_data_logger)
     print("UPDATED TEAM RANK DATA")

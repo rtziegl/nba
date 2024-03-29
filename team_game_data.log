@@ -1087,3 +1087,6 @@
 2024-03-28 11:50:55,664 - team_game_data - INFO - Updated game data for game: 0022301229, Date of game: 2023-12-07
 2024-03-28 11:50:55,697 - team_game_data - INFO - Updated game data for game: 0022301230, Date of game: 2023-12-07
 2024-03-28 11:59:09,408 - team_game_data - INFO - Game data update completed.
+2024-03-29 09:31:24,121 - team_game_data - INFO - New game added - Game ID: 0022301060, Date: 2024-03-28
+2024-03-29 09:31:24,149 - team_game_data - INFO - New game added - Game ID: 0022301061, Date: 2024-03-28
+2024-03-29 09:31:24,149 - team_game_data - INFO - Game data update completed.
