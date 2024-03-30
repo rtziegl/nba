@@ -7698,3 +7698,787 @@
 2024-03-29 09:26:46,622 - player_game_data - INFO - Fetched game data for player 203469
 2024-03-29 09:26:46,821 - player_game_data - INFO - Fetched game data for player 1627826
 2024-03-29 09:26:46,980 - player_game_data - INFO - Inserted game data: Player ID: 1627826, Player Name: Ivica Zubac, Game ID: 0022301052, Game Date: 1711497600000, Matchup: LAC @ PHI
+2024-03-30 11:52:04,792 - player_game_data - INFO - ACTION COMMITTED: nba_update_player_game_data
+2024-03-30 11:52:05,283 - player_game_data - INFO - Fetched game data for player 1630173
+2024-03-30 11:52:05,448 - player_game_data - INFO - Inserted game data: Player ID: 1630173, Player Name: Precious Achiuwa, Game ID: 0022301070, Game Date: 1711670400000, Matchup: NYK @ SAS
+2024-03-30 11:52:05,594 - player_game_data - INFO - Fetched game data for player 203500
+2024-03-30 11:52:05,876 - player_game_data - INFO - Fetched game data for player 1628389
+2024-03-30 11:52:05,955 - player_game_data - INFO - Inserted game data: Player ID: 1628389, Player Name: Bam Adebayo, Game ID: 0022301068, Game Date: 1711670400000, Matchup: MIA vs. POR
+2024-03-30 11:52:06,084 - player_game_data - INFO - Fetched game data for player 1630534
+2024-03-30 11:52:06,320 - player_game_data - INFO - Fetched game data for player 1630583
+2024-03-30 11:52:06,577 - player_game_data - INFO - Fetched game data for player 1629638
+2024-03-30 11:52:06,694 - player_game_data - INFO - Inserted game data: Player ID: 1629638, Player Name: Nickeil Alexander-Walker, Game ID: 0022301071, Game Date: 1711670400000, Matchup: MIN @ DEN
+2024-03-30 11:52:07,078 - player_game_data - INFO - Fetched game data for player 1628960
+2024-03-30 11:52:07,154 - player_game_data - INFO - Inserted game data: Player ID: 1628960, Player Name: Grayson Allen, Game ID: 0022301069, Game Date: 1711670400000, Matchup: PHX @ OKC
+2024-03-30 11:52:07,383 - player_game_data - INFO - Fetched game data for player 1628386
+2024-03-30 11:52:07,459 - player_game_data - INFO - Inserted game data: Player ID: 1628386, Player Name: Jarrett Allen, Game ID: 0022301067, Game Date: 1711670400000, Matchup: CLE vs. PHI
+2024-03-30 11:52:07,615 - player_game_data - INFO - Fetched game data for player 1630631
+2024-03-30 11:52:07,896 - player_game_data - INFO - Fetched game data for player 203937
+2024-03-30 11:52:07,972 - player_game_data - INFO - Inserted game data: Player ID: 203937, Player Name: Kyle Anderson, Game ID: 0022301071, Game Date: 1711670400000, Matchup: MIN @ DEN
+2024-03-30 11:52:08,148 - player_game_data - INFO - Fetched game data for player 203507
+2024-03-30 11:52:08,410 - player_game_data - INFO - Fetched game data for player 203648
+2024-03-30 11:52:08,582 - player_game_data - INFO - Fetched game data for player 1630175
+2024-03-30 11:52:08,681 - player_game_data - INFO - Inserted game data: Player ID: 1630175, Player Name: Cole Anthony, Game ID: 0022301064, Game Date: 1711670400000, Matchup: ORL vs. LAC
+2024-03-30 11:52:09,000 - player_game_data - INFO - Fetched game data for player 1628384
+2024-03-30 11:52:09,175 - player_game_data - INFO - Fetched game data for player 1627853
+2024-03-30 11:52:09,475 - player_game_data - INFO - Fetched game data for player 1630166
+2024-03-30 11:52:09,565 - player_game_data - INFO - Inserted game data: Player ID: 1630166, Player Name: Deni Avdija, Game ID: 0022301065, Game Date: 1711670400000, Matchup: WAS vs. DET
+2024-03-30 11:52:09,746 - player_game_data - INFO - Fetched game data for player 1629028
+2024-03-30 11:52:09,830 - player_game_data - INFO - Inserted game data: Player ID: 1629028, Player Name: Deandre Ayton, Game ID: 0022301068, Game Date: 1711670400000, Matchup: POR @ MIA
+2024-03-30 11:52:10,091 - player_game_data - INFO - Fetched game data for player 1628962
+2024-03-30 11:52:10,283 - player_game_data - INFO - Fetched game data for player 1628963
+2024-03-30 11:52:10,349 - player_game_data - INFO - Inserted game data: Player ID: 1628963, Player Name: Marvin Bagley III, Game ID: 0022301065, Game Date: 1711670400000, Matchup: WAS vs. DET
+2024-03-30 11:52:10,558 - player_game_data - INFO - Fetched game data for player 1641735
+2024-03-30 11:52:10,802 - player_game_data - INFO - Inserted game data: Player ID: 1641735, Player Name: Amari Bailey, Game ID: 0022301062, Game Date: 1711670400000, Matchup: CHA vs. GSW
+2024-03-30 11:52:11,142 - player_game_data - INFO - Fetched game data for player 1631116
+2024-03-30 11:52:11,446 - player_game_data - INFO - Inserted game data: Player ID: 1631116, Player Name: Patrick Baldwin Jr., Game ID: 0022301065, Game Date: 1711670400000, Matchup: WAS vs. DET
+2024-03-30 11:52:11,827 - player_game_data - INFO - Fetched game data for player 1630163
+2024-03-30 11:52:12,091 - player_game_data - INFO - Fetched game data for player 1628366
+2024-03-30 11:52:12,850 - player_game_data - INFO - Fetched game data for player 1628964
+2024-03-30 11:52:13,298 - player_game_data - INFO - Inserted game data: Player ID: 1628964, Player Name: Mo Bamba, Game ID: 0022301067, Game Date: 1711670400000, Matchup: PHI @ CLE
+2024-03-30 11:52:13,661 - player_game_data - INFO - Fetched game data for player 1631094
+2024-03-30 11:52:13,875 - player_game_data - INFO - Inserted game data: Player ID: 1631094, Player Name: Paolo Banchero, Game ID: 0022301064, Game Date: 1711670400000, Matchup: ORL vs. LAC
+2024-03-30 11:52:14,189 - player_game_data - INFO - Fetched game data for player 1630217
+2024-03-30 11:52:15,073 - player_game_data - INFO - Fetched game data for player 1630625
+2024-03-30 11:52:15,581 - player_game_data - INFO - Inserted game data: Player ID: 1630625, Player Name: Dalano Banton, Game ID: 0022301068, Game Date: 1711670400000, Matchup: POR @ MIA
+2024-03-30 11:52:16,075 - player_game_data - INFO - Fetched game data for player 1631230
+2024-03-30 11:52:16,576 - player_game_data - INFO - Fetched game data for player 203084
+2024-03-30 11:52:16,675 - player_game_data - INFO - Inserted game data: Player ID: 203084, Player Name: Harrison Barnes, Game ID: 0022301073, Game Date: 1711670400000, Matchup: SAC vs. DAL
+2024-03-30 11:52:17,017 - player_game_data - INFO - Fetched game data for player 1630567
+2024-03-30 11:52:17,327 - player_game_data - INFO - Fetched game data for player 1629628
+2024-03-30 11:52:17,508 - player_game_data - INFO - Fetched game data for player 1629646
+2024-03-30 11:52:17,691 - player_game_data - INFO - Fetched game data for player 1641734
+2024-03-30 11:52:17,989 - player_game_data - INFO - Fetched game data for player 1628966
+2024-03-30 11:52:18,146 - player_game_data - INFO - Fetched game data for player 201587
+2024-03-30 11:52:18,218 - player_game_data - INFO - Inserted game data: Player ID: 201587, Player Name: Nicolas Batum, Game ID: 0022301067, Game Date: 1711670400000, Matchup: PHI @ CLE
+2024-03-30 11:52:18,487 - player_game_data - INFO - Fetched game data for player 203078
+2024-03-30 11:52:18,561 - player_game_data - INFO - Inserted game data: Player ID: 203078, Player Name: Bradley Beal, Game ID: 0022301069, Game Date: 1711670400000, Matchup: PHX @ OKC
+2024-03-30 11:52:18,770 - player_game_data - INFO - Fetched game data for player 1627736
+2024-03-30 11:52:19,157 - player_game_data - INFO - Fetched game data for player 1630699
+2024-03-30 11:52:19,332 - player_game_data - INFO - Fetched game data for player 1641777
+2024-03-30 11:52:19,584 - player_game_data - INFO - Fetched game data for player 202722
+2024-03-30 11:52:19,657 - player_game_data - INFO - Inserted game data: Player ID: 202722, Player Name: Davis Bertans, Game ID: 0022301062, Game Date: 1711670400000, Matchup: CHA vs. GSW
+2024-03-30 11:52:19,816 - player_game_data - INFO - Fetched game data for player 201976
+2024-03-30 11:52:20,126 - player_game_data - INFO - Fetched game data for player 1630180
+2024-03-30 11:52:20,343 - player_game_data - INFO - Fetched game data for player 1629048
+2024-03-30 11:52:20,625 - player_game_data - INFO - Fetched game data for player 1641931
+2024-03-30 11:52:20,686 - player_game_data - INFO - Inserted game data: Player ID: 1641931, Player Name: Onuralp Bitim, Game ID: 0022301066, Game Date: 1711670400000, Matchup: CHI @ BKN
+2024-03-30 11:52:20,850 - player_game_data - INFO - Fetched game data for player 202687
+2024-03-30 11:52:21,065 - player_game_data - INFO - Inserted game data: Player ID: 202687, Player Name: Bismack Biyombo, Game ID: 0022301069, Game Date: 1711670400000, Matchup: OKC vs. PHX
+2024-03-30 11:52:21,331 - player_game_data - INFO - Fetched game data for player 1641710
+2024-03-30 11:52:21,611 - player_game_data - INFO - Fetched game data for player 1641778
+2024-03-30 11:52:21,890 - player_game_data - INFO - Fetched game data for player 203992
+2024-03-30 11:52:22,152 - player_game_data - INFO - Fetched game data for player 202711
+2024-03-30 11:52:22,210 - player_game_data - INFO - Inserted game data: Player ID: 202711, Player Name: Bojan Bogdanovic, Game ID: 0022301070, Game Date: 1711670400000, Matchup: NYK @ SAS
+2024-03-30 11:52:22,411 - player_game_data - INFO - Fetched game data for player 1629626
+2024-03-30 11:52:22,628 - player_game_data - INFO - Inserted game data: Player ID: 1629626, Player Name: Bol Bol, Game ID: 0022301069, Game Date: 1711670400000, Matchup: PHX @ OKC
+2024-03-30 11:52:22,787 - player_game_data - INFO - Fetched game data for player 1629716
+2024-03-30 11:52:23,161 - player_game_data - INFO - Fetched game data for player 1626164
+2024-03-30 11:52:23,245 - player_game_data - INFO - Inserted game data: Player ID: 1626164, Player Name: Devin Booker, Game ID: 0022301069, Game Date: 1711670400000, Matchup: PHX @ OKC
+2024-03-30 11:52:23,467 - player_game_data - INFO - Fetched game data for player 1630527
+2024-03-30 11:52:23,777 - player_game_data - INFO - Fetched game data for player 1628449
+2024-03-30 11:52:23,980 - player_game_data - INFO - Fetched game data for player 1630547
+2024-03-30 11:52:24,269 - player_game_data - INFO - Fetched game data for player 1631103
+2024-03-30 11:52:24,364 - player_game_data - INFO - Inserted game data: Player ID: 1631103, Player Name: Malaki Branham, Game ID: 0022301070, Game Date: 1711670400000, Matchup: SAS vs. NYK
+2024-03-30 11:52:24,537 - player_game_data - INFO - Fetched game data for player 1631128
+2024-03-30 11:52:24,687 - player_game_data - INFO - Inserted game data: Player ID: 1631128, Player Name: Christian Braun, Game ID: 0022301071, Game Date: 1711670400000, Matchup: DEN vs. MIN
+2024-03-30 11:52:24,890 - player_game_data - INFO - Fetched game data for player 1628969
+2024-03-30 11:52:25,066 - player_game_data - INFO - Inserted game data: Player ID: 1628969, Player Name: Mikal Bridges, Game ID: 0022301066, Game Date: 1711670400000, Matchup: BKN vs. CHI
+2024-03-30 11:52:25,278 - player_game_data - INFO - Fetched game data for player 1628970
+2024-03-30 11:52:25,341 - player_game_data - INFO - Inserted game data: Player ID: 1628970, Player Name: Miles Bridges, Game ID: 0022301062, Game Date: 1711670400000, Matchup: CHA vs. GSW
+2024-03-30 11:52:25,507 - player_game_data - INFO - Fetched game data for player 1629052
+2024-03-30 11:52:25,844 - player_game_data - INFO - Fetched game data for player 1627763
+2024-03-30 11:52:26,026 - player_game_data - INFO - Fetched game data for player 1629717
+2024-03-30 11:52:26,443 - player_game_data - INFO - Fetched game data for player 1628415
+2024-03-30 11:52:26,525 - player_game_data - INFO - Inserted game data: Player ID: 1628415, Player Name: Dillon Brooks, Game ID: 0022301072, Game Date: 1711670400000, Matchup: HOU @ UTA
+2024-03-30 11:52:26,761 - player_game_data - INFO - Fetched game data for player 1628971
+2024-03-30 11:52:27,135 - player_game_data - INFO - Fetched game data for player 1627759
+2024-03-30 11:52:27,421 - player_game_data - INFO - Fetched game data for player 1631112
+2024-03-30 11:52:27,593 - player_game_data - INFO - Fetched game data for player 1641738
+2024-03-30 11:52:27,822 - player_game_data - INFO - Fetched game data for player 1629650
+2024-03-30 11:52:28,050 - player_game_data - INFO - Fetched game data for player 1630535
+2024-03-30 11:52:28,345 - player_game_data - INFO - Fetched game data for player 1629718
+2024-03-30 11:52:28,616 - player_game_data - INFO - Fetched game data for player 1628972
+2024-03-30 11:52:28,709 - player_game_data - INFO - Inserted game data: Player ID: 1628972, Player Name: Troy Brown Jr., Game ID: 0022301065, Game Date: 1711670400000, Matchup: DET @ WAS
+2024-03-30 11:52:29,040 - player_game_data - INFO - Fetched game data for player 1628973
+2024-03-30 11:52:29,126 - player_game_data - INFO - Inserted game data: Player ID: 1628973, Player Name: Jalen Brunson, Game ID: 0022301070, Game Date: 1711670400000, Matchup: NYK @ SAS
+2024-03-30 11:52:29,295 - player_game_data - INFO - Fetched game data for player 1628418
+2024-03-30 11:52:29,446 - player_game_data - INFO - Inserted game data: Player ID: 1628418, Player Name: Thomas Bryant, Game ID: 0022301068, Game Date: 1711670400000, Matchup: MIA vs. POR
+2024-03-30 11:52:29,596 - player_game_data - INFO - Fetched game data for player 1641723
+2024-03-30 11:52:29,776 - player_game_data - INFO - Fetched game data for player 203493
+2024-03-30 11:52:29,935 - player_game_data - INFO - Inserted game data: Player ID: 203493, Player Name: Reggie Bullock Jr., Game ID: 0022301072, Game Date: 1711670400000, Matchup: HOU @ UTA
+2024-03-30 11:52:30,111 - player_game_data - INFO - Fetched game data for player 202692
+2024-03-30 11:52:30,296 - player_game_data - INFO - Fetched game data for player 1630215
+2024-03-30 11:52:30,448 - player_game_data - INFO - Inserted game data: Player ID: 1630215, Player Name: Jared Butler, Game ID: 0022301065, Game Date: 1711670400000, Matchup: WAS vs. DET
+2024-03-30 11:52:30,619 - player_game_data - INFO - Fetched game data for player 202710
+2024-03-30 11:52:30,692 - player_game_data - INFO - Inserted game data: Player ID: 202710, Player Name: Jimmy Butler, Game ID: 0022301068, Game Date: 1711670400000, Matchup: MIA vs. POR
+2024-03-30 11:52:30,849 - player_game_data - INFO - Fetched game data for player 1631219
+2024-03-30 11:52:31,234 - player_game_data - INFO - Fetched game data for player 1631288
+2024-03-30 11:52:31,316 - player_game_data - INFO - Inserted game data: Player ID: 1631288, Player Name: Jamal Cain, Game ID: 0022301068, Game Date: 1711670400000, Matchup: MIA vs. POR
+2024-03-30 11:52:31,487 - player_game_data - INFO - Fetched game data for player 203484
+2024-03-30 11:52:31,553 - player_game_data - INFO - Inserted game data: Player ID: 203484, Player Name: Kentavious Caldwell-Pope, Game ID: 0022301071, Game Date: 1711670400000, Matchup: DEN vs. MIN
+2024-03-30 11:52:31,694 - player_game_data - INFO - Fetched game data for player 1641739
+2024-03-30 11:52:31,854 - player_game_data - INFO - Fetched game data for player 1628427
+2024-03-30 11:52:32,150 - player_game_data - INFO - Fetched game data for player 203991
+2024-03-30 11:52:32,421 - player_game_data - INFO - Fetched game data for player 1628975
+2024-03-30 11:52:32,690 - player_game_data - INFO - Fetched game data for player 1628976
+2024-03-30 11:52:32,769 - player_game_data - INFO - Inserted game data: Player ID: 1628976, Player Name: Wendell Carter Jr., Game ID: 0022301064, Game Date: 1711670400000, Matchup: ORL vs. LAC
+2024-03-30 11:52:33,060 - player_game_data - INFO - Fetched game data for player 1627936
+2024-03-30 11:52:33,130 - player_game_data - INFO - Inserted game data: Player ID: 1627936, Player Name: Alex Caruso, Game ID: 0022301066, Game Date: 1711670400000, Matchup: CHI @ BKN
+2024-03-30 11:52:33,283 - player_game_data - INFO - Fetched game data for player 1630658
+2024-03-30 11:52:33,346 - player_game_data - INFO - Inserted game data: Player ID: 1630658, Player Name: Colin Castleton, Game ID: 0022301063, Game Date: 1711670400000, Matchup: LAL @ IND
+2024-03-30 11:52:33,484 - player_game_data - INFO - Fetched game data for player 1630608
+2024-03-30 11:52:33,735 - player_game_data - INFO - Fetched game data for player 1630577
+2024-03-30 11:52:33,816 - player_game_data - INFO - Inserted game data: Player ID: 1630577, Player Name: Julian Champagnie, Game ID: 0022301070, Game Date: 1711670400000, Matchup: SAS vs. NYK
+2024-03-30 11:52:34,101 - player_game_data - INFO - Fetched game data for player 1631108
+2024-03-30 11:52:34,168 - player_game_data - INFO - Inserted game data: Player ID: 1631108, Player Name: Max Christie, Game ID: 0022301063, Game Date: 1711670400000, Matchup: LAL @ IND
+2024-03-30 11:52:34,328 - player_game_data - INFO - Fetched game data for player 1630528
+2024-03-30 11:52:34,515 - player_game_data - INFO - Fetched game data for player 1631321
+2024-03-30 11:52:34,751 - player_game_data - INFO - Fetched game data for player 1641740
+2024-03-30 11:52:35,053 - player_game_data - INFO - Fetched game data for player 1629634
+2024-03-30 11:52:35,301 - player_game_data - INFO - Fetched game data for player 203903
+2024-03-30 11:52:35,529 - player_game_data - INFO - Fetched game data for player 1629651
+2024-03-30 11:52:35,666 - player_game_data - INFO - Inserted game data: Player ID: 1629651, Player Name: Nic Claxton, Game ID: 0022301066, Game Date: 1711670400000, Matchup: BKN vs. CHI
+2024-03-30 11:52:35,818 - player_game_data - INFO - Fetched game data for player 1641730
+2024-03-30 11:52:35,883 - player_game_data - INFO - Inserted game data: Player ID: 1641730, Player Name: Noah Clowney, Game ID: 0022301066, Game Date: 1711670400000, Matchup: BKN vs. CHI
+2024-03-30 11:52:36,005 - player_game_data - INFO - Fetched game data for player 1629599
+2024-03-30 11:52:36,075 - player_game_data - INFO - Inserted game data: Player ID: 1629599, Player Name: Amir Coffey, Game ID: 0022301064, Game Date: 1711670400000, Matchup: LAC @ ORL
+2024-03-30 11:52:36,348 - player_game_data - INFO - Fetched game data for player 1628381
+2024-03-30 11:52:36,425 - player_game_data - INFO - Inserted game data: Player ID: 1628381, Player Name: John Collins, Game ID: 0022301072, Game Date: 1711670400000, Matchup: UTA vs. HOU
+2024-03-30 11:52:36,556 - player_game_data - INFO - Fetched game data for player 1628380
+2024-03-30 11:52:36,714 - player_game_data - INFO - Inserted game data: Player ID: 1628380, Player Name: Zach Collins, Game ID: 0022301070, Game Date: 1711670400000, Matchup: SAS vs. NYK
+2024-03-30 11:52:36,889 - player_game_data - INFO - Fetched game data for player 201144
+2024-03-30 11:52:37,087 - player_game_data - INFO - Inserted game data: Player ID: 201144, Player Name: Mike Conley, Game ID: 0022301071, Game Date: 1711670400000, Matchup: MIN @ DEN
+2024-03-30 11:52:37,318 - player_game_data - INFO - Fetched game data for player 1626192
+2024-03-30 11:52:37,490 - player_game_data - INFO - Fetched game data for player 1641731
+2024-03-30 11:52:37,663 - player_game_data - INFO - Fetched game data for player 1641741
+2024-03-30 11:52:37,796 - player_game_data - INFO - Inserted game data: Player ID: 1641741, Player Name: Ricky Council IV, Game ID: 0022301067, Game Date: 1711670400000, Matchup: PHI @ CLE
+2024-03-30 11:52:37,951 - player_game_data - INFO - Fetched game data for player 203496
+2024-03-30 11:52:38,123 - player_game_data - INFO - Fetched game data for player 1628470
+2024-03-30 11:52:38,195 - player_game_data - INFO - Inserted game data: Player ID: 1628470, Player Name: Torrey Craig, Game ID: 0022301066, Game Date: 1711670400000, Matchup: CHI @ BKN
+2024-03-30 11:52:38,406 - player_game_data - INFO - Fetched game data for player 203109
+2024-03-30 11:52:38,593 - player_game_data - INFO - Fetched game data for player 1630595
+2024-03-30 11:52:38,674 - player_game_data - INFO - Inserted game data: Player ID: 1630595, Player Name: Cade Cunningham, Game ID: 0022301065, Game Date: 1711670400000, Matchup: DET @ WAS
+2024-03-30 11:52:39,037 - player_game_data - INFO - Fetched game data for player 203552
+2024-03-30 11:52:39,350 - player_game_data - INFO - Fetched game data for player 201939
+2024-03-30 11:52:39,435 - player_game_data - INFO - Inserted game data: Player ID: 201939, Player Name: Stephen Curry, Game ID: 0022301062, Game Date: 1711670400000, Matchup: GSW @ CHA
+2024-03-30 11:52:39,596 - player_game_data - INFO - Fetched game data for player 1630700
+2024-03-30 11:52:39,881 - player_game_data - INFO - Fetched game data for player 203076
+2024-03-30 11:52:39,980 - player_game_data - INFO - Inserted game data: Player ID: 203076, Player Name: Anthony Davis, Game ID: 0022301063, Game Date: 1711670400000, Matchup: LAL @ IND
+2024-03-30 11:52:40,315 - player_game_data - INFO - Fetched game data for player 1631098
+2024-03-30 11:52:40,467 - player_game_data - INFO - Inserted game data: Player ID: 1631098, Player Name: Johnny Davis, Game ID: 0022301065, Game Date: 1711670400000, Matchup: WAS vs. DET
+2024-03-30 11:52:40,615 - player_game_data - INFO - Fetched game data for player 1631120
+2024-03-30 11:52:40,786 - player_game_data - INFO - Fetched game data for player 201942
+2024-03-30 11:52:41,088 - player_game_data - INFO - Inserted game data: Player ID: 201942, Player Name: DeMar DeRozan, Game ID: 0022301066, Game Date: 1711670400000, Matchup: CHI @ BKN
+2024-03-30 11:52:41,291 - player_game_data - INFO - Fetched game data for player 1641926
+2024-03-30 11:52:41,628 - player_game_data - INFO - Fetched game data for player 1628978
+2024-03-30 11:52:41,702 - player_game_data - INFO - Inserted game data: Player ID: 1628978, Player Name: Donte DiVincenzo, Game ID: 0022301070, Game Date: 1711670400000, Matchup: NYK @ SAS
+2024-03-30 11:52:41,875 - player_game_data - INFO - Fetched game data for player 1631217
+2024-03-30 11:52:42,179 - player_game_data - INFO - Fetched game data for player 1641711
+2024-03-30 11:52:42,484 - player_game_data - INFO - Fetched game data for player 1631172
+2024-03-30 11:52:42,663 - player_game_data - INFO - Fetched game data for player 203915
+2024-03-30 11:52:42,736 - player_game_data - INFO - Inserted game data: Player ID: 203915, Player Name: Spencer Dinwiddie, Game ID: 0022301063, Game Date: 1711670400000, Matchup: LAL @ IND
+2024-03-30 11:52:43,052 - player_game_data - INFO - Fetched game data for player 1629029
+2024-03-30 11:52:43,129 - player_game_data - INFO - Inserted game data: Player ID: 1629029, Player Name: Luka Doncic, Game ID: 0022301073, Game Date: 1711670400000, Matchup: DAL @ SAC
+2024-03-30 11:52:43,459 - player_game_data - INFO - Fetched game data for player 1629652
+2024-03-30 11:52:43,626 - player_game_data - INFO - Inserted game data: Player ID: 1629652, Player Name: Luguentz Dort, Game ID: 0022301069, Game Date: 1711670400000, Matchup: OKC vs. PHX
+2024-03-30 11:52:43,827 - player_game_data - INFO - Fetched game data for player 1630245
+2024-03-30 11:52:43,895 - player_game_data - INFO - Inserted game data: Player ID: 1630245, Player Name: Ayo Dosunmu, Game ID: 0022301066, Game Date: 1711670400000, Matchup: CHI @ BKN
+2024-03-30 11:52:44,129 - player_game_data - INFO - Fetched game data for player 203083
+2024-03-30 11:52:44,194 - player_game_data - INFO - Inserted game data: Player ID: 203083, Player Name: Andre Drummond, Game ID: 0022301066, Game Date: 1711670400000, Matchup: CHI @ BKN
+2024-03-30 11:52:44,416 - player_game_data - INFO - Fetched game data for player 1630537
+2024-03-30 11:52:44,578 - player_game_data - INFO - Inserted game data: Player ID: 1630537, Player Name: Chris Duarte, Game ID: 0022301073, Game Date: 1711670400000, Matchup: SAC vs. DAL
+2024-03-30 11:52:44,794 - player_game_data - INFO - Fetched game data for player 1627739
+2024-03-30 11:52:44,887 - player_game_data - INFO - Inserted game data: Player ID: 1627739, Player Name: Kris Dunn, Game ID: 0022301072, Game Date: 1711670400000, Matchup: UTA vs. HOU
+2024-03-30 11:52:45,239 - player_game_data - INFO - Fetched game data for player 201142
+2024-03-30 11:52:45,327 - player_game_data - INFO - Inserted game data: Player ID: 201142, Player Name: Kevin Durant, Game ID: 0022301069, Game Date: 1711670400000, Matchup: PHX @ OKC
+2024-03-30 11:52:45,512 - player_game_data - INFO - Fetched game data for player 1631105
+2024-03-30 11:52:45,665 - player_game_data - INFO - Inserted game data: Player ID: 1631105, Player Name: Jalen Duren, Game ID: 0022301065, Game Date: 1711670400000, Matchup: DET @ WAS
+2024-03-30 11:52:45,832 - player_game_data - INFO - Fetched game data for player 1631106
+2024-03-30 11:52:46,186 - player_game_data - INFO - Fetched game data for player 1630162
+2024-03-30 11:52:46,273 - player_game_data - INFO - Inserted game data: Player ID: 1630162, Player Name: Anthony Edwards, Game ID: 0022301071, Game Date: 1711670400000, Matchup: MIN @ DEN
+2024-03-30 11:52:46,529 - player_game_data - INFO - Fetched game data for player 1630556
+2024-03-30 11:52:46,682 - player_game_data - INFO - Inserted game data: Player ID: 1630556, Player Name: Kessler Edwards, Game ID: 0022301073, Game Date: 1711670400000, Matchup: SAC vs. DAL
+2024-03-30 11:52:46,907 - player_game_data - INFO - Fetched game data for player 1631165
+2024-03-30 11:52:47,105 - player_game_data - INFO - Inserted game data: Player ID: 1631165, Player Name: Keon Ellis, Game ID: 0022301073, Game Date: 1711670400000, Matchup: SAC vs. DAL
+2024-03-30 11:52:47,375 - player_game_data - INFO - Fetched game data for player 203954
+2024-03-30 11:52:47,578 - player_game_data - INFO - Fetched game data for player 1629234
+2024-03-30 11:52:47,730 - player_game_data - INFO - Inserted game data: Player ID: 1629234, Player Name: Drew Eubanks, Game ID: 0022301069, Game Date: 1711670400000, Matchup: PHX @ OKC
+2024-03-30 11:52:47,958 - player_game_data - INFO - Fetched game data for player 203957
+2024-03-30 11:52:48,025 - player_game_data - INFO - Inserted game data: Player ID: 203957, Player Name: Dante Exum, Game ID: 0022301073, Game Date: 1711670400000, Matchup: DAL @ SAC
+2024-03-30 11:52:48,317 - player_game_data - INFO - Fetched game data for player 1628981
+2024-03-30 11:52:48,616 - player_game_data - INFO - Fetched game data for player 1627827
+2024-03-30 11:52:48,794 - player_game_data - INFO - Inserted game data: Player ID: 1627827, Player Name: Dorian Finney-Smith, Game ID: 0022301066, Game Date: 1711670400000, Matchup: BKN vs. CHI
+2024-03-30 11:52:49,049 - player_game_data - INFO - Fetched game data for player 1630201
+2024-03-30 11:52:49,149 - player_game_data - INFO - Inserted game data: Player ID: 1630201, Player Name: Malachi Flynn, Game ID: 0022301065, Game Date: 1711670400000, Matchup: DET @ WAS
+2024-03-30 11:52:49,422 - player_game_data - INFO - Fetched game data for player 1631323
+2024-03-30 11:52:49,650 - player_game_data - INFO - Fetched game data for player 1630259
+2024-03-30 11:52:49,953 - player_game_data - INFO - Fetched game data for player 1630235
+2024-03-30 11:52:50,212 - player_game_data - INFO - Fetched game data for player 203095
+2024-03-30 11:52:50,374 - player_game_data - INFO - Inserted game data: Player ID: 203095, Player Name: Evan Fournier, Game ID: 0022301065, Game Date: 1711670400000, Matchup: DET @ WAS
+2024-03-30 11:52:50,588 - player_game_data - INFO - Fetched game data for player 1628368
+2024-03-30 11:52:50,695 - player_game_data - INFO - Inserted game data: Player ID: 1628368, Player Name: De'Aaron Fox, Game ID: 0022301073, Game Date: 1711670400000, Matchup: SAC vs. DAL
+2024-03-30 11:52:51,062 - player_game_data - INFO - Fetched game data for player 1631241
+2024-03-30 11:52:51,257 - player_game_data - INFO - Fetched game data for player 1641788
+2024-03-30 11:52:51,556 - player_game_data - INFO - Fetched game data for player 1628365
+2024-03-30 11:52:51,822 - player_game_data - INFO - Fetched game data for player 1629655
+2024-03-30 11:52:52,008 - player_game_data - INFO - Inserted game data: Player ID: 1629655, Player Name: Daniel Gafford, Game ID: 0022301073, Game Date: 1711670400000, Matchup: DAL @ SAC
+2024-03-30 11:52:52,218 - player_game_data - INFO - Fetched game data for player 201568
+2024-03-30 11:52:52,460 - player_game_data - INFO - Fetched game data for player 1629636
+2024-03-30 11:52:52,543 - player_game_data - INFO - Inserted game data: Player ID: 1629636, Player Name: Darius Garland, Game ID: 0022301067, Game Date: 1711670400000, Matchup: CLE vs. PHI
+2024-03-30 11:52:52,779 - player_game_data - INFO - Fetched game data for player 1630586
+2024-03-30 11:52:53,193 - player_game_data - INFO - Fetched game data for player 1630568
+2024-03-30 11:52:53,258 - player_game_data - INFO - Inserted game data: Player ID: 1630568, Player Name: Luka Garza, Game ID: 0022301071, Game Date: 1711670400000, Matchup: MIN @ DEN
+2024-03-30 11:52:53,411 - player_game_data - INFO - Fetched game data for player 1629232
+2024-03-30 11:52:53,820 - player_game_data - INFO - Fetched game data for player 1641718
+2024-03-30 11:52:54,014 - player_game_data - INFO - Inserted game data: Player ID: 1641718, Player Name: Keyonte George, Game ID: 0022301072, Game Date: 1711670400000, Matchup: UTA vs. HOU
+2024-03-30 11:52:54,156 - player_game_data - INFO - Fetched game data for player 202331
+2024-03-30 11:52:54,244 - player_game_data - INFO - Inserted game data: Player ID: 202331, Player Name: Paul George, Game ID: 0022301064, Game Date: 1711670400000, Matchup: LAC @ ORL
+2024-03-30 11:52:54,382 - player_game_data - INFO - Fetched game data for player 1630581
+2024-03-30 11:52:54,544 - player_game_data - INFO - Inserted game data: Player ID: 1630581, Player Name: Josh Giddey, Game ID: 0022301069, Game Date: 1711670400000, Matchup: OKC vs. PHX
+2024-03-30 11:52:54,691 - player_game_data - INFO - Fetched game data for player 1628385
+2024-03-30 11:52:54,880 - player_game_data - INFO - Fetched game data for player 1628983
+2024-03-30 11:52:55,208 - player_game_data - INFO - Fetched game data for player 1630264
+2024-03-30 11:52:55,289 - player_game_data - INFO - Inserted game data: Player ID: 1630264, Player Name: Anthony Gill, Game ID: 0022301065, Game Date: 1711670400000, Matchup: WAS vs. DET
+2024-03-30 11:52:55,454 - player_game_data - INFO - Fetched game data for player 1631221
+2024-03-30 11:52:55,624 - player_game_data - INFO - Inserted game data: Player ID: 1631221, Player Name: Collin Gillespie, Game ID: 0022301071, Game Date: 1711670400000, Matchup: DEN vs. MIN
+2024-03-30 11:52:55,873 - player_game_data - INFO - Fetched game data for player 1631367
+2024-03-30 11:52:56,128 - player_game_data - INFO - Fetched game data for player 203497
+2024-03-30 11:52:56,190 - player_game_data - INFO - Inserted game data: Player ID: 203497, Player Name: Rudy Gobert, Game ID: 0022301071, Game Date: 1711670400000, Matchup: MIN @ DEN
+2024-03-30 11:52:56,321 - player_game_data - INFO - Fetched game data for player 1630692
+2024-03-30 11:52:56,527 - player_game_data - INFO - Fetched game data for player 203932
+2024-03-30 11:52:56,668 - player_game_data - INFO - Inserted game data: Player ID: 203932, Player Name: Aaron Gordon, Game ID: 0022301071, Game Date: 1711670400000, Matchup: DEN vs. MIN
+2024-03-30 11:52:56,805 - player_game_data - INFO - Fetched game data for player 201569
+2024-03-30 11:52:56,875 - player_game_data - INFO - Inserted game data: Player ID: 201569, Player Name: Eric Gordon, Game ID: 0022301069, Game Date: 1711670400000, Matchup: PHX @ OKC
+2024-03-30 11:52:57,175 - player_game_data - INFO - Fetched game data for player 1628984
+2024-03-30 11:52:57,345 - player_game_data - INFO - Fetched game data for player 203924
+2024-03-30 11:52:57,562 - player_game_data - INFO - Fetched game data for player 1631260
+2024-03-30 11:52:57,858 - player_game_data - INFO - Fetched game data for player 201980
+2024-03-30 11:52:58,038 - player_game_data - INFO - Fetched game data for player 203110
+2024-03-30 11:52:58,102 - player_game_data - INFO - Inserted game data: Player ID: 203110, Player Name: Draymond Green, Game ID: 0022301062, Game Date: 1711670400000, Matchup: GSW @ CHA
+2024-03-30 11:52:58,294 - player_game_data - INFO - Fetched game data for player 1630224
+2024-03-30 11:52:58,360 - player_game_data - INFO - Inserted game data: Player ID: 1630224, Player Name: Jalen Green, Game ID: 0022301072, Game Date: 1711670400000, Matchup: HOU @ UTA
+2024-03-30 11:52:58,546 - player_game_data - INFO - Fetched game data for player 201145
+2024-03-30 11:52:58,624 - player_game_data - INFO - Inserted game data: Player ID: 201145, Player Name: Jeff Green, Game ID: 0022301072, Game Date: 1711670400000, Matchup: HOU @ UTA
+2024-03-30 11:52:58,831 - player_game_data - INFO - Fetched game data for player 1630182
+2024-03-30 11:52:59,128 - player_game_data - INFO - Fetched game data for player 1631100
+2024-03-30 11:52:59,410 - player_game_data - INFO - Fetched game data for player 1629656
+2024-03-30 11:52:59,693 - player_game_data - INFO - Fetched game data for player 1631243
+2024-03-30 11:52:59,958 - player_game_data - INFO - Fetched game data for player 1629060
+2024-03-30 11:53:00,048 - player_game_data - INFO - Inserted game data: Player ID: 1629060, Player Name: Rui Hachimura, Game ID: 0022301063, Game Date: 1711670400000, Matchup: LAL @ IND
+2024-03-30 11:53:00,204 - player_game_data - INFO - Fetched game data for player 1630169
+2024-03-30 11:53:00,342 - player_game_data - INFO - Inserted game data: Player ID: 1630169, Player Name: Tyrese Haliburton, Game ID: 0022301063, Game Date: 1711670400000, Matchup: IND vs. LAL
+2024-03-30 11:53:00,553 - player_game_data - INFO - Fetched game data for player 1630181
+2024-03-30 11:53:00,718 - player_game_data - INFO - Fetched game data for player 203501
+2024-03-30 11:53:00,853 - player_game_data - INFO - Inserted game data: Player ID: 203501, Player Name: Tim Hardaway Jr., Game ID: 0022301073, Game Date: 1711670400000, Matchup: DAL @ SAC
+2024-03-30 11:53:01,068 - player_game_data - INFO - Fetched game data for player 201935
+2024-03-30 11:53:01,135 - player_game_data - INFO - Inserted game data: Player ID: 201935, Player Name: James Harden, Game ID: 0022301064, Game Date: 1711670400000, Matchup: LAC @ ORL
+2024-03-30 11:53:01,653 - player_game_data - INFO - Fetched game data for player 1630702
+2024-03-30 11:53:01,896 - player_game_data - INFO - Fetched game data for player 1631199
+2024-03-30 11:53:02,089 - player_game_data - INFO - Fetched game data for player 203914
+2024-03-30 11:53:02,154 - player_game_data - INFO - Inserted game data: Player ID: 203914, Player Name: Gary Harris, Game ID: 0022301064, Game Date: 1711670400000, Matchup: ORL vs. LAC
+2024-03-30 11:53:02,428 - player_game_data - INFO - Fetched game data for player 203925
+2024-03-30 11:53:02,650 - player_game_data - INFO - Fetched game data for player 1630284
+2024-03-30 11:53:02,823 - player_game_data - INFO - Fetched game data for player 202699
+2024-03-30 11:53:03,115 - player_game_data - INFO - Inserted game data: Player ID: 202699, Player Name: Tobias Harris, Game ID: 0022301067, Game Date: 1711670400000, Matchup: PHI @ CLE
+2024-03-30 11:53:03,229 - player_game_data - INFO - Fetched game data for player 1628404
+2024-03-30 11:53:03,290 - player_game_data - INFO - Inserted game data: Player ID: 1628404, Player Name: Josh Hart, Game ID: 0022301070, Game Date: 1711670400000, Matchup: NYK @ SAS
+2024-03-30 11:53:03,460 - player_game_data - INFO - Fetched game data for player 1628392
+2024-03-30 11:53:03,528 - player_game_data - INFO - Inserted game data: Player ID: 1628392, Player Name: Isaiah Hartenstein, Game ID: 0022301070, Game Date: 1711670400000, Matchup: NYK @ SAS
+2024-03-30 11:53:03,730 - player_game_data - INFO - Fetched game data for player 1630573
+2024-03-30 11:53:03,987 - player_game_data - INFO - Fetched game data for player 1641722
+2024-03-30 11:53:04,182 - player_game_data - INFO - Fetched game data for player 1629637
+2024-03-30 11:53:04,271 - player_game_data - INFO - Inserted game data: Player ID: 1629637, Player Name: Jaxson Hayes, Game ID: 0022301063, Game Date: 1711670400000, Matchup: LAL @ IND
+2024-03-30 11:53:04,384 - player_game_data - INFO - Fetched game data for player 1630165
+2024-03-30 11:53:04,665 - player_game_data - INFO - Fetched game data for player 202330
+2024-03-30 11:53:04,729 - player_game_data - INFO - Inserted game data: Player ID: 202330, Player Name: Gordon Hayward, Game ID: 0022301069, Game Date: 1711670400000, Matchup: OKC vs. PHX
+2024-03-30 11:53:05,060 - player_game_data - INFO - Fetched game data for player 1630703
+2024-03-30 11:53:05,129 - player_game_data - INFO - Inserted game data: Player ID: 1630703, Player Name: Scoot Henderson, Game ID: 0022301068, Game Date: 1711670400000, Matchup: POR @ MIA
+2024-03-30 11:53:05,268 - player_game_data - INFO - Fetched game data for player 1641707
+2024-03-30 11:53:05,334 - player_game_data - INFO - Inserted game data: Player ID: 1641707, Player Name: Taylor Hendricks, Game ID: 0022301072, Game Date: 1711670400000, Matchup: UTA vs. HOU
+2024-03-30 11:53:05,455 - player_game_data - INFO - Fetched game data for player 1629639
+2024-03-30 11:53:05,693 - player_game_data - INFO - Fetched game data for player 1627741
+2024-03-30 11:53:05,758 - player_game_data - INFO - Inserted game data: Player ID: 1627741, Player Name: Buddy Hield, Game ID: 0022301067, Game Date: 1711670400000, Matchup: PHI @ CLE
+2024-03-30 11:53:05,881 - player_game_data - INFO - Fetched game data for player 1629312
+2024-03-30 11:53:05,942 - player_game_data - INFO - Inserted game data: Player ID: 1629312, Player Name: Haywood Highsmith, Game ID: 0022301068, Game Date: 1711670400000, Matchup: MIA vs. POR
+2024-03-30 11:53:06,240 - player_game_data - INFO - Fetched game data for player 1630207
+2024-03-30 11:53:06,425 - player_game_data - INFO - Fetched game data for player 1641793
+2024-03-30 11:53:06,775 - player_game_data - INFO - Fetched game data for player 1628988
+2024-03-30 11:53:06,884 - player_game_data - INFO - Inserted game data: Player ID: 1628988, Player Name: Aaron Holiday, Game ID: 0022301072, Game Date: 1711670400000, Matchup: HOU @ UTA
+2024-03-30 11:53:07,293 - player_game_data - INFO - Fetched game data for player 201950
+2024-03-30 11:53:07,563 - player_game_data - INFO - Fetched game data for player 203200
+2024-03-30 11:53:07,734 - player_game_data - INFO - Inserted game data: Player ID: 203200, Player Name: Justin Holiday, Game ID: 0022301071, Game Date: 1711670400000, Matchup: DEN vs. MIN
+2024-03-30 11:53:07,862 - player_game_data - INFO - Fetched game data for player 1626158
+2024-03-30 11:53:08,072 - player_game_data - INFO - Fetched game data for player 1631096
+2024-03-30 11:53:08,203 - player_game_data - INFO - Inserted game data: Player ID: 1631096, Player Name: Chet Holmgren, Game ID: 0022301069, Game Date: 1711670400000, Matchup: OKC vs. PHX
+2024-03-30 11:53:08,377 - player_game_data - INFO - Fetched game data for player 1641720
+2024-03-30 11:53:08,546 - player_game_data - INFO - Fetched game data for player 201143
+2024-03-30 11:53:08,836 - player_game_data - INFO - Fetched game data for player 1629659
+2024-03-30 11:53:09,229 - player_game_data - INFO - Fetched game data for player 1627863
+2024-03-30 11:53:09,425 - player_game_data - INFO - Fetched game data for player 1631216
+2024-03-30 11:53:09,490 - player_game_data - INFO - Inserted game data: Player ID: 1631216, Player Name: Caleb Houstan, Game ID: 0022301064, Game Date: 1711670400000, Matchup: ORL vs. LAC
+2024-03-30 11:53:09,752 - player_game_data - INFO - Fetched game data for player 1641724
+2024-03-30 11:53:09,974 - player_game_data - INFO - Fetched game data for player 1628989
+2024-03-30 11:53:10,149 - player_game_data - INFO - Fetched game data for player 1630643
+2024-03-30 11:53:10,300 - player_game_data - INFO - Inserted game data: Player ID: 1630643, Player Name: Jay Huff, Game ID: 0022301071, Game Date: 1711670400000, Matchup: DEN vs. MIN
+2024-03-30 11:53:10,450 - player_game_data - INFO - Fetched game data for player 1629631
+2024-03-30 11:53:10,650 - player_game_data - INFO - Fetched game data for player 1630538
+2024-03-30 11:53:10,919 - player_game_data - INFO - Fetched game data for player 204060
+2024-03-30 11:53:11,087 - player_game_data - INFO - Inserted game data: Player ID: 204060, Player Name: Joe Ingles, Game ID: 0022301064, Game Date: 1711670400000, Matchup: ORL vs. LAC
+2024-03-30 11:53:11,342 - player_game_data - INFO - Fetched game data for player 1627742
+2024-03-30 11:53:11,556 - player_game_data - INFO - Fetched game data for player 202681
+2024-03-30 11:53:11,630 - player_game_data - INFO - Inserted game data: Player ID: 202681, Player Name: Kyrie Irving, Game ID: 0022301073, Game Date: 1711670400000, Matchup: DAL @ SAC
+2024-03-30 11:53:11,911 - player_game_data - INFO - Fetched game data for player 1628371
+2024-03-30 11:53:11,981 - player_game_data - INFO - Inserted game data: Player ID: 1628371, Player Name: Jonathan Isaac, Game ID: 0022301064, Game Date: 1711670400000, Matchup: ORL vs. LAC
+2024-03-30 11:53:12,213 - player_game_data - INFO - Fetched game data for player 1631093
+2024-03-30 11:53:12,400 - player_game_data - INFO - Inserted game data: Player ID: 1631093, Player Name: Jaden Ivey, Game ID: 0022301065, Game Date: 1711670400000, Matchup: DET @ WAS
+2024-03-30 11:53:12,599 - player_game_data - INFO - Fetched game data for player 1641713
+2024-03-30 11:53:12,911 - player_game_data - INFO - Fetched game data for player 1630543
+2024-03-30 11:53:13,096 - player_game_data - INFO - Inserted game data: Player ID: 1630543, Player Name: Isaiah Jackson, Game ID: 0022301063, Game Date: 1711670400000, Matchup: IND vs. LAL
+2024-03-30 11:53:13,310 - player_game_data - INFO - Fetched game data for player 202704
+2024-03-30 11:53:13,454 - player_game_data - INFO - Inserted game data: Player ID: 202704, Player Name: Reggie Jackson, Game ID: 0022301071, Game Date: 1711670400000, Matchup: DEN vs. MIN
+2024-03-30 11:53:13,649 - player_game_data - INFO - Fetched game data for player 1641748
+2024-03-30 11:53:13,947 - player_game_data - INFO - Fetched game data for player 1628991
+2024-03-30 11:53:14,196 - player_game_data - INFO - Fetched game data for player 1631218
+2024-03-30 11:53:14,265 - player_game_data - INFO - Inserted game data: Player ID: 1631218, Player Name: Trayce Jackson-Davis, Game ID: 0022301062, Game Date: 1711670400000, Matchup: GSW @ CHA
+2024-03-30 11:53:14,486 - player_game_data - INFO - Fetched game data for player 2544
+2024-03-30 11:53:14,565 - player_game_data - INFO - Inserted game data: Player ID: 2544, Player Name: LeBron James, Game ID: 0022301063, Game Date: 1711670400000, Matchup: LAL @ IND
+2024-03-30 11:53:14,819 - player_game_data - INFO - Fetched game data for player 1631170
+2024-03-30 11:53:14,887 - player_game_data - INFO - Inserted game data: Player ID: 1631170, Player Name: Jaime Jaquez Jr., Game ID: 0022301068, Game Date: 1711670400000, Matchup: MIA vs. POR
+2024-03-30 11:53:15,317 - player_game_data - INFO - Fetched game data for player 1629610
+2024-03-30 11:53:15,716 - player_game_data - INFO - Fetched game data for player 1629660
+2024-03-30 11:53:15,908 - player_game_data - INFO - Fetched game data for player 1630198
+2024-03-30 11:53:16,079 - player_game_data - INFO - Inserted game data: Player ID: 1630198, Player Name: Isaiah Joe, Game ID: 0022301069, Game Date: 1711670400000, Matchup: OKC vs. PHX
+2024-03-30 11:53:16,227 - player_game_data - INFO - Fetched game data for player 1629661
+2024-03-30 11:53:16,415 - player_game_data - INFO - Fetched game data for player 1630552
+2024-03-30 11:53:16,692 - player_game_data - INFO - Fetched game data for player 1629640
+2024-03-30 11:53:16,790 - player_game_data - INFO - Inserted game data: Player ID: 1629640, Player Name: Keldon Johnson, Game ID: 0022301070, Game Date: 1711670400000, Matchup: SAS vs. NYK
+2024-03-30 11:53:17,090 - player_game_data - INFO - Fetched game data for player 1630553
+2024-03-30 11:53:17,273 - player_game_data - INFO - Fetched game data for player 1641749
+2024-03-30 11:53:17,522 - player_game_data - INFO - Fetched game data for player 203999
+2024-03-30 11:53:17,688 - player_game_data - INFO - Inserted game data: Player ID: 203999, Player Name: Nikola Jokic, Game ID: 0022301071, Game Date: 1711670400000, Matchup: DEN vs. MIN
+2024-03-30 11:53:17,836 - player_game_data - INFO - Fetched game data for player 1641732
+2024-03-30 11:53:18,197 - player_game_data - INFO - Fetched game data for player 1627745
+2024-03-30 11:53:18,451 - player_game_data - INFO - Fetched game data for player 1630529
+2024-03-30 11:53:18,759 - player_game_data - INFO - Fetched game data for player 1630200
+2024-03-30 11:53:18,847 - player_game_data - INFO - Inserted game data: Player ID: 1630200, Player Name: Tre Jones, Game ID: 0022301070, Game Date: 1711670400000, Matchup: SAS vs. NYK
+2024-03-30 11:53:19,009 - player_game_data - INFO - Fetched game data for player 1626145
+2024-03-30 11:53:19,379 - player_game_data - INFO - Fetched game data for player 1627884
+2024-03-30 11:53:19,447 - player_game_data - INFO - Inserted game data: Player ID: 1627884, Player Name: Derrick Jones Jr., Game ID: 0022301073, Game Date: 1711670400000, Matchup: DAL @ SAC
+2024-03-30 11:53:19,716 - player_game_data - INFO - Fetched game data for player 201599
+2024-03-30 11:53:19,784 - player_game_data - INFO - Inserted game data: Player ID: 201599, Player Name: DeAndre Jordan, Game ID: 0022301071, Game Date: 1711670400000, Matchup: DEN vs. MIN
+2024-03-30 11:53:19,956 - player_game_data - INFO - Fetched game data for player 202709
+2024-03-30 11:53:20,128 - player_game_data - INFO - Fetched game data for player 1631107
+2024-03-30 11:53:20,260 - player_game_data - INFO - Inserted game data: Player ID: 1631107, Player Name: Nikola Jovic, Game ID: 0022301068, Game Date: 1711670400000, Matchup: MIA vs. POR
+2024-03-30 11:53:20,461 - player_game_data - INFO - Fetched game data for player 1630548
+2024-03-30 11:53:20,560 - player_game_data - INFO - Inserted game data: Player ID: 1630548, Player Name: Johnny Juzang, Game ID: 0022301072, Game Date: 1711670400000, Matchup: UTA vs. HOU
+2024-03-30 11:53:20,775 - player_game_data - INFO - Fetched game data for player 1628379
+2024-03-30 11:53:21,082 - player_game_data - INFO - Fetched game data for player 1631117
+2024-03-30 11:53:21,175 - player_game_data - INFO - Inserted game data: Player ID: 1631117, Player Name: Walker Kessler, Game ID: 0022301072, Game Date: 1711670400000, Matchup: UTA vs. HOU
+2024-03-30 11:53:21,490 - player_game_data - INFO - Fetched game data for player 1630296
+2024-03-30 11:53:21,566 - player_game_data - INFO - Inserted game data: Player ID: 1630296, Player Name: Braxton Key, Game ID: 0022301071, Game Date: 1711670400000, Matchup: DEN vs. MIN
+2024-03-30 11:53:21,814 - player_game_data - INFO - Fetched game data for player 1630557
+2024-03-30 11:53:21,902 - player_game_data - INFO - Inserted game data: Player ID: 1630557, Player Name: Corey Kispert, Game ID: 0022301065, Game Date: 1711670400000, Matchup: WAS vs. DET
+2024-03-30 11:53:22,039 - player_game_data - INFO - Fetched game data for player 1628467
+2024-03-30 11:53:22,102 - player_game_data - INFO - Inserted game data: Player ID: 1628467, Player Name: Maxi Kleber, Game ID: 0022301073, Game Date: 1711670400000, Matchup: DAL @ SAC
+2024-03-30 11:53:22,344 - player_game_data - INFO - Fetched game data for player 1630233
+2024-03-30 11:53:22,529 - player_game_data - INFO - Fetched game data for player 1628995
+2024-03-30 11:53:22,708 - player_game_data - INFO - Fetched game data for player 1631132
+2024-03-30 11:53:23,092 - player_game_data - INFO - Fetched game data for player 1629723
+2024-03-30 11:53:23,295 - player_game_data - INFO - Fetched game data for player 1627788
+2024-03-30 11:53:23,646 - player_game_data - INFO - Fetched game data for player 1628436
+2024-03-30 11:53:23,920 - player_game_data - INFO - Fetched game data for player 1630228
+2024-03-30 11:53:24,159 - player_game_data - INFO - Fetched game data for player 1628398
+2024-03-30 11:53:24,231 - player_game_data - INFO - Inserted game data: Player ID: 1628398, Player Name: Kyle Kuzma, Game ID: 0022301065, Game Date: 1711670400000, Matchup: WAS vs. DET
+2024-03-30 11:53:24,435 - player_game_data - INFO - Fetched game data for player 1631222
+2024-03-30 11:53:25,537 - player_game_data - INFO - Fetched game data for player 203897
+2024-03-30 11:53:25,759 - player_game_data - INFO - Fetched game data for player 1629111
+2024-03-30 11:53:25,835 - player_game_data - INFO - Inserted game data: Player ID: 1629111, Player Name: Jock Landale, Game ID: 0022301072, Game Date: 1711670400000, Matchup: HOU @ UTA
+2024-03-30 11:53:26,106 - player_game_data - INFO - Fetched game data for player 1630639
+2024-03-30 11:53:26,357 - player_game_data - INFO - Fetched game data for player 1627747
+2024-03-30 11:53:26,645 - player_game_data - INFO - Fetched game data for player 1627814
+2024-03-30 11:53:26,828 - player_game_data - INFO - Fetched game data for player 1630240
+2024-03-30 11:53:27,164 - player_game_data - INFO - Fetched game data for player 203458
+2024-03-30 11:53:27,241 - player_game_data - INFO - Inserted game data: Player ID: 203458, Player Name: Alex Len, Game ID: 0022301073, Game Date: 1711670400000, Matchup: SAC vs. DAL
+2024-03-30 11:53:27,403 - player_game_data - INFO - Fetched game data for player 202695
+2024-03-30 11:53:27,474 - player_game_data - INFO - Inserted game data: Player ID: 202695, Player Name: Kawhi Leonard, Game ID: 0022301064, Game Date: 1711670400000, Matchup: LAC @ ORL
+2024-03-30 11:53:27,697 - player_game_data - INFO - Fetched game data for player 1631171
+2024-03-30 11:53:27,869 - player_game_data - INFO - Fetched game data for player 1641721
+2024-03-30 11:53:27,939 - player_game_data - INFO - Inserted game data: Player ID: 1641721, Player Name: Maxwell Lewis, Game ID: 0022301063, Game Date: 1711670400000, Matchup: LAL @ IND
+2024-03-30 11:53:28,239 - player_game_data - INFO - Fetched game data for player 1630184
+2024-03-30 11:53:28,428 - player_game_data - INFO - Fetched game data for player 1630604
+2024-03-30 11:53:28,700 - player_game_data - INFO - Fetched game data for player 203081
+2024-03-30 11:53:28,933 - player_game_data - INFO - Fetched game data for player 1629642
+2024-03-30 11:53:29,170 - player_game_data - INFO - Inserted game data: Player ID: 1629642, Player Name: Nassir Little, Game ID: 0022301069, Game Date: 1711670400000, Matchup: PHX @ OKC
+2024-03-30 11:53:29,365 - player_game_data - INFO - Fetched game data for player 1641726
+2024-03-30 11:53:29,439 - player_game_data - INFO - Inserted game data: Player ID: 1641726, Player Name: Dereck Lively II, Game ID: 0022301073, Game Date: 1711670400000, Matchup: DAL @ SAC
+2024-03-30 11:53:29,679 - player_game_data - INFO - Fetched game data for player 1630587
+2024-03-30 11:53:29,881 - player_game_data - INFO - Fetched game data for player 1641753
+2024-03-30 11:53:30,054 - player_game_data - INFO - Fetched game data for player 1631254
+2024-03-30 11:53:30,358 - player_game_data - INFO - Fetched game data for player 1626172
+2024-03-30 11:53:30,422 - player_game_data - INFO - Inserted game data: Player ID: 1626172, Player Name: Kevon Looney, Game ID: 0022301062, Game Date: 1711670400000, Matchup: GSW @ CHA
+2024-03-30 11:53:30,566 - player_game_data - INFO - Fetched game data for player 201572
+2024-03-30 11:53:30,847 - player_game_data - INFO - Fetched game data for player 201577
+2024-03-30 11:53:31,151 - player_game_data - INFO - Fetched game data for player 201567
+2024-03-30 11:53:31,440 - player_game_data - INFO - Fetched game data for player 200768
+2024-03-30 11:53:31,503 - player_game_data - INFO - Inserted game data: Player ID: 200768, Player Name: Kyle Lowry, Game ID: 0022301067, Game Date: 1711670400000, Matchup: PHI @ CLE
+2024-03-30 11:53:31,631 - player_game_data - INFO - Fetched game data for player 1641754
+2024-03-30 11:53:31,932 - player_game_data - INFO - Fetched game data for player 1626168
+2024-03-30 11:53:32,126 - player_game_data - INFO - Fetched game data for player 1630177
+2024-03-30 11:53:32,415 - player_game_data - INFO - Fetched game data for player 1630572
+2024-03-30 11:53:32,679 - player_game_data - INFO - Fetched game data for player 1629611
+2024-03-30 11:53:32,838 - player_game_data - INFO - Inserted game data: Player ID: 1629611, Player Name: Terance Mann, Game ID: 0022301064, Game Date: 1711670400000, Matchup: LAC @ ORL
+2024-03-30 11:53:33,111 - player_game_data - INFO - Fetched game data for player 1630544
+2024-03-30 11:53:33,187 - player_game_data - INFO - Inserted game data: Player ID: 1630544, Player Name: Tre Mann, Game ID: 0022301062, Game Date: 1711670400000, Matchup: CHA vs. GSW
+2024-03-30 11:53:33,481 - player_game_data - INFO - Fetched game data for player 1626246
+2024-03-30 11:53:33,762 - player_game_data - INFO - Fetched game data for player 1628374
+2024-03-30 11:53:34,200 - player_game_data - INFO - Fetched game data for player 1630230
+2024-03-30 11:53:34,519 - player_game_data - INFO - Fetched game data for player 1628997
+2024-03-30 11:53:34,630 - player_game_data - INFO - Inserted game data: Player ID: 1628997, Player Name: Caleb Martin, Game ID: 0022301068, Game Date: 1711670400000, Matchup: MIA vs. POR
+2024-03-30 11:53:34,795 - player_game_data - INFO - Fetched game data for player 1628998
+2024-03-30 11:53:35,244 - player_game_data - INFO - Fetched game data for player 1630231
+2024-03-30 11:53:35,548 - player_game_data - INFO - Fetched game data for player 1629726
+2024-03-30 11:53:35,780 - player_game_data - INFO - Fetched game data for player 1631097
+2024-03-30 11:53:36,052 - player_game_data - INFO - Fetched game data for player 202083
+2024-03-30 11:53:36,286 - player_game_data - INFO - Fetched game data for player 1630178
+2024-03-30 11:53:36,351 - player_game_data - INFO - Inserted game data: Player ID: 1630178, Player Name: Tyrese Maxey, Game ID: 0022301067, Game Date: 1711670400000, Matchup: PHI @ CLE
+2024-03-30 11:53:36,635 - player_game_data - INFO - Fetched game data for player 1630219
+2024-03-30 11:53:36,827 - player_game_data - INFO - Fetched game data for player 1630540
+2024-03-30 11:53:36,897 - player_game_data - INFO - Inserted game data: Player ID: 1630540, Player Name: Miles McBride, Game ID: 0022301070, Game Date: 1711670400000, Matchup: NYK @ SAS
+2024-03-30 11:53:37,308 - player_game_data - INFO - Fetched game data for player 203468
+2024-03-30 11:53:37,550 - player_game_data - INFO - Fetched game data for player 204456
+2024-03-30 11:53:37,646 - player_game_data - INFO - Inserted game data: Player ID: 204456, Player Name: T.J. McConnell, Game ID: 0022301063, Game Date: 1711670400000, Matchup: IND vs. LAL
+2024-03-30 11:53:37,809 - player_game_data - INFO - Fetched game data for player 1630183
+2024-03-30 11:53:37,879 - player_game_data - INFO - Inserted game data: Player ID: 1630183, Player Name: Jaden McDaniels, Game ID: 0022301071, Game Date: 1711670400000, Matchup: MIN @ DEN
+2024-03-30 11:53:38,224 - player_game_data - INFO - Fetched game data for player 1629667
+2024-03-30 11:53:38,424 - player_game_data - INFO - Fetched game data for player 203926
+2024-03-30 11:53:38,490 - player_game_data - INFO - Inserted game data: Player ID: 203926, Player Name: Doug McDermott, Game ID: 0022301063, Game Date: 1711670400000, Matchup: IND vs. LAL
+2024-03-30 11:53:38,699 - player_game_data - INFO - Fetched game data for player 201580
+2024-03-30 11:53:38,937 - player_game_data - INFO - Fetched game data for player 1631121
+2024-03-30 11:53:39,144 - player_game_data - INFO - Inserted game data: Player ID: 1631121, Player Name: Bryce McGowens, Game ID: 0022301062, Game Date: 1711670400000, Matchup: CHA vs. GSW
+2024-03-30 11:53:39,277 - player_game_data - INFO - Fetched game data for player 1629162
+2024-03-30 11:53:39,340 - player_game_data - INFO - Inserted game data: Player ID: 1629162, Player Name: Jordan McLaughlin, Game ID: 0022301071, Game Date: 1711670400000, Matchup: MIN @ DEN
+2024-03-30 11:53:39,484 - player_game_data - INFO - Fetched game data for player 1629001
+2024-03-30 11:53:39,751 - player_game_data - INFO - Fetched game data for player 1630241
+2024-03-30 11:53:39,815 - player_game_data - INFO - Inserted game data: Player ID: 1630241, Player Name: Sam Merrill, Game ID: 0022301067, Game Date: 1711670400000, Matchup: CLE vs. PHI
+2024-03-30 11:53:39,975 - player_game_data - INFO - Fetched game data for player 1629002
+2024-03-30 11:53:40,041 - player_game_data - INFO - Inserted game data: Player ID: 1629002, Player Name: Chimezie Metu, Game ID: 0022301065, Game Date: 1711670400000, Matchup: DET @ WAS
+2024-03-30 11:53:40,271 - player_game_data - INFO - Fetched game data for player 203995
+2024-03-30 11:53:40,351 - player_game_data - INFO - Inserted game data: Player ID: 203995, Player Name: Vasilije Micic, Game ID: 0022301062, Game Date: 1711670400000, Matchup: CHA vs. GSW
+2024-03-30 11:53:40,701 - player_game_data - INFO - Fetched game data for player 203114
+2024-03-30 11:53:40,936 - player_game_data - INFO - Fetched game data for player 1641706
+2024-03-30 11:53:41,224 - player_game_data - INFO - Inserted game data: Player ID: 1641706, Player Name: Brandon Miller, Game ID: 0022301062, Game Date: 1711670400000, Matchup: CHA vs. GSW
+2024-03-30 11:53:41,395 - player_game_data - INFO - Fetched game data for player 1641757
+2024-03-30 11:53:41,614 - player_game_data - INFO - Fetched game data for player 1631159
+2024-03-30 11:53:41,768 - player_game_data - INFO - Inserted game data: Player ID: 1631159, Player Name: Leonard Miller, Game ID: 0022301071, Game Date: 1711670400000, Matchup: MIN @ DEN
+2024-03-30 11:53:41,898 - player_game_data - INFO - Fetched game data for player 201988
+2024-03-30 11:53:41,966 - player_game_data - INFO - Inserted game data: Player ID: 201988, Player Name: Patty Mills, Game ID: 0022301068, Game Date: 1711670400000, Matchup: MIA vs. POR
+2024-03-30 11:53:42,119 - player_game_data - INFO - Fetched game data for player 1629003
+2024-03-30 11:53:42,274 - player_game_data - INFO - Inserted game data: Player ID: 1629003, Player Name: Shake Milton, Game ID: 0022301070, Game Date: 1711670400000, Matchup: NYK @ SAS
+2024-03-30 11:53:42,560 - player_game_data - INFO - Fetched game data for player 1631303
+2024-03-30 11:53:42,626 - player_game_data - INFO - Inserted game data: Player ID: 1631303, Player Name: Justin Minaya, Game ID: 0022301068, Game Date: 1711670400000, Matchup: POR @ MIA
+2024-03-30 11:53:42,893 - player_game_data - INFO - Fetched game data for player 1631169
+2024-03-30 11:53:43,093 - player_game_data - INFO - Inserted game data: Player ID: 1631169, Player Name: Josh Minott, Game ID: 0022301071, Game Date: 1711670400000, Matchup: MIN @ DEN
+2024-03-30 11:53:43,313 - player_game_data - INFO - Fetched game data for player 1630558
+2024-03-30 11:53:43,399 - player_game_data - INFO - Inserted game data: Player ID: 1630558, Player Name: Davion Mitchell, Game ID: 0022301073, Game Date: 1711670400000, Matchup: SAC vs. DAL
+2024-03-30 11:53:43,584 - player_game_data - INFO - Fetched game data for player 1628378
+2024-03-30 11:53:43,666 - player_game_data - INFO - Inserted game data: Player ID: 1628378, Player Name: Donovan Mitchell, Game ID: 0022301067, Game Date: 1711670400000, Matchup: CLE vs. PHI
+2024-03-30 11:53:43,899 - player_game_data - INFO - Fetched game data for player 1630596
+2024-03-30 11:53:43,991 - player_game_data - INFO - Inserted game data: Player ID: 1630596, Player Name: Evan Mobley, Game ID: 0022301067, Game Date: 1711670400000, Matchup: CLE vs. PHI
+2024-03-30 11:53:44,180 - player_game_data - INFO - Fetched game data for player 1630600
+2024-03-30 11:53:44,467 - player_game_data - INFO - Fetched game data for player 1628370
+2024-03-30 11:53:44,562 - player_game_data - INFO - Inserted game data: Player ID: 1628370, Player Name: Malik Monk, Game ID: 0022301073, Game Date: 1711670400000, Matchup: SAC vs. DAL
+2024-03-30 11:53:44,699 - player_game_data - INFO - Fetched game data for player 1630541
+2024-03-30 11:53:44,774 - player_game_data - INFO - Inserted game data: Player ID: 1630541, Player Name: Moses Moody, Game ID: 0022301062, Game Date: 1711670400000, Matchup: GSW @ CHA
+2024-03-30 11:53:45,128 - player_game_data - INFO - Fetched game data for player 1631111
+2024-03-30 11:53:45,201 - player_game_data - INFO - Inserted game data: Player ID: 1631111, Player Name: Wendell Moore Jr., Game ID: 0022301071, Game Date: 1711670400000, Matchup: MIN @ DEN
+2024-03-30 11:53:45,405 - player_game_data - INFO - Fetched game data for player 1629630
+2024-03-30 11:53:45,602 - player_game_data - INFO - Fetched game data for player 202693
+2024-03-30 11:53:45,811 - player_game_data - INFO - Fetched game data for player 1628420
+2024-03-30 11:53:45,955 - player_game_data - INFO - Inserted game data: Player ID: 1628420, Player Name: Monte Morris, Game ID: 0022301071, Game Date: 1711670400000, Matchup: MIN @ DEN
+2024-03-30 11:53:46,118 - player_game_data - INFO - Fetched game data for player 202694
+2024-03-30 11:53:46,215 - player_game_data - INFO - Inserted game data: Player ID: 202694, Player Name: Marcus Morris Sr., Game ID: 0022301067, Game Date: 1711670400000, Matchup: CLE vs. PHI
+2024-03-30 11:53:46,458 - player_game_data - INFO - Fetched game data for player 1630530
+2024-03-30 11:53:46,704 - player_game_data - INFO - Fetched game data for player 1627749
+2024-03-30 11:53:47,100 - player_game_data - INFO - Fetched game data for player 1627750
+2024-03-30 11:53:47,291 - player_game_data - INFO - Fetched game data for player 1631099
+2024-03-30 11:53:47,363 - player_game_data - INFO - Inserted game data: Player ID: 1631099, Player Name: Keegan Murray, Game ID: 0022301073, Game Date: 1711670400000, Matchup: SAC vs. DAL
+2024-03-30 11:53:47,595 - player_game_data - INFO - Fetched game data for player 1631200
+2024-03-30 11:53:47,664 - player_game_data - INFO - Inserted game data: Player ID: 1631200, Player Name: Kris Murray, Game ID: 0022301068, Game Date: 1711670400000, Matchup: POR @ MIA
+2024-03-30 11:53:47,807 - player_game_data - INFO - Fetched game data for player 203488
+2024-03-30 11:53:47,883 - player_game_data - INFO - Inserted game data: Player ID: 203488, Player Name: Mike Muscala, Game ID: 0022301069, Game Date: 1711670400000, Matchup: OKC vs. PHX
+2024-03-30 11:53:48,125 - player_game_data - INFO - Fetched game data for player 1629004
+2024-03-30 11:53:48,406 - player_game_data - INFO - Fetched game data for player 1626204
+2024-03-30 11:53:48,705 - player_game_data - INFO - Fetched game data for player 1629614
+2024-03-30 11:53:48,786 - player_game_data - INFO - Inserted game data: Player ID: 1629614, Player Name: Andrew Nembhard, Game ID: 0022301063, Game Date: 1711670400000, Matchup: IND vs. LAL
+2024-03-30 11:53:48,960 - player_game_data - INFO - Fetched game data for player 1630174
+2024-03-30 11:53:49,121 - player_game_data - INFO - Inserted game data: Player ID: 1630174, Player Name: Aaron Nesmith, Game ID: 0022301063, Game Date: 1711670400000, Matchup: IND vs. LAL
+2024-03-30 11:53:49,294 - player_game_data - INFO - Fetched game data for player 1627777
+2024-03-30 11:53:49,365 - player_game_data - INFO - Inserted game data: Player ID: 1627777, Player Name: Georges Niang, Game ID: 0022301067, Game Date: 1711670400000, Matchup: CLE vs. PHI
+2024-03-30 11:53:49,616 - player_game_data - INFO - Fetched game data for player 1630227
+2024-03-30 11:53:49,791 - player_game_data - INFO - Fetched game data for player 1630192
+2024-03-30 11:53:49,980 - player_game_data - INFO - Fetched game data for player 1641936
+2024-03-30 11:53:50,281 - player_game_data - INFO - Fetched game data for player 1641806
+2024-03-30 11:53:50,520 - player_game_data - INFO - Fetched game data for player 1628373
+2024-03-30 11:53:50,812 - player_game_data - INFO - Fetched game data for player 203994
+2024-03-30 11:53:50,902 - player_game_data - INFO - Inserted game data: Player ID: 203994, Player Name: Jusuf Nurkic, Game ID: 0022301069, Game Date: 1711670400000, Matchup: PHX @ OKC
+2024-03-30 11:53:51,174 - player_game_data - INFO - Fetched game data for player 1629670
+2024-03-30 11:53:51,446 - player_game_data - INFO - Fetched game data for player 1626220
+2024-03-30 11:53:51,538 - player_game_data - INFO - Inserted game data: Player ID: 1626220, Player Name: Royce O'Neale, Game ID: 0022301069, Game Date: 1711670400000, Matchup: PHX @ OKC
+2024-03-30 11:53:51,759 - player_game_data - INFO - Fetched game data for player 1629643
+2024-03-30 11:53:51,952 - player_game_data - INFO - Fetched game data for player 1629006
+2024-03-30 11:53:52,014 - player_game_data - INFO - Inserted game data: Player ID: 1629006, Player Name: Josh Okogie, Game ID: 0022301069, Game Date: 1711670400000, Matchup: PHX @ OKC
+2024-03-30 11:53:52,224 - player_game_data - INFO - Fetched game data for player 1630168
+2024-03-30 11:53:52,395 - player_game_data - INFO - Fetched game data for player 1630171
+2024-03-30 11:53:52,473 - player_game_data - INFO - Inserted game data: Player ID: 1630171, Player Name: Isaac Okoro, Game ID: 0022301067, Game Date: 1711670400000, Matchup: CLE vs. PHI
+2024-03-30 11:53:52,628 - player_game_data - INFO - Fetched game data for player 203506
+2024-03-30 11:53:52,954 - player_game_data - INFO - Fetched game data for player 203482
+2024-03-30 11:53:53,272 - player_game_data - INFO - Fetched game data for player 1630647
+2024-03-30 11:53:53,514 - player_game_data - INFO - Fetched game data for player 1626224
+2024-03-30 11:53:53,595 - player_game_data - INFO - Inserted game data: Player ID: 1626224, Player Name: Cedi Osman, Game ID: 0022301070, Game Date: 1711670400000, Matchup: SAS vs. NYK
+2024-03-30 11:53:53,879 - player_game_data - INFO - Fetched game data for player 1626162
+2024-03-30 11:53:53,947 - player_game_data - INFO - Inserted game data: Player ID: 1626162, Player Name: Kelly Oubre Jr., Game ID: 0022301067, Game Date: 1711670400000, Matchup: PHI @ CLE
+2024-03-30 11:53:54,104 - player_game_data - INFO - Fetched game data for player 101108
+2024-03-30 11:53:54,183 - player_game_data - INFO - Inserted game data: Player ID: 101108, Player Name: Chris Paul, Game ID: 0022301062, Game Date: 1711670400000, Matchup: GSW @ CHA
+2024-03-30 11:53:54,415 - player_game_data - INFO - Fetched game data for player 1626166
+2024-03-30 11:53:54,507 - player_game_data - INFO - Inserted game data: Player ID: 1626166, Player Name: Cameron Payne, Game ID: 0022301067, Game Date: 1711670400000, Matchup: PHI @ CLE
+2024-03-30 11:53:54,676 - player_game_data - INFO - Fetched game data for player 1627780
+2024-03-30 11:53:54,838 - player_game_data - INFO - Inserted game data: Player ID: 1627780, Player Name: Gary Payton II, Game ID: 0022301062, Game Date: 1711670400000, Matchup: GSW @ CHA
+2024-03-30 11:53:55,363 - player_game_data - INFO - Fetched game data for player 1630196
+2024-03-30 11:53:55,584 - player_game_data - INFO - Fetched game data for player 1641763
+2024-03-30 11:53:55,891 - player_game_data - INFO - Fetched game data for player 1629618
+2024-03-30 11:53:55,960 - player_game_data - INFO - Inserted game data: Player ID: 1629618, Player Name: Jalen Pickett, Game ID: 0022301071, Game Date: 1711670400000, Matchup: DEN vs. MIN
+2024-03-30 11:53:56,202 - player_game_data - INFO - Fetched game data for player 203486
+2024-03-30 11:53:56,282 - player_game_data - INFO - Inserted game data: Player ID: 203486, Player Name: Mason Plumlee, Game ID: 0022301064, Game Date: 1711670400000, Matchup: LAC @ ORL
+2024-03-30 11:53:56,488 - player_game_data - INFO - Fetched game data for player 1641764
+2024-03-30 11:53:56,573 - player_game_data - INFO - Inserted game data: Player ID: 1641764, Player Name: Brandin Podziemski, Game ID: 0022301062, Game Date: 1711670400000, Matchup: GSW @ CHA
+2024-03-30 11:53:56,713 - player_game_data - INFO - Fetched game data for player 1627751
+2024-03-30 11:53:57,034 - player_game_data - INFO - Fetched game data for player 1630197
+2024-03-30 11:53:57,161 - player_game_data - INFO - Inserted game data: Player ID: 1630197, Player Name: Aleksej Pokusevski, Game ID: 0022301062, Game Date: 1711670400000, Matchup: CHA vs. GSW
+2024-03-30 11:53:57,287 - player_game_data - INFO - Fetched game data for player 1629673
+2024-03-30 11:53:57,452 - player_game_data - INFO - Inserted game data: Player ID: 1629673, Player Name: Jordan Poole, Game ID: 0022301065, Game Date: 1711670400000, Matchup: WAS vs. DET
+2024-03-30 11:53:57,620 - player_game_data - INFO - Fetched game data for player 1641854
+2024-03-30 11:53:57,800 - player_game_data - INFO - Fetched game data for player 1629008
+2024-03-30 11:53:57,869 - player_game_data - INFO - Inserted game data: Player ID: 1629008, Player Name: Michael Porter Jr., Game ID: 0022301071, Game Date: 1711670400000, Matchup: DEN vs. MIN
+2024-03-30 11:53:58,123 - player_game_data - INFO - Fetched game data for player 203490
+2024-03-30 11:53:58,306 - player_game_data - INFO - Fetched game data for player 1626171
+2024-03-30 11:53:58,600 - player_game_data - INFO - Fetched game data for player 204001
+2024-03-30 11:53:58,753 - player_game_data - INFO - Fetched game data for player 1630695
+2024-03-30 11:53:58,818 - player_game_data - INFO - Inserted game data: Player ID: 1630695, Player Name: Micah Potter, Game ID: 0022301072, Game Date: 1711670400000, Matchup: UTA vs. HOU
+2024-03-30 11:53:59,139 - player_game_data - INFO - Fetched game data for player 203939
+2024-03-30 11:53:59,392 - player_game_data - INFO - Fetched game data for player 1626181
+2024-03-30 11:53:59,549 - player_game_data - INFO - Inserted game data: Player ID: 1626181, Player Name: Norman Powell, Game ID: 0022301064, Game Date: 1711670400000, Matchup: LAC @ ORL
+2024-03-30 11:53:59,815 - player_game_data - INFO - Fetched game data for player 1630563
+2024-03-30 11:54:00,093 - player_game_data - INFO - Fetched game data for player 1627752
+2024-03-30 11:54:00,190 - player_game_data - INFO - Inserted game data: Player ID: 1627752, Player Name: Taurean Prince, Game ID: 0022301063, Game Date: 1711670400000, Matchup: LAL @ IND
+2024-03-30 11:54:00,390 - player_game_data - INFO - Fetched game data for player 1630202
+2024-03-30 11:54:00,832 - player_game_data - INFO - Fetched game data for player 1641765
+2024-03-30 11:54:01,147 - player_game_data - INFO - Fetched game data for player 1630243
+2024-03-30 11:54:01,344 - player_game_data - INFO - Fetched game data for player 1629674
+2024-03-30 11:54:01,674 - player_game_data - INFO - Fetched game data for player 1630193
+2024-03-30 11:54:02,003 - player_game_data - INFO - Fetched game data for player 1631311
+2024-03-30 11:54:02,077 - player_game_data - INFO - Inserted game data: Player ID: 1631311, Player Name: Lester Quinones, Game ID: 0022301062, Game Date: 1711670400000, Matchup: GSW @ CHA
+2024-03-30 11:54:02,327 - player_game_data - INFO - Fetched game data for player 203944
+2024-03-30 11:54:02,592 - player_game_data - INFO - Fetched game data for player 1641871
+2024-03-30 11:54:02,760 - player_game_data - INFO - Inserted game data: Player ID: 1641871, Player Name: Duop Reath, Game ID: 0022301068, Game Date: 1711670400000, Matchup: POR @ MIA
+2024-03-30 11:54:02,906 - player_game_data - INFO - Fetched game data for player 1630559
+2024-03-30 11:54:02,974 - player_game_data - INFO - Inserted game data: Player ID: 1630559, Player Name: Austin Reaves, Game ID: 0022301063, Game Date: 1711670400000, Matchup: LAL @ IND
+2024-03-30 11:54:03,321 - player_game_data - INFO - Fetched game data for player 1629629
+2024-03-30 11:54:03,427 - player_game_data - INFO - Inserted game data: Player ID: 1629629, Player Name: Cam Reddish, Game ID: 0022301063, Game Date: 1711670400000, Matchup: LAL @ IND
+2024-03-30 11:54:03,595 - player_game_data - INFO - Fetched game data for player 1630194
+2024-03-30 11:54:03,747 - player_game_data - INFO - Inserted game data: Player ID: 1630194, Player Name: Paul Reed, Game ID: 0022301067, Game Date: 1711670400000, Matchup: PHI @ CLE
+2024-03-30 11:54:03,956 - player_game_data - INFO - Fetched game data for player 1629675
+2024-03-30 11:54:04,053 - player_game_data - INFO - Inserted game data: Player ID: 1629675, Player Name: Naz Reid, Game ID: 0022301071, Game Date: 1711670400000, Matchup: MIN @ DEN
+2024-03-30 11:54:04,177 - player_game_data - INFO - Fetched game data for player 1631197
+2024-03-30 11:54:04,473 - player_game_data - INFO - Fetched game data for player 1641811
+2024-03-30 11:54:04,670 - player_game_data - INFO - Fetched game data for player 1630208
+2024-03-30 11:54:04,826 - player_game_data - INFO - Inserted game data: Player ID: 1630208, Player Name: Nick Richards, Game ID: 0022301062, Game Date: 1711670400000, Matchup: CHA vs. GSW
+2024-03-30 11:54:05,122 - player_game_data - INFO - Fetched game data for player 1626196
+2024-03-30 11:54:05,932 - player_game_data - INFO - Fetched game data for player 1629130
+2024-03-30 11:54:06,106 - player_game_data - INFO - Fetched game data for player 1629010
+2024-03-30 11:54:06,177 - player_game_data - INFO - Inserted game data: Player ID: 1629010, Player Name: Jerome Robinson, Game ID: 0022301062, Game Date: 1711670400000, Matchup: GSW @ CHA
+2024-03-30 11:54:06,399 - player_game_data - INFO - Fetched game data for player 1629011
+2024-03-30 11:54:06,467 - player_game_data - INFO - Inserted game data: Player ID: 1629011, Player Name: Mitchell Robinson, Game ID: 0022301070, Game Date: 1711670400000, Matchup: NYK @ SAS
+2024-03-30 11:54:06,601 - player_game_data - INFO - Fetched game data for player 1631115
+2024-03-30 11:54:06,777 - player_game_data - INFO - Fetched game data for player 1630526
+2024-03-30 11:54:07,120 - player_game_data - INFO - Fetched game data for player 1631223
+2024-03-30 11:54:07,209 - player_game_data - INFO - Inserted game data: Player ID: 1631223, Player Name: David Roddy, Game ID: 0022301069, Game Date: 1711670400000, Matchup: PHX @ OKC
+2024-03-30 11:54:07,426 - player_game_data - INFO - Fetched game data for player 1631157
+2024-03-30 11:54:07,602 - player_game_data - INFO - Fetched game data for player 201565
+2024-03-30 11:54:07,784 - player_game_data - INFO - Fetched game data for player 1626179
+2024-03-30 11:54:07,940 - player_game_data - INFO - Inserted game data: Player ID: 1626179, Player Name: Terry Rozier, Game ID: 0022301068, Game Date: 1711670400000, Matchup: MIA vs. POR
+2024-03-30 11:54:08,088 - player_game_data - INFO - Fetched game data for player 201937
+2024-03-30 11:54:08,307 - player_game_data - INFO - Fetched game data for player 1641712
+2024-03-30 11:54:08,372 - player_game_data - INFO - Inserted game data: Player ID: 1641712, Player Name: Rayan Rupert, Game ID: 0022301068, Game Date: 1711670400000, Matchup: POR @ MIA
+2024-03-30 11:54:08,620 - player_game_data - INFO - Fetched game data for player 1626156
+2024-03-30 11:54:08,872 - player_game_data - INFO - Inserted game data: Player ID: 1626156, Player Name: D'Angelo Russell, Game ID: 0022301063, Game Date: 1711670400000, Matchup: LAL @ IND
+2024-03-30 11:54:09,519 - player_game_data - INFO - Fetched game data for player 1630346
+2024-03-30 11:54:10,225 - player_game_data - INFO - Fetched game data for player 1627734
+2024-03-30 11:54:10,331 - player_game_data - INFO - Inserted game data: Player ID: 1627734, Player Name: Domantas Sabonis, Game ID: 0022301073, Game Date: 1711670400000, Matchup: SAC vs. DAL
+2024-03-30 11:54:10,750 - player_game_data - INFO - Fetched game data for player 1629677
+2024-03-30 11:54:11,479 - player_game_data - INFO - Fetched game data for player 1631257
+2024-03-30 11:54:12,326 - player_game_data - INFO - Fetched game data for player 1641766
+2024-03-30 11:54:12,666 - player_game_data - INFO - Fetched game data for player 1630611
+2024-03-30 11:54:13,375 - player_game_data - INFO - Fetched game data for player 203967
+2024-03-30 11:54:13,718 - player_game_data - INFO - Fetched game data for player 1630846
+2024-03-30 11:54:14,556 - player_game_data - INFO - Fetched game data for player 1631204
+2024-03-30 11:54:14,894 - player_game_data - INFO - Fetched game data for player 1629678
+2024-03-30 11:54:15,299 - player_game_data - INFO - Fetched game data for player 203471
+2024-03-30 11:54:15,398 - player_game_data - INFO - Inserted game data: Player ID: 203471, Player Name: Dennis Schroder, Game ID: 0022301066, Game Date: 1711670400000, Matchup: BKN vs. CHI
+2024-03-30 11:54:15,536 - player_game_data - INFO - Fetched game data for player 1631220
+2024-03-30 11:54:15,708 - player_game_data - INFO - Fetched game data for player 1630578
+2024-03-30 11:54:15,983 - player_game_data - INFO - Fetched game data for player 1641729
+2024-03-30 11:54:16,045 - player_game_data - INFO - Inserted game data: Player ID: 1641729, Player Name: Brice Sensabaugh, Game ID: 0022301072, Game Date: 1711670400000, Matchup: UTA vs. HOU
+2024-03-30 11:54:16,190 - player_game_data - INFO - Fetched game data for player 1629012
+2024-03-30 11:54:16,325 - player_game_data - INFO - Inserted game data: Player ID: 1629012, Player Name: Collin Sexton, Game ID: 0022301072, Game Date: 1711670400000, Matchup: UTA vs. HOU
+2024-03-30 11:54:16,491 - player_game_data - INFO - Fetched game data for player 1629013
+2024-03-30 11:54:16,751 - player_game_data - INFO - Fetched game data for player 1630549
+2024-03-30 11:54:16,903 - player_game_data - INFO - Inserted game data: Player ID: 1630549, Player Name: Day'Ron Sharpe, Game ID: 0022301066, Game Date: 1711670400000, Matchup: BKN vs. CHI
+2024-03-30 11:54:17,155 - player_game_data - INFO - Fetched game data for player 1631101
+2024-03-30 11:54:17,391 - player_game_data - INFO - Fetched game data for player 1641767
+2024-03-30 11:54:17,458 - player_game_data - INFO - Inserted game data: Player ID: 1641767, Player Name: Ben Sheppard, Game ID: 0022301063, Game Date: 1711670400000, Matchup: IND vs. LAL
+2024-03-30 11:54:17,591 - player_game_data - INFO - Fetched game data for player 1627783
+2024-03-30 11:54:17,657 - player_game_data - INFO - Inserted game data: Player ID: 1627783, Player Name: Pascal Siakam, Game ID: 0022301063, Game Date: 1711670400000, Matchup: IND vs. LAL
+2024-03-30 11:54:17,791 - player_game_data - INFO - Fetched game data for player 1627732
+2024-03-30 11:54:18,085 - player_game_data - INFO - Fetched game data for player 1629014
+2024-03-30 11:54:18,253 - player_game_data - INFO - Fetched game data for player 1630579
+2024-03-30 11:54:18,632 - player_game_data - INFO - Fetched game data for player 1641771
+2024-03-30 11:54:18,788 - player_game_data - INFO - Fetched game data for player 1630606
+2024-03-30 11:54:19,149 - player_game_data - INFO - Fetched game data for player 203935
+2024-03-30 11:54:19,376 - player_game_data - INFO - Fetched game data for player 1630696
+2024-03-30 11:54:19,674 - player_game_data - INFO - Fetched game data for player 202397
+2024-03-30 11:54:19,875 - player_game_data - INFO - Fetched game data for player 1630188
+2024-03-30 11:54:20,026 - player_game_data - INFO - Inserted game data: Player ID: 1630188, Player Name: Jalen Smith, Game ID: 0022301063, Game Date: 1711670400000, Matchup: IND vs. LAL
+2024-03-30 11:54:20,191 - player_game_data - INFO - Fetched game data for player 1631173
+2024-03-30 11:54:20,562 - player_game_data - INFO - Fetched game data for player 1628372
+2024-03-30 11:54:20,798 - player_game_data - INFO - Fetched game data for player 1631095
+2024-03-30 11:54:20,869 - player_game_data - INFO - Inserted game data: Player ID: 1631095, Player Name: Jabari Smith Jr., Game ID: 0022301072, Game Date: 1711670400000, Matchup: HOU @ UTA
+2024-03-30 11:54:21,140 - player_game_data - INFO - Fetched game data for player 1641733
+2024-03-30 11:54:21,214 - player_game_data - INFO - Inserted game data: Player ID: 1641733, Player Name: Nick Smith Jr., Game ID: 0022301062, Game Date: 1711670400000, Matchup: CHA vs. GSW
+2024-03-30 11:54:21,358 - player_game_data - INFO - Fetched game data for player 1631110
+2024-03-30 11:54:21,441 - player_game_data - INFO - Inserted game data: Player ID: 1631110, Player Name: Jeremy Sochan, Game ID: 0022301070, Game Date: 1711670400000, Matchup: SAS vs. NYK
+2024-03-30 11:54:21,692 - player_game_data - INFO - Fetched game data for player 1630531
+2024-03-30 11:54:22,103 - player_game_data - INFO - Fetched game data for player 1630205
+2024-03-30 11:54:22,299 - player_game_data - INFO - Fetched game data for player 1630191
+2024-03-30 11:54:22,485 - player_game_data - INFO - Fetched game data for player 1631124
+2024-03-30 11:54:22,650 - player_game_data - INFO - Inserted game data: Player ID: 1631124, Player Name: Julian Strawther, Game ID: 0022301071, Game Date: 1711670400000, Matchup: DEN vs. MIN
+2024-03-30 11:54:22,825 - player_game_data - INFO - Fetched game data for player 1629622
+2024-03-30 11:54:22,890 - player_game_data - INFO - Inserted game data: Player ID: 1629622, Player Name: Max Strus, Game ID: 0022301067, Game Date: 1711670400000, Matchup: CLE vs. PHI
+2024-03-30 11:54:23,154 - player_game_data - INFO - Fetched game data for player 1630591
+2024-03-30 11:54:23,230 - player_game_data - INFO - Inserted game data: Player ID: 1630591, Player Name: Jalen Suggs, Game ID: 0022301064, Game Date: 1711670400000, Matchup: ORL vs. LAC
+2024-03-30 11:54:23,410 - player_game_data - INFO - Fetched game data for player 1631306
+2024-03-30 11:54:23,586 - player_game_data - INFO - Fetched game data for player 1630256
+2024-03-30 11:54:23,731 - player_game_data - INFO - Inserted game data: Player ID: 1630256, Player Name: Jae'Sean Tate, Game ID: 0022301072, Game Date: 1711670400000, Matchup: HOU @ UTA
+2024-03-30 11:54:23,864 - player_game_data - INFO - Fetched game data for player 1628369
+2024-03-30 11:54:24,200 - player_game_data - INFO - Fetched game data for player 1630678
+2024-03-30 11:54:24,269 - player_game_data - INFO - Inserted game data: Player ID: 1630678, Player Name: Terry Taylor, Game ID: 0022301066, Game Date: 1711670400000, Matchup: CHI @ BKN
+2024-03-30 11:54:24,417 - player_game_data - INFO - Fetched game data for player 202066
+2024-03-30 11:54:24,596 - player_game_data - INFO - Fetched game data for player 1631207
+2024-03-30 11:54:24,752 - player_game_data - INFO - Inserted game data: Player ID: 1631207, Player Name: Dalen Terry, Game ID: 0022301066, Game Date: 1711670400000, Matchup: CHI @ BKN
+2024-03-30 11:54:24,920 - player_game_data - INFO - Fetched game data for player 1628464
+2024-03-30 11:54:25,336 - player_game_data - INFO - Fetched game data for player 1630560
+2024-03-30 11:54:25,403 - player_game_data - INFO - Inserted game data: Player ID: 1630560, Player Name: Cam Thomas, Game ID: 0022301066, Game Date: 1711670400000, Matchup: BKN vs. CHI
+2024-03-30 11:54:25,552 - player_game_data - INFO - Fetched game data for player 1641708
+2024-03-30 11:54:25,630 - player_game_data - INFO - Inserted game data: Player ID: 1641708, Player Name: Amen Thompson, Game ID: 0022301072, Game Date: 1711670400000, Matchup: HOU @ UTA
+2024-03-30 11:54:25,899 - player_game_data - INFO - Fetched game data for player 1641709
+2024-03-30 11:54:26,068 - player_game_data - INFO - Fetched game data for player 202691
+2024-03-30 11:54:26,306 - player_game_data - INFO - Fetched game data for player 202684
+2024-03-30 11:54:26,387 - player_game_data - INFO - Inserted game data: Player ID: 202684, Player Name: Tristan Thompson, Game ID: 0022301067, Game Date: 1711670400000, Matchup: CLE vs. PHI
+2024-03-30 11:54:26,579 - player_game_data - INFO - Fetched game data for player 1630550
+2024-03-30 11:54:26,854 - player_game_data - INFO - Inserted game data: Player ID: 1630550, Player Name: JT Thor, Game ID: 0022301062, Game Date: 1711670400000, Matchup: CHA vs. GSW
+2024-03-30 11:54:27,164 - player_game_data - INFO - Fetched game data for player 1629680
+2024-03-30 11:54:27,335 - player_game_data - INFO - Inserted game data: Player ID: 1629680, Player Name: Matisse Thybulle, Game ID: 0022301068, Game Date: 1711670400000, Matchup: POR @ MIA
+2024-03-30 11:54:27,525 - player_game_data - INFO - Fetched game data for player 1630214
+2024-03-30 11:54:27,724 - player_game_data - INFO - Fetched game data for player 1631210
+2024-03-30 11:54:28,080 - player_game_data - INFO - Fetched game data for player 1630167
+2024-03-30 11:54:28,196 - player_game_data - INFO - Inserted game data: Player ID: 1630167, Player Name: Obi Toppin, Game ID: 0022301063, Game Date: 1711670400000, Matchup: IND vs. LAL
+2024-03-30 11:54:28,410 - player_game_data - INFO - Fetched game data for player 1626157
+2024-03-30 11:54:28,796 - player_game_data - INFO - Fetched game data for player 1629018
+2024-03-30 11:54:29,151 - player_game_data - INFO - Fetched game data for player 1631131
+2024-03-30 11:54:29,463 - player_game_data - INFO - Fetched game data for player 200782
+2024-03-30 11:54:29,629 - player_game_data - INFO - Fetched game data for player 1626167
+2024-03-30 11:54:29,718 - player_game_data - INFO - Inserted game data: Player ID: 1626167, Player Name: Myles Turner, Game ID: 0022301063, Game Date: 1711670400000, Matchup: IND vs. LAL
+2024-03-30 11:54:29,980 - player_game_data - INFO - Fetched game data for player 1641816
+2024-03-30 11:54:30,045 - player_game_data - INFO - Inserted game data: Player ID: 1641816, Player Name: Hunter Tyson, Game ID: 0022301071, Game Date: 1711670400000, Matchup: DEN vs. MIN
+2024-03-30 11:54:30,204 - player_game_data - INFO - Fetched game data for player 1630649
+2024-03-30 11:54:30,493 - player_game_data - INFO - Fetched game data for player 202685
+2024-03-30 11:54:30,711 - player_game_data - INFO - Fetched game data for player 1627832
+2024-03-30 11:54:30,781 - player_game_data - INFO - Inserted game data: Player ID: 1627832, Player Name: Fred VanVleet, Game ID: 0022301072, Game Date: 1711670400000, Matchup: HOU @ UTA
+2024-03-30 11:54:30,920 - player_game_data - INFO - Fetched game data for player 1629020
+2024-03-30 11:54:31,309 - player_game_data - INFO - Fetched game data for player 1630170
+2024-03-30 11:54:31,381 - player_game_data - INFO - Inserted game data: Player ID: 1630170, Player Name: Devin Vassell, Game ID: 0022301070, Game Date: 1711670400000, Matchup: SAS vs. NYK
+2024-03-30 11:54:31,641 - player_game_data - INFO - Fetched game data for player 1628426
+2024-03-30 11:54:31,824 - player_game_data - INFO - Fetched game data for player 1629216
+2024-03-30 11:54:32,066 - player_game_data - INFO - Fetched game data for player 202696
+2024-03-30 11:54:32,164 - player_game_data - INFO - Inserted game data: Player ID: 202696, Player Name: Nikola Vucevic, Game ID: 0022301066, Game Date: 1711670400000, Matchup: CHI @ BKN
+2024-03-30 11:54:32,289 - player_game_data - INFO - Fetched game data for player 1629731
+2024-03-30 11:54:32,488 - player_game_data - INFO - Fetched game data for player 1630532
+2024-03-30 11:54:32,684 - player_game_data - INFO - Inserted game data: Player ID: 1630532, Player Name: Franz Wagner, Game ID: 0022301064, Game Date: 1711670400000, Matchup: ORL vs. LAC
+2024-03-30 11:54:32,817 - player_game_data - INFO - Fetched game data for player 1629021
+2024-03-30 11:54:32,885 - player_game_data - INFO - Inserted game data: Player ID: 1629021, Player Name: Moritz Wagner, Game ID: 0022301064, Game Date: 1711670400000, Matchup: ORL vs. LAC
+2024-03-30 11:54:33,159 - player_game_data - INFO - Fetched game data for player 1630688
+2024-03-30 11:54:33,334 - player_game_data - INFO - Fetched game data for player 1631133
+2024-03-30 11:54:33,410 - player_game_data - INFO - Inserted game data: Player ID: 1631133, Player Name: Jabari Walker, Game ID: 0022301068, Game Date: 1711670400000, Matchup: POR @ MIA
+2024-03-30 11:54:33,667 - player_game_data - INFO - Fetched game data for player 1641716
+2024-03-30 11:54:33,739 - player_game_data - INFO - Inserted game data: Player ID: 1641716, Player Name: Jarace Walker, Game ID: 0022301063, Game Date: 1711670400000, Matchup: IND vs. LAL
+2024-03-30 11:54:33,900 - player_game_data - INFO - Fetched game data for player 1629022
+2024-03-30 11:54:33,993 - player_game_data - INFO - Inserted game data: Player ID: 1629022, Player Name: Lonnie Walker IV, Game ID: 0022301066, Game Date: 1711670400000, Matchup: BKN vs. CHI
+2024-03-30 11:54:34,249 - player_game_data - INFO - Fetched game data for player 1641717
+2024-03-30 11:54:34,360 - player_game_data - INFO - Inserted game data: Player ID: 1641717, Player Name: Cason Wallace, Game ID: 0022301069, Game Date: 1711670400000, Matchup: OKC vs. PHX
+2024-03-30 11:54:34,526 - player_game_data - INFO - Fetched game data for player 1641775
+2024-03-30 11:54:34,890 - player_game_data - INFO - Fetched game data for player 1629023
+2024-03-30 11:54:34,970 - player_game_data - INFO - Inserted game data: Player ID: 1629023, Player Name: P.J. Washington, Game ID: 0022301073, Game Date: 1711670400000, Matchup: DAL @ SAC
+2024-03-30 11:54:35,321 - player_game_data - INFO - Fetched game data for player 1630613
+2024-03-30 11:54:35,529 - player_game_data - INFO - Fetched game data for player 1631102
+2024-03-30 11:54:35,808 - player_game_data - INFO - Fetched game data for player 1629139
+2024-03-30 11:54:35,984 - player_game_data - INFO - Fetched game data for player 1630322
+2024-03-30 11:54:36,129 - player_game_data - INFO - Fetched game data for player 1630570
+2024-03-30 11:54:36,283 - player_game_data - INFO - Inserted game data: Player ID: 1630570, Player Name: Trendon Watford, Game ID: 0022301066, Game Date: 1711670400000, Matchup: BKN vs. CHI
+2024-03-30 11:54:36,434 - player_game_data - INFO - Fetched game data for player 1631212
+2024-03-30 11:54:36,503 - player_game_data - INFO - Inserted game data: Player ID: 1631212, Player Name: Peyton Watson, Game ID: 0022301071, Game Date: 1711670400000, Matchup: DEN vs. MIN
+2024-03-30 11:54:36,670 - player_game_data - INFO - Fetched game data for player 1641705
+2024-03-30 11:54:36,859 - player_game_data - INFO - Inserted game data: Player ID: 1641705, Player Name: Victor Wembanyama, Game ID: 0022301070, Game Date: 1711670400000, Matchup: SAS vs. NYK
+2024-03-30 11:54:37,016 - player_game_data - INFO - Fetched game data for player 1631104
+2024-03-30 11:54:37,174 - player_game_data - INFO - Inserted game data: Player ID: 1631104, Player Name: Blake Wesley, Game ID: 0022301070, Game Date: 1711670400000, Matchup: SAS vs. NYK
+2024-03-30 11:54:37,426 - player_game_data - INFO - Fetched game data for player 201566
+2024-03-30 11:54:37,492 - player_game_data - INFO - Inserted game data: Player ID: 201566, Player Name: Russell Westbrook, Game ID: 0022301064, Game Date: 1711670400000, Matchup: LAC @ ORL
+2024-03-30 11:54:37,698 - player_game_data - INFO - Fetched game data for player 1629632
+2024-03-30 11:54:37,857 - player_game_data - INFO - Inserted game data: Player ID: 1629632, Player Name: Coby White, Game ID: 0022301066, Game Date: 1711670400000, Matchup: CHI @ BKN
+2024-03-30 11:54:38,022 - player_game_data - INFO - Fetched game data for player 1628401
+2024-03-30 11:54:38,247 - player_game_data - INFO - Fetched game data for player 1641727
+2024-03-30 11:54:38,585 - player_game_data - INFO - Fetched game data for player 1641715
+2024-03-30 11:54:38,880 - player_game_data - INFO - Fetched game data for player 1630598
+2024-03-30 11:54:38,969 - player_game_data - INFO - Inserted game data: Player ID: 1630598, Player Name: Aaron Wiggins, Game ID: 0022301069, Game Date: 1711670400000, Matchup: OKC vs. PHX
+2024-03-30 11:54:39,228 - player_game_data - INFO - Fetched game data for player 203952
+2024-03-30 11:54:39,395 - player_game_data - INFO - Inserted game data: Player ID: 203952, Player Name: Andrew Wiggins, Game ID: 0022301062, Game Date: 1711670400000, Matchup: GSW @ CHA
+2024-03-30 11:54:39,603 - player_game_data - INFO - Fetched game data for player 1629623
+2024-03-30 11:54:39,805 - player_game_data - INFO - Fetched game data for player 1629684
+2024-03-30 11:54:39,985 - player_game_data - INFO - Inserted game data: Player ID: 1629684, Player Name: Grant Williams, Game ID: 0022301062, Game Date: 1711670400000, Matchup: CHA vs. GSW
+2024-03-30 11:54:40,179 - player_game_data - INFO - Fetched game data for player 1631114
+2024-03-30 11:54:40,255 - player_game_data - INFO - Inserted game data: Player ID: 1631114, Player Name: Jalen Williams, Game ID: 0022301069, Game Date: 1711670400000, Matchup: OKC vs. PHX
+2024-03-30 11:54:40,465 - player_game_data - INFO - Fetched game data for player 1631119
+2024-03-30 11:54:40,538 - player_game_data - INFO - Inserted game data: Player ID: 1631119, Player Name: Jaylin Williams, Game ID: 0022301069, Game Date: 1711670400000, Matchup: OKC vs. PHX
+2024-03-30 11:54:40,699 - player_game_data - INFO - Fetched game data for player 1629026
+2024-03-30 11:54:40,773 - player_game_data - INFO - Inserted game data: Player ID: 1629026, Player Name: Kenrich Williams, Game ID: 0022301069, Game Date: 1711670400000, Matchup: OKC vs. PHX
+2024-03-30 11:54:40,972 - player_game_data - INFO - Fetched game data for player 1631109
+2024-03-30 11:54:41,265 - player_game_data - INFO - Fetched game data for player 1631466
+2024-03-30 11:54:41,584 - player_game_data - INFO - Fetched game data for player 1630172
+2024-03-30 11:54:41,799 - player_game_data - INFO - Fetched game data for player 1630533
+2024-03-30 11:54:42,105 - player_game_data - INFO - Fetched game data for player 1629057
+2024-03-30 11:54:42,358 - player_game_data - INFO - Fetched game data for player 1631246
+2024-03-30 11:54:42,648 - player_game_data - INFO - Fetched game data for player 1629627
+2024-03-30 11:54:42,896 - player_game_data - INFO - Fetched game data for player 1630592
+2024-03-30 11:54:42,965 - player_game_data - INFO - Inserted game data: Player ID: 1630592, Player Name: Jalen Wilson, Game ID: 0022301066, Game Date: 1711670400000, Matchup: BKN vs. CHI
+2024-03-30 11:54:43,314 - player_game_data - INFO - Fetched game data for player 1629685
+2024-03-30 11:54:43,623 - player_game_data - INFO - Fetched game data for player 1630164
+2024-03-30 11:54:43,707 - player_game_data - INFO - Inserted game data: Player ID: 1630164, Player Name: James Wiseman, Game ID: 0022301065, Game Date: 1711670400000, Matchup: DET @ WAS
+2024-03-30 11:54:43,884 - player_game_data - INFO - Fetched game data for player 1631209
+2024-03-30 11:54:44,127 - player_game_data - INFO - Fetched game data for player 1626174
+2024-03-30 11:54:44,489 - player_game_data - INFO - Fetched game data for player 1626153
+2024-03-30 11:54:44,640 - player_game_data - INFO - Inserted game data: Player ID: 1626153, Player Name: Delon Wright, Game ID: 0022301068, Game Date: 1711670400000, Matchup: MIA vs. POR
+2024-03-30 11:54:44,806 - player_game_data - INFO - Fetched game data for player 201152
+2024-03-30 11:54:44,996 - player_game_data - INFO - Fetched game data for player 1629027
+2024-03-30 11:54:45,287 - player_game_data - INFO - Fetched game data for player 1630209
+2024-03-30 11:54:45,523 - player_game_data - INFO - Fetched game data for player 203469
+2024-03-30 11:54:45,866 - player_game_data - INFO - Fetched game data for player 1627826
+2024-03-30 11:54:45,963 - player_game_data - INFO - Inserted game data: Player ID: 1627826, Player Name: Ivica Zubac, Game ID: 0022301064, Game Date: 1711670400000, Matchup: LAC @ ORL

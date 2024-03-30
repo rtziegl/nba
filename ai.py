@@ -184,48 +184,46 @@ def get_team_game_stats(team_id, db):
 
     return game_stats
 
+
 def prepare_matchup_data(team1_game_stats, team1_id):
     flattened_rows = []
 
     # Iterate over each game in the dictionary
     for game_id, game_data in team1_game_stats.items():
+        team1_stats = None
+        opponent_stats = None
         # Iterate over each team in the game
         for team_id, team_stats in game_data.items():
+            if team_id == team1_id:
+                team1_stats = team_stats
+            else:
+                opponent_stats = team_stats
+        
+        if team1_stats is not None and opponent_stats is not None:
+            # Subtract opponent stats from team1 stats
+            for key, value in opponent_stats.items():
+                if isinstance(value, (int, float)):
+                    team1_stats[key] -= value
+
+            # Modify WL and HOMEORAWAY values
+            if team1_stats['WL'] == -1:
+                team1_stats['WL'] = 0
+            if team1_stats['HOMEORAWAY'] == -1:
+                team1_stats['HOMEORAWAY'] = 0
+            
+            
             # Create a new dictionary for the flattened row
-            flattened_row = {'game_id': game_id, 'team_id': team_id}
-            # Update the dictionary with team statistics
-            flattened_row.update(team_stats)
+            flattened_row = {'game_id': game_id, 'team_id': team1_id}
+            # Update the dictionary with team1 statistics
+            flattened_row.update(team1_stats)
             # Append the flattened row to the list
             flattened_rows.append(flattened_row)
 
     # Convert the list of dictionaries into a DataFrame
-    flattened_df = pd.DataFrame(flattened_rows)
+    team1_vs_opponent_df = pd.DataFrame(flattened_rows)
 
-    # Filter the DataFrame to get matchups where team1_id is the target team
-    team1_vs_opponent_df = flattened_df[flattened_df['team_id'] == team1_id].copy()
+    return team1_vs_opponent_df
 
-    # Duplicate the rows for the target team
-    duplicated_team1_df = team1_vs_opponent_df.copy()
-
-    # Get the unique opponent team IDs
-    opponent_team_ids = flattened_df[flattened_df['team_id'] != team1_id]['team_id'].unique()
-
-    # Create a DataFrame for each opponent team
-    opponent_dfs = []
-    for opponent_id in opponent_team_ids:
-        opponent_df = flattened_df[flattened_df['team_id'] == opponent_id].copy()
-        # Mark the rows corresponding to the opponent team
-        opponent_df['is_target_team'] = 0
-        opponent_dfs.append(opponent_df)
-
-    # Concatenate all opponent DataFrames
-    opponents_df = pd.concat(opponent_dfs)
-
-    # Concatenate both DataFrames to get the final DataFrame with both target team and opponent data
-    final_df = pd.concat([team1_vs_opponent_df, opponents_df], ignore_index=True)
-    final_df['is_target_team'] = final_df['is_target_team'].apply(lambda x: 0 if x == 0 else 1)
-    
-    return final_df
 
 # Load environment variables from .env file
 load_dotenv()
@@ -243,7 +241,7 @@ matchups = get_todays_matchups()
 todays_team_ids = get_todays_team_ids(matchups)
 print(todays_team_ids)
 
-todays_team_ids = todays_team_ids[:2]
+todays_team_ids = todays_team_ids
 print(todays_team_ids)
 
 from sklearn.linear_model import LogisticRegression
@@ -282,6 +280,7 @@ try:
 
         # Get regular season game stats for team 1
         team1_game_stats = get_team_game_stats(team1_id, db)
+        
         # Prepare team1 df
         team1_df = prepare_matchup_data(team1_game_stats, team1_id)
         
@@ -298,13 +297,17 @@ try:
 
         # Concatenate team1_df and team2_df
         combined_df = pd.concat([team1_df, team2_df], ignore_index=True)
+        
+        # Get the team names
+        team1_name = combined_df.loc[combined_df['is_team1'] == 1, 'TEAM_NAME'].iloc[0]
+        team2_name = combined_df.loc[combined_df['is_team1'] == 0, 'TEAM_NAME'].iloc[0]
 
         from sklearn.preprocessing import MinMaxScaler
 
         # Drop unnecessary columns
-        columns_to_drop = ['team_id', 'TEAM_NAME', 'TEAM_ABBREVIATION']  # Adjust this list as needed
+        columns_to_drop = ['team_id', 'TEAM_NAME', 'TEAM_ABBREVIATION', 'game_id']  # Adjust this list as needed
         combined_df.drop(columns=columns_to_drop, inplace=True)
-
+        
         # Scale numerical features
         scaler = MinMaxScaler()
         numerical_columns = ['HOMEORAWAY', 'FGM', 'FGA', 'FG_PCT', 'FG3M', 'FG3A', 'FG3_PCT', 'FTM', 'FTA', 'FT_PCT',
@@ -312,6 +315,8 @@ try:
                             'E_OFF_RATING', 'E_DEF_RATING', 'E_NET_RATING', 'E_AST_RATIO', 'E_OREB_PCT', 'E_DREB_PCT',
                             'E_REB_PCT', 'E_TM_TOV_PCT', 'E_PACE']
         combined_df[numerical_columns] = scaler.fit_transform(combined_df[numerical_columns])
+        
+        print(combined_df)
         
         from sklearn.model_selection import train_test_split
         from sklearn.linear_model import LogisticRegression
@@ -345,18 +350,49 @@ try:
         print("Confusion Matrix:")
         print(conf_matrix)
         
-        # Extract features for the matchup between team1 and team2
-        matchup_features_team1 = combined_df[combined_df['is_team1'] == 1].drop(columns=['WL'])  # Exclude the target variable 'WL'
-        matchup_features_team2 = combined_df[combined_df['is_team1'] == 0].drop(columns=['WL'])  # Exclude the target variable 'WL'
+        # Predict the outcome for the combined data
+        predicted_probabilities = model.predict_proba(X)[:, 1]
 
-        # Predict the outcome for team1
-        predicted_probability_team1 = model.predict_proba(matchup_features_team1)[:, 1]  # Probability of team1 winning
-        print("Predicted Probability of Team 1 Winning:", predicted_probability_team1[0])
+        # Display the predicted probabilities for each team
+        predicted_probability_team1 = predicted_probabilities[combined_df['is_team1'] == 1].mean()
+        predicted_probability_team2 = 1 - predicted_probability_team1
 
-        # Predict the outcome for team2
-        predicted_probability_team2 = model.predict_proba(matchup_features_team2)[:, 1]  # Probability of team2 winning
-        print("Predicted Probability of Team 2 Winning:", 1 - predicted_probability_team1[0]) 
+        print("Predicted Probability of", team1_name, "Winning:", "{:.2f}".format(predicted_probability_team1))
+        print("Predicted Probability of", team2_name, "Winning:", "{:.2f}".format(predicted_probability_team2))
         
+        import pandas as pd
+        from sklearn.linear_model import LinearRegression
+
+        # Separate features (X) and target variable (y)
+        X = combined_df.drop(columns=['WL'])  # Features
+        y = combined_df[['FGM', 'FG3M', 'FTM']]  # Target variables to predict
+
+        # Train a linear regression model
+        model = LinearRegression()
+        model.fit(X, y)
+
+        # Predict the stat differentials for both team_1 and team_2
+        predicted_diff = model.predict(X)
+        
+        # Convert the NumPy array to a pandas DataFrame
+        predicted_diff_df = pd.DataFrame(predicted_diff, columns=['FGM', 'FG3M', 'FTM'])
+
+        # Print the column names of the predicted_diff DataFrame
+        print(predicted_diff_df.columns)
+
+        # # Split the predicted differentials for team_1 and team_2
+        # predicted_diff_team1 = predicted_diff[combined_df['is_team1'] == 1].mean()
+        # predicted_diff_team2 = predicted_diff[combined_df['is_team1'] == 0].mean()
+
+        # Split the predicted differentials for team_1 and team_2
+        predicted_diff_team1 = predicted_diff[combined_df['is_team1'] == 1].mean(axis=0)
+
+        # Print the mean of each column separately for predicted_diff_team1
+        print("Mean of Predicted Differentials for Team 1:")
+        for col_index, mean_value in enumerate(predicted_diff_team1):
+            col_name = combined_df.columns[col_index]
+            print(col_name + ":", mean_value)
+                                
     client.close()
 
 except Exception as e:
