@@ -145,20 +145,20 @@ def get_team_game_stats(team_id, db):
     game_stats = {}
 
     # Fetch team ranking data from the database
-    team_ranks_data = {}
-    for rank_data in db.teamsranks.find():
-        team_ranks_data[rank_data["TEAM_ID"]] = {
-            "W_PCT": rank_data["W_PCT"],
-            "E_OFF_RATING": rank_data["E_OFF_RATING"],
-            "E_DEF_RATING": rank_data["E_DEF_RATING"],
-            "E_NET_RATING": rank_data["E_NET_RATING"],
-            "E_AST_RATIO": rank_data["E_AST_RATIO"],
-            "E_OREB_PCT": rank_data["E_OREB_PCT"],
-            "E_DREB_PCT": rank_data["E_DREB_PCT"],
-            "E_REB_PCT": rank_data["E_REB_PCT"],
-            "E_TM_TOV_PCT": rank_data["E_TM_TOV_PCT"],
-            "E_PACE": rank_data["E_PACE"]
-        }
+    # team_ranks_data = {}
+    # for rank_data in db.teamsranks.find():
+    #     team_ranks_data[rank_data["TEAM_ID"]] = {
+    #         "W_PCT": rank_data["W_PCT"],
+    #         "E_OFF_RATING": rank_data["E_OFF_RATING"],
+    #         "E_DEF_RATING": rank_data["E_DEF_RATING"],
+    #         "E_NET_RATING": rank_data["E_NET_RATING"],
+    #         "E_AST_RATIO": rank_data["E_AST_RATIO"],
+    #         "E_OREB_PCT": rank_data["E_OREB_PCT"],
+    #         "E_DREB_PCT": rank_data["E_DREB_PCT"],
+    #         "E_REB_PCT": rank_data["E_REB_PCT"],
+    #         "E_TM_TOV_PCT": rank_data["E_TM_TOV_PCT"],
+    #         "E_PACE": rank_data["E_PACE"]
+    #     }
 
     # Process data for the team
     for game_id in game_ids:
@@ -170,12 +170,12 @@ def get_team_game_stats(team_id, db):
                 team_id = team_info['team_id']
                 team_stats[team_id] = team_info['statistics']
 
-            # Merge team statistics with team ranking data
-            for team_id, stats in team_stats.items():
-                # Check if ranking data is available for the team
-                if team_id in team_ranks_data:
-                    # Merge statistics with ranking data
-                    stats.update(team_ranks_data[team_id])
+            # # Merge team statistics with team ranking data
+            # for team_id, stats in team_stats.items():
+            #     # Check if ranking data is available for the team
+            #     if team_id in team_ranks_data:
+            #         # Merge statistics with ranking data
+            #         stats.update(team_ranks_data[team_id])
 
             # Add the game stats to the dictionary
             game_stats[game_id] = team_stats
@@ -185,46 +185,67 @@ def get_team_game_stats(team_id, db):
     return game_stats
 
 
-def prepare_matchup_data(team1_game_stats, team1_id):
+def prepare_matchup_data(team_game_stats, team_id):
     flattened_rows = []
 
     # Iterate over each game in the dictionary
-    for game_id, game_data in team1_game_stats.items():
-        team1_stats = None
-        opponent_stats = None
-        # Iterate over each team in the game
-        for team_id, team_stats in game_data.items():
-            if team_id == team1_id:
-                team1_stats = team_stats
-            else:
-                opponent_stats = team_stats
-        
-        if team1_stats is not None and opponent_stats is not None:
-            # Subtract opponent stats from team1 stats
-            for key, value in opponent_stats.items():
-                if isinstance(value, (int, float)):
-                    team1_stats[key] -= value
+    for game_id, game_data in team_game_stats.items():
+        # Extract team1 and team2 data
+        team1_stats = game_data[team_id]
+        opponent_id = [t_id for t_id in game_data if t_id != team_id][0]
+        team2_stats = game_data[opponent_id]
 
-            # Modify WL and HOMEORAWAY values
-            if team1_stats['WL'] == -1:
-                team1_stats['WL'] = 0
-            if team1_stats['HOMEORAWAY'] == -1:
-                team1_stats['HOMEORAWAY'] = 0
-            
-            
-            # Create a new dictionary for the flattened row
-            flattened_row = {'game_id': game_id, 'team_id': team1_id}
-            # Update the dictionary with team1 statistics
-            flattened_row.update(team1_stats)
-            # Append the flattened row to the list
-            flattened_rows.append(flattened_row)
+        # Create row for the matchup
+        matchup_row = {'game_id': game_id}
+        
+        # Add team 1 stats with '_team' suffix
+        for key, value in team1_stats.items():
+            matchup_row[key + '_team'] = value
+
+        # Add team 2 stats with '_opp' suffix
+        for key, value in team2_stats.items():
+            matchup_row[key + '_opp'] = value
+        
+        flattened_rows.append(matchup_row)
 
     # Convert the list of dictionaries into a DataFrame
-    team1_vs_opponent_df = pd.DataFrame(flattened_rows)
+    matchup_df = pd.DataFrame(flattened_rows)
+    
+    return matchup_df
 
-    return team1_vs_opponent_df
 
-
+def rename_columns(team_mean_stats, team_number):
+    # Convert Series to DataFrame
+    team_mean_stats_df = team_mean_stats.to_frame().T
+    
+    # Define column name mappings
+    column_mappings = {
+        'WL_team': f'team{team_number}_WL',
+        'HOMEORAWAY_team': f'team{team_number}_HOMEORAWAY',
+        'FGM_team': f'team{team_number}_FGM',
+        'FGA_team': f'team{team_number}_FGA',
+        'FG_PCT_team': f'team{team_number}_FG_PCT',
+        'FG3M_team': f'team{team_number}_FG3M',
+        'FG3A_team': f'team{team_number}_FG3A',
+        'FG3_PCT_team': f'team{team_number}_FG3_PCT',
+        'FTM_team': f'team{team_number}_FTM',
+        'FTA_team': f'team{team_number}_FTA',
+        'FT_PCT_team': f'team{team_number}_FT_PCT',
+        'OREB_team': f'team{team_number}_OREB',
+        'DREB_team': f'team{team_number}_DREB',
+        'REB_team': f'team{team_number}_REB',
+        'AST_team': f'team{team_number}_AST',
+        'STL_team': f'team{team_number}_STL',
+        'BLK_team': f'team{team_number}_BLK',
+        'TOV_team': f'team{team_number}_TOV',
+        'PF_team': f'team{team_number}_PF',
+        'PLUS_MINUS_team': f'team{team_number}_PLUS_MINUS'
+    }
+    
+    # Rename columns
+    team_mean_stats_df.rename(columns=column_mappings, inplace=True)
+    
+    return team_mean_stats_df
 # Load environment variables from .env file
 load_dotenv()
 
@@ -244,155 +265,178 @@ print(todays_team_ids)
 todays_team_ids = todays_team_ids
 print(todays_team_ids)
 
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 
 
 # Initialize a dictionary to store regular season data for each team
 all_regular_season_data_dict = {}
-# Define your features
-features = ["TEAM1_TEAM_NAME", "TEAM1_TEAM_ABBREVIATION", "TEAM1_WL", "TEAM1_HOMEORAWAY", 
-            "TEAM1_FGM", "TEAM1_FGA", "TEAM1_FG_PCT", "TEAM1_FG3M", "TEAM1_FG3A",
-            "TEAM1_FG3_PCT", "TEAM1_FTM", "TEAM1_FTA", "TEAM1_FT_PCT", "TEAM1_OREB", 
-            "TEAM1_DREB", "TEAM1_REB", "TEAM1_AST", "TEAM1_STL", "TEAM1_BLK", "TEAM1_TOV",
-            "TEAM1_PF", "TEAM1_PLUS_MINUS", "TEAM2_TEAM_NAME", "TEAM2_TEAM_ABBREVIATION", 
-            "TEAM2_WL", "TEAM2_HOMEORAWAY", "TEAM2_FGM", "TEAM2_FGA", "TEAM2_FG_PCT", 
-            "TEAM2_FG3M", "TEAM2_FG3A", "TEAM2_FG3_PCT", "TEAM2_FTM", "TEAM2_FTA", 
-            "TEAM2_FT_PCT", "TEAM2_OREB", "TEAM2_DREB", "TEAM2_REB", "TEAM2_AST", 
-            "TEAM2_STL", "TEAM2_BLK", "TEAM2_TOV", "TEAM2_PF", "TEAM2_PLUS_MINUS", 
-            "TARGET"]
 
 # Create an empty DataFrame with the specified features
-prepared_data = pd.DataFrame(columns=features)
+prepared_data = pd.DataFrame()
 
 # Print the empty DataFrame
-print(prepared_data)
+# print(prepared_data)
 
 try:
     client.admin.command('ping')
     print("Pinged your deployment. You successfully connected to MongoDB!")
     # Connect to MongoDB
     db = client['nba']
+    collection = db['games']
     
+    cursor = collection.find({})
+
+    # Iterate over the cursor to access each document
+    # Initialize lists to store data
+    team1_data = []
+    team2_data = []
+
+# Iterate over the cursor to access each document
+    for document in cursor:
+        team1 = document['teams'][0]['statistics']
+        team2 = document['teams'][1]['statistics']
+        
+        # Append team data to respective lists
+        team1_data.append(team1)
+        team2_data.append(team2)
+
+    # Create DataFrames for each team's data
+    team1_df = pd.DataFrame(team1_data)
+    team2_df = pd.DataFrame(team2_data)
+
+    # Combine the DataFrames into a single DataFrame representing game matchups
+    game_matchups_df = pd.concat([team1_df, team2_df], axis=1)
+
+    # Rename columns to differentiate between teams
+    team1_cols = [f"team1_{col}" for col in team1_df.columns]
+    team2_cols = [f"team2_{col}" for col in team2_df.columns]
+    game_matchups_df.columns = team1_cols + team2_cols
+    
+    game_matchups_df.drop(columns=['team1_TEAM_NAME', 'team2_TEAM_NAME', 'team1_TEAM_ABBREVIATION', 'team2_TEAM_ABBREVIATION'], inplace=True)
+    
+    
+    from sklearn.model_selection import train_test_split, cross_val_score
+    from sklearn.preprocessing import MinMaxScaler
+    from sklearn.linear_model import LogisticRegression
+    import pandas as pd
+    from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_auc_score, confusion_matrix
+
+
     for team1_id, team2_id in todays_team_ids:
-        print("Team 1 ID:", team1_id)
-        print("Team 2 ID:", team2_id)
 
         # Get regular season game stats for team 1
         team1_game_stats = get_team_game_stats(team1_id, db)
-        
         # Prepare team1 df
         team1_df = prepare_matchup_data(team1_game_stats, team1_id)
+        
+        team1_name = team1_df['TEAM_NAME_team'].iloc[0]
         
         # Get regular season game stats for team 2
         team2_game_stats = get_team_game_stats(team2_id, db)
         # Prepare team2 df
         team2_df = prepare_matchup_data(team2_game_stats, team2_id)
         
-        # Add is_team1 column for team1_df
-        team1_df['is_team1'] = 1
-
-        # Add is_team1 column for team2_df
-        team2_df['is_team1'] = 0
-
-        # Concatenate team1_df and team2_df
-        combined_df = pd.concat([team1_df, team2_df], ignore_index=True)
         
-        # Get the team names
-        team1_name = combined_df.loc[combined_df['is_team1'] == 1, 'TEAM_NAME'].iloc[0]
-        team2_name = combined_df.loc[combined_df['is_team1'] == 0, 'TEAM_NAME'].iloc[0]
-
-        from sklearn.preprocessing import MinMaxScaler
-
-        # Drop unnecessary columns
-        columns_to_drop = ['team_id', 'TEAM_NAME', 'TEAM_ABBREVIATION', 'game_id']  # Adjust this list as needed
-        combined_df.drop(columns=columns_to_drop, inplace=True)
+        team2_name = team2_df['TEAM_NAME_team'].iloc[0]
         
-        # Scale numerical features
-        scaler = MinMaxScaler()
-        numerical_columns = ['HOMEORAWAY', 'FGM', 'FGA', 'FG_PCT', 'FG3M', 'FG3A', 'FG3_PCT', 'FTM', 'FTA', 'FT_PCT',
-                            'OREB', 'DREB', 'REB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PLUS_MINUS', 'W_PCT',
-                            'E_OFF_RATING', 'E_DEF_RATING', 'E_NET_RATING', 'E_AST_RATIO', 'E_OREB_PCT', 'E_DREB_PCT',
-                            'E_REB_PCT', 'E_TM_TOV_PCT', 'E_PACE']
-        combined_df[numerical_columns] = scaler.fit_transform(combined_df[numerical_columns])
-        
-        print(combined_df)
-        
-        from sklearn.model_selection import train_test_split
-        from sklearn.linear_model import LogisticRegression
+        team1_df.drop(columns=['game_id', 'TEAM_NAME_team', 'TEAM_ABBREVIATION_team', 'TEAM_NAME_opp', 'TEAM_ABBREVIATION_opp'], inplace=True)
+        team2_df.drop(columns=['game_id', 'TEAM_NAME_team', 'TEAM_ABBREVIATION_team', 'TEAM_NAME_opp', 'TEAM_ABBREVIATION_opp'], inplace=True)
 
-        # Split data into features (X) and target variable (y)
-        X = combined_df.drop(columns=['WL'])  # Drop 'WL' column to get features
-        y = combined_df['WL']  # Target variable
+        # Step 1: Calculate the mean of the last 10 game stats for each team
+        # Calculate mean performance metrics for each time frame
+        team1_last_5_games_mean = team1_df.filter(regex='_team$').tail(5).mean()
+        team1_last_10_games_mean = team1_df.filter(regex='_team$').tail(10).mean()
+        team1_last_20_games_mean = team1_df.filter(regex='_team$').tail(20).mean()
 
-        # Split data into training and testing sets
+        team2_last_5_games_mean = team2_df.filter(regex='_team$').tail(5).mean()
+        team2_last_10_games_mean = team2_df.filter(regex='_team$').tail(10).mean()
+        team2_last_20_games_mean = team2_df.filter(regex='_team$').tail(20).mean()
+
+        # Calculate recent, medium-term, and long-term averages
+        team1_mean_stats = (team1_last_5_games_mean + team1_last_10_games_mean + team1_last_20_games_mean) / 3
+        team2_mean_stats = (team2_last_5_games_mean + team2_last_10_games_mean + team2_last_20_games_mean) / 3
+        
+        # Usage
+        team1_mean_stats = rename_columns(team1_mean_stats, 1)
+        team2_mean_stats = rename_columns(team2_mean_stats, 2)
+        
+
+        # Concatenate team1_mean_stats and team2_mean_stats
+        input_data = pd.concat([team1_mean_stats, team2_mean_stats], axis=1)
+        
+        input_data['team2_WL'] = input_data.apply(lambda row: 0 if row['team1_WL'] > row['team2_WL'] else 1, axis=1)
+
+        # Drop unnecessary columns from input data
+        input_data.drop(columns=['team1_WL'], inplace=True)
+
+        # Step 3: Split the data into features (X) and target (y)
+        X = game_matchups_df.drop(columns=['team1_WL'])
+        y = game_matchups_df['team1_WL']
+
+        # Step 4: Split the data into training and testing sets
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-        # Train the model
-        model = LogisticRegression()  # Example: Logistic Regression
-        model.fit(X_train, y_train)
-        
-         # Step 3: Make predictions on the testing data
-        y_pred = model.predict(X_test)
+        # Step 5: Scale the input data
+        scaler = MinMaxScaler()
 
-        # Step 4: Calculate evaluation metrics
+        # Fit scaler on X_train
+        scaler.fit(X_train)
+
+        # Scale X_train and X_test
+        X_train_scaled = scaler.transform(X_train)
+        X_test_scaled = scaler.transform(X_test)
+
+        # Step 6: Train the model
+        model = LogisticRegression()  # You can replace this with any other algorithm
+        model.fit(X_train_scaled, y_train)
+
+        # Step 7: Perform cross-validation
+        cv_scores = cross_val_score(model, X_train_scaled, y_train, cv=10, scoring='accuracy')
+
+        # Print cross-validation scores
+        print("Cross-validation scores:", cv_scores)
+        print("Mean accuracy:", cv_scores.mean())
+
+        # Step 8: Prepare input data for prediction
+        input_data_scaled = scaler.transform(input_data)
+
+        # Step 9: Make predictions
+        predicted_probabilities = model.predict_proba(input_data_scaled)
+
+        print("Predicted probabilities:")
+        print("=========================")
+
+        # Print team names and predicted probabilities
+        team1_win_prob = predicted_probabilities[:, 1].mean()  # Mean probability of team 1 winning
+        team2_win_prob = predicted_probabilities[:, 0].mean()  # Mean probability of team 2 winning
+
+        print(f"{team1_name}: {team1_win_prob}")
+        print(f"{team2_name}: {team2_win_prob}")
+
+        # Step 10: Evaluate the model
+        y_pred = model.predict(X_test_scaled)
+        y_pred_proba = model.predict_proba(X_test_scaled)[:, 1]
+
+        # Calculate metrics
         accuracy = accuracy_score(y_test, y_pred)
         precision = precision_score(y_test, y_pred)
         recall = recall_score(y_test, y_pred)
-        f1 = f1_score(y_test, y_pred)
-        conf_matrix = confusion_matrix(y_test, y_pred)
+        roc_auc = roc_auc_score(y_test, y_pred_proba)
+        confusion_mat = confusion_matrix(y_test, y_pred)
 
-        # Step 5: Display evaluation metrics
+        # Print metrics
         print("Accuracy:", accuracy)
         print("Precision:", precision)
         print("Recall:", recall)
-        print("F1 Score:", f1)
+        print("ROC AUC:", roc_auc)
         print("Confusion Matrix:")
-        print(conf_matrix)
+        print(confusion_mat)
+
+
+
+
         
-        # Predict the outcome for the combined data
-        predicted_probabilities = model.predict_proba(X)[:, 1]
 
-        # Display the predicted probabilities for each team
-        predicted_probability_team1 = predicted_probabilities[combined_df['is_team1'] == 1].mean()
-        predicted_probability_team2 = 1 - predicted_probability_team1
 
-        print("Predicted Probability of", team1_name, "Winning:", "{:.2f}".format(predicted_probability_team1))
-        print("Predicted Probability of", team2_name, "Winning:", "{:.2f}".format(predicted_probability_team2))
-        
-        import pandas as pd
-        from sklearn.linear_model import LinearRegression
-
-        # Separate features (X) and target variable (y)
-        X = combined_df.drop(columns=['WL'])  # Features
-        y = combined_df[['FGM', 'FG3M', 'FTM']]  # Target variables to predict
-
-        # Train a linear regression model
-        model = LinearRegression()
-        model.fit(X, y)
-
-        # Predict the stat differentials for both team_1 and team_2
-        predicted_diff = model.predict(X)
-        
-        # Convert the NumPy array to a pandas DataFrame
-        predicted_diff_df = pd.DataFrame(predicted_diff, columns=['FGM', 'FG3M', 'FTM'])
-
-        # Print the column names of the predicted_diff DataFrame
-        print(predicted_diff_df.columns)
-
-        # # Split the predicted differentials for team_1 and team_2
-        # predicted_diff_team1 = predicted_diff[combined_df['is_team1'] == 1].mean()
-        # predicted_diff_team2 = predicted_diff[combined_df['is_team1'] == 0].mean()
-
-        # Split the predicted differentials for team_1 and team_2
-        predicted_diff_team1 = predicted_diff[combined_df['is_team1'] == 1].mean(axis=0)
-
-        # Print the mean of each column separately for predicted_diff_team1
-        print("Mean of Predicted Differentials for Team 1:")
-        for col_index, mean_value in enumerate(predicted_diff_team1):
-            col_name = combined_df.columns[col_index]
-            print(col_name + ":", mean_value)
-                                
     client.close()
 
 except Exception as e:
