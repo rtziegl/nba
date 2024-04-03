@@ -17,7 +17,9 @@ import requests
 import pandas as pd
 import logging
 
+############# DATA PREPROCESSING FUNCTIONS #################
 
+# Grabs matchups and organizes them into a structure
 def get_todays_matchups():
     try:
         # Get today's date
@@ -83,6 +85,7 @@ def get_todays_matchups():
     except Exception as e:
         print("Error:", e)
 
+# Gets all the game ids from todays matchup and returns as tupled by matchup list
 def get_todays_team_ids(matchups):
     # Initialize an empty list to store team IDs
     team_ids = []
@@ -100,6 +103,7 @@ def get_todays_team_ids(matchups):
 
     return team_ids
 
+# Gets regular season data based on team id and returns
 def get_regular_season_data_per_team(team_id):
     try:
         # Define parameters for game search
@@ -132,15 +136,9 @@ def get_regular_season_data_per_team(team_id):
         print("Error:", e)
         return None, None
 
-# Predict win probabilities for each team using the logistic regression model
-def predict_win_probabilities(model, X):
-    return model.predict_proba(X)[:, 1]  # Predict probabilities for class 1 (win)
-
+# Fetches regular season game statistics for a given team ID from the database
+# and returns a dictionary containing game statistics keyed by game ID
 def get_team_game_stats(team_id, db):
-    """
-    Fetches regular season game statistics for a given team ID from the database.
-    Returns a dictionary containing game statistics keyed by game ID.
-    """
     game_ids = get_regular_season_data_per_team(team_id)
     game_stats = {}
 
@@ -184,7 +182,7 @@ def get_team_game_stats(team_id, db):
 
     return game_stats
 
-
+# Organizes matchup data for each team and returns a df, each row is a game with matchup stats
 def prepare_matchup_data(team_game_stats, team_id):
     flattened_rows = []
 
@@ -213,7 +211,7 @@ def prepare_matchup_data(team_game_stats, team_id):
     
     return matchup_df
 
-
+# Renames columns for input data for the model
 def rename_columns(team_mean_stats, team_number):
     # Convert Series to DataFrame
     team_mean_stats_df = team_mean_stats.to_frame().T
@@ -246,41 +244,9 @@ def rename_columns(team_mean_stats, team_number):
     team_mean_stats_df.rename(columns=column_mappings, inplace=True)
     
     return team_mean_stats_df
-# Load environment variables from .env file
-load_dotenv()
 
-# Retrieve the MongoDB Atlas URI from the environment
-uri = os.getenv("MONGODB_URI")
-print(uri)
-
-# Create a MongoClient instance
-client = MongoClient(uri, tlsCAFile=certifi.where())
-print(client)
-
-# Get todays matchups
-matchups = get_todays_matchups()
-todays_team_ids = get_todays_team_ids(matchups)
-print(todays_team_ids)
-
-todays_team_ids = todays_team_ids
-print(todays_team_ids)
-
-
-
-# Initialize a dictionary to store regular season data for each team
-all_regular_season_data_dict = {}
-
-# Create an empty DataFrame with the specified features
-prepared_data = pd.DataFrame()
-
-# Print the empty DataFrame
-# print(prepared_data)
-
-try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-    # Connect to MongoDB
-    db = client['nba']
+# returns a df of all the nba_matchups this season from db
+def get_all_season_matchups_into_df(db):
     collection = db['games']
     
     cursor = collection.find({})
@@ -313,6 +279,136 @@ try:
     
     game_matchups_df.drop(columns=['team1_TEAM_NAME', 'team2_TEAM_NAME', 'team1_TEAM_ABBREVIATION', 'team2_TEAM_ABBREVIATION'], inplace=True)
     
+    return game_matchups_df
+
+# returns a readied input df to be fed into the Log reg model
+def get_input_data_ready(team1_df, team2_df):
+    # Drop unnecessary columns from team dataframes
+    team1_df.drop(columns=['game_id', 'TEAM_NAME_team', 'TEAM_ABBREVIATION_team', 'TEAM_NAME_opp', 'TEAM_ABBREVIATION_opp'], inplace=True)
+    team2_df.drop(columns=['game_id', 'TEAM_NAME_team', 'TEAM_ABBREVIATION_team', 'TEAM_NAME_opp', 'TEAM_ABBREVIATION_opp'], inplace=True)
+
+    # Calculate the mean of the last 10 game stats for each team
+    # Calculate mean performance metrics for each time frame
+    team1_last_5_games_mean = team1_df.filter(regex='_team$').tail(5).mean()
+    team1_last_10_games_mean = team1_df.filter(regex='_team$').tail(10).mean()
+    team1_last_20_games_mean = team1_df.filter(regex='_team$').tail(20).mean()
+
+    team2_last_5_games_mean = team2_df.filter(regex='_team$').tail(5).mean()
+    team2_last_10_games_mean = team2_df.filter(regex='_team$').tail(10).mean()
+    team2_last_20_games_mean = team2_df.filter(regex='_team$').tail(20).mean()
+
+    # Calculate recent, medium-term, and long-term averages
+    team1_mean_stats = (team1_last_5_games_mean + team1_last_10_games_mean + team1_last_20_games_mean) / 3
+    team2_mean_stats = (team2_last_5_games_mean + team2_last_10_games_mean + team2_last_20_games_mean) / 3
+    
+    # Usage
+    team1_mean_stats = rename_columns(team1_mean_stats, 1)
+    team2_mean_stats = rename_columns(team2_mean_stats, 2)
+    
+    # Concatenate team1_mean_stats and team2_mean_stats
+    input_data = pd.concat([team1_mean_stats, team2_mean_stats], axis=1)
+    
+    # Assign team2_WL based on team1_WL comparison
+    input_data['team2_WL'] = input_data.apply(lambda row: 0 if row['team1_WL'] > row['team2_WL'] else 1, axis=1)
+
+    # Make team1_PLUS_MINUS and team2_PLUS_MINUS positive
+    input_data['team1_PLUS_MINUS'] = abs(input_data['team1_PLUS_MINUS'])
+    input_data['team2_PLUS_MINUS'] = abs(input_data['team2_PLUS_MINUS'])
+
+    # Update team1_PLUS_MINUS and team2_PLUS_MINUS based on team2_WL
+    input_data.loc[input_data['team2_WL'] == 0, 'team2_PLUS_MINUS'] = input_data['team1_PLUS_MINUS']
+    input_data.loc[input_data['team2_WL'] == 0, 'team1_PLUS_MINUS'] = -input_data['team1_PLUS_MINUS']
+
+    input_data.loc[input_data['team2_WL'] == 1, 'team1_PLUS_MINUS'] = input_data['team2_PLUS_MINUS']
+    input_data.loc[input_data['team2_WL'] == 1, 'team2_PLUS_MINUS'] = -input_data['team2_PLUS_MINUS']
+
+    # Drop unnecessary columns from input data
+    input_data.drop(columns=['team1_WL'], inplace=True)
+    
+    return input_data
+
+############### TESTING LOG REGRESSION MODEL FUNCTIONS ##################
+
+# Evaluates feature coefficients 
+def evaluate_features(X, model):
+    # Get feature names
+    feature_names = X.columns
+
+    # Get coefficients
+    coefficients = model.coef_[0]
+
+    # Pair feature names with coefficients
+    feature_coefficients = pd.DataFrame({'Feature': feature_names, 'Coefficient': coefficients})
+
+    # Sort feature coefficients by absolute coefficient values
+    feature_coefficients['Absolute Coefficient'] = feature_coefficients['Coefficient'].abs()
+    feature_coefficients = feature_coefficients.sort_values(by='Absolute Coefficient', ascending=False)
+
+    # Print feature coefficients
+    print("Feature Coefficients:")
+    print(feature_coefficients)
+
+# Gets cross validation scores
+def get_cv_scores(X_train_scaled, y_train, model):
+    # Step 7: Perform cross-validation
+    cv_scores = cross_val_score(model, X_train_scaled, y_train, cv=10, scoring='accuracy')
+
+    # Print cross-validation scores
+    print("Cross-validation scores:", cv_scores)
+    print("Mean accuracy:", cv_scores.mean())
+
+# Evaluates accuracy, precision, etc.
+def evaluate_model(X_test_scaled, y_test, model):
+    # Step 10: Evaluate the model
+    y_pred = model.predict(X_test_scaled)
+    y_pred_proba = model.predict_proba(X_test_scaled)[:, 1]
+
+    # Calculate metrics
+    accuracy = accuracy_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred)
+    recall = recall_score(y_test, y_pred)
+    roc_auc = roc_auc_score(y_test, y_pred_proba)
+    confusion_mat = confusion_matrix(y_test, y_pred)
+
+    # Print metrics
+    print("Accuracy:", accuracy)
+    print("Precision:", precision)
+    print("Recall:", recall)
+    print("ROC AUC:", roc_auc)
+    print("Confusion Matrix:")
+    print(confusion_mat)
+
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Retrieve the MongoDB Atlas URI from the environment
+uri = os.getenv("MONGODB_URI")
+print(uri)
+
+# Create a MongoClient instance
+client = MongoClient(uri, tlsCAFile=certifi.where())
+print(client)
+
+# Get todays matchups
+matchups = get_todays_matchups()
+todays_team_ids = get_todays_team_ids(matchups)
+print(todays_team_ids)
+
+todays_team_ids = todays_team_ids
+print(todays_team_ids)
+
+# Initialize a dictionary to store regular season data for each team
+all_regular_season_data_dict = {}
+
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+    # Connect to MongoDB
+    db = client['nba']
+    
+    game_matchups_df = get_all_season_matchups_into_df(db)
+    
     
     from sklearn.model_selection import train_test_split, cross_val_score
     from sklearn.preprocessing import MinMaxScaler
@@ -335,38 +431,10 @@ try:
         # Prepare team2 df
         team2_df = prepare_matchup_data(team2_game_stats, team2_id)
         
-        
         team2_name = team2_df['TEAM_NAME_team'].iloc[0]
         
-        team1_df.drop(columns=['game_id', 'TEAM_NAME_team', 'TEAM_ABBREVIATION_team', 'TEAM_NAME_opp', 'TEAM_ABBREVIATION_opp'], inplace=True)
-        team2_df.drop(columns=['game_id', 'TEAM_NAME_team', 'TEAM_ABBREVIATION_team', 'TEAM_NAME_opp', 'TEAM_ABBREVIATION_opp'], inplace=True)
-
-        # Step 1: Calculate the mean of the last 10 game stats for each team
-        # Calculate mean performance metrics for each time frame
-        team1_last_5_games_mean = team1_df.filter(regex='_team$').tail(5).mean()
-        team1_last_10_games_mean = team1_df.filter(regex='_team$').tail(10).mean()
-        team1_last_20_games_mean = team1_df.filter(regex='_team$').tail(20).mean()
-
-        team2_last_5_games_mean = team2_df.filter(regex='_team$').tail(5).mean()
-        team2_last_10_games_mean = team2_df.filter(regex='_team$').tail(10).mean()
-        team2_last_20_games_mean = team2_df.filter(regex='_team$').tail(20).mean()
-
-        # Calculate recent, medium-term, and long-term averages
-        team1_mean_stats = (team1_last_5_games_mean + team1_last_10_games_mean + team1_last_20_games_mean) / 3
-        team2_mean_stats = (team2_last_5_games_mean + team2_last_10_games_mean + team2_last_20_games_mean) / 3
-        
-        # Usage
-        team1_mean_stats = rename_columns(team1_mean_stats, 1)
-        team2_mean_stats = rename_columns(team2_mean_stats, 2)
-        
-
-        # Concatenate team1_mean_stats and team2_mean_stats
-        input_data = pd.concat([team1_mean_stats, team2_mean_stats], axis=1)
-        
-        input_data['team2_WL'] = input_data.apply(lambda row: 0 if row['team1_WL'] > row['team2_WL'] else 1, axis=1)
-
-        # Drop unnecessary columns from input data
-        input_data.drop(columns=['team1_WL'], inplace=True)
+        input_data = get_input_data_ready(team1_df, team2_df)
+        # input_data.to_csv('input_data.csv', index=False)
 
         # Step 3: Split the data into features (X) and target (y)
         X = game_matchups_df.drop(columns=['team1_WL'])
@@ -389,13 +457,6 @@ try:
         model = LogisticRegression()  # You can replace this with any other algorithm
         model.fit(X_train_scaled, y_train)
 
-        # Step 7: Perform cross-validation
-        cv_scores = cross_val_score(model, X_train_scaled, y_train, cv=10, scoring='accuracy')
-
-        # Print cross-validation scores
-        print("Cross-validation scores:", cv_scores)
-        print("Mean accuracy:", cv_scores.mean())
-
         # Step 8: Prepare input data for prediction
         input_data_scaled = scaler.transform(input_data)
 
@@ -412,24 +473,10 @@ try:
         print(f"{team1_name}: {team1_win_prob}")
         print(f"{team2_name}: {team2_win_prob}")
 
-        # Step 10: Evaluate the model
-        y_pred = model.predict(X_test_scaled)
-        y_pred_proba = model.predict_proba(X_test_scaled)[:, 1]
-
-        # Calculate metrics
-        accuracy = accuracy_score(y_test, y_pred)
-        precision = precision_score(y_test, y_pred)
-        recall = recall_score(y_test, y_pred)
-        roc_auc = roc_auc_score(y_test, y_pred_proba)
-        confusion_mat = confusion_matrix(y_test, y_pred)
-
-        # Print metrics
-        print("Accuracy:", accuracy)
-        print("Precision:", precision)
-        print("Recall:", recall)
-        print("ROC AUC:", roc_auc)
-        print("Confusion Matrix:")
-        print(confusion_mat)
+        # Call evaluation functions
+        evaluate_model(X_test_scaled, y_test, model)
+        get_cv_scores(X_train_scaled, y_train, model)
+        evaluate_features(X, model)
 
 
 
