@@ -85,6 +85,18 @@ def get_todays_matchups():
     except Exception as e:
         print("Error:", e)
 
+# Creates and returns a  mapping from team_id to whether they are home or away 
+def create_team_home_away_map(matchup_data):
+    team_home_away_map = {}
+    for matchup in matchup_data:
+        team1_id = matchup[1][0][0]
+        team1_home_away = matchup[1][0][2]
+        team2_id = matchup[1][1][0]
+        team2_home_away = matchup[1][1][2]
+        team_home_away_map[team1_id] = team1_home_away
+        team_home_away_map[team2_id] = team2_home_away
+    return team_home_away_map
+
 # Gets all the game ids from todays matchup and returns as tupled by matchup list
 def get_todays_team_ids(matchups):
     # Initialize an empty list to store team IDs
@@ -282,7 +294,7 @@ def get_all_season_matchups_into_df(db):
     return game_matchups_df
 
 # returns a readied input df to be fed into the Log reg model
-def get_input_data_ready(team1_df, team2_df):
+def get_input_data_ready(team1_df, team2_df, team1_home_or_away, team2_home_or_away):
     # Drop unnecessary columns from team dataframes
     team1_df.drop(columns=['game_id', 'TEAM_NAME_team', 'TEAM_ABBREVIATION_team', 'TEAM_NAME_opp', 'TEAM_ABBREVIATION_opp'], inplace=True)
     team2_df.drop(columns=['game_id', 'TEAM_NAME_team', 'TEAM_ABBREVIATION_team', 'TEAM_NAME_opp', 'TEAM_ABBREVIATION_opp'], inplace=True)
@@ -321,6 +333,10 @@ def get_input_data_ready(team1_df, team2_df):
 
     input_data.loc[input_data['team2_WL'] == 1, 'team1_PLUS_MINUS'] = input_data['team2_PLUS_MINUS']
     input_data.loc[input_data['team2_WL'] == 1, 'team2_PLUS_MINUS'] = -input_data['team2_PLUS_MINUS']
+    
+    # Update team home/away indicators
+    input_data['team1_HOMEORAWAY'] = team1_home_or_away
+    input_data['team2_HOMEORAWAY'] = team2_home_or_away
 
     # Drop unnecessary columns from input data
     input_data.drop(columns=['team1_WL'], inplace=True)
@@ -398,6 +414,11 @@ print(todays_team_ids)
 todays_team_ids = todays_team_ids
 print(todays_team_ids)
 
+print(matchups)
+team_home_away_map = create_team_home_away_map(matchups)
+
+print(team_home_away_map)
+
 # Initialize a dictionary to store regular season data for each team
 all_regular_season_data_dict = {}
 
@@ -425,15 +446,17 @@ try:
         team1_df = prepare_matchup_data(team1_game_stats, team1_id)
         
         team1_name = team1_df['TEAM_NAME_team'].iloc[0]
-        
+        team1_home_or_away = team_home_away_map.get(team1_id)
+
         # Get regular season game stats for team 2
         team2_game_stats = get_team_game_stats(team2_id, db)
         # Prepare team2 df
         team2_df = prepare_matchup_data(team2_game_stats, team2_id)
         
         team2_name = team2_df['TEAM_NAME_team'].iloc[0]
+        team2_home_or_away = team_home_away_map.get(team2_id)
         
-        input_data = get_input_data_ready(team1_df, team2_df)
+        input_data = get_input_data_ready(team1_df, team2_df, team1_home_or_away, team2_home_or_away)
         # input_data.to_csv('input_data.csv', index=False)
 
         # Step 3: Split the data into features (X) and target (y)
@@ -463,7 +486,6 @@ try:
         # Step 9: Make predictions
         predicted_probabilities = model.predict_proba(input_data_scaled)
 
-        print("Predicted probabilities:")
         print("=========================")
 
         # Print team names and predicted probabilities
