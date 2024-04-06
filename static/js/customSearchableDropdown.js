@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    // Fetch player data from the Express.js endpoint and populate dropdown
+    // Fetch player data from the flask
     fetch('/nba_get_active_players')
         .then(response => response.json())
         .then(data => {

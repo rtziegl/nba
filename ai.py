@@ -85,7 +85,7 @@ def get_todays_matchups():
     except Exception as e:
         print("Error:", e)
 
-# Creates and returns a  mapping from team_id to whether they are home or away 
+# Creates and returns a mapping from team_id to whether they are home or away 
 def create_team_home_away_map(matchup_data):
     team_home_away_map = {}
     for matchup in matchup_data:

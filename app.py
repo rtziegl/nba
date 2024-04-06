@@ -11,6 +11,7 @@ from flask_cors import CORS
 from pymongo import MongoClient, DESCENDING
 from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
+from bcrypt import hashpw, gensalt
 
 import pandas as pd
 import json
@@ -127,6 +128,45 @@ def nba_get_player_game_data():
         # Send error response
         error_message = {'error': str(e)}
         return jsonify(error_message), 500
+
+
+# ------------------------ USER SIGN IN / SIGN UP --------------------------
+@app.route('/signup', methods=['POST'])
+def signup():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+
+    # Check if the user already exists
+    if db.users.find_one({'email': email}):
+        return jsonify({'error': 'User already exists'}), 400
+
+    # Hash the password
+    hashed_password = hashpw(password.encode('utf-8'), gensalt())
+
+    # Insert user into the database
+    user_data = {'email': email, 'password': hashed_password}
+    db.users.insert_one(user_data)
+
+    return jsonify({'message': 'User signed up successfully'})
+
+@app.route('/signin', methods=['POST'])
+def signin():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+
+    # Retrieve user from the database
+    user = db.users.find_one({'email': email})
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+
+    # Verify the password
+    if hashpw(password.encode('utf-8'), user['password']) == user['password']:
+        return jsonify({'message': 'User signed in successfully'})
+    else:
+        return jsonify({'error': 'Invalid email or password'}), 401
+    
 
 
 # Get DB based on collection   
