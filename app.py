@@ -12,13 +12,17 @@ from pymongo import MongoClient, DESCENDING
 from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
 from bcrypt import hashpw, gensalt
-
+from flask_mail import Mail, Message
 import pandas as pd
 import json
 import os
 import certifi
 import requests
 import html
+import string
+import secrets
+from datetime import datetime, timedelta
+
 app = Flask(__name__)
 CORS(app)
 
@@ -131,24 +135,72 @@ def nba_get_player_game_data():
 
 
 # ------------------------ USER SIGN IN / SIGN UP --------------------------
+# Flask-Mail configuration
+app.config['MAIL_SERVER'] = 'smtp.ethereal.email'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'candelario51@ethereal.email'
+app.config['MAIL_PASSWORD'] = '	9S62KdZPVwZS8h27Bb'
+
+mail = Mail(app)
+
+def send_verification_email(email, token):
+    msg = Message('Email Verification', sender='candelario51@ethereal.email', recipients=[email])
+    msg.html = f"""\
+    <html>
+      <body>
+        <p>Click the link below to verify your email address:</p>
+        <a href="https://nbadev-562335df253a.herokuapp.com/verify_email?token={token}">Verify Email</a>
+      </body>
+    </html>
+    """
+    mail.send(msg)
+
 @app.route('/signup', methods=['POST'])
 def signup():
     data = request.json
     email = data.get('email')
     password = data.get('password')
 
-    # Check if the user already exists
-    if db.users.find_one({'email': email}):
-        return jsonify({'error': 'User already exists'}), 400
+    # Check if the user already exists or is pending
+    existing_user = db.users.find_one({'email': email})
+    if existing_user:
+        if existing_user['status'] == 'active':
+            return jsonify({'error': 'User already exists'}), 400
+        elif existing_user['status'] == 'pending':
+            # Allow multiple accounts until verification is completed
+            pass
 
-    # Hash the password
-    hashed_password = hashpw(password.encode('utf-8'), gensalt())
+    # Generate verification token
+    token = os.urandom(24).hex()
 
-    # Insert user into the database
-    user_data = {'email': email, 'password': hashed_password}
+    # Store user data and verification token in the database with pending status
+    user_data = {'email': email, 'password': hashpw(password.encode('utf-8'), gensalt()), 'verification_token': token, 'status': 'pending'}
     db.users.insert_one(user_data)
 
-    return jsonify({'message': 'User signed up successfully'})
+    # Send verification email
+    send_verification_email(email, token)
+
+    return jsonify({'message': 'User signed up successfully. Check your email for verification instructions.'}), 201
+
+@app.route('/verify_email', methods=['GET'])
+def verify_email():
+    token = request.args.get('token')
+
+    # Find the user with the provided token
+    user = db.users.find_one({'verification_token': token})
+
+    if not user:
+        return "Invalid or expired token. Please request a new verification email."
+
+    # Check if the user is already verified
+    if user['status'] == 'active':
+        return "Email already verified. You can log in to your account."
+
+    # Update user status to active
+    db.users.update_one({'_id': user['_id']}, {'$set': {'status': 'active'}})
+
+    return "Email verified successfully. You can now log in to your account."
 
 @app.route('/signin', methods=['POST'])
 def signin():
