@@ -39,7 +39,7 @@ app.config['MAIL_SERVER'] = 'smtp.ethereal.email'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'candelario51@ethereal.email'
-app.config['MAIL_PASSWORD'] = '	9S62KdZPVwZS8h27Bb'
+app.config['MAIL_PASSWORD'] = '9S62KdZPVwZS8h27Bb'
 
 mail = Mail(app)
 
