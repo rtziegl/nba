@@ -31,6 +31,95 @@ def index():
     return render_template('index.html')
 
 
+
+
+# ------------------------ USER SIGN IN / SIGN UP --------------------------
+# Flask-Mail configuration
+app.config['MAIL_SERVER'] = 'smtp.ethereal.email'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'candelario51@ethereal.email'
+app.config['MAIL_PASSWORD'] = '	9S62KdZPVwZS8h27Bb'
+
+mail = Mail(app)
+
+def send_verification_email(email, token):
+    msg = Message('Email Verification', sender='candelario51@ethereal.email', recipients=[email])
+    msg.html = f"""\
+    <html>
+      <body>
+        <p>Click the link below to verify your email address:</p>
+        <a href="https://nbadev-562335df253a.herokuapp.com/verify_email?token={token}">Verify Email</a>
+      </body>
+    </html>
+    """
+    mail.send(msg)
+
+@app.route('/signup', methods=['POST'])
+def signup():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+
+    # Check if the user already exists or is pending
+    existing_user = db.users.find_one({'email': email})
+    if existing_user:
+        if existing_user['status'] == 'active':
+            return jsonify({'error': 'User already exists'}), 400
+        elif existing_user['status'] == 'pending':
+            # Allow multiple accounts until verification is completed
+            pass
+
+    # Generate verification token
+    token = os.urandom(24).hex()
+
+    # Store user data and verification token in the database with pending status
+    user_data = {'email': email, 'password': hashpw(password.encode('utf-8'), gensalt()), 'verification_token': token, 'status': 'pending'}
+    db.users.insert_one(user_data)
+
+    # Send verification email
+    send_verification_email(email, token)
+
+    return jsonify({'message': 'User signed up successfully. Check your email for verification instructions.'}), 201
+
+# @app.route('/verify_email', methods=['GET'])
+# def verify_email():
+#     token = request.args.get('token')
+
+#     # Find the user with the provided token
+#     user = db.users.find_one({'verification_token': token})
+
+#     if not user:
+#         return "Invalid or expired token. Please request a new verification email."
+
+#     # Check if the user is already verified
+#     if user['status'] == 'active':
+#         return "Email already verified. You can log in to your account."
+
+#     # Update user status to active
+#     db.users.update_one({'_id': user['_id']}, {'$set': {'status': 'active'}})
+
+#     return "Email verified successfully. You can now log in to your account."
+
+@app.route('/signin', methods=['POST'])
+def signin():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+
+    # Retrieve user from the database
+    user = db.users.find_one({'email': email})
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+
+    # Verify the password
+    if hashpw(password.encode('utf-8'), user['password']) == user['password']:
+        return jsonify({'message': 'User signed in successfully'})
+    else:
+        return jsonify({'error': 'Invalid email or password'}), 401
+    
+    
+    
 # -------------------- GET MATCHUP DATA --------------------------
 
 @app.route('/nba_get_next_matchup', methods=['GET'])
@@ -133,92 +222,6 @@ def nba_get_player_game_data():
         error_message = {'error': str(e)}
         return jsonify(error_message), 500
 
-
-# ------------------------ USER SIGN IN / SIGN UP --------------------------
-# Flask-Mail configuration
-app.config['MAIL_SERVER'] = 'smtp.ethereal.email'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'candelario51@ethereal.email'
-app.config['MAIL_PASSWORD'] = '	9S62KdZPVwZS8h27Bb'
-
-mail = Mail(app)
-
-def send_verification_email(email, token):
-    msg = Message('Email Verification', sender='candelario51@ethereal.email', recipients=[email])
-    msg.html = f"""\
-    <html>
-      <body>
-        <p>Click the link below to verify your email address:</p>
-        <a href="https://nbadev-562335df253a.herokuapp.com/verify_email?token={token}">Verify Email</a>
-      </body>
-    </html>
-    """
-    mail.send(msg)
-
-@app.route('/signup', methods=['POST'])
-def signup():
-    data = request.json
-    email = data.get('email')
-    password = data.get('password')
-
-    # Check if the user already exists or is pending
-    existing_user = db.users.find_one({'email': email})
-    if existing_user:
-        if existing_user['status'] == 'active':
-            return jsonify({'error': 'User already exists'}), 400
-        elif existing_user['status'] == 'pending':
-            # Allow multiple accounts until verification is completed
-            pass
-
-    # Generate verification token
-    token = os.urandom(24).hex()
-
-    # Store user data and verification token in the database with pending status
-    user_data = {'email': email, 'password': hashpw(password.encode('utf-8'), gensalt()), 'verification_token': token, 'status': 'pending'}
-    db.users.insert_one(user_data)
-
-    # Send verification email
-    send_verification_email(email, token)
-
-    return jsonify({'message': 'User signed up successfully. Check your email for verification instructions.'}), 201
-
-@app.route('/verify_email', methods=['GET'])
-def verify_email():
-    token = request.args.get('token')
-
-    # Find the user with the provided token
-    user = db.users.find_one({'verification_token': token})
-
-    if not user:
-        return "Invalid or expired token. Please request a new verification email."
-
-    # Check if the user is already verified
-    if user['status'] == 'active':
-        return "Email already verified. You can log in to your account."
-
-    # Update user status to active
-    db.users.update_one({'_id': user['_id']}, {'$set': {'status': 'active'}})
-
-    return "Email verified successfully. You can now log in to your account."
-
-@app.route('/signin', methods=['POST'])
-def signin():
-    data = request.json
-    email = data.get('email')
-    password = data.get('password')
-
-    # Retrieve user from the database
-    user = db.users.find_one({'email': email})
-    if not user:
-        return jsonify({'error': 'User not found'}), 404
-
-    # Verify the password
-    if hashpw(password.encode('utf-8'), user['password']) == user['password']:
-        return jsonify({'message': 'User signed in successfully'})
-    else:
-        return jsonify({'error': 'Invalid email or password'}), 401
-    
 
 
 # Get DB based on collection   
