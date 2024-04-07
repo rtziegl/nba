@@ -55,6 +55,10 @@ def send_verification_email(email, token):
     """
     mail.send(msg)
 
+# Function to generate unique token
+def generate_token():
+    return os.urandom(24).hex()
+
 @app.route('/signup', methods=['POST'])
 def signup():
     data = request.json
@@ -62,16 +66,20 @@ def signup():
     password = data.get('password')
 
     # Check if the user already exists or is pending
-    existing_user = db.users.find_one({'email': email})
-    if existing_user:
+    existing_users = db.users.find({'email': email})
+
+    # Iterate over all matching users
+    for existing_user in existing_users:
         if existing_user['status'] == 'active':
+            # If an active user with the same email exists, return an error response
             return jsonify({'error': 'User already exists'}), 400
         elif existing_user['status'] == 'pending':
-            # Allow multiple accounts until verification is completed
+            # If a pending user with the same email exists, you may handle it differently
+            # For example, you can allow multiple pending accounts until verification is completed
             pass
 
     # Generate verification token
-    token = os.urandom(24).hex()
+    token = generate_token()
 
     # Store user data and verification token in the database with pending status
     user_data = {'email': email, 'password': hashpw(password.encode('utf-8'), gensalt()), 'verification_token': token, 'status': 'pending'}
@@ -92,14 +100,15 @@ def verify_email():
     if not user:
         return "Invalid or expired token. Please request a new verification email."
 
-    # Check if the user is already verified
-    if user['status'] == 'active':
+    # Check if the token has already been used
+    if user.get('status') == 'active':
         return "Email already verified. You can log in to your account."
 
-    # Update user status to active
-    db.users.update_one({'_id': user['_id']}, {'$set': {'status': 'active'}})
+    # Mark the token as used to prevent multiple uses
+    db.users.update_one({'_id': user['_id']}, {'$set': {'status': 'active', 'verification_token': None}})
 
     return "Email verified successfully. You can now log in to your account."
+
 
 @app.route('/signin', methods=['POST'])
 def signin():
