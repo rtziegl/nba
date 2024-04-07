@@ -13,6 +13,7 @@ dnspython==2.6.1
 fake-useragent==1.5.1
 Flask==3.0.2
 Flask-Cors==4.0.0
+Flask-Mail==0.9.1
 fonttools==4.50.0
 gunicorn==21.2.0
 idna==3.6

@@ -82,24 +82,24 @@ def signup():
 
     return jsonify({'message': 'User signed up successfully. Check your email for verification instructions.'}), 201
 
-# @app.route('/verify_email', methods=['GET'])
-# def verify_email():
-#     token = request.args.get('token')
+@app.route('/verify_email', methods=['GET'])
+def verify_email():
+    token = request.args.get('token')
 
-#     # Find the user with the provided token
-#     user = db.users.find_one({'verification_token': token})
+    # Find the user with the provided token
+    user = db.users.find_one({'verification_token': token})
 
-#     if not user:
-#         return "Invalid or expired token. Please request a new verification email."
+    if not user:
+        return "Invalid or expired token. Please request a new verification email."
 
-#     # Check if the user is already verified
-#     if user['status'] == 'active':
-#         return "Email already verified. You can log in to your account."
+    # Check if the user is already verified
+    if user['status'] == 'active':
+        return "Email already verified. You can log in to your account."
 
-#     # Update user status to active
-#     db.users.update_one({'_id': user['_id']}, {'$set': {'status': 'active'}})
+    # Update user status to active
+    db.users.update_one({'_id': user['_id']}, {'$set': {'status': 'active'}})
 
-#     return "Email verified successfully. You can now log in to your account."
+    return "Email verified successfully. You can now log in to your account."
 
 @app.route('/signin', methods=['POST'])
 def signin():
@@ -221,7 +221,6 @@ def nba_get_player_game_data():
         # Send error response
         error_message = {'error': str(e)}
         return jsonify(error_message), 500
-
 
 
 # Get DB based on collection   
