@@ -116,24 +116,30 @@ def signin():
     email = data.get('email')
     password = data.get('password')
 
-    # Find the user with the provided email
-    user = db.users.find_one({'email': email})
+    # Find all users with the provided email
+    users = db.users.find({'email': email})
 
-    if not user:
-        return jsonify({'error': 'User not found'}), 404
+    # Initialize a variable to track if a user with active status is found
+    active_user_found = False
 
-    # Check if the user's status is active
-    if user.get('status') != 'active':
-        return jsonify({'error': 'User account is not active'}), 401
+    # Iterate over all users with the provided email
+    for user in users:
+        # Check if the user's status is active
+        if user.get('status') == 'active':
+            # Retrieve the hashed password from the user data
+            hashed_password = user.get('password')
 
-    # Retrieve the hashed password from the user data
-    hashed_password = user.get('password')
+            # Check if the provided password matches the hashed password
+            if checkpw(password.encode('utf-8'), hashed_password):
+                active_user_found = True
+                break  # Exit the loop if an active user with matching password is found
 
-    # Check if the provided password matches the hashed password
-    if checkpw(password.encode('utf-8'), hashed_password):
-        return jsonify({'message': 'Sign in successful'}), 200
-    else:
-        return jsonify({'error': 'Incorrect password'}), 401
+    # If no active user with matching password is found, return an error
+    if not active_user_found:
+        return jsonify({'error': 'Invalid email or password'}), 401
+
+    # If an active user with matching password is found, return a success message
+    return jsonify({'message': 'Sign in successful'}), 200
 
     
 # -------------------- GET MATCHUP DATA --------------------------
