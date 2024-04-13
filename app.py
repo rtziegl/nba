@@ -62,7 +62,7 @@ def generate_token():
 @app.route('/signup', methods=['POST'])
 def signup():
     data = request.json
-    email = data.get('email')
+    email = data.get('email').lower()
     password = data.get('password')
 
     # Check if the user already exists or is pending
@@ -113,7 +113,7 @@ def verify_email():
 @app.route('/signin', methods=['POST'])
 def signin():
     data = request.json
-    email = data.get('email')
+    email = data.get('email').lower()
     password = data.get('password')
 
     # Find all users with the provided email
