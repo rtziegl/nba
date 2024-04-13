@@ -11,7 +11,7 @@ from flask_cors import CORS
 from pymongo import MongoClient, DESCENDING
 from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
-from bcrypt import hashpw, gensalt
+from bcrypt import hashpw, gensalt, checkpw
 from flask_mail import Mail, Message
 import pandas as pd
 import json
@@ -34,7 +34,7 @@ def index():
 
 
 # ------------------------ USER SIGN IN / SIGN UP --------------------------
-# Flask-Mail configuration
+# Flask-Mail configuration (UPDATE FOR ACTUAL PRODUCTION using our domain smtp!!)
 app.config['MAIL_SERVER'] = 'smtp.ethereal.email'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
@@ -116,18 +116,21 @@ def signin():
     email = data.get('email')
     password = data.get('password')
 
-    # Retrieve user from the database
-    user = db.users.find_one({'email': email})
-    if not user:
-        return jsonify({'error': 'User not found'}), 404
+    # Find all users with the provided email
+    users = db.users.find({'email': email})
 
-    # Verify the password
-    if hashpw(password.encode('utf-8'), user['password']) == user['password']:
-        return jsonify({'message': 'User signed in successfully'})
-    else:
-        return jsonify({'error': 'Invalid email or password'}), 401
-    
-    
+    # Iterate over all matching users
+    for user in users:
+        # Check if the user is active
+        if user.get('status') == 'active':
+            # Check if the password matches
+            hashed_password = user.get('password')
+            if checkpw(password.encode('utf-8'), hashed_password.encode('utf-8')):
+                # Password matches, return success response
+                return jsonify({'message': 'User signed in successfully'}), 200
+
+    # If we reach here, no matching active user or password doesn't match
+    return jsonify({'error': 'Invalid email or password'}), 401   
     
 # -------------------- GET MATCHUP DATA --------------------------
 
