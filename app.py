@@ -160,10 +160,6 @@ def changepassword():
     # Find all users with the provided email and active status
     users = db.users.find({'email': email, 'status': 'active'})
 
-    # Print number of users found for debugging
-    user_count = users.count()
-    print(f"Number of users found: {user_count}")
-
     # Initialize a variable to track if a user with matching email and old password is found
     user_found = False
 
