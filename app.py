@@ -141,7 +141,45 @@ def signin():
     # If an active user with matching password is found, return a success message
     return jsonify({'message': 'Sign in successful'}), 200
 
-    
+@app.route('/changepassword', methods=['POST'])
+def changepassword():
+    data = request.json
+    email = data.get('email').lower()
+    old_password = data.get('old_password')
+    new_password = data.get('new_password')
+
+    # Hash the old password provided by the user
+    hashed_old_password = hashpw(old_password.encode('utf-8'), gensalt())
+
+    # Find all users with the provided email and active status
+    users = db.users.find({'email': email, 'status': 'active'})
+
+    # Initialize a variable to track if a user with matching email and old password is found
+    user_found = False
+
+    # Iterate over all users with the provided email and active status
+    for user in users:
+        # Retrieve the hashed password from the user data
+        hashed_password = user.get('password')
+
+        # Compare the hashed old password with the hashed password stored in the database
+        if hashed_password == hashed_old_password:
+            # Hash the new password
+            hashed_new_password = hashpw(new_password.encode('utf-8'), gensalt())
+
+            # Update the password in the database
+            db.users.update_one({'_id': user['_id']}, {'$set': {'password': hashed_new_password}})
+            user_found = True
+            break  # Exit the loop if a matching user is found and password is updated
+
+    # If no user with matching email and old password is found, return an error
+    if not user_found:
+        return jsonify({'error': 'Invalid email or old password'}), 401
+
+    # If the password is successfully updated, return a success message
+    return jsonify({'message': 'Password changed successfully'}), 200
+
+   
 # -------------------- GET MATCHUP DATA --------------------------
 
 @app.route('/nba_get_next_matchup', methods=['GET'])
