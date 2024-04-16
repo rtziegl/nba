@@ -148,11 +148,21 @@ def changepassword():
     old_password = data.get('old_password')
     new_password = data.get('new_password')
 
+    # Print received data for debugging
+    print(f"Received data: {data}")
+
     # Hash the old password provided by the user
     hashed_old_password = hashpw(old_password.encode('utf-8'), gensalt())
 
+    # Print hashed old password for debugging
+    print(f"Hashed old password: {hashed_old_password}")
+
     # Find all users with the provided email and active status
     users = db.users.find({'email': email, 'status': 'active'})
+
+    # Print number of users found for debugging
+    user_count = users.count()
+    print(f"Number of users found: {user_count}")
 
     # Initialize a variable to track if a user with matching email and old password is found
     user_found = False
@@ -162,6 +172,9 @@ def changepassword():
         # Retrieve the hashed password from the user data
         hashed_password = user.get('password')
 
+        # Print hashed password from the database for debugging
+        print(f"Hashed password from database: {hashed_password}")
+
         # Compare the hashed old password with the hashed password stored in the database
         if hashed_password == hashed_old_password:
             # Hash the new password
@@ -170,14 +183,18 @@ def changepassword():
             # Update the password in the database
             db.users.update_one({'_id': user['_id']}, {'$set': {'password': hashed_new_password}})
             user_found = True
+            print("Password updated successfully")
             break  # Exit the loop if a matching user is found and password is updated
 
     # If no user with matching email and old password is found, return an error
     if not user_found:
+        print("Invalid email or old password")
         return jsonify({'error': 'Invalid email or old password'}), 401
 
     # If the password is successfully updated, return a success message
+    print("Password changed successfully")
     return jsonify({'message': 'Password changed successfully'}), 200
+
 
    
 # -------------------- GET MATCHUP DATA --------------------------
