@@ -259,7 +259,26 @@ def nba_get_player_game_data():
         player_game_data = []
         # Extract player ID from the query parameters
         player_id = int(request.args.get('playerId'))
-
+        stat = request.args.get('stat')
+        prop_value = int(request.args.get('propValue'))
+        over_under = request.args.get('overUnder')
+        
+        # Define a dictionary to map stat values to their abbreviations
+        stat_abbreviations = {
+            'Points': 'PTS',
+            'Assists': 'AST',
+            '3 Pointers': 'FG3M',
+            'Rebounds': 'REB',
+            'Blocks': 'BLK',
+            'Steals': 'STL'
+        }
+        
+        # Convert the incoming stat to its abbreviation using the dictionary
+        if stat in stat_abbreviations:
+            stat_abbreviation = stat_abbreviations[stat]
+        else:
+            raise ValueError(f"Invalid stat: {stat}")
+        
         # Player games from DB
         player_game_collection = get_data_from_db('playersgamelog')
         
@@ -273,8 +292,45 @@ def nba_get_player_game_data():
                 
         # Sort player game data based on 'GAME_DATE' in descending order (most recent first)
         player_game_data.sort(key=lambda x: x['GAME_DATE'], reverse=True)
-        return jsonify(player_game_data), 200
-    
+        
+        # Get the most recent 7 games
+        recent_games = player_game_data[:5]
+        
+        # Initialize counters for all games and recent 7 games
+        total_games = len(player_game_data)
+        recent_over_count = 0
+        recent_under_count = 0
+        over_count = 0
+        under_count = 0
+        
+        # Check over/under condition for all games
+        for game in player_game_data:
+            if over_under == 'Over':
+                if game[stat_abbreviation] >= prop_value:
+                    over_count += 1
+            elif over_under == 'Under':
+                if game[stat_abbreviation] < prop_value:
+                    under_count += 1
+        
+        # Check over/under condition for recent 7 games
+        for game in recent_games:
+            if over_under == 'Over':
+                if game[stat_abbreviation] >= prop_value:
+                    recent_over_count += 1
+            elif over_under == 'Under':
+                if game[stat_abbreviation] < prop_value:
+                    recent_under_count += 1
+        
+        # Create response data
+        response_data = {
+            'total_games': total_games,
+            'over_count': over_count,
+            'under_count': under_count,
+            'recent_over_count': recent_over_count,
+            'recent_under_count': recent_under_count
+        }
+        
+        return jsonify(response_data), 200
     except Exception as e:
         # Send error response
         error_message = {'error': str(e)}

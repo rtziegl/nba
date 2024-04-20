@@ -9,8 +9,10 @@ from nba_api.stats.library.parameters import SeasonAll
 from nba_api.stats.endpoints import AllTimeLeadersGrids
 from nba_api.stats.endpoints import LeagueGameFinder
 from nba_api.stats.endpoints.teamestimatedmetrics import TeamEstimatedMetrics
+from nba_api.stats.endpoints import TeamGameLogs
 from nba_api.stats.endpoints.leagueleaders import LeagueLeaders
 import datetime
+from datetime import datetime
 
 
 from flask import Flask, jsonify, request, render_template
@@ -186,6 +188,7 @@ def nba_update_player_next_game_matchup(db, logging):
             player_id = player['id']
             
             matchup = get_upcoming_game_matchup(player_id, logging)
+            
 
             if matchup is None:
                 db.playersmatchuplog.update_one(
@@ -213,20 +216,33 @@ def nba_update_player_next_game_matchup(db, logging):
 # Calls api and grabs the next matchup value
 def get_upcoming_game_matchup(player_id, logging):
     try:
-        next_games = PlayerNextNGames(player_id=player_id)
-        next_games_data = next_games.get_normalized_dict()["NextNGames"]
-
-        # Check if there are any upcoming games
-        if next_games_data:
-            # Retrieve details of the next game
-            next_game = next_games_data[0]
-            return next_game
-        else:
-            return None
-            
+        player_id = 2544
+        # # Retrieve next game(s) for the player in the regular season
+        # next_games_regular_season = PlayerNextNGames(player_id=player_id, number_of_games=1, season_type_all_star='Regular Season')
+        # next_games_data_regular_season = next_games_regular_season.get_normalized_dict()["NextNGames"]
+        
+        # # Check if there are any upcoming games in regular season
+        # if next_games_data_regular_season:
+        #     return next_games_data_regular_season[0]
+        
+        # If no upcoming games found in regular season, try playoffs
+        next_games_playoffs = PlayerNextNGames(player_id=player_id)
+        next_games_data_playoffs = next_games_playoffs.get_normalized_dict()["NextNGames"]
+        
+        print(next_games_data_playoffs)
+        
+        # Check if there are any upcoming games in playoffs
+        if next_games_data_playoffs:
+            return next_games_data_playoffs[0]
+        
+        # No upcoming games found
+        print("No upcoming games found.")
+        return None
+    
     except Exception as e:
-        logging.error(f"Error get_upcoming_game_matchup from api Matchup data: {str(e)}")
+        logging.error(f"Error get_upcoming_game_matchup from API: {str(e)}")
         print("Error:", str(e))
+
 
 def finding_abrv_compare_insert(db, player_id, matchup_data, logging):
     try:
@@ -468,11 +484,11 @@ try:
      # Connect to MongoDB
     db = client['nba']
 
-    nba_update_active_players(db, active_players_logger)
-    print("NBA PLAYER NAME and ID DATA UPDATED")
+    # nba_update_active_players(db, active_players_logger)
+    # print("NBA PLAYER NAME and ID DATA UPDATED")
 
-    nba_update_player_game_data(db, player_game_data_logger)
-    print("NBA PLAYER GAME DATA UPDATED")
+    # nba_update_player_game_data(db, player_game_data_logger)
+    # print("NBA PLAYER GAME DATA UPDATED")
 
     nba_update_player_next_game_matchup(db, player_next_game_logger)
     print("NBA PLAYER MATCHUP LOG UPDATED")
