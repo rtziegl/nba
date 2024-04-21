@@ -24,6 +24,10 @@ import requests
 import pandas as pd
 import logging
 
+# Scraping and Regex
+from bs4 import BeautifulSoup
+import re
+
 
 
 #---- LOGGER SETUP ----#
@@ -457,7 +461,393 @@ def update_team_ranks_data(db,logging):
             
     except Exception as e:
         logging.error(f"Error updating team rank data: {str(e)}")
-      
+  
+def find_and_update_daily_players(db, logging):
+    try:
+        team_mapping = {
+            "atlanta": "atlanta hawks",
+            "boston": "boston celtics",
+            "brooklyn": "brooklyn nets",
+            "charlotte": "charlotte hornets",
+            "chicago": "chicago bulls",
+            "cleveland": "cleveland cavaliers",
+            "dallas": "dallas mavericks",
+            "denver": "denver nuggets",
+            "detroit": "detroit pistons",
+            "golden state": "golden state warriors",
+            "houston": "houston rockets",
+            "indiana": "indiana pacers",
+            "la clippers": "la clippers",
+            "lakers": "los angeles lakers",
+            "memphis": "memphis grizzlies",
+            "miami": "miami heat",
+            "milwaukee": "milwaukee bucks",
+            "minnesota": "minnesota timberwolves",
+            "new orleans": "new orleans pelicans",
+            "new york": "new york knicks",
+            "oklahoma city": "oklahoma city thunder",
+            "orlando": "orlando magic",
+            "philadelphia": "philadelphia 76ers",
+            "phoenix": "phoenix suns",
+            "portland": "portland trail blazers",
+            "sacramento": "sacramento kings",
+            "san antonio": "san antonio spurs",
+            "toronto": "toronto raptors",
+            "utah": "utah jazz",
+            "washington": "washington wizards"
+        }
+
+        daily_schedule = db["dailyschedule"].find_one({}, {"Schedule": 1})
+        if daily_schedule:
+            # Extract team names from daily schedule
+            all_players_data = []
+            for entry in daily_schedule["Schedule"]:
+                team1_abbr = entry["team1"]
+                team2_abbr = entry["team2"]
+                matchup1 = entry["matchup1"]
+                matchup2 = entry["matchup2"]
+                
+                # Map abbreviated team names to full team names
+                team1_full = team_mapping.get(team1_abbr)
+                team2_full = team_mapping.get(team2_abbr)
+
+                # Query players collection for each team
+                if team1_full:
+                    players_team1 = db["teamrosters"].find_one({"team_name": team1_full}, {"players": 1})
+                    if players_team1 and "players" in players_team1:
+                        for player_name in players_team1["players"]:
+                            player = db["players"].find_one({"full_name": player_name})
+                            if player:
+                                player_id = player["id"]
+                                player_data = {"player_name": player_name, "player_id": player_id, "matchup": matchup1}
+                                all_players_data.append(player_data)
+                
+                if team2_full:
+                    players_team2 = db["teamrosters"].find_one({"team_name": team2_full}, {"players": 1})
+                    if players_team2 and "players" in players_team2:
+                        for player_name in players_team2["players"]:
+                            player = db["players"].find_one({"full_name": player_name})
+                            if player:
+                                player_id = player["id"]
+                                player_data = {"player_name": player_name, "player_id": player_id, "matchup": matchup2}
+                                all_players_data.append(player_data)
+
+            # Replace the entire collection with the new data
+            db["dailyplayers"].replace_one({}, {"players": all_players_data}, upsert=True)
+            
+            print("Daily players added to the collection.")
+        else:
+            print("Daily schedule not found.")
+            
+    except Exception as e:
+        logging.error(f"Error updating team rank data: {str(e)}")
+
+def find_and_insert_player_stats(db, logging):
+    try:
+        # Get all players from the dailyplayers collection
+        daily_players = db["dailyplayers"].find_one({}, {"players": 1})
+        if daily_players and "players" in daily_players:
+            for player_data in daily_players["players"]:
+                player_id = player_data["player_id"]
+                matchup = player_data["matchup"]
+                player_name = player_data["player_name"]
+                
+                print(f"Processing player: {player_name}, Matchup: {matchup}")
+                
+                # Split the matchup string
+                teams = matchup.split(" @ ") if "@" in matchup else matchup.split(" vs. ")
+                home_team = teams[0]
+                away_team = teams[1]
+                
+                print(f"Home Team: {home_team}, Away Team: {away_team}")
+                
+                # Query game logs for both scenarios
+                player_game_logs = db["playersgamelog"].find({
+                    "player_id": player_id,
+                    "$or": [
+                        {"$or": [{"MATCHUP": {"$regex": f"{away_team} @ {home_team}"}}, {"MATCHUP": {"$regex": f"{away_team} vs. {home_team}"}}]},
+                        {"$or": [{"MATCHUP": {"$regex": f"{home_team} vs. {away_team}"}}, {"MATCHUP": {"$regex": f"{home_team} @ {away_team}"}}]}
+                    ]
+                }).sort([("GAME_DATE", -1)]).limit(3)  # Sort by GAME_DATE descending and limit to 3
+                
+                # Insert player logs into playersmatchuplog collection
+                player_logs = list(player_game_logs)  # Convert cursor to list for counting num_games
+                num_games = len(player_logs)
+                recent_matchups = [{"MATCHUP": log["MATCHUP"], "GAME_DATE": log["GAME_DATE"], "GAME_STATS": log} for log in player_logs]
+                
+                # Insert or update player log in playersmatchuplog collection
+                db["playersmatchuplog"].update_one(
+                    {"player_id": player_id},
+                    {"$set": {"num_games": num_games, "recent_matchups": recent_matchups}},
+                    upsert=True
+                    )
+                
+                print("Inserted player logs into playersmatchuplog collection.")
+                print(f"Number of games: {num_games}")
+                print("Recent matchups:")
+                for matchup in recent_matchups:
+                    print(matchup)
+                
+                print("\n")  # Add a new line between players
+        else:
+            print("No daily players found.")
+            
+    except Exception as e:
+        logging.error(f"Error finding and inserting player stats: {type(e).__name__}: {str(e)}")
+
+
+
+
+
+
+
+
+
+
+
+
+  
+#---- SCRAPING ----#
+def scrapeForRosters(db, logging):
+    try:
+        collection = db["teamrosters"]
+        # List of URLs for team rosters
+        urls = [
+            "https://www.espn.com/nba/team/roster/_/name/bos/boston-celtics",
+            "https://www.espn.com/nba/team/roster/_/name/bkn/brooklyn-nets",
+            "https://www.espn.com/nba/team/roster/_/name/ny/new-york-knicks",
+            "https://www.espn.com/nba/team/roster/_/name/phi/philadelphia-76ers",
+            "https://www.espn.com/nba/team/roster/_/name/tor/toronto-raptors",
+            "https://www.espn.com/nba/team/roster/_/name/gs/golden-state-warriors",
+            "https://www.espn.com/nba/team/roster/_/name/lac/la-clippers",
+            "https://www.espn.com/nba/team/roster/_/name/lal/los-angeles-lakers",
+            "https://www.espn.com/nba/team/roster/_/name/phx/phoenix-suns",
+            "https://www.espn.com/nba/team/roster/_/name/sac/sacramento-kings",
+            "https://www.espn.com/nba/team/roster/_/name/chi/chicago-bulls",
+            "https://www.espn.com/nba/team/roster/_/name/cle/cleveland-cavaliers",
+            "https://www.espn.com/nba/team/roster/_/name/det/detroit-pistons",
+            "https://www.espn.com/nba/team/roster/_/name/ind/indiana-pacers",
+            "https://www.espn.com/nba/team/roster/_/name/mil/milwaukee-bucks",
+            "https://www.espn.com/nba/team/roster/_/name/dal/dallas-mavericks",
+            "https://www.espn.com/nba/team/roster/_/name/hou/houston-rockets",
+            "https://www.espn.com/nba/team/roster/_/name/mem/memphis-grizzlies",
+            "https://www.espn.com/nba/team/roster/_/name/no/new-orleans-pelicans",
+            "https://www.espn.com/nba/team/roster/_/name/sa/san-antonio-spurs",
+            "https://www.espn.com/nba/team/roster/_/name/den/denver-nuggets",
+            "https://www.espn.com/nba/team/roster/_/name/min/minnesota-timberwolves",
+            "https://www.espn.com/nba/team/roster/_/name/okc/oklahoma-city-thunder",
+            "https://www.espn.com/nba/team/roster/_/name/por/portland-trail-blazers",
+            "https://www.espn.com/nba/team/roster/_/name/utah/utah-jazz",
+            "https://www.espn.com/nba/team/roster/_/name/atl/atlanta-hawks",
+            "https://www.espn.com/nba/team/roster/_/name/cha/charlotte-hornets",
+            "https://www.espn.com/nba/team/roster/_/name/mia/miami-heat",
+            "https://www.espn.com/nba/team/roster/_/name/orl/orlando-magic",
+            "https://www.espn.com/nba/team/roster/_/name/wsh/washington-wizards"
+        ]
+
+        # Define headers to mimic a browser request
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+        }
+
+        # Dictionary to store team rosters
+        team_rosters = {}
+
+        # Iterate over each URL
+        for url in urls:
+            # Extract team name from the URL
+            team_name = url.split("/")[-1].replace("-", " ").title()
+
+            # Send a GET request to the URL with headers
+            response = requests.get(url, headers=headers)
+
+            # Check if the request was successful (status code 200)
+            if response.status_code == 200:
+                # Parse the HTML content using BeautifulSoup
+                soup = BeautifulSoup(response.content, "html.parser")
+
+                # Find the section with class "Roster"
+                roster_section = soup.find("section", class_="Roster")
+
+                # Check if the roster section was found
+                if roster_section:
+                    # Find the table inside the roster section
+                    roster_table = roster_section.find("table")
+
+                    # Check if the roster table was found
+                    if roster_table:
+                        players = []  # List to store player names
+
+                        # Now you can iterate over rows and cells to extract the data
+                        rows = roster_table.find_all("tr")
+                        for row in rows:
+                            cells = row.find_all("td")
+                            if len(cells) > 1:
+                                player_name = re.sub(r'\d+', '', cells[1].text.strip())
+                                players.append(player_name.strip()) 
+
+                         # Store team roster in dictionary
+                        # Normalize the team name extracted from the URL
+                        team_name_normalized = team_name.lower()
+
+                        # Store team roster in dictionary
+                        team_roster_data = {
+                            "team_name": team_name_normalized,
+                            "players": players
+                        }
+
+                        # Replace existing entry or insert a new one
+                        collection.replace_one({"team_name": team_name_normalized}, team_roster_data, upsert=True)
+                    else:
+                        print(f"Roster table not found for {url}.")
+                else:
+                    print(f"Roster section not found for {url}.")
+            else:
+                print(f"Failed to retrieve data from {url}. Status code: {response.status_code}")
+                
+    except Exception as e:
+        logging.error(f"Error updating team rank data: {str(e)}")
+       
+def scrapeForDailySchedule(db, logging):
+    try:
+        collection = db["dailyschedule"]
+        
+        cities = [
+        "Boston",
+        "Brooklyn",
+        "New York",
+        "Philadelphia",
+        "Toronto",
+        "Chicago",
+        "Cleveland",
+        "Detroit",
+        "Indiana",
+        "Milwaukee",
+        "Denver",
+        "Minnesota",
+        "Oklahoma City",
+        "Portland",
+        "Utah",
+        "Golden State",
+        "LA",
+        "Los Angeles",
+        "Phoenix",
+        "Sacramento",
+        "Atlanta",
+        "Charlotte",
+        "Miami",
+        "Orlando",
+        "Washington",
+        "Dallas",
+        "Houston",
+        "Memphis",
+        "New Orleans",
+        "San Antonio"
+        ]
+
+        city_team_mapping = {
+            "Atlanta": "ATL",
+            "Boston": "BOS",
+            "Brooklyn": "BKN",
+            "Charlotte": "CHA",
+            "Chicago": "CHI",
+            "Cleveland": "CLE",
+            "Dallas": "DAL",
+            "Denver": "DEN",
+            "Detroit": "DET",
+            "Golden State": "GSW",
+            "Houston": "HOU",
+            "Indiana": "IND",
+            "LA": "LAC",
+            "Los Angeles": "LAL",
+            "Memphis": "MEM",
+            "Miami": "MIA",
+            "Milwaukee": "MIL",
+            "Minnesota": "MIN",
+            "New Orleans": "NOP",
+            "New York": "NYK",
+            "Oklahoma City": "OKC",
+            "Orlando": "ORL",
+            "Philadelphia": "PHI",
+            "Phoenix": "PHX",
+            "Portland": "POR",
+            "Sacramento": "SAC",
+            "San Antonio": "SAS",
+            "Toronto": "TOR",
+            "Utah": "UTA",
+            "Washington": "WAS"
+        }
+
+        # Get current date
+        current_date = datetime.now().strftime("%Y%m%d")
+
+        # URL of the webpage containing today's NBA schedule
+        url = f"https://www.espn.com/nba/schedule/_/date/{current_date}"
+
+        # Define headers to mimic a browser request
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+        }
+
+        # Send a GET request to the URL with headers
+        response = requests.get(url, headers=headers)
+
+        # Check if the request was successful (status code 200)
+        if response.status_code == 200:
+            # Parse the HTML content using BeautifulSoup
+            soup = BeautifulSoup(response.content, "html.parser")
+            
+            # Find the table with class "Table"
+            schedule_table = soup.find("table", class_="Table")
+            
+            # Check if the schedule table was found
+            if schedule_table:
+                # Create an empty list to store schedule information
+                schedule = []
+                
+                # Find all rows in the table
+                rows = schedule_table.find_all("tr")
+                
+                # Iterate over each row
+                for row in rows:
+                    # Find all cells in the row
+                    cells = row.find_all("td")
+                    
+                    # Check if the row contains schedule information
+                    if len(cells) > 1:
+                        # Extract team names
+                        team_1 = cells[0].text.strip()
+                        team_2 = cells[1].text.strip()
+                        
+                        # Check if any city name is present in team names
+                        for city in cities:
+                            if city in team_1:
+                                team1 = city
+                            if city in team_2:
+                                team2 = city
+                        
+                        # Generate matchup strings
+                        matchup1 = f"{city_team_mapping[team1]} @ {city_team_mapping[team2]}"
+                        matchup2 = f"{city_team_mapping[team2]} vs. {city_team_mapping[team1]}"
+                        
+                        # Add schedule information to the list
+                        schedule.append({"team1": team1.lower(), "team2": team2.lower(), "matchup1": matchup1, "matchup2": matchup2})
+                
+                # Create a JSON object with the schedule
+                schedule_json = {"Schedule": schedule}
+                # Replace existing entry or insert a new one
+                collection.replace_one({}, schedule_json, upsert=True)
+                # Print the JSON object
+                print(json.dumps(schedule_json, indent=4))
+            else:
+                print("Schedule table not found.")
+        else:
+            print("Failed to retrieve data from", url, ". Status code:", response.status_code)
+
+    except Exception as e:
+        logging.error(f"Error updating team rank data: {str(e)}")
+
+        
 # Load environment variables from .env file
 load_dotenv()
 
@@ -477,6 +867,13 @@ player_recent_game_logger = setup_logger('player_recent_game', 'player_recent_ga
 team_game_data_logger = setup_logger('team_game_data', 'team_game_data.log')
 team_rank_data_logger = setup_logger('team_rank_data', 'team_rank_data.log')
 
+# New
+update_daily_players_logger =  setup_logger('update_daily_players', 'update_daily_players.log')
+
+# Scraping Loggers
+scraping_roster_logger = setup_logger('scraping_roster', 'scraping_roster.log')
+scraping_daily_schedule_logger = setup_logger('scraping_daily_schedule', 'scraping_daily_schedule.log')
+
 # Send a ping to confirm a successful connection
 try:
     client.admin.command('ping')
@@ -484,23 +881,35 @@ try:
      # Connect to MongoDB
     db = client['nba']
 
+    # scrapeForRosters(db, scraping_roster_logger)
+    # print("TEAM ROSTERS UPDATED")
+    
+    # scrapeForDailySchedule(db, scraping_daily_schedule_logger)
+    # print("DAILY SCHEDULE UPDATED")
+    
     # nba_update_active_players(db, active_players_logger)
     # print("NBA PLAYER NAME and ID DATA UPDATED")
 
     # nba_update_player_game_data(db, player_game_data_logger)
     # print("NBA PLAYER GAME DATA UPDATED")
+    
+    # update_players_last_played_game(db, player_recent_game_logger)
+    # print("UPDATED PLAYERS MOST RECENT GAME")
+    
+    # print("TODAYS PLAYERS")
+    # find_and_update_daily_players(db, update_daily_players_logger)
+    
+    find_and_insert_player_stats(db, logging)
+    
 
-    nba_update_player_next_game_matchup(db, player_next_game_logger)
-    print("NBA PLAYER MATCHUP LOG UPDATED")
+    # nba_update_player_next_game_matchup(db, player_next_game_logger)
+    # print("NBA PLAYER MATCHUP LOG UPDATED")
    
-    update_players_last_played_game(db, player_recent_game_logger)
-    print("UPDATED PLAYERS MOST RECENT GAME")
+    # update_team_game_data(db , team_game_data_logger)
+    # print("UPDATED TEAM GAME DATA")
     
-    update_team_game_data(db , team_game_data_logger)
-    print("UPDATED TEAM GAME DATA")
-    
-    update_team_ranks_data(db , team_rank_data_logger)
-    print("UPDATED TEAM RANK DATA")
+    # update_team_ranks_data(db , team_rank_data_logger)
+    # print("UPDATED TEAM RANK DATA")
 
     client.close()
 
