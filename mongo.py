@@ -97,10 +97,14 @@ def nba_update_player_game_data(db, logging):
             print("fetching game data for", full_name)
 
             # Fetch game data for the player from the API
-            player_game_data_from_api = fetch_player_game_data(player_id, logging)
+            player_game_data = fetch_player_game_data(player_id, logging)
+            player_playoff_game_data = fetch_playoff_game_data(player_id, logging)
 
-            # Convert JSON data to Python dictionary
-            game_data_from_api = json.loads(player_game_data_from_api)
+            # Convert the data to dictionaries
+            game_data_from_api_regular = player_game_data.to_dict(orient='records')
+            game_data_from_api_playoff = player_playoff_game_data.to_dict(orient='records')
+
+            game_data_from_api = game_data_from_api_regular + game_data_from_api_playoff
 
             # Retrieve existing game data for the player from the database
             existing_game_data = db.playersgamelog.find({"player_id": player_id})
@@ -168,12 +172,9 @@ def fetch_player_game_data(player_id, logging):
         # Sort the data by game date in descending order (most recent first)
         player_stats = player_stats.sort_values(by='GAME_DATE', ascending=False)
 
-        # Convert the game data to JSON format
-        json_data = player_stats.to_json(orient='records')
-
         logging.info(f"Fetched game data for player {player_id}")
 
-        return json_data
+        return player_stats
 
     except Exception as e:
         # Send error response
@@ -181,6 +182,31 @@ def fetch_player_game_data(player_id, logging):
         error_message = {'error': str(e)}
         return json.dumps(error_message), 500, {'Content-Type': 'application/json'}
 
+def fetch_playoff_game_data(player_id, logging):
+    try:
+
+        # Retrieve playoff game logs
+        playoff_logs = playergamelog.PlayerGameLog(player_id=player_id, season=SeasonAll.current_season, season_type_all_star='Playoffs').get_data_frames()[0]
+        date_format = "%b %d, %Y"
+
+        # Convert the 'GAME_DATE' column to datetime using the specified format
+        playoff_logs['GAME_DATE'] = pd.to_datetime(playoff_logs['GAME_DATE'], format=date_format)
+
+        # Sort the data by game date in descending order (most recent first)
+        playoff_logs = playoff_logs.sort_values(by='GAME_DATE', ascending=False)
+       
+        logging.info(f"Fetched game data for player {player_id}")
+
+        return playoff_logs
+
+    except Exception as e:
+        print(f"Error fetching game data: {e}")
+        return None
+
+
+
+    
+    
 #---- UPDATE NEXT MATCHUP DATA FROM PREVIOUS DAY ----#
 def nba_update_player_next_game_matchup(db, logging):
     logging.info(f"ACTION COMMITTED: nba_update_player_next_game_matchup")
@@ -565,15 +591,17 @@ def find_and_insert_player_stats(db, logging):
                 player_game_logs = db["playersgamelog"].find({
                     "player_id": player_id,
                     "$or": [
-                        {"$or": [{"MATCHUP": {"$regex": f"{away_team} @ {home_team}"}}, {"MATCHUP": {"$regex": f"{away_team} vs. {home_team}"}}]},
-                        {"$or": [{"MATCHUP": {"$regex": f"{home_team} vs. {away_team}"}}, {"MATCHUP": {"$regex": f"{home_team} @ {away_team}"}}]}
+                        {"MATCHUP": f"{away_team} @ {home_team}"},
+                        {"MATCHUP": f"{away_team} vs. {home_team}"},
+                        {"MATCHUP": f"{home_team} vs. {away_team}"},
+                        {"MATCHUP": f"{home_team} @ {away_team}"}
                     ]
                 }).sort([("GAME_DATE", -1)]).limit(3)  # Sort by GAME_DATE descending and limit to 3
                 
                 # Insert player logs into playersmatchuplog collection
                 player_logs = list(player_game_logs)  # Convert cursor to list for counting num_games
                 num_games = len(player_logs)
-                recent_matchups = [{"MATCHUP": log["MATCHUP"], "GAME_DATE": log["GAME_DATE"], "GAME_STATS": log} for log in player_logs]
+                recent_matchups = [{"GAME_STATS": log} for log in player_logs]
                 
                 # Insert or update player log in playersmatchuplog collection
                 db["playersmatchuplog"].update_one(
@@ -869,6 +897,8 @@ team_rank_data_logger = setup_logger('team_rank_data', 'team_rank_data.log')
 
 # New
 update_daily_players_logger =  setup_logger('update_daily_players', 'update_daily_players.log')
+update_players_recent_matchups_logger =  setup_logger('update_players_recent_matchups', 'update_players_recent_matchups.log')
+player_game_playoff_data_logger = setup_logger('player_game_playoff_data', 'player_game_playoff_data.log')
 
 # Scraping Loggers
 scraping_roster_logger = setup_logger('scraping_roster', 'scraping_roster.log')
@@ -893,13 +923,17 @@ try:
     # nba_update_player_game_data(db, player_game_data_logger)
     # print("NBA PLAYER GAME DATA UPDATED")
     
-    # update_players_last_played_game(db, player_recent_game_logger)
-    # print("UPDATED PLAYERS MOST RECENT GAME")
     
-    # print("TODAYS PLAYERS")
+    update_players_last_played_game(db, player_recent_game_logger)
+    print("UPDATED PLAYERS MOST RECENT GAME")
+    
+    
     # find_and_update_daily_players(db, update_daily_players_logger)
+    # print("UPDATED TODAYS PLAYERS")
     
-    find_and_insert_player_stats(db, logging)
+    
+    find_and_insert_player_stats(db, update_players_recent_matchups_logger)
+    print("UPDATED TODAYS PLAYERS")
     
 
     # nba_update_player_next_game_matchup(db, player_next_game_logger)

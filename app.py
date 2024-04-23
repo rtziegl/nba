@@ -252,7 +252,76 @@ def nba_get_active_players():
 
 
 # -------------------- GET PLAYER GAME DATA --------------------------
+ 
+# Grabs the counts of over unders for the spe
+def getting_player_values(player_game_collection, player_id, stat_abbreviation, prop_value, over_under):
+    # Filter player game data based on player ID
+    player_game_data = [game for game in player_game_collection if game['player_id'] == player_id]
     
+    # Sort player game data based on 'GAME_DATE' in descending order (most recent first)
+    player_game_data.sort(key=lambda x: x['GAME_DATE'], reverse=True)
+    
+    # Get the most recent 5 games
+    recent_games = player_game_data[:5]
+    
+    # Initialize counters for all games and recent 5 games
+    total_games = len(player_game_data)
+    recent_over_count = 0
+    recent_under_count = 0
+    over_count = 0
+    under_count = 0
+    
+    # Check over/under condition for all games
+    for game in player_game_data:
+        if over_under == 'Over' and game[stat_abbreviation] >= prop_value:
+            over_count += 1
+        elif over_under == 'Under' and game[stat_abbreviation] < prop_value:
+            under_count += 1
+    
+    # Check over/under condition for recent 5 games
+    for game in recent_games:
+        if over_under == 'Over' and game[stat_abbreviation] >= prop_value:
+            recent_over_count += 1
+        elif over_under == 'Under' and game[stat_abbreviation] < prop_value:
+            recent_under_count += 1
+            
+    # Create response data
+    response_data = {
+        'total_games': total_games,
+        'over_count': over_count,
+        'under_count': under_count,
+        'recent_over_count': recent_over_count,
+        'recent_under_count': recent_under_count
+    }
+    
+    return response_data
+ 
+ 
+def getting_player_matchup_values(player_id, stat_abbreviation, prop_value, player_matchup_collection):
+    over_count = 0
+    under_count = 0
+    num_games = 0
+
+    for matchup_doc in player_matchup_collection:
+        if matchup_doc['player_id'] == player_id:
+            num_games = matchup_doc.get('num_games', 0)
+            recent_matchups = matchup_doc.get('recent_matchups', [])
+            for matchup in recent_matchups:
+                game_stats = matchup.get('GAME_STATS', {})
+                if game_stats.get(stat_abbreviation, 0) >= prop_value:
+                    over_count += 1
+                else:
+                    under_count += 1
+
+    response_data = {
+        'num_games': num_games,
+        'over_count': over_count,
+        'under_count': under_count
+    }
+    
+    return response_data
+
+
 @app.route('/nba_get_player_game_data', methods=['GET'])
 def nba_get_player_game_data():
     try:
@@ -279,57 +348,17 @@ def nba_get_player_game_data():
         else:
             raise ValueError(f"Invalid stat: {stat}")
         
-        # Player games from DB
+         # Query player games from DB
         player_game_collection = get_data_from_db('playersgamelog')
+
+        # Call the function to get player values
+        response_data = getting_player_values(player_game_collection, player_id, stat_abbreviation, prop_value, over_under)
         
+        # Query player matchups from DB
+        player_matchup_collection = get_data_from_db('playersmatchuplog')
         
-        # Filter player game data based on player ID
-        for game in player_game_collection:
-            if game['player_id'] == player_id:
-                # Convert ObjectId to string
-                game['_id'] = str(game['_id'])
-                player_game_data.append(game)
-                
-        # Sort player game data based on 'GAME_DATE' in descending order (most recent first)
-        player_game_data.sort(key=lambda x: x['GAME_DATE'], reverse=True)
-        
-        # Get the most recent 7 games
-        recent_games = player_game_data[:5]
-        
-        # Initialize counters for all games and recent 7 games
-        total_games = len(player_game_data)
-        recent_over_count = 0
-        recent_under_count = 0
-        over_count = 0
-        under_count = 0
-        
-        # Check over/under condition for all games
-        for game in player_game_data:
-            if over_under == 'Over':
-                if game[stat_abbreviation] >= prop_value:
-                    over_count += 1
-            elif over_under == 'Under':
-                if game[stat_abbreviation] < prop_value:
-                    under_count += 1
-        
-        # Check over/under condition for recent 7 games
-        for game in recent_games:
-            if over_under == 'Over':
-                if game[stat_abbreviation] >= prop_value:
-                    recent_over_count += 1
-            elif over_under == 'Under':
-                if game[stat_abbreviation] < prop_value:
-                    recent_under_count += 1
-        
-        # Create response data
-        response_data = {
-            'total_games': total_games,
-            'over_count': over_count,
-            'under_count': under_count,
-            'recent_over_count': recent_over_count,
-            'recent_under_count': recent_under_count
-        }
-        
+        response_matchup_data = getting_player_matchup_values(player_id, stat_abbreviation, prop_value, player_matchup_collection)
+
         return jsonify(response_data), 200
     except Exception as e:
         # Send error response
