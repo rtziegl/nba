@@ -216,30 +216,42 @@ def nba_get_next_matchup():
         return jsonify(error_message), 500
 
 
+def get_players_by_ids(player_ids):
+    players_collection = get_data_from_db('players')
+
+
+    # Extract player data
+    player_data = []
+    for player in players_collection:
+        player_data.append({
+            'player_id': player['id'],
+            'player_name': player['full_name'],
+            'last_game': player['last_game']
+        })
+
+    return player_data
+
    
 # -------------------- GET ACTIVE PLAYERS --------------------------
 @app.route('/nba_get_active_players', methods=['GET'])
 def nba_get_active_players():
     try:
-        # Get all active players from the database
-        active_players = get_data_from_db('players')
+        # Get player data from the dailyplayers collection
+        daily_players_cursor = get_data_from_collection('dailyplayers')
         
-        if not active_players:
-            print("active_players is empty")
-
-
-        # Sanitize player data
+        # Access the 'players' key directly and iterate over the list of players
+        players_data = daily_players_cursor[0].get('players', [])  # Assuming only one document in the cursor
+        
         sanitized_players = []
-        for player in active_players:
-            try:
+        for player in players_data:
+            player_name = player.get('player_name', '')
+            player_id = player.get('player_id', '')
+            if player_name and player_id:
                 sanitized_player = {
-                    'full_name': sanitize_string(player.get('full_name', '')),
-                    'id': sanitize_string(player.get('id', '')),
-                    'last_game': sanitize_string(player.get('last_game', ''))
+                    'full_name': sanitize_string(player_name),
+                    'id': sanitize_string(player_id),
                 }
                 sanitized_players.append(sanitized_player)
-            except Exception as e:
-                print(f"Error sanitizing player: {e}")
 
         # Convert the sanitized data to JSON format
         return jsonify(sanitized_players), 200
@@ -250,53 +262,87 @@ def nba_get_active_players():
         return jsonify(error_message), 500
 
 
-
 # -------------------- GET PLAYER GAME DATA --------------------------
  
-# Grabs the counts of over unders for the spe
-def getting_player_values(player_game_collection, player_id, stat_abbreviation, prop_value, over_under):
+def getting_player_over_under_values(player_game_collection, player_id, stat_abbreviation, prop_value):
     # Filter player game data based on player ID
     player_game_data = [game for game in player_game_collection if game['player_id'] == player_id]
     
     # Sort player game data based on 'GAME_DATE' in descending order (most recent first)
     player_game_data.sort(key=lambda x: x['GAME_DATE'], reverse=True)
     
-    # Get the most recent 5 games
-    recent_games = player_game_data[:5]
-    
-    # Initialize counters for all games and recent 5 games
+    # Initialize counters
     total_games = len(player_game_data)
-    recent_over_count = 0
-    recent_under_count = 0
     over_count = 0
     under_count = 0
+    over_count_recent_3 = 0
+    under_count_recent_3 = 0
+    over_count_recent_5 = 0
+    under_count_recent_5 = 0
+    over_count_recent_7 = 0
+    under_count_recent_7 = 0
+    over_count_recent_11 = 0
+    under_count_recent_11 = 0
+    total_minutes_over = 0
+    total_minutes_under = 0
+    total_fouls = 0  # New counter for fouls
     
-    # Check over/under condition for all games
-    for game in player_game_data:
-        if over_under == 'Over' and game[stat_abbreviation] >= prop_value:
+    # Iterate over player game data
+    for i, game in enumerate(player_game_data):
+        if game[stat_abbreviation] >= prop_value:
             over_count += 1
-        elif over_under == 'Under' and game[stat_abbreviation] < prop_value:
+            total_minutes_over += game['MIN']
+            if i < 3:
+                over_count_recent_3 += 1
+            if i < 5:
+                over_count_recent_5 += 1
+            if i < 7:
+                over_count_recent_7 += 1
+            if i < 11:
+                over_count_recent_11 += 1
+        else:
             under_count += 1
+            total_minutes_under += game['MIN']
+            if i < 3:
+                under_count_recent_3 += 1
+            if i < 5:
+                under_count_recent_5 += 1
+            if i < 7:
+                under_count_recent_7 += 1
+            if i < 11:
+                under_count_recent_11 += 1
+        
+        # Add fouls to the total fouls counter
+        total_fouls += game.get('PF', 0)
     
-    # Check over/under condition for recent 5 games
-    for game in recent_games:
-        if over_under == 'Over' and game[stat_abbreviation] >= prop_value:
-            recent_over_count += 1
-        elif over_under == 'Under' and game[stat_abbreviation] < prop_value:
-            recent_under_count += 1
-            
+    # Calculate average minutes for over and under
+    avg_minutes_over = round(total_minutes_over / over_count, 2) if over_count > 0 else 0
+    avg_minutes_under = round(total_minutes_under / under_count, 2) if under_count > 0 else 0
+    
+    # Calculate fouls average
+    avg_fouls = round(total_fouls / total_games, 2) if total_games > 0 else 0
+    
     # Create response data
     response_data = {
         'total_games': total_games,
         'over_count': over_count,
         'under_count': under_count,
-        'recent_over_count': recent_over_count,
-        'recent_under_count': recent_under_count
+        'over_count_recent_3': over_count_recent_3,
+        'under_count_recent_3': under_count_recent_3,
+        'over_count_recent_5': over_count_recent_5,
+        'under_count_recent_5': under_count_recent_5,
+        'over_count_recent_7': over_count_recent_7,
+        'under_count_recent_7': under_count_recent_7,
+        'over_count_recent_11': over_count_recent_11,
+        'under_count_recent_11': under_count_recent_11,
+        'avg_minutes_over': avg_minutes_over,
+        'avg_minutes_under': avg_minutes_under,
+        'avg_fouls': avg_fouls  # Include fouls average in the response
     }
     
     return response_data
- 
- 
+
+# Grab the counts of over unders for the matchup
 def getting_player_matchup_values(player_id, stat_abbreviation, prop_value, player_matchup_collection):
     over_count = 0
     under_count = 0
@@ -314,14 +360,137 @@ def getting_player_matchup_values(player_id, stat_abbreviation, prop_value, play
                     under_count += 1
 
     response_data = {
-        'num_games': num_games,
-        'over_count': over_count,
-        'under_count': under_count
+        'num_games_matchups': num_games,
+        'over_count_matchups': over_count,
+        'under_count_matchups': under_count
     }
     
     return response_data
 
+# Calculates the consistency score
+def get_consistency_score(combined_response, over_under):
+    allGamesCalc = 0.0
+    recent3GamesCalc = 0.0
+    recent7GamesCalc = 0.0
+    recent11GamesCalc = 0.0
+    matchupGamesCalc = 0.0
+    allGamesPercent = 0.25
+    recent11GamesPercent = 0.30
+    matchupGamesPercent = 0.15
+    recent3GamesPercent = 0.10
+    recent7GamesPercent = 0.20
+    
+    # Calculate consistency scores for "Over" case
+    if over_under == "Over":
+        allGamesOverCount = combined_response.get('over_count', 0)
+        total_games = combined_response.get('total_games', 1)  # Avoid division by zero
+        recent3GamesOverCount = combined_response.get('over_count_recent_3', 0)
+        recent7GamesOverCount = combined_response.get('over_count_recent_7', 0)
+        recent11GamesOverCount = combined_response.get('over_count_recent_11', 0)
+        num_games_matchups = combined_response.get('num_games_matchups', 0)
+        matchupGamesOverCount = combined_response.get('over_count_matchups', 0)
+        
+        allGamesCalc = allGamesOverCount / total_games
+        allGamesCalc *= allGamesPercent
+        
+        recent3GamesCalc = recent3GamesOverCount / 3
+        recent3GamesCalc *= recent3GamesPercent
+        
+        recent7GamesCalc = recent7GamesOverCount / 7
+        recent7GamesCalc *= recent7GamesPercent
+        
+        recent11GamesCalc = recent11GamesOverCount / 11
+        recent11GamesCalc *= recent11GamesPercent
+        
+        if num_games_matchups == 0:
+            matchupGamesCalc = recent3GamesOverCount / 3
+            matchupGamesCalc *= matchupGamesPercent
+        else:
+            matchupGamesCalc = matchupGamesOverCount / num_games_matchups
+            matchupGamesCalc *= matchupGamesPercent
+    
+    # Calculate consistency scores for "Under" case
+    elif over_under == "Under":
+        allGamesUnderCount = combined_response.get('under_count', 0)
+        total_games = combined_response.get('total_games', 1)  # Avoid division by zero
+        recent3GamesUnderCount = combined_response.get('under_count_recent_3', 0)
+        recent7GamesUnderCount = combined_response.get('under_count_recent_7', 0)
+        recent11GamesUnderCount = combined_response.get('under_count_recent_11', 0)
+        num_games_matchups = combined_response.get('num_games_matchups', 0)
+        matchupGamesUnderCount = combined_response.get('under_count_matchups', 0)
+        
+        allGamesCalc = allGamesUnderCount / total_games
+        allGamesCalc *= allGamesPercent
+        
+        recent3GamesCalc = recent3GamesUnderCount / 3
+        recent3GamesCalc *= recent3GamesPercent
+        
+        recent7GamesCalc = recent7GamesUnderCount / 7
+        recent7GamesCalc *= recent7GamesPercent
+        
+        recent11GamesCalc = recent11GamesUnderCount / 11
+        recent11GamesCalc *= recent11GamesPercent
+        
+        if num_games_matchups == 0:
+            matchupGamesCalc = recent3GamesUnderCount / 3
+            matchupGamesCalc *= matchupGamesPercent
+        else:
+            matchupGamesCalc = matchupGamesUnderCount / num_games_matchups
+            matchupGamesCalc *= matchupGamesPercent
+    
+    tallyUpCalc = allGamesCalc + recent11GamesCalc + matchupGamesCalc + recent3GamesCalc + recent7GamesCalc
+    
+    tallyUpCalc *= 10
+    
+    tallyUpCalc = round(tallyUpCalc , 2)
+    
+    return tallyUpCalc
 
+# Generates the consistency response
+def get_consistency_response(combined_response, consistency_score, over_under):
+    # Extract relevant data from combined_response based on over_under
+    if over_under == "Over":
+        hits_season = f"{combined_response.get('over_count', 0)} / {combined_response.get('total_games', 1)}"
+        hits_five = f"{combined_response.get('over_count_recent_5', 0)} / 5"
+        fouls = combined_response.get('avg_fouls', 0)
+        minutes = combined_response.get('avg_minutes_over', 0)
+    elif over_under == "Under":
+        hits_season = f"{combined_response.get('under_count', 0)} / {combined_response.get('total_games', 1)}"
+        hits_five = f"{combined_response.get('under_count_recent_5', 0)} / 5"
+        fouls = combined_response.get('avg_fouls', 0)
+        minutes = combined_response.get('avg_minutes_under', 0)
+    else:
+        raise ValueError("Invalid over_under value")
+    
+    # Determine consistency rating and color class
+    consistency_rating = ''
+    if over_under == 'Over':
+        if consistency_score >= 6.5:
+            if fouls <= 2.5:
+                consistency_rating = 'CONSISTENT'
+            else:
+                consistency_rating = 'NEUTRAL'
+        else:
+            consistency_rating = 'INCONSISTENT'
+    elif over_under == 'Under':
+        if consistency_score >= 6.5:
+            consistency_rating = 'CONSISTENT'
+        else:
+            consistency_rating = 'INCONSISTENT'
+    
+    # Create JSON response
+    response = {
+        "overall_score": consistency_score,
+        "consistency_rating": consistency_rating,
+        'avg_fouls': fouls,
+        "minutes": minutes,
+        "hits_season": hits_season,
+        "hits_five": hits_five
+    }
+    
+    return response
+
+        
 @app.route('/nba_get_player_game_data', methods=['GET'])
 def nba_get_player_game_data():
     try:
@@ -352,19 +521,29 @@ def nba_get_player_game_data():
         player_game_collection = get_data_from_db('playersgamelog')
 
         # Call the function to get player values
-        response_data = getting_player_values(player_game_collection, player_id, stat_abbreviation, prop_value, over_under)
+        response_data = getting_player_over_under_values(player_game_collection, player_id, stat_abbreviation, prop_value)
         
         # Query player matchups from DB
         player_matchup_collection = get_data_from_db('playersmatchuplog')
         
         response_matchup_data = getting_player_matchup_values(player_id, stat_abbreviation, prop_value, player_matchup_collection)
 
-        return jsonify(response_data), 200
+        # Merge the two response dictionaries
+        combined_response = {**response_data, **response_matchup_data}
+        
+        consistency_score = get_consistency_score(combined_response, over_under)
+        
+        consistency_response = get_consistency_response(combined_response, consistency_score, over_under)
+        
+        return jsonify(consistency_response), 200
     except Exception as e:
         # Send error response
         error_message = {'error': str(e)}
         return jsonify(error_message), 500
 
+def get_data_from_collection(collection_name):
+    collection = db[collection_name]
+    return collection.find()
 
 # Get DB based on collection   
 def get_data_from_db(collection_name):
