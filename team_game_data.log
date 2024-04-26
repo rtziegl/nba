@@ -1223,3 +1223,46 @@
 2024-04-13 10:13:46,085 - team_game_data - INFO - New game added - Game ID: 0022301184, Date: 2024-04-12
 2024-04-13 10:13:46,196 - team_game_data - INFO - New game added - Game ID: 0022301185, Date: 2024-04-12
 2024-04-13 10:13:46,200 - team_game_data - INFO - Game data update completed.
+2024-04-26 11:21:10,803 - team_game_data - INFO - New game added - Game ID: 0022301186, Date: 2024-04-14
+2024-04-26 11:21:10,835 - team_game_data - INFO - New game added - Game ID: 0022301187, Date: 2024-04-14
+2024-04-26 11:21:10,869 - team_game_data - INFO - New game added - Game ID: 0022301188, Date: 2024-04-14
+2024-04-26 11:21:10,899 - team_game_data - INFO - New game added - Game ID: 0022301189, Date: 2024-04-14
+2024-04-26 11:21:10,924 - team_game_data - INFO - New game added - Game ID: 0022301190, Date: 2024-04-14
+2024-04-26 11:21:10,958 - team_game_data - INFO - New game added - Game ID: 0022301191, Date: 2024-04-14
+2024-04-26 11:21:10,986 - team_game_data - INFO - New game added - Game ID: 0022301192, Date: 2024-04-14
+2024-04-26 11:21:11,016 - team_game_data - INFO - New game added - Game ID: 0022301193, Date: 2024-04-14
+2024-04-26 11:21:11,054 - team_game_data - INFO - New game added - Game ID: 0022301194, Date: 2024-04-14
+2024-04-26 11:21:11,080 - team_game_data - INFO - New game added - Game ID: 0022301195, Date: 2024-04-14
+2024-04-26 11:21:11,110 - team_game_data - INFO - New game added - Game ID: 0022301196, Date: 2024-04-14
+2024-04-26 11:21:11,137 - team_game_data - INFO - New game added - Game ID: 0022301197, Date: 2024-04-14
+2024-04-26 11:21:11,181 - team_game_data - INFO - New game added - Game ID: 0022301198, Date: 2024-04-14
+2024-04-26 11:21:11,296 - team_game_data - INFO - New game added - Game ID: 0022301199, Date: 2024-04-14
+2024-04-26 11:21:11,332 - team_game_data - INFO - New game added - Game ID: 0022301200, Date: 2024-04-14
+2024-04-26 11:21:11,335 - team_game_data - INFO - Game data update completed.
+2024-04-26 11:29:30,667 - team_game_data - ERROR - Error updating game data: 'resultSet'
+2024-04-26 11:30:28,316 - team_game_data - ERROR - Error updating game data: 'resultSet'
+2024-04-26 11:40:46,660 - team_game_data - ERROR - Error updating game data: __init__() got an unexpected keyword argument 'league_id_nullable'
+2024-04-26 11:43:01,165 - team_game_data - ERROR - Error updating game data: 'resultSet'
+2024-04-26 11:43:40,697 - team_game_data - ERROR - Error updating game data: 'resultSet'
+2024-04-26 11:44:05,866 - team_game_data - ERROR - Error updating game data: 'resultSet'
+2024-04-26 11:48:33,326 - team_game_data - ERROR - Error updating game data: __init__() got an unexpected keyword argument 'Counter'
+2024-04-26 11:58:37,347 - team_game_data - INFO - New game added - Game ID: 0042300101, Date: 2024-04-21
+2024-04-26 11:58:37,380 - team_game_data - INFO - New game added - Game ID: 0042300102, Date: 2024-04-24
+2024-04-26 11:58:37,402 - team_game_data - INFO - New game added - Game ID: 0042300111, Date: 2024-04-20
+2024-04-26 11:58:37,427 - team_game_data - INFO - New game added - Game ID: 0042300112, Date: 2024-04-22
+2024-04-26 11:58:37,451 - team_game_data - INFO - New game added - Game ID: 0042300113, Date: 2024-04-25
+2024-04-26 11:58:37,482 - team_game_data - INFO - New game added - Game ID: 0042300121, Date: 2024-04-21
+2024-04-26 11:58:37,516 - team_game_data - INFO - New game added - Game ID: 0042300122, Date: 2024-04-23
+2024-04-26 11:58:37,543 - team_game_data - INFO - New game added - Game ID: 0042300131, Date: 2024-04-20
+2024-04-26 11:58:37,566 - team_game_data - INFO - New game added - Game ID: 0042300132, Date: 2024-04-22
+2024-04-26 11:58:37,590 - team_game_data - INFO - New game added - Game ID: 0042300133, Date: 2024-04-25
+2024-04-26 11:58:37,616 - team_game_data - INFO - New game added - Game ID: 0042300141, Date: 2024-04-21
+2024-04-26 11:58:37,735 - team_game_data - INFO - New game added - Game ID: 0042300142, Date: 2024-04-24
+2024-04-26 11:58:37,759 - team_game_data - INFO - New game added - Game ID: 0042300151, Date: 2024-04-20
+2024-04-26 11:58:37,783 - team_game_data - INFO - New game added - Game ID: 0042300152, Date: 2024-04-22
+2024-04-26 11:58:37,807 - team_game_data - INFO - New game added - Game ID: 0042300153, Date: 2024-04-25
+2024-04-26 11:58:37,832 - team_game_data - INFO - New game added - Game ID: 0042300161, Date: 2024-04-20
+2024-04-26 11:58:37,857 - team_game_data - INFO - New game added - Game ID: 0042300162, Date: 2024-04-23
+2024-04-26 11:58:37,880 - team_game_data - INFO - New game added - Game ID: 0042300171, Date: 2024-04-21
+2024-04-26 11:58:37,907 - team_game_data - INFO - New game added - Game ID: 0042300172, Date: 2024-04-23
+2024-04-26 11:58:37,908 - team_game_data - INFO - Game data update completed.

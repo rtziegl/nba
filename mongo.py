@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from nba_api.stats.static import players
 from nba_api.stats.endpoints import playergamelog
 from nba_api.stats.endpoints import PlayerNextNGames, PlayerGameLog, CommonPlayerInfo
+from nba_api.stats.endpoints import LeagueGameLog
 from nba_api.stats.library.parameters import SeasonAll
 from nba_api.stats.endpoints import AllTimeLeadersGrids
 from nba_api.stats.endpoints import LeagueGameFinder
@@ -347,52 +348,72 @@ def update_players_last_played_game(db, logging):
         logging.error(f"Error updating players' last game: {str(e)}")
         return False
 
+
+
 def update_team_game_data(db, logging):
-    # Define the features you want to use for training the model
     features = ['FGM', 'FGA', 'FG_PCT', 'FG3M', 'FG3A', 'FG3_PCT', 
                 'FTM', 'FTA', 'FT_PCT', 'OREB', 'DREB', 'REB', 'AST', 'STL', 
                 'BLK', 'TOV', 'PF', 'PLUS_MINUS']
 
     try:
-        # Define parameters for game search
-        params = {
+        # Define parameters for regular season game search
+        regular_season_params = {
+            "counter": 0,  # Counter parameter is required
+            "direction": "ASC",  # Sorting direction (ascending)
+            "league_id": '00',  # NBA league ID
             "player_or_team_abbreviation": "T",  # T for team
-            "league_id_nullable": '00' 
+            "season": "2023-24",  # Season ID (e.g., "2019-20")
+            "season_type_all_star": "Regular Season",  # Regular season games
+            "sorter": "DATE",  # Sort by date
+            "date_from_nullable": None,  # Nullable parameter: Start date
+            "date_to_nullable": None  # Nullable parameter: End date
         }
 
-        # Create LeagueGameFinder instance with parameters
-        lgf = LeagueGameFinder(**params)
+        # Define parameters for playoff game search
+        playoff_params = {
+            "counter": 0,  # Counter parameter is required
+            "direction": "ASC",  # Sorting direction (ascending)
+            "league_id": '00',  # NBA league ID
+            "player_or_team_abbreviation": "T",  # T for team
+            "season": "2023-24",  # Season ID (e.g., "2019-20")
+            "season_type_all_star": "Playoffs",  # Playoff games
+            "sorter": "DATE",  # Sort by date
+            "date_from_nullable": None,  # Nullable parameter: Start date
+            "date_to_nullable": None  # Nullable parameter: End date
+        }
 
-        # Retrieve data from League Game Finder
-        team_game_data = lgf.get_data_frames()[0]
+        # Create LeagueGameLog instance with regular season parameters
+        regular_season_lgl = LeagueGameLog(**regular_season_params)
+        regular_season_team_game_data = regular_season_lgl.get_data_frames()[0]
+        
+        # Create LeagueGameLog instance with playoff parameters
+        playoff_lgl = LeagueGameLog(**playoff_params)
+        playoff_team_game_data = playoff_lgl.get_data_frames()[0]
+        
+        team_game_data = pd.concat([regular_season_team_game_data, playoff_team_game_data])
 
-        # Filter data for the regular season (assuming season ID is 22023)
-        regular_season_data = team_game_data[team_game_data['SEASON_ID'] == '22023']
-
+        # Combine regular season and playoff game data
         # Filter out games from the offseason (October to April)
-        regular_season_data = regular_season_data[
-            (regular_season_data['GAME_DATE'] >= '2023-10-01') & 
-            (regular_season_data['GAME_DATE'] <= '2024-04-30')
+        team_game_data = team_game_data[
+            (team_game_data['GAME_DATE'] >= '2023-10-01') & 
+            (team_game_data['GAME_DATE'] <= '2024-05-30')
         ]
 
         # Map WL column to 1 for W (win) and 0 for L (loss)
-        regular_season_data['WL'] = regular_season_data['WL'].map({'W': 1, 'L': 0})
+        team_game_data['WL'] = team_game_data['WL'].map({'W': 1, 'L': 0})
 
-        # Add a new column 'HomeOrAway' based on the 'Matchup' column
-        regular_season_data['HOMEORAWAY'] = regular_season_data['MATCHUP'].apply(lambda x: 1 if 'vs.' in x else 0)
+        # Add a new column 'HomeOrAway' based on the 'MATCHUP' column
+        team_game_data['HOMEORAWAY'] = team_game_data['MATCHUP'].apply(lambda x: 1 if 'vs.' in x else 0)
 
         # Group the DataFrame by game ID
-        grouped_data = regular_season_data.groupby('GAME_ID')
+        grouped_data = team_game_data.groupby('GAME_ID')
 
         collection = db['games']  # Replace 'your_collection' with your actual collection name
 
-        # Retrieve existing game IDs from MongoDB collection
         existing_game_ids = set(collection.distinct("game_id"))
 
-        # Flag to indicate if new games were added
         new_games_added = False
 
-        # Iterate over each group and insert data into MongoDB collection for new games
         for game_id, group in grouped_data:
             if game_id not in existing_game_ids:
                 game_info = {
@@ -401,7 +422,6 @@ def update_team_game_data(db, logging):
                     "teams": []
                 }
 
-                # Iterate over each row in the group
                 for index, row in group.iterrows():
                     team_data = {
                         "team_id": row['TEAM_ID'],
@@ -415,16 +435,12 @@ def update_team_game_data(db, logging):
                     }
                     game_info["teams"].append(team_data)
 
-                # Insert the game information into the collection
                 collection.insert_one(game_info)
                 
-                # Log the updated game data
                 logging.info(f"New game added - Game ID: {game_id}, Date: {game_info['date']}")
                 
-                # Set the flag to indicate new games were added
                 new_games_added = True
         
-        # Print a message if no new games were added
         if not new_games_added:
             print("No new games added.")
             logging.info("No new games added already up to date ")
@@ -433,6 +449,7 @@ def update_team_game_data(db, logging):
 
     except Exception as e:
         logging.error(f"Error updating game data: {str(e)}")
+
 
 def update_team_ranks_data(db,logging):
     try:
@@ -924,23 +941,23 @@ try:
     # print("NBA PLAYER GAME DATA UPDATED")
     
     
-    update_players_last_played_game(db, player_recent_game_logger)
-    print("UPDATED PLAYERS MOST RECENT GAME")
+    # update_players_last_played_game(db, player_recent_game_logger)
+    # print("UPDATED PLAYERS MOST RECENT GAME")
     
     
     # find_and_update_daily_players(db, update_daily_players_logger)
     # print("UPDATED TODAYS PLAYERS")
     
     
-    find_and_insert_player_stats(db, update_players_recent_matchups_logger)
-    print("UPDATED TODAYS PLAYERS")
+    # find_and_insert_player_stats(db, update_players_recent_matchups_logger)
+    # print("UPDATED TODAYS PLAYERS")
     
 
     # nba_update_player_next_game_matchup(db, player_next_game_logger)
     # print("NBA PLAYER MATCHUP LOG UPDATED")
    
-    # update_team_game_data(db , team_game_data_logger)
-    # print("UPDATED TEAM GAME DATA")
+    update_team_game_data(db , team_game_data_logger)
+    print("UPDATED TEAM GAME DATA")
     
     # update_team_ranks_data(db , team_rank_data_logger)
     # print("UPDATED TEAM RANK DATA")
