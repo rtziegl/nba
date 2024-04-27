@@ -263,13 +263,21 @@ def nba_get_active_players():
 
 
 # -------------------- GET PLAYER GAME DATA --------------------------
- 
 def getting_player_over_under_values(player_game_collection, player_id, stat_abbreviation, prop_value):
     # Filter player game data based on player ID
     player_game_data = [game for game in player_game_collection if game['player_id'] == player_id]
     
+    # Convert int64 GAME_DATE to datetime.datetime if needed 
+    # (This is bizarre) Random new game different date format fix
+    for game in player_game_data:
+        if isinstance(game['GAME_DATE'], pd._libs.tslibs.timestamps.Timestamp):
+            game['GAME_DATE'] = game['GAME_DATE'].to_pydatetime()
+        elif isinstance(game['GAME_DATE'], int):
+            game['GAME_DATE'] = datetime.utcfromtimestamp(game['GAME_DATE'] / 1000.0)  # Assuming Unix timestamp is in milliseconds
+    
     # Sort player game data based on 'GAME_DATE' in descending order (most recent first)
     player_game_data.sort(key=lambda x: x['GAME_DATE'], reverse=True)
+
     
     # Initialize counters
     total_games = len(player_game_data)

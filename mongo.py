@@ -394,10 +394,10 @@ def update_team_game_data(db, logging):
 
         # Combine regular season and playoff game data
         # Filter out games from the offseason (October to April)
-        team_game_data = team_game_data[
-            (team_game_data['GAME_DATE'] >= '2023-10-01') & 
-            (team_game_data['GAME_DATE'] <= '2024-05-30')
-        ]
+        # team_game_data = team_game_data[
+        #     (team_game_data['GAME_DATE'] >= '2023-10-01') & 
+        #     (team_game_data['GAME_DATE'] <= '2024-05-30')
+        # ]
 
         # Map WL column to 1 for W (win) and 0 for L (loss)
         team_game_data['WL'] = team_game_data['WL'].map({'W': 1, 'L': 0})

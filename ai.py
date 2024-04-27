@@ -320,26 +320,13 @@ def get_input_data_ready(team1_df, team2_df, team1_home_or_away, team2_home_or_a
     # Concatenate team1_mean_stats and team2_mean_stats
     input_data = pd.concat([team1_mean_stats, team2_mean_stats], axis=1)
     
-    # Assign team2_WL based on team1_WL comparison
-    input_data['team2_WL'] = input_data.apply(lambda row: 0 if row['team1_WL'] > row['team2_WL'] else 1, axis=1)
-
-    # Make team1_PLUS_MINUS and team2_PLUS_MINUS positive
-    input_data['team1_PLUS_MINUS'] = abs(input_data['team1_PLUS_MINUS'])
-    input_data['team2_PLUS_MINUS'] = abs(input_data['team2_PLUS_MINUS'])
-
-    # Update team1_PLUS_MINUS and team2_PLUS_MINUS based on team2_WL
-    input_data.loc[input_data['team2_WL'] == 0, 'team2_PLUS_MINUS'] = input_data['team1_PLUS_MINUS']
-    input_data.loc[input_data['team2_WL'] == 0, 'team1_PLUS_MINUS'] = -input_data['team1_PLUS_MINUS']
-
-    input_data.loc[input_data['team2_WL'] == 1, 'team1_PLUS_MINUS'] = input_data['team2_PLUS_MINUS']
-    input_data.loc[input_data['team2_WL'] == 1, 'team2_PLUS_MINUS'] = -input_data['team2_PLUS_MINUS']
-    
     # Update team home/away indicators
     input_data['team1_HOMEORAWAY'] = team1_home_or_away
     input_data['team2_HOMEORAWAY'] = team2_home_or_away
 
     # Drop unnecessary columns from input data
-    input_data.drop(columns=['team1_WL'], inplace=True)
+    # Drop unnecessary columns from input data
+    input_data.drop(columns=['team1_WL', 'team2_WL', 'team1_PLUS_MINUS', 'team2_PLUS_MINUS' ], inplace=True)
     
     return input_data
 
@@ -408,6 +395,7 @@ print(client)
 
 # Get todays matchups
 matchups = get_todays_matchups()
+print(matchups)
 todays_team_ids = get_todays_team_ids(matchups)
 print(todays_team_ids)
 
@@ -457,11 +445,16 @@ try:
         team2_home_or_away = team_home_away_map.get(team2_id)
         
         input_data = get_input_data_ready(team1_df, team2_df, team1_home_or_away, team2_home_or_away)
+        
+        input_data.fillna(input_data.mean(), inplace=True)
         # input_data.to_csv('input_data.csv', index=False)
 
         # Step 3: Split the data into features (X) and target (y)
-        X = game_matchups_df.drop(columns=['team1_WL'])
+        X = game_matchups_df.drop(columns=['team1_WL' , 'team2_WL' , 'team1_PLUS_MINUS', 'team2_PLUS_MINUS'])
         y = game_matchups_df['team1_WL']
+        
+        # Fill NaN values in X
+        X.fillna(X.mean(), inplace=True)
 
         # Step 4: Split the data into training and testing sets
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -494,11 +487,16 @@ try:
 
         print(f"{team1_name}: {team1_win_prob}")
         print(f"{team2_name}: {team2_win_prob}")
+        
+        if team1_win_prob > team2_win_prob:
+            print(f"{team1_name}: will win!")
+        else:
+            print(f"{team2_name}: will win!")
 
-        # Call evaluation functions
-        evaluate_model(X_test_scaled, y_test, model)
-        get_cv_scores(X_train_scaled, y_train, model)
-        evaluate_features(X, model)
+        # # Call evaluation functions
+        # evaluate_model(X_test_scaled, y_test, model)
+        # get_cv_scores(X_train_scaled, y_train, model)
+        # evaluate_features(X, model)
 
 
 
