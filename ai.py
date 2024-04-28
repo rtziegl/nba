@@ -425,7 +425,9 @@ try:
     import pandas as pd
     from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_auc_score, confusion_matrix
 
-
+    # Delete previous moneyline entries
+    db.moneylines.delete_many({})
+    
     for team1_id, team2_id in todays_team_ids:
 
         # Get regular season game stats for team 1
@@ -484,14 +486,33 @@ try:
         # Print team names and predicted probabilities
         team1_win_prob = predicted_probabilities[:, 1].mean()  # Mean probability of team 1 winning
         team2_win_prob = predicted_probabilities[:, 0].mean()  # Mean probability of team 2 winning
+        
+        winning_team = ""
 
         print(f"{team1_name}: {team1_win_prob}")
         print(f"{team2_name}: {team2_win_prob}")
         
         if team1_win_prob > team2_win_prob:
             print(f"{team1_name}: will win!")
+            winning_team = team1_name
         else:
             print(f"{team2_name}: will win!")
+            winning_team = team2_name
+        
+        team1_win_prob_formatted = f"{round(team1_win_prob * 100, 2)}%"
+        team2_win_prob_formatted = f"{round(team2_win_prob * 100, 2)}%"
+
+        # Prepare the data to insert into the "moneylines" collection
+        moneyline_data = {
+            'team1_name': team1_name,
+            'team1_win_prob': team1_win_prob_formatted,
+            'team2_name': team2_name,
+            'team2_win_prob': team2_win_prob_formatted,
+            'winning_team': winning_team
+        }
+
+        # Insert the data into the "moneylines" collection
+        db.moneylines.insert_one(moneyline_data)
 
         # # Call evaluation functions
         # evaluate_model(X_test_scaled, y_test, model)

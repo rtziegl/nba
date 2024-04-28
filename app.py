@@ -23,6 +23,8 @@ import string
 import secrets
 from datetime import datetime, timedelta
 
+from bson.json_util import dumps 
+
 app = Flask(__name__)
 CORS(app)
 
@@ -497,8 +499,7 @@ def get_consistency_response(combined_response, consistency_score, over_under):
     }
     
     return response
-
-        
+      
 @app.route('/nba_get_player_game_data', methods=['GET'])
 def nba_get_player_game_data():
     try:
@@ -549,6 +550,25 @@ def nba_get_player_game_data():
         error_message = {'error': str(e)}
         return jsonify(error_message), 500
 
+
+
+# -------------------- GET MONEYLINEDATA --------------------------
+@app.route('/nba_get_moneylines', methods=['GET'])
+def nba_get_moneylines():
+    try:
+        # Query moneylines from DB
+        moneyline_collection = get_data_from_db('moneylines')
+        
+        # Serialize MongoDB documents to JSON
+        moneylines_json = dumps(moneyline_collection)
+        
+        return moneylines_json, 200
+    except Exception as e:
+        # Send error response
+        error_message = {'error': str(e)}
+        return jsonify(error_message), 500
+
+    
 def get_data_from_collection(collection_name):
     collection = db[collection_name]
     return collection.find()

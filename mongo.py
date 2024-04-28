@@ -506,6 +506,8 @@ def update_team_ranks_data(db,logging):
         logging.error(f"Error updating team rank data: {str(e)}")
   
 def find_and_update_daily_players(db, logging):
+    
+    # Watch this some possible wrong team mappings
     try:
         team_mapping = {
             "atlanta": "atlanta hawks",
@@ -520,8 +522,8 @@ def find_and_update_daily_players(db, logging):
             "golden state": "golden state warriors",
             "houston": "houston rockets",
             "indiana": "indiana pacers",
-            "la clippers": "la clippers",
-            "lakers": "los angeles lakers",
+            "la": "la clippers",
+            "los angeles": "los angeles lakers",
             "memphis": "memphis grizzlies",
             "miami": "miami heat",
             "milwaukee": "milwaukee bucks",
@@ -934,8 +936,8 @@ try:
     # scrapeForDailySchedule(db, scraping_daily_schedule_logger)
     # print("DAILY SCHEDULE UPDATED")
     
-    # nba_update_active_players(db, active_players_logger)
-    # print("NBA PLAYER NAME and ID DATA UPDATED")
+    # # nba_update_active_players(db, active_players_logger)
+    # # print("NBA PLAYER NAME and ID DATA UPDATED")
 
     # nba_update_player_game_data(db, player_game_data_logger)
     # print("NBA PLAYER GAME DATA UPDATED")
