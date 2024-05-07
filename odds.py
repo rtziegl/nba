@@ -467,7 +467,7 @@ def get_top_consistent_players(results):
 load_dotenv()
 
 # Retrieve the MongoDB Atlas URI from the environment
-uri = os.getenv("MONGODB_URI_ENDUSER")
+uri = os.getenv("MONGODB_URI")
 
 # Create a MongoClient instance
 client = MongoClient(uri, tlsCAFile=certifi.where())
@@ -482,7 +482,12 @@ add_player_ids(db, organized_response)
 player_game_collection = get_data_from_db('playersgamelog')
 results = process_organized_data(organized_response, player_game_collection)
 top_9_scores = get_top_consistent_players(results)
-print(top_9_scores)
+
+collection = db["hardlinedailyprops"]
+# Clear existing data from the collection
+collection.delete_many({})
+# Insert the new data into the collection
+collection.insert_many(top_9_scores)
 
 
                 

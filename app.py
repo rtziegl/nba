@@ -584,6 +584,19 @@ def nba_get_moneylines():
         error_message = {'error': str(e)}
         return jsonify(error_message), 500
 
+# Define Flask route to fetch all data from the collection
+# Define Flask route to fetch all data from the collection
+@app.route('/hardlinedailyprops', methods=['GET'])
+def get_hardlinedailyprops():
+    # Get player data from the hardlinedailyprops collection
+    hardline_daily_props = get_data_from_db('hardlinedailyprops')
+    
+    for entry in hardline_daily_props:
+        entry['_id'] = str(entry['_id']) 
+    
+    # Return the data as JSON response
+    return jsonify(hardline_daily_props)
+   
     
 def get_data_from_collection(collection_name):
     collection = db[collection_name]
