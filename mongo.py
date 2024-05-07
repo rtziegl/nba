@@ -864,7 +864,9 @@ def scrapeForDailySchedule(db, logging):
                     if len(cells) > 1:
                         # Extract team names
                         team_1 = cells[0].text.strip()
-                        team_2 = cells[1].text.strip()
+                        team_2 = cells[1].text.strip() 
+                        game_time = cells[2].text.strip()
+                        print(game_time)
                         
                         # Check if any city name is present in team names
                         for city in cities:
@@ -878,7 +880,7 @@ def scrapeForDailySchedule(db, logging):
                         matchup2 = f"{city_team_mapping[team2]} vs. {city_team_mapping[team1]}"
                         
                         # Add schedule information to the list
-                        schedule.append({"team1": team1.lower(), "team2": team2.lower(), "matchup1": matchup1, "matchup2": matchup2})
+                        schedule.append({"team1": team1.lower(), "team2": team2.lower(), "matchup1": matchup1, "matchup2": matchup2, "game_time": game_time})
                 
                 # Create a JSON object with the schedule
                 schedule_json = {"Schedule": schedule}
@@ -894,7 +896,7 @@ def scrapeForDailySchedule(db, logging):
     except Exception as e:
         logging.error(f"Error updating team rank data: {str(e)}")
 
-        
+       
 # Load environment variables from .env file
 load_dotenv()
 
@@ -930,29 +932,29 @@ try:
      # Connect to MongoDB
     db = client['nba']
 
-    # scrapeForRosters(db, scraping_roster_logger)
-    # print("TEAM ROSTERS UPDATED")
+    scrapeForRosters(db, scraping_roster_logger)
+    print("TEAM ROSTERS UPDATED")
     
-    # scrapeForDailySchedule(db, scraping_daily_schedule_logger)
-    # print("DAILY SCHEDULE UPDATED")
+    scrapeForDailySchedule(db, scraping_daily_schedule_logger)
+    print("DAILY SCHEDULE UPDATED")
     
-    # # nba_update_active_players(db, active_players_logger)
-    # # print("NBA PLAYER NAME and ID DATA UPDATED")
+    # nba_update_active_players(db, active_players_logger)
+    # print("NBA PLAYER NAME and ID DATA UPDATED")
 
-    # nba_update_player_game_data(db, player_game_data_logger)
-    # print("NBA PLAYER GAME DATA UPDATED")
+    nba_update_player_game_data(db, player_game_data_logger)
+    print("NBA PLAYER GAME DATA UPDATED")
     
     
-    # update_players_last_played_game(db, player_recent_game_logger)
-    # print("UPDATED PLAYERS MOST RECENT GAME")
+    update_players_last_played_game(db, player_recent_game_logger)
+    print("UPDATED PLAYERS MOST RECENT GAME")
     
     
-    # find_and_update_daily_players(db, update_daily_players_logger)
-    # print("UPDATED TODAYS PLAYERS")
+    find_and_update_daily_players(db, update_daily_players_logger)
+    print("UPDATED TODAYS PLAYERS")
     
     
-    # find_and_insert_player_stats(db, update_players_recent_matchups_logger)
-    # print("UPDATED TODAYS PLAYERS")
+    find_and_insert_player_stats(db, update_players_recent_matchups_logger)
+    print("UPDATED TODAYS PLAYERS")
     
 
     # nba_update_player_next_game_matchup(db, player_next_game_logger)

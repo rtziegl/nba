@@ -550,7 +550,23 @@ def nba_get_player_game_data():
         error_message = {'error': str(e)}
         return jsonify(error_message), 500
 
-
+@app.route('/get_game_times', methods=['GET'])
+def get_game_times():
+    try:
+        # Query game times from the 'dailyschedule' collection
+        game_times = db.dailyschedule.distinct("Schedule.game_time")
+        
+        # Convert the game times to a list
+        game_times_list = list(game_times)
+        
+        # Serialize the game times to JSON
+        game_times_json = json.dumps({"game_times": game_times_list})
+        
+        return game_times_json, 200
+    except Exception as e:
+        # Send error response
+        error_message = {'error': str(e)}
+        return jsonify(error_message), 500
 
 # -------------------- GET MONEYLINEDATA --------------------------
 @app.route('/nba_get_moneylines', methods=['GET'])

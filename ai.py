@@ -40,6 +40,7 @@ def get_todays_matchups():
 
         # Parse the JSON response
         data = json.loads(response)
+        
 
         # Extract relevant data
         game_header_data = data['resultSets'][0]['rowSet']
@@ -75,9 +76,13 @@ def get_todays_matchups():
                     team.append(1)
                 elif team[0] == visitor_team_id:
                     team.append(0)
+                    
+             # Get the game time from GameHeader
+            game_time = game_header_info['GAME_STATUS_TEXT'].values[0]
 
+            print(game_time)
             # Append matchup information to the list
-            matchups.append((game_id, team_info))
+            matchups.append((game_id, team_info, game_time))
             
             
         return matchups
@@ -109,9 +114,11 @@ def get_todays_team_ids(matchups):
         print("TEAM ID 1" ,team1_id)
         team2_id = matchup[1][1][0]
         print("TEAM ID 2" ,team2_id)
+        game_time = matchup[-1]  # Accessing the last element of the tuple
+        print("Game Time:", game_time)
         
         # Append the team IDs as a tuple to the team_ids list
-        team_ids.append((team1_id, team2_id))
+        team_ids.append((team1_id, team2_id, game_time))
 
     return team_ids
 
@@ -257,7 +264,7 @@ def rename_columns(team_mean_stats, team_number):
     
     return team_mean_stats_df
 
-# returns a df of all the nba_matchups this season from db
+# Returns a df of all the nba_matchups this season from db
 def get_all_season_matchups_into_df(db):
     collection = db['games']
     
@@ -293,38 +300,47 @@ def get_all_season_matchups_into_df(db):
     
     return game_matchups_df
 
-# returns a readied input df to be fed into the Log reg model
+# Returns a readied input df to be fed into the Log reg model 
+# (as of May 1 using weighted averages to bettter cature current team form)
 def get_input_data_ready(team1_df, team2_df, team1_home_or_away, team2_home_or_away):
     # Drop unnecessary columns from team dataframes
     team1_df.drop(columns=['game_id', 'TEAM_NAME_team', 'TEAM_ABBREVIATION_team', 'TEAM_NAME_opp', 'TEAM_ABBREVIATION_opp'], inplace=True)
     team2_df.drop(columns=['game_id', 'TEAM_NAME_team', 'TEAM_ABBREVIATION_team', 'TEAM_NAME_opp', 'TEAM_ABBREVIATION_opp'], inplace=True)
 
     # Calculate the mean of the last 10 game stats for each team
-    # Calculate mean performance metrics for each time frame
-    team1_last_5_games_mean = team1_df.filter(regex='_team$').tail(5).mean()
-    team1_last_10_games_mean = team1_df.filter(regex='_team$').tail(10).mean()
-    team1_last_20_games_mean = team1_df.filter(regex='_team$').tail(20).mean()
+    # Calculate mean performance metrics for each time frame (Currently 3-5-7-11 game)
+    team1_last_5_games_mean = team1_df.filter(regex='_team$').tail(3).mean()
+    team1_last_9_games_mean = team1_df.filter(regex='_team$').tail(5).mean()
+    team1_last_13_games_mean = team1_df.filter(regex='_team$').tail(7).mean()
+    team1_last_17_games_mean = team1_df.filter(regex='_team$').tail(11).mean()
 
-    team2_last_5_games_mean = team2_df.filter(regex='_team$').tail(5).mean()
-    team2_last_10_games_mean = team2_df.filter(regex='_team$').tail(10).mean()
-    team2_last_20_games_mean = team2_df.filter(regex='_team$').tail(20).mean()
+    team2_last_5_games_mean = team2_df.filter(regex='_team$').tail(3).mean()
+    team2_last_9_games_mean = team2_df.filter(regex='_team$').tail(5).mean()
+    team2_last_13_games_mean = team2_df.filter(regex='_team$').tail(7).mean()
+    team2_last_17_games_mean = team2_df.filter(regex='_team$').tail(11).mean()
 
-    # Calculate recent, medium-term, and long-term averages
-    team1_mean_stats = (team1_last_5_games_mean + team1_last_10_games_mean + team1_last_20_games_mean) / 3
-    team2_mean_stats = (team2_last_5_games_mean + team2_last_10_games_mean + team2_last_20_games_mean) / 3
+    # Calculate weighted averages
+    team1_weighted_mean_stats = (team1_last_5_games_mean * 0.4 +
+                                 team1_last_9_games_mean * 0.3 +
+                                 team1_last_13_games_mean * 0.2 +
+                                 team1_last_17_games_mean * 0.1)
+
+    team2_weighted_mean_stats = (team2_last_5_games_mean * 0.4 +
+                                 team2_last_9_games_mean * 0.3 +
+                                 team2_last_13_games_mean * 0.2 +
+                                 team2_last_17_games_mean * 0.1)
     
     # Usage
-    team1_mean_stats = rename_columns(team1_mean_stats, 1)
-    team2_mean_stats = rename_columns(team2_mean_stats, 2)
+    team1_weighted_mean_stats = rename_columns(team1_weighted_mean_stats, 1)
+    team2_weighted_mean_stats = rename_columns(team2_weighted_mean_stats, 2)
     
-    # Concatenate team1_mean_stats and team2_mean_stats
-    input_data = pd.concat([team1_mean_stats, team2_mean_stats], axis=1)
+    # Concatenate team1_weighted_mean_stats and team2_weighted_mean_stats
+    input_data = pd.concat([team1_weighted_mean_stats, team2_weighted_mean_stats], axis=1)
     
     # Update team home/away indicators
     input_data['team1_HOMEORAWAY'] = team1_home_or_away
     input_data['team2_HOMEORAWAY'] = team2_home_or_away
 
-    # Drop unnecessary columns from input data
     # Drop unnecessary columns from input data
     input_data.drop(columns=['team1_WL', 'team2_WL', 'team1_PLUS_MINUS', 'team2_PLUS_MINUS' ], inplace=True)
     
@@ -428,7 +444,7 @@ try:
     # Delete previous moneyline entries
     db.moneylines.delete_many({})
     
-    for team1_id, team2_id in todays_team_ids:
+    for team1_id, team2_id, game_time in todays_team_ids:
 
         # Get regular season game stats for team 1
         team1_game_stats = get_team_game_stats(team1_id, db)
@@ -499,8 +515,13 @@ try:
             print(f"{team2_name}: will win!")
             winning_team = team2_name
         
-        team1_win_prob_formatted = f"{round(team1_win_prob * 100, 2)}%"
-        team2_win_prob_formatted = f"{round(team2_win_prob * 100, 2)}%"
+        # Round win probabilities to integers
+        team1_win_prob_int = round(team1_win_prob * 100)
+        team2_win_prob_int = round(team2_win_prob * 100)
+
+        # Format win probabilities with a percentage sign
+        team1_win_prob_formatted = f"{team1_win_prob_int}%"
+        team2_win_prob_formatted = f"{team2_win_prob_int}%"
 
         # Prepare the data to insert into the "moneylines" collection
         moneyline_data = {
@@ -508,16 +529,17 @@ try:
             'team1_win_prob': team1_win_prob_formatted,
             'team2_name': team2_name,
             'team2_win_prob': team2_win_prob_formatted,
-            'winning_team': winning_team
+            'winning_team': winning_team,
+            'game_time': game_time
         }
 
         # Insert the data into the "moneylines" collection
         db.moneylines.insert_one(moneyline_data)
 
-        # # Call evaluation functions
-        # evaluate_model(X_test_scaled, y_test, model)
-        # get_cv_scores(X_train_scaled, y_train, model)
-        # evaluate_features(X, model)
+        # Call evaluation functions
+        evaluate_model(X_test_scaled, y_test, model)
+        get_cv_scores(X_train_scaled, y_train, model)
+        evaluate_features(X, model)
 
 
 
