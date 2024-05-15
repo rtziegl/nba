@@ -6252,3 +6252,28 @@
 2024-05-06 11:02:43,586 - team_game_data - INFO - New game added - Game ID: 0042300137, Date: 2024-05-05
 2024-05-06 11:02:43,588 - team_game_data - INFO - Game data update completed.
 2024-05-07 08:20:06,121 - team_game_data - ERROR - Error updating game data: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2024-05-08 11:10:06,590 - team_game_data - INFO - New game added - Game ID: 0042300201, Date: 2024-05-07
+2024-05-08 11:10:06,616 - team_game_data - INFO - New game added - Game ID: 0042300211, Date: 2024-05-06
+2024-05-08 11:10:06,644 - team_game_data - INFO - New game added - Game ID: 0042300221, Date: 2024-05-07
+2024-05-08 11:10:06,670 - team_game_data - INFO - New game added - Game ID: 0042300232, Date: 2024-05-06
+2024-05-08 11:10:06,670 - team_game_data - INFO - Game data update completed.
+2024-05-09 12:18:14,974 - team_game_data - ERROR - Error updating game data: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2024-05-10 10:24:42,079 - team_game_data - INFO - New game added - Game ID: 0042300202, Date: 2024-05-09
+2024-05-10 10:24:42,100 - team_game_data - INFO - New game added - Game ID: 0042300212, Date: 2024-05-08
+2024-05-10 10:24:42,118 - team_game_data - INFO - New game added - Game ID: 0042300222, Date: 2024-05-09
+2024-05-10 10:24:42,119 - team_game_data - INFO - Game data update completed.
+2024-05-11 15:09:10,233 - team_game_data - INFO - New game added - Game ID: 0042300213, Date: 2024-05-10
+2024-05-11 15:09:10,270 - team_game_data - INFO - New game added - Game ID: 0042300233, Date: 2024-05-10
+2024-05-11 15:09:10,271 - team_game_data - INFO - Game data update completed.
+2024-05-12 15:26:41,397 - team_game_data - INFO - New game added - Game ID: 0042300203, Date: 2024-05-11
+2024-05-12 15:26:41,423 - team_game_data - INFO - New game added - Game ID: 0042300223, Date: 2024-05-11
+2024-05-12 15:26:41,423 - team_game_data - INFO - Game data update completed.
+2024-05-13 14:13:42,575 - team_game_data - INFO - New game added - Game ID: 0042300214, Date: 2024-05-12
+2024-05-13 14:13:42,613 - team_game_data - INFO - New game added - Game ID: 0042300234, Date: 2024-05-12
+2024-05-13 14:13:42,613 - team_game_data - INFO - Game data update completed.
+2024-05-14 10:08:29,909 - team_game_data - INFO - New game added - Game ID: 0042300204, Date: 2024-05-13
+2024-05-14 10:08:29,943 - team_game_data - INFO - New game added - Game ID: 0042300224, Date: 2024-05-13
+2024-05-14 10:08:29,943 - team_game_data - INFO - Game data update completed.
+2024-05-15 11:18:57,490 - team_game_data - INFO - New game added - Game ID: 0042300215, Date: 2024-05-14
+2024-05-15 11:18:57,611 - team_game_data - INFO - New game added - Game ID: 0042300235, Date: 2024-05-14
+2024-05-15 11:18:57,612 - team_game_data - INFO - Game data update completed.
