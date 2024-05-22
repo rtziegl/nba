@@ -673,8 +673,9 @@ def get_top_consistent_jackpot_scores(results, top_n=50):
                         all_scores.append({
                             'player_name': player_name,
                             'stat': stat,
-                            'category': bet_type,
-                            'value': player_result[bet_type][f'{bet_type.lower()}_value'],
+                            'category': 'Hardline',
+                            'value': bet_type,
+                            'line': player_result[bet_type][f'{bet_type.lower()}_value'],
                             'odds': player_result[bet_type][f'{bet_type.lower()}_odds'],
                             'consistency_score': player_result[bet_type][score_key]
                         })
@@ -686,7 +687,8 @@ def get_top_consistent_jackpot_scores(results, top_n=50):
                     'player_name': player_name,
                     'stat': stat,
                     'category': 'X+',
-                    'value': player_result['X+']['value'],
+                    'value': 'Over',
+                    'line': player_result['X+']['value'],
                     'odds': player_result['X+']['odds'],
                     'consistency_score': player_result['X+']['consistency_score']
                 })
@@ -841,7 +843,6 @@ def get_top_consistent_players(results):
     for stat in ['Points', 'Rebounds', '3-Pointers', 'Assists', 'Blocks', 'Steals']:
         top_9_players.extend(top_scores[stat][:2] if stat in ['Points', 'Rebounds', '3-Pointers'] else top_scores[stat][:1])
     
-    print(top_9_players)
 
     return top_9_players
 
@@ -881,11 +882,11 @@ def is_valid_parlay(parlay):
         player_stat = (leg['player_name'], leg['stat'])
         value = float(leg.get('line', leg.get('value')))
 
-        if leg['category'] == 'Over':
+        if "Over" in leg['value']:
             if player_stat in player_stat_over:
                 return False
             player_stat_over[player_stat] = value
-        elif leg['category'] == 'Under':
+        elif "Under" in leg['value']:
             if player_stat in player_stat_under:
                 return False
             player_stat_under[player_stat] = value
@@ -898,8 +899,24 @@ def is_valid_parlay(parlay):
 
 # Attempts to create a valid parlay within the specified odds range
 def get_legs_for_parlay(available_legs, min_odds, max_odds):
-    sorted_legs = sorted(available_legs, key=lambda x: x['consistency_score'], reverse=True)
-    
+    # Define the priority of stats
+    high_priority_stats = ['Points', '3-Pointers', 'Rebounds']
+    medium_priority_stats = ['Assists']
+    low_priority_stats = ['Blocks', 'Steals']
+
+    # Separate the legs into high, medium, and low priority lists
+    high_priority_legs = [leg for leg in available_legs if leg['stat'] in high_priority_stats]
+    medium_priority_legs = [leg for leg in available_legs if leg['stat'] in medium_priority_stats]
+    low_priority_legs = [leg for leg in available_legs if leg['stat'] in low_priority_stats]
+
+    # Sort each list by consistency_score
+    high_priority_legs = sorted(high_priority_legs, key=lambda x: x['consistency_score'], reverse=True)
+    medium_priority_legs = sorted(medium_priority_legs, key=lambda x: x['consistency_score'], reverse=True)
+    low_priority_legs = sorted(low_priority_legs, key=lambda x: x['consistency_score'], reverse=True)
+
+    # Combine the lists, giving priority to high_priority_legs first, then medium, then low
+    sorted_legs = high_priority_legs + medium_priority_legs + low_priority_legs
+
     # Try to create parlays with the least number of legs first
     for num_legs in range(2, 5):  # 2, 3, 4 legs
         for combination in itertools.combinations(sorted_legs, num_legs):
@@ -939,11 +956,81 @@ def create_parlays(top_scores):
 
     return parlays
 
+# Attempts to create a valid parlay with exactly 4 legs within the specified odds range
+def get_more_legs_for_parlay(available_legs, min_odds, max_odds):
+    # Define the priority of stats
+    high_priority_stats = ['Points', '3-Pointers', 'Rebounds']
+    medium_priority_stats = ['Assists']
+    low_priority_stats = ['Blocks', 'Steals']
+
+    # Separate the legs into high, medium, and low priority lists
+    high_priority_legs = [leg for leg in available_legs if leg['stat'] in high_priority_stats]
+    medium_priority_legs = [leg for leg in available_legs if leg['stat'] in medium_priority_stats]
+    low_priority_legs = [leg for leg in available_legs if leg['stat'] in low_priority_stats]
+
+    # Sort each list by consistency_score
+    high_priority_legs = sorted(high_priority_legs, key=lambda x: x['consistency_score'], reverse=True)
+    medium_priority_legs = sorted(medium_priority_legs, key=lambda x: x['consistency_score'], reverse=True)
+    low_priority_legs = sorted(low_priority_legs, key=lambda x: x['consistency_score'], reverse=True)
+
+    # Combine the lists, giving priority to high_priority_legs first, then medium, then low
+    sorted_legs = high_priority_legs + medium_priority_legs + low_priority_legs
+
+    # Try to create parlays with exactly 4 legs
+    for combination in itertools.combinations(sorted_legs, 4):
+        parlay = list(combination)
+        if is_valid_parlay(parlay):
+            combined_odds = calculate_combined_odds(parlay)
+            american_odds = convert_decimal_to_american(combined_odds)
+            # Check if american_odds is within the specified range and is positive
+            if min_odds <= int(american_odds.replace('-', '').replace('+', '')) < max_odds and int(american_odds) > 0:
+                return parlay
+
+    return None
+
+def create_more_parlays(top_scores):
+    parlays = []
+    used_legs = set()
+    
+    odds_ranges = [
+        {'min': 100, 'max': 200},
+        {'min': 200, 'max': 300},
+        {'min': 300, 'max': 400}
+    ]
+    
+    for odds_range in odds_ranges:
+        available_legs = [leg for leg in top_scores if leg['id'] not in used_legs]
+        parlay = get_more_legs_for_parlay(available_legs, odds_range['min'], odds_range['max'])
+        if parlay:
+            combined_odds = calculate_combined_odds(parlay)
+            implied_probability = calculate_implied_probability(combined_odds)
+            parlays.append({
+                'parlay': parlay,
+                'odds': convert_decimal_to_american(combined_odds),
+                'implied_probability': implied_probability
+            })
+            used_legs.update(leg['id'] for leg in parlay)
+
+    return parlays
+
 
 # Get the top 4 consistent scores and create a valid parlay
 def get_golden_goose_parlay(top_scores):
-    sorted_legs = sorted(top_scores, key=lambda x: x['consistency_score'], reverse=True)
-    
+    # Define the priority of stats
+    high_priority_stats = ['Points', '3-Pointers', 'Rebounds']
+    low_priority_stats = ['Assists', 'Blocks', 'Steals']
+
+    # Separate the scores into high and low priority lists
+    high_priority_legs = [leg for leg in top_scores if leg['stat'] in high_priority_stats]
+    low_priority_legs = [leg for leg in top_scores if leg['stat'] in low_priority_stats]
+
+    # Sort each list by consistency_score
+    high_priority_legs = sorted(high_priority_legs, key=lambda x: x['consistency_score'], reverse=True)
+    low_priority_legs = sorted(low_priority_legs, key=lambda x: x['consistency_score'], reverse=True)
+
+    # Combine the lists, giving priority to high_priority_legs
+    sorted_legs = high_priority_legs + low_priority_legs
+
     # Try to create a valid parlay with exactly 4 legs
     for combination in itertools.combinations(sorted_legs, 4):
         parlay = list(combination)
@@ -959,6 +1046,14 @@ def get_golden_goose_parlay(top_scores):
 
     return None
 
+
+def insert_with_title(collection, data, title):
+    document = {
+        'title': title,
+        'data': data
+    }
+    collection.insert_one(document)
+
 # Load environment variables from .env file
 load_dotenv()
 
@@ -971,33 +1066,50 @@ client = MongoClient(uri, tlsCAFile=certifi.where())
 db = client["nba"]
 collection = db['dailyplayerodds']
 
+dailyprops_collection = db['dailyprops']
+dailyprops_collection.delete_many({})
+
 daily_player_odds = fetch_daily_player_odds(collection)
 add_player_ids_and_stat_abrv(db, daily_player_odds)
 
 player_game_collection = get_data_from_db('playersgamelog')
+
 hardline_results = process_hardline_data(daily_player_odds, player_game_collection)
 top_9_scores = get_top_consistent_players(hardline_results)
+
+insert_with_title(dailyprops_collection, top_9_scores, "Hardline 9")
+
+print(top_9_scores)
 
 # # Query player games from DB
 results = process_daily_player_odds(daily_player_odds)
 
 
 top_50_consistent_scores = get_top_consistent_scores(results, top_n=50)
-print(top_50_consistent_scores)
 
 for idx, leg in enumerate(top_50_consistent_scores):
     leg['id'] = idx
 
-parlays = create_parlays(top_50_consistent_scores)
-for parlay in parlays:
+less_legs_parlays = create_parlays(top_50_consistent_scores)
+insert_with_title(dailyprops_collection, less_legs_parlays, "Less Legs")
+for parlay in less_legs_parlays:
     print(f"Parlay Odds: {parlay['odds']}, Implied Probability: {parlay['implied_probability']:.2%}")
     for leg in parlay['parlay']:
         print(leg)
 
 
+more_legs_parlays = create_more_parlays(top_50_consistent_scores)
+insert_with_title(dailyprops_collection, more_legs_parlays, "More Legs")
+for parlay in more_legs_parlays:
+    print(f"Parlay Odds: {parlay['odds']}, Implied Probability: {parlay['implied_probability']:.2%}")
+    print(parlay)
+    for leg in parlay['parlay']:
+        print(leg)
+
 top_50_jackpot_scores = get_top_consistent_jackpot_scores(results, top_n=50)
 
 top_4_parlay = get_golden_goose_parlay(top_50_jackpot_scores)
+insert_with_title(dailyprops_collection, top_4_parlay, "Golden Goose")
 
 if top_4_parlay:
     print(f"Parlay Odds: {top_4_parlay['odds']}, Implied Probability: {top_4_parlay['implied_probability']:.2%}")

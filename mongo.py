@@ -87,13 +87,21 @@ def nba_update_active_players(db, logging):
 def nba_update_player_game_data(db, logging):
     logging.info(f"ACTION COMMITTED: nba_update_player_game_data")
     try:
-        # Fetch all players from the players collection
-        players = db.players.find()
+        # Fetch the single document from the dailyplayers collection
+        daily_players_doc = db.dailyplayers.find_one()
 
-        # Iterate over each player
+        # Check if the document exists
+        if not daily_players_doc:
+            logging.error("No document found in the dailyplayers collection.")
+            return json.dumps({'message': 'No document found in the dailyplayers collection.'}), 404, {'Content-Type': 'application/json'}
+
+        # Get the players array from the document
+        players = daily_players_doc['players']
+
+        # Iterate over each player in the players array
         for player in players:
-            player_id = player['id']
-            full_name = player['full_name']
+            player_id = player['player_id']
+            full_name = player['player_name']
             
             print("fetching game data for", full_name)
 
@@ -204,75 +212,6 @@ def fetch_playoff_game_data(player_id, logging):
         print(f"Error fetching game data: {e}")
         return None
 
-
-
-    
-    
-#---- UPDATE NEXT MATCHUP DATA FROM PREVIOUS DAY ----#
-def nba_update_player_next_game_matchup(db, logging):
-    logging.info(f"ACTION COMMITTED: nba_update_player_next_game_matchup")
-    try:
-        # Fetch all players from the players collection
-        players = db.players.find()
-        # Iterate over each player
-        for player in players:
-            player_id = player['id']
-            
-            matchup = get_upcoming_game_matchup(player_id, logging)
-            
-
-            if matchup is None:
-                db.playersmatchuplog.update_one(
-                {"player_id": player_id},
-                {"$set": {
-                    "num_games": 0,
-                    "recent_matchups": None
-                }},
-                upsert=True  # Insert a new document if it doesn't exist
-            )
-                logging.info(f"Couldn't find Next Game for {player_id}") 
-                
-            else:
-                finding_abrv_compare_insert(db, player_id, matchup, logging)
-        
-        # Return success response
-        response = {'message': 'Players next Matchup or updated in the database successfully.'}
-        return json.dumps(response), 200, {'Content-Type': 'application/json'}
-    
-    except Exception as e:
-        logging.error(f"Error fetching or updating game data: {str(e)}")
-        error_message = {'error': str(e)}
-        return json.dumps(error_message), 500, {'Content-Type': 'application/json'} 
-    
-# Calls api and grabs the next matchup value
-def get_upcoming_game_matchup(player_id, logging):
-    try:
-        player_id = 2544
-        # # Retrieve next game(s) for the player in the regular season
-        # next_games_regular_season = PlayerNextNGames(player_id=player_id, number_of_games=1, season_type_all_star='Regular Season')
-        # next_games_data_regular_season = next_games_regular_season.get_normalized_dict()["NextNGames"]
-        
-        # # Check if there are any upcoming games in regular season
-        # if next_games_data_regular_season:
-        #     return next_games_data_regular_season[0]
-        
-        # If no upcoming games found in regular season, try playoffs
-        next_games_playoffs = PlayerNextNGames(player_id=player_id)
-        next_games_data_playoffs = next_games_playoffs.get_normalized_dict()["NextNGames"]
-        
-        print(next_games_data_playoffs)
-        
-        # Check if there are any upcoming games in playoffs
-        if next_games_data_playoffs:
-            return next_games_data_playoffs[0]
-        
-        # No upcoming games found
-        print("No upcoming games found.")
-        return None
-    
-    except Exception as e:
-        logging.error(f"Error get_upcoming_game_matchup from API: {str(e)}")
-        print("Error:", str(e))
 
 
 def finding_abrv_compare_insert(db, player_id, matchup_data, logging):
@@ -929,45 +868,67 @@ scraping_daily_schedule_logger = setup_logger('scraping_daily_schedule', 'scrapi
 try:
     client.admin.command('ping')
     print("Pinged your deployment. You successfully connected to MongoDB!")
-     # Connect to MongoDB
+    
+    # Connect to MongoDB
     db = client['nba']
 
-    scrapeForRosters(db, scraping_roster_logger)
-    print("TEAM ROSTERS UPDATED")
-    
-    scrapeForDailySchedule(db, scraping_daily_schedule_logger)
-    print("DAILY SCHEDULE UPDATED")
-    
-    # nba_update_active_players(db, active_players_logger)
-    # print("NBA PLAYER NAME and ID DATA UPDATED")
+    try:
+        scrapeForRosters(db, scraping_roster_logger)
+        print("TEAM ROSTERS UPDATED")
+    except Exception as e:
+        print(f"Error updating team rosters: {e}")
 
-    nba_update_player_game_data(db, player_game_data_logger)
-    print("NBA PLAYER GAME DATA UPDATED")
-    
-    
-    update_players_last_played_game(db, player_recent_game_logger)
-    print("UPDATED PLAYERS MOST RECENT GAME")
-    
-    
-    find_and_update_daily_players(db, update_daily_players_logger)
-    print("UPDATED TODAYS PLAYERS")
-    
-    
-    find_and_insert_player_stats(db, update_players_recent_matchups_logger)
-    print("UPDATED TODAYS PLAYERS")
-    
+    try:
+        scrapeForDailySchedule(db, scraping_daily_schedule_logger)
+        print("DAILY SCHEDULE UPDATED")
+    except Exception as e:
+        print(f"Error updating daily schedule: {e}")
 
-    # nba_update_player_next_game_matchup(db, player_next_game_logger)
-    # print("NBA PLAYER MATCHUP LOG UPDATED")
-   
-    update_team_game_data(db , team_game_data_logger)
-    print("UPDATED TEAM GAME DATA")
-    
-    # update_team_ranks_data(db , team_rank_data_logger)
-    # print("UPDATED TEAM RANK DATA")
+    try:
+        find_and_update_daily_players(db, update_daily_players_logger)
+        print("UPDATED TODAY'S PLAYERS")
+    except Exception as e:
+        print(f"Error updating today's players: {e}")
+
+    try:
+        nba_update_player_game_data(db, player_game_data_logger)
+        print("NBA PLAYER GAME DATA UPDATED")
+    except Exception as e:
+        print(f"Error updating NBA player game data: {e}")
+
+    # try:
+    #     nba_update_active_players(db, active_players_logger)
+    #     print("NBA PLAYER NAME and ID DATA UPDATED")
+    # except Exception as e:
+    #     print(f"Error updating NBA active players: {e}")
+
+    try:
+        update_players_last_played_game(db, player_recent_game_logger)
+        print("UPDATED PLAYERS' MOST RECENT GAME")
+    except Exception as e:
+        print(f"Error updating players' most recent game: {e}")
+
+    try:
+        find_and_insert_player_stats(db, update_players_recent_matchups_logger)
+        print("UPDATED TODAY'S PLAYERS STATS")
+    except Exception as e:
+        print(f"Error updating today's players stats: {e}")
+
+    try:
+        update_team_game_data(db, team_game_data_logger)
+        print("UPDATED TEAM GAME DATA")
+    except Exception as e:
+        print(f"Error updating team game data: {e}")
+
+    # Uncomment this block if you want to update team rank data
+    # try:
+    #     update_team_ranks_data(db, team_rank_data_logger)
+    #     print("UPDATED TEAM RANK DATA")
+    # except Exception as e:
+    #     print(f"Error updating team rank data: {e}")
 
     client.close()
 
 except Exception as e:
-    print(e)
+    print(f"Critical error: {e}")
     
