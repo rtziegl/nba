@@ -831,7 +831,7 @@ def get_top_consistent_players(results):
                         'prop_value': prop_value,
                         'bet_type': bet_type,
                         'consistency_score': consistency_score,
-                        'price': price
+                        'odds': price
                     })
 
     # Sort each category based on consistency score in descending order
@@ -1047,12 +1047,31 @@ def get_golden_goose_parlay(top_scores):
     return None
 
 
-def insert_with_title(collection, data, title):
+def insert_to_db(collection, data):
+    collection.delete_many({})
     document = {
-        'title': title,
-        'data': data
+        "data": data
     }
     collection.insert_one(document)
+
+# Function to replace Unicode minus sign with ASCII hyphen
+def fix_odds(data):
+    for item in data:
+        item['odds'] = item['odds'].replace('−', '-')
+    return data
+
+def fix_unicode_minus(data):
+    if isinstance(data, dict):
+        for key, value in data.items():
+            if isinstance(value, str):
+                data[key] = value.replace('−', '-')
+            elif isinstance(value, (dict, list)):
+                fix_unicode_minus(value)
+    elif isinstance(data, list):
+        for item in data:
+            fix_unicode_minus(item)
+    return data
+
 
 # Load environment variables from .env file
 load_dotenv()
@@ -1066,8 +1085,11 @@ client = MongoClient(uri, tlsCAFile=certifi.where())
 db = client["nba"]
 collection = db['dailyplayerodds']
 
-dailyprops_collection = db['dailyprops']
-dailyprops_collection.delete_many({})
+hardline9_collection = db['hardline9']
+lesslegs_collection = db['lesslegs']
+morelegs_collection = db['morelegs']
+goldengoose_collection = db['goldengoose']
+
 
 daily_player_odds = fetch_daily_player_odds(collection)
 add_player_ids_and_stat_abrv(db, daily_player_odds)
@@ -1077,7 +1099,9 @@ player_game_collection = get_data_from_db('playersgamelog')
 hardline_results = process_hardline_data(daily_player_odds, player_game_collection)
 top_9_scores = get_top_consistent_players(hardline_results)
 
-insert_with_title(dailyprops_collection, top_9_scores, "Hardline 9")
+top_9_scores = fix_odds(top_9_scores)
+
+insert_to_db(hardline9_collection, top_9_scores)
 
 print(top_9_scores)
 
@@ -1091,25 +1115,27 @@ for idx, leg in enumerate(top_50_consistent_scores):
     leg['id'] = idx
 
 less_legs_parlays = create_parlays(top_50_consistent_scores)
-insert_with_title(dailyprops_collection, less_legs_parlays, "Less Legs")
+less_legs_parlays = fix_unicode_minus(less_legs_parlays)
+insert_to_db(lesslegs_collection, less_legs_parlays)
 for parlay in less_legs_parlays:
+    print(parlay)
     print(f"Parlay Odds: {parlay['odds']}, Implied Probability: {parlay['implied_probability']:.2%}")
     for leg in parlay['parlay']:
         print(leg)
 
 
 more_legs_parlays = create_more_parlays(top_50_consistent_scores)
-insert_with_title(dailyprops_collection, more_legs_parlays, "More Legs")
+more_legs_parlays = fix_unicode_minus(more_legs_parlays)
+insert_to_db(morelegs_collection, more_legs_parlays)
 for parlay in more_legs_parlays:
     print(f"Parlay Odds: {parlay['odds']}, Implied Probability: {parlay['implied_probability']:.2%}")
-    print(parlay)
     for leg in parlay['parlay']:
         print(leg)
 
 top_50_jackpot_scores = get_top_consistent_jackpot_scores(results, top_n=50)
 
 top_4_parlay = get_golden_goose_parlay(top_50_jackpot_scores)
-insert_with_title(dailyprops_collection, top_4_parlay, "Golden Goose")
+insert_to_db(goldengoose_collection, top_4_parlay)
 
 if top_4_parlay:
     print(f"Parlay Odds: {top_4_parlay['odds']}, Implied Probability: {top_4_parlay['implied_probability']:.2%}")

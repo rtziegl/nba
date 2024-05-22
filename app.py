@@ -584,23 +584,38 @@ def nba_get_moneylines():
         error_message = {'error': str(e)}
         return jsonify(error_message), 500
 
-# Define Flask route to fetch all data from the collection
-# Define Flask route to fetch all data from the collection
-@app.route('/dailyprops', methods=['GET'])
-def get_dailyprops():
-    # Get player data from the hardlinedailyprops collection
-    daily_props = get_data_from_db('dailyprops')
-    
-    for entry in daily_props:
-        entry['_id'] = str(entry['_id']) 
-    
-    # Return the data as JSON response
-    return jsonify(daily_props)
+@app.route('/hardline9', methods=['GET'])
+def get_hardline9():
+    hardline9 = get_data_from_db_general('hardline9')
+    return jsonify(hardline9)
+
+@app.route('/less_legs', methods=['GET'])
+def get_less_legs():
+    less_legs = get_data_from_db_general('lesslegs')
+    return jsonify(less_legs)
+
+@app.route('/more_legs', methods=['GET'])
+def get_more_legs():
+    more_legs = get_data_from_db_general('morelegs')
+    return jsonify(more_legs)
+
+@app.route('/golden_goose', methods=['GET'])
+def get_golden_goose():
+    golden_goose  = get_data_from_db_general('goldengoose')
+    return jsonify(golden_goose)
    
     
 def get_data_from_collection(collection_name):
     collection = db[collection_name]
     return collection.find()
+
+def get_data_from_db_general(collection_name):
+    collection = db[collection_name]
+    data = list(collection.find())
+    for entry in data:
+        entry['_id'] = str(entry['_id'])
+    return data
+
 
 # Get DB based on collection   
 def get_data_from_db(collection_name):
