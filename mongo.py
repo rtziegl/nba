@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 
 from nba_api.stats.static import players
 from nba_api.stats.endpoints import playergamelog
-from nba_api.stats.endpoints import PlayerNextNGames, PlayerGameLog, CommonPlayerInfo
+from nba_api.stats.endpoints import PlayerNextNGames, PlayerGameLog, CommonPlayerInfo, ScoreboardV2
+from nba_api.stats.endpoints import BoxScoreTraditionalV3
 from nba_api.stats.endpoints import LeagueGameLog
 from nba_api.stats.library.parameters import SeasonAll
 from nba_api.stats.endpoints import AllTimeLeadersGrids
@@ -12,8 +13,9 @@ from nba_api.stats.endpoints import LeagueGameFinder
 from nba_api.stats.endpoints.teamestimatedmetrics import TeamEstimatedMetrics
 from nba_api.stats.endpoints import TeamGameLogs
 from nba_api.stats.endpoints.leagueleaders import LeagueLeaders
+from nba_api.live.nba.endpoints import scoreboard
 import datetime
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 from flask import Flask, jsonify, request, render_template
@@ -584,12 +586,280 @@ def find_and_insert_player_stats(db, logging):
 
 
 
+# Grabs matchups and organizes them into a structure
+def check_yesterdays_parlays(db):
+    try:
+        # Get today's date
+        today = datetime.today()
 
+        # Calculate yesterday's date
+        yesterday = today - timedelta(days=1)
 
+        # Format yesterday's date as a string
+        yesterday_str = yesterday.strftime('%Y-%m-%d')
 
+        # Define the parameters
+        params = {
+            'day_offset': 0,
+            'game_date': yesterday_str,
+            'league_id': '00'  # NBA league ID
+        }
 
+        # Create an instance of the ScoreboardV2 class with the parameters
+        scoreboard = ScoreboardV2(**params)
 
+        # Call the API and get the response
+        response = scoreboard.get_json()
 
+        # Parse the JSON response
+        data = json.loads(response)
+
+        line_score_data = data['resultSets'][1]['rowSet']
+        line_score_columns = data['resultSets'][1]['headers']
+        line_score_df = pd.DataFrame(line_score_data, columns=line_score_columns)
+
+        # Get unique game IDs
+        unique_game_ids = line_score_df['GAME_ID'].unique()
+
+        print(unique_game_ids)
+        
+        all_game_stats = {}
+
+        for game_id in unique_game_ids:
+            print(f"Fetching box score for Game ID: {game_id}")
+
+            # Define the box score parameters
+            box_score_params = {
+                'EndPeriod': 4,           # Example value, end of the game
+                'EndRange': 28800,        # Example value, end of the game in seconds (48 minutes * 60 seconds)
+                'GameID': game_id,        # Game ID from the scoreboard
+                'RangeType': 0,           # Example value, entire game
+                'StartPeriod': 1,         # Example value, start of the game
+                'StartRange': 0           # Example value, start of the game in seconds
+            }
+
+            # Make the API call to get the box score
+            box_score = BoxScoreTraditionalV3(
+                end_period=box_score_params['EndPeriod'],
+                end_range=box_score_params['EndRange'],
+                game_id=box_score_params['GameID'],
+                range_type=box_score_params['RangeType'],
+                start_period=box_score_params['StartPeriod'],
+                start_range=box_score_params['StartRange']
+            )
+
+            # Get the data
+            player_stats = box_score.player_stats.get_dict()
+
+            # Print the data (or process it as needed)
+            print("Player Stats:")
+            print(player_stats)
+            
+            # Process and store the data for each player
+            game_stats = process_player_stats(player_stats)
+            all_game_stats[game_id] = game_stats
+
+        # Print the final structured data
+        print("\nStructured Player Stats:")
+        for game_id, stats in all_game_stats.items():
+            print(f"Game ID: {game_id}")
+            for player in stats:
+                print(player)
+                print()
+
+        # Load parlays and check if they hit
+        check_parlays(db, all_game_stats, "lesslegs")
+        check_parlays(db, all_game_stats, "morelegs")
+        check_goldengoose_parlays(db, all_game_stats)
+        
+    except Exception as e:
+        print("Error:", e)
+
+def process_player_stats(player_stats):
+    headers = player_stats['headers']
+    data = player_stats['data']
+
+    # Create a list of dictionaries for each player
+    player_data = [dict(zip(headers, player)) for player in data]
+
+    # Group data by each player and structure it
+    structured_data = []
+    for player in player_data:
+        player_info = {
+            'name': f"{player['firstName']} {player['familyName']}",
+            'Points': player['points'],
+            '3-Pointers': player['threePointersMade'],
+            'Assists': player['assists'],
+            'Blocks': player['blocks'],
+            'Steals': player['steals'],
+            'Rebounds': player['reboundsTotal']
+        }
+        structured_data.append(player_info)
+
+    return structured_data
+
+def check_parlays(db, all_game_stats, collection_name):
+    collection = db[collection_name]
+    parlayavgs = db['parlayavgs']
+
+    # Load all parlays from the specified collection
+    parlays = collection.find({})
+    
+    for parlay_doc in parlays:
+        for idx, parlay in enumerate(parlay_doc['data']):
+            parlay_hit = True
+            category = f"{collection_name}_{idx + 1}00"
+            for leg in parlay['parlay']:
+                player_name = leg['player_name']
+                stat = leg['stat']
+                value = leg['value']
+                leg_category = leg['category']
+                line = leg['line']
+                found = False
+                actual_stat = None
+                
+                for game_id, stats in all_game_stats.items():
+                    for player in stats:
+                        if player['name'] == player_name:
+                            found = True
+                            actual_stat = player[stat]
+                            print(f"Comparing {player_name} - {stat}: {actual_stat} with {value} {line + 0.5 if leg_category in ['Altline', 'Hardline'] else line}")
+                            if leg_category in ['Altline', 'Hardline']:
+                                adjusted_line = line + 0.5
+                            else:
+                                adjusted_line = line
+
+                            if value == "Under":
+                                if not actual_stat < adjusted_line:
+                                    parlay_hit = False
+                            elif value == "Over":
+                                if not actual_stat >= adjusted_line:
+                                    parlay_hit = False
+                            break
+                    if found:
+                        break
+
+                if not found:
+                    print(f"Player {player_name} not found in game stats. Voiding this leg.")
+                    continue
+
+            if parlay_hit:
+                print(f"Parlay hit in {collection_name}: {parlay}")
+                update_parlay_avg(parlayavgs, category, True)
+            else:
+                print(f"Parlay missed in {collection_name}: {parlay}")
+                update_parlay_avg(parlayavgs, category, False)
+
+def check_goldengoose_parlays(db, all_game_stats):
+    collection = db['goldengoose']
+    parlayavgs = db['parlayavgs']
+
+    # Load all parlays from the goldengoose collection
+    parlays = collection.find({})
+    
+    for parlay_doc in parlays:
+        parlay = parlay_doc['data']['parlay']
+        parlay_hit = True
+        for leg in parlay:
+            player_name = leg['player_name']
+            stat = leg['stat']
+            value = leg['value']
+            leg_category = leg['category']
+            line = leg['line']
+            found = False
+            actual_stat = None
+            
+            for game_id, stats in all_game_stats.items():
+                for player in stats:
+                    if player['name'] == player_name:
+                        found = True
+                        actual_stat = player[stat]
+                        print(f"Comparing {player_name} - {stat}: {actual_stat} with {value} {line + 0.5 if leg_category in ['Altline', 'Hardline'] else line}")
+                        if leg_category in ['Altline', 'Hardline']:
+                            adjusted_line = line + 0.5
+                        else:
+                            adjusted_line = line
+
+                        if value == "Under":
+                            if not actual_stat < adjusted_line:
+                                parlay_hit = False
+                        elif value == "Over":
+                            if not actual_stat >= adjusted_line:
+                                parlay_hit = False
+                        break
+                if found:
+                    break
+
+            if not found:
+                print(f"Player {player_name} not found in game stats. Voiding this leg.")
+                continue
+
+        if parlay_hit:
+            print(f"Parlay hit in goldengoose: {parlay}")
+            update_goldengoose_avg(parlayavgs, True)
+        else:
+            print(f"Parlay missed in goldengoose: {parlay}")
+            update_goldengoose_avg(parlayavgs, False)
+
+def update_parlay_avg(parlayavgs, category, hit):
+    # Create the initial document if it doesn't exist
+    parlayavgs.update_one(
+        {'category': category},
+        {'$setOnInsert': {'hit_count': 0, 'total_count': 0, 'hit_rate': 0}},
+        upsert=True
+    )
+    # Update the counts and hit rate
+    if hit:
+        parlayavgs.update_one(
+            {'category': category},
+            {'$inc': {'hit_count': 1, 'total_count': 1}}
+        )
+    else:
+        parlayavgs.update_one(
+            {'category': category},
+            {'$inc': {'total_count': 1}}
+        )
+    # Recalculate hit rate
+    parlay_doc = parlayavgs.find_one({'category': category})
+    hit_rate = parlay_doc['hit_count'] / parlay_doc['total_count']
+    parlayavgs.update_one(
+        {'category': category},
+        {'$set': {'hit_rate': hit_rate}}
+    )
+
+def update_goldengoose_avg(parlayavgs, hit):
+    category = 'goldengoose'
+    # Create the initial document if it doesn't exist
+    parlayavgs.update_one(
+        {'category': category},
+        {'$setOnInsert': {'hit_count': 0, 'total_count': 0, 'hit_rate': 0}},
+        upsert=True
+    )
+    # Update the counts and hit rate
+    if hit:
+        parlayavgs.update_one(
+            {'category': category},
+            {'$inc': {'hit_count': 1, 'total_count': 1}}
+        )
+    else:
+        parlayavgs.update_one(
+            {'category': category},
+            {'$inc': {'total_count': 1}}
+        )
+    # Recalculate hit rate
+    parlay_doc = parlayavgs.find_one({'category': category})
+    hit_rate = parlay_doc['hit_count'] / parlay_doc['total_count']
+    parlayavgs.update_one(
+        {'category': category},
+        {'$set': {'hit_rate': hit_rate}}
+    )
+
+def get_live_scoreboard():
+    # Today's Score Board
+    games = scoreboard.ScoreBoard()
+
+    # json
+    print(games.get_json())
 
 
   
@@ -871,61 +1141,69 @@ try:
     
     # Connect to MongoDB
     db = client['nba']
-
+    
+    # get_live_scoreboard()
+    
     try:
-        scrapeForRosters(db, scraping_roster_logger)
-        print("TEAM ROSTERS UPDATED")
+        check_yesterdays_parlays(db)
+        print("GOT TODAYS MATCHUPS")
     except Exception as e:
         print(f"Error updating team rosters: {e}")
 
-    try:
-        scrapeForDailySchedule(db, scraping_daily_schedule_logger)
-        print("DAILY SCHEDULE UPDATED")
-    except Exception as e:
-        print(f"Error updating daily schedule: {e}")
-
-    try:
-        find_and_update_daily_players(db, update_daily_players_logger)
-        print("UPDATED TODAY'S PLAYERS")
-    except Exception as e:
-        print(f"Error updating today's players: {e}")
-
-    try:
-        nba_update_player_game_data(db, player_game_data_logger)
-        print("NBA PLAYER GAME DATA UPDATED")
-    except Exception as e:
-        print(f"Error updating NBA player game data: {e}")
+    # try:
+    #     scrapeForRosters(db, scraping_roster_logger)
+    #     print("TEAM ROSTERS UPDATED")
+    # except Exception as e:
+    #     print(f"Error updating team rosters: {e}")
 
     # try:
-    #     nba_update_active_players(db, active_players_logger)
-    #     print("NBA PLAYER NAME and ID DATA UPDATED")
+    #     scrapeForDailySchedule(db, scraping_daily_schedule_logger)
+    #     print("DAILY SCHEDULE UPDATED")
     # except Exception as e:
-    #     print(f"Error updating NBA active players: {e}")
+    #     print(f"Error updating daily schedule: {e}")
 
-    try:
-        update_players_last_played_game(db, player_recent_game_logger)
-        print("UPDATED PLAYERS' MOST RECENT GAME")
-    except Exception as e:
-        print(f"Error updating players' most recent game: {e}")
-
-    try:
-        find_and_insert_player_stats(db, update_players_recent_matchups_logger)
-        print("UPDATED TODAY'S PLAYERS STATS")
-    except Exception as e:
-        print(f"Error updating today's players stats: {e}")
-
-    try:
-        update_team_game_data(db, team_game_data_logger)
-        print("UPDATED TEAM GAME DATA")
-    except Exception as e:
-        print(f"Error updating team game data: {e}")
-
-    # Uncomment this block if you want to update team rank data
     # try:
-    #     update_team_ranks_data(db, team_rank_data_logger)
-    #     print("UPDATED TEAM RANK DATA")
+    #     find_and_update_daily_players(db, update_daily_players_logger)
+    #     print("UPDATED TODAY'S PLAYERS")
     # except Exception as e:
-    #     print(f"Error updating team rank data: {e}")
+    #     print(f"Error updating today's players: {e}")
+
+    # try:
+    #     nba_update_player_game_data(db, player_game_data_logger)
+    #     print("NBA PLAYER GAME DATA UPDATED")
+    # except Exception as e:
+    #     print(f"Error updating NBA player game data: {e}")
+
+    # # try:
+    # #     nba_update_active_players(db, active_players_logger)
+    # #     print("NBA PLAYER NAME and ID DATA UPDATED")
+    # # except Exception as e:
+    # #     print(f"Error updating NBA active players: {e}")
+
+    # try:
+    #     update_players_last_played_game(db, player_recent_game_logger)
+    #     print("UPDATED PLAYERS' MOST RECENT GAME")
+    # except Exception as e:
+    #     print(f"Error updating players' most recent game: {e}")
+
+    # try:
+    #     find_and_insert_player_stats(db, update_players_recent_matchups_logger)
+    #     print("UPDATED TODAY'S PLAYERS STATS")
+    # except Exception as e:
+    #     print(f"Error updating today's players stats: {e}")
+
+    # try:
+    #     update_team_game_data(db, team_game_data_logger)
+    #     print("UPDATED TEAM GAME DATA")
+    # except Exception as e:
+    #     print(f"Error updating team game data: {e}")
+
+    # # Uncomment this block if you want to update team rank data
+    # # try:
+    # #     update_team_ranks_data(db, team_rank_data_logger)
+    # #     print("UPDATED TEAM RANK DATA")
+    # # except Exception as e:
+    # #     print(f"Error updating team rank data: {e}")
 
     client.close()
 

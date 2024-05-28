@@ -309,15 +309,15 @@ def get_input_data_ready(team1_df, team2_df, team1_home_or_away, team2_home_or_a
 
     # Calculate the mean of the last 10 game stats for each team
     # Calculate mean performance metrics for each time frame (Currently 3-5-7-11 game)
-    team1_last_5_games_mean = team1_df.filter(regex='_team$').tail(3).mean()
-    team1_last_9_games_mean = team1_df.filter(regex='_team$').tail(5).mean()
-    team1_last_13_games_mean = team1_df.filter(regex='_team$').tail(7).mean()
-    team1_last_17_games_mean = team1_df.filter(regex='_team$').tail(11).mean()
+    team1_last_5_games_mean = team1_df.filter(regex='_team$').tail(5).mean()
+    team1_last_9_games_mean = team1_df.filter(regex='_team$').tail(9).mean()
+    team1_last_13_games_mean = team1_df.filter(regex='_team$').tail(13).mean()
+    team1_last_17_games_mean = team1_df.filter(regex='_team$').tail(17).mean()
 
-    team2_last_5_games_mean = team2_df.filter(regex='_team$').tail(3).mean()
-    team2_last_9_games_mean = team2_df.filter(regex='_team$').tail(5).mean()
-    team2_last_13_games_mean = team2_df.filter(regex='_team$').tail(7).mean()
-    team2_last_17_games_mean = team2_df.filter(regex='_team$').tail(11).mean()
+    team2_last_5_games_mean = team2_df.filter(regex='_team$').tail(5).mean()
+    team2_last_9_games_mean = team2_df.filter(regex='_team$').tail(9).mean()
+    team2_last_13_games_mean = team2_df.filter(regex='_team$').tail(13).mean()
+    team2_last_17_games_mean = team2_df.filter(regex='_team$').tail(17).mean()
 
     # Calculate weighted averages
     team1_weighted_mean_stats = (team1_last_5_games_mean * 0.4 +

@@ -163,6 +163,21 @@ import random
 #     return overall_organized_data
 
 
+#---- DB ----#
+def get_data_from_db(collection_name):
+    collection = db[collection_name]  # corrected the string formatting
+    data = collection.find()
+    data_list = list(data)  # Convert cursor to list for JSON serialization
+    return data_list
+  
+def insert_to_db(collection, data):
+    collection.delete_many({})
+    document = {
+        "data": data
+    }
+    collection.insert_one(document)  
+
+
 
 def fetch_daily_player_odds(collection):
     player_data = {}
@@ -219,14 +234,7 @@ def add_player_ids_and_stat_abrv(db, player_data):
                     player_data[player_name][category]['abbreviation'] = stat_abbreviations[category]
         else:
             print(f"Player ID not found for: {player_name}")
-                
-def get_data_from_db(collection_name):
-    collection = db[collection_name]  # corrected the string formatting
-    data = collection.find()
-    data_list = list(data)  # Convert cursor to list for JSON serialization
-    return data_list
-  
-  
+                   
 def getting_player_over_under_values(player_game_collection, player_id, stat_abbreviation, prop_value):
     # Filter player game data based on player ID
     player_game_data = [game for game in player_game_collection if game['player_id'] == player_id]
@@ -338,90 +346,86 @@ def getting_player_matchup_values(player_id, stat_abbreviation, prop_value, play
     
     return response_data
 
-def process_hardline_data(organized_data, player_game_collection):
-    # Mapping dictionary for abbreviation codes to full words
-    stat_abrv_mapping = {
-        'PTS': 'Points',
-        'AST': 'Assists',
-        'REB': 'Rebounds',
-        'BLK': 'Blocks',
-        'STL': 'Steals',
-        'FG3M': '3-Pointers'
-    }
+def get_consistency_score(combined_response, over_under):
+    allGamesCalc = 0.0
+    recent3GamesCalc = 0.0
+    recent7GamesCalc = 0.0
+    recent11GamesCalc = 0.0
+    matchupGamesCalc = 0.0
+    allGamesPercent = 0.25
+    recent11GamesPercent = 0.30
+    matchupGamesPercent = 0.15
+    recent3GamesPercent = 0.10
+    recent7GamesPercent = 0.20
     
-    # Initialize a list to store results for each player
-    results = []
-    
-    # Query player matchups from DB
-    player_matchup_collection = get_data_from_db('playersmatchuplog')
-    
-    # Iterate over each player and their categories
-    for player_name, categories in organized_data.items():
-        player_id = categories.get('player_id', None)
+    # Calculate consistency scores for "Over" case
+    if over_under == "Over":
+        allGamesOverCount = combined_response.get('over_count', 0)
+        total_games = combined_response.get('total_games', 1)  # Avoid division by zero
+        recent3GamesOverCount = combined_response.get('over_count_recent_3', 0)
+        recent7GamesOverCount = combined_response.get('over_count_recent_7', 0)
+        recent11GamesOverCount = combined_response.get('over_count_recent_11', 0)
+        num_games_matchups = combined_response.get('num_games_matchups', 0)
+        matchupGamesOverCount = combined_response.get('over_count_matchups', 0)
         
-        if player_id is None:
-            print(f"Warning: Missing player ID for {player_name}")
-            continue
+        allGamesCalc = allGamesOverCount / total_games
+        allGamesCalc *= allGamesPercent
         
-        # Iterate over each category (e.g., 'Points', 'Rebounds', etc.)
-        for category_name, category_data in categories.items():
-            if category_name == 'player_id':
-                continue  # Skip player_id
-            
-            # Get the stat abbreviation for the current category
-            stat_abrv = [k for k, v in stat_abrv_mapping.items() if v == category_name]
-            if not stat_abrv:
-                print(f"Warning: No stat abbreviation found for {category_name}")
-                continue
-            stat_abrv = stat_abrv[0]
-            
-            # Extract Hardline data
-            hardline_data = category_data.get('Hardline', {})
-            over_value = float(hardline_data.get('over_value', None))
-            under_value = float(hardline_data.get('under_value', None))
-            over_odds = hardline_data.get('over_odds', None)
-            under_odds = hardline_data.get('under_odds', None)
-            
-            # Check if all necessary information is available
-            if over_value is not None and under_value is not None:
-                final_player_result = {}
-                
-                # Call the function to get over/under values for the player and prop
-                player_result = getting_player_over_under_values(player_game_collection, player_id, stat_abrv, over_value)
-                player_matchup_result = getting_player_matchup_values(player_id, stat_abrv, over_value, player_matchup_collection)
-                
-                # Merge the two response dictionaries
-                combined_response = {**player_result, **player_matchup_result}
-                
-                consistency_score_over = get_consistency_score(combined_response, "Over")
-                consistency_score_under = get_consistency_score(combined_response, "Under")
-                
-                # Get the full word for the stat abbreviation
-                full_stat_name = stat_abrv_mapping.get(stat_abrv, stat_abrv)
-                
-                # Construct the final player result
-                final_player_result['player_name'] = player_name
-                final_player_result['stat'] = full_stat_name
-                final_player_result['Over'] = {
-                    'over_value': over_value,
-                    'over_odds': over_odds,
-                    'consistency_score_over': consistency_score_over
-                }
-                final_player_result['Under'] = {
-                    'under_value': under_value,
-                    'under_odds': under_odds,
-                    'consistency_score_under': consistency_score_under
-                }
-                
-                # Append the result to the list of results
-                results.append(final_player_result)
-            else:
-                # Print a warning if any necessary information is missing
-                print(f"Warning: Missing Hardline data for {player_name} in {category_name} category")
+        recent3GamesCalc = recent3GamesOverCount / 3
+        recent3GamesCalc *= recent3GamesPercent
+        
+        recent7GamesCalc = recent7GamesOverCount / 7
+        recent7GamesCalc *= recent7GamesPercent
+        
+        recent11GamesCalc = recent11GamesOverCount / 11
+        recent11GamesCalc *= recent11GamesPercent
+        
+        if num_games_matchups == 0:
+            matchupGamesCalc = recent3GamesOverCount / 3
+            matchupGamesCalc *= matchupGamesPercent
+        else:
+            matchupGamesCalc = matchupGamesOverCount / num_games_matchups
+            matchupGamesCalc *= matchupGamesPercent
     
-    return results
+    # Calculate consistency scores for "Under" case
+    elif over_under == "Under":
+        allGamesUnderCount = combined_response.get('under_count', 0)
+        total_games = combined_response.get('total_games', 1)  # Avoid division by zero
+        recent3GamesUnderCount = combined_response.get('under_count_recent_3', 0)
+        recent7GamesUnderCount = combined_response.get('under_count_recent_7', 0)
+        recent11GamesUnderCount = combined_response.get('under_count_recent_11', 0)
+        num_games_matchups = combined_response.get('num_games_matchups', 0)
+        matchupGamesUnderCount = combined_response.get('under_count_matchups', 0)
+        
+        allGamesCalc = allGamesUnderCount / total_games
+        allGamesCalc *= allGamesPercent
+        
+        recent3GamesCalc = recent3GamesUnderCount / 3
+        recent3GamesCalc *= recent3GamesPercent
+        
+        recent7GamesCalc = recent7GamesUnderCount / 7
+        recent7GamesCalc *= recent7GamesPercent
+        
+        recent11GamesCalc = recent11GamesUnderCount / 11
+        recent11GamesCalc *= recent11GamesPercent
+        
+        if num_games_matchups == 0:
+            matchupGamesCalc = recent3GamesUnderCount / 3
+            matchupGamesCalc *= matchupGamesPercent
+        else:
+            matchupGamesCalc = matchupGamesUnderCount / num_games_matchups
+            matchupGamesCalc *= matchupGamesPercent
+    
+    tallyUpCalc = allGamesCalc + recent11GamesCalc + matchupGamesCalc + recent3GamesCalc + recent7GamesCalc
+    
+    tallyUpCalc *= 10
+    
+    tallyUpCalc = round(tallyUpCalc , 2)
+    
+    return tallyUpCalc
 
 
+#---- PARSING LINES ----#
 def process_daily_player_odds(dailyplayerodds):
     # Mapping dictionary for abbreviation codes to full words
     stat_abrv_mapping = {
@@ -588,10 +592,8 @@ def process_altline_data(player_name, player_id, category_name, stat_abrv, data,
         else:
             print(f"Warning: Missing data for {player_name} in {category_name} Altline category")
 
-def convert_odds_to_int(odds):
-    if isinstance(odds, str):
-        return int(odds.replace('−', '-').replace('+', ''))
-    return int(odds)
+
+
 
 def get_top_consistent_scores(results, top_n=50):
     # List to store all scores with necessary information
@@ -653,7 +655,6 @@ def get_top_consistent_scores(results, top_n=50):
 
     return top_scores
 
-
 def get_top_consistent_jackpot_scores(results, top_n=50):
     # List to store all scores with necessary information
     all_scores = []
@@ -713,87 +714,31 @@ def get_top_consistent_jackpot_scores(results, top_n=50):
     top_scores = all_scores[:top_n]
 
     return top_scores
-# Calculates the consistency score
-def get_consistency_score(combined_response, over_under):
-    allGamesCalc = 0.0
-    recent3GamesCalc = 0.0
-    recent7GamesCalc = 0.0
-    recent11GamesCalc = 0.0
-    matchupGamesCalc = 0.0
-    allGamesPercent = 0.25
-    recent11GamesPercent = 0.30
-    matchupGamesPercent = 0.15
-    recent3GamesPercent = 0.10
-    recent7GamesPercent = 0.20
-    
-    # Calculate consistency scores for "Over" case
-    if over_under == "Over":
-        allGamesOverCount = combined_response.get('over_count', 0)
-        total_games = combined_response.get('total_games', 1)  # Avoid division by zero
-        recent3GamesOverCount = combined_response.get('over_count_recent_3', 0)
-        recent7GamesOverCount = combined_response.get('over_count_recent_7', 0)
-        recent11GamesOverCount = combined_response.get('over_count_recent_11', 0)
-        num_games_matchups = combined_response.get('num_games_matchups', 0)
-        matchupGamesOverCount = combined_response.get('over_count_matchups', 0)
-        
-        allGamesCalc = allGamesOverCount / total_games
-        allGamesCalc *= allGamesPercent
-        
-        recent3GamesCalc = recent3GamesOverCount / 3
-        recent3GamesCalc *= recent3GamesPercent
-        
-        recent7GamesCalc = recent7GamesOverCount / 7
-        recent7GamesCalc *= recent7GamesPercent
-        
-        recent11GamesCalc = recent11GamesOverCount / 11
-        recent11GamesCalc *= recent11GamesPercent
-        
-        if num_games_matchups == 0:
-            matchupGamesCalc = recent3GamesOverCount / 3
-            matchupGamesCalc *= matchupGamesPercent
-        else:
-            matchupGamesCalc = matchupGamesOverCount / num_games_matchups
-            matchupGamesCalc *= matchupGamesPercent
-    
-    # Calculate consistency scores for "Under" case
-    elif over_under == "Under":
-        allGamesUnderCount = combined_response.get('under_count', 0)
-        total_games = combined_response.get('total_games', 1)  # Avoid division by zero
-        recent3GamesUnderCount = combined_response.get('under_count_recent_3', 0)
-        recent7GamesUnderCount = combined_response.get('under_count_recent_7', 0)
-        recent11GamesUnderCount = combined_response.get('under_count_recent_11', 0)
-        num_games_matchups = combined_response.get('num_games_matchups', 0)
-        matchupGamesUnderCount = combined_response.get('under_count_matchups', 0)
-        
-        allGamesCalc = allGamesUnderCount / total_games
-        allGamesCalc *= allGamesPercent
-        
-        recent3GamesCalc = recent3GamesUnderCount / 3
-        recent3GamesCalc *= recent3GamesPercent
-        
-        recent7GamesCalc = recent7GamesUnderCount / 7
-        recent7GamesCalc *= recent7GamesPercent
-        
-        recent11GamesCalc = recent11GamesUnderCount / 11
-        recent11GamesCalc *= recent11GamesPercent
-        
-        if num_games_matchups == 0:
-            matchupGamesCalc = recent3GamesUnderCount / 3
-            matchupGamesCalc *= matchupGamesPercent
-        else:
-            matchupGamesCalc = matchupGamesUnderCount / num_games_matchups
-            matchupGamesCalc *= matchupGamesPercent
-    
-    tallyUpCalc = allGamesCalc + recent11GamesCalc + matchupGamesCalc + recent3GamesCalc + recent7GamesCalc
-    
-    tallyUpCalc *= 10
-    
-    tallyUpCalc = round(tallyUpCalc , 2)
-    
-    return tallyUpCalc
 
-def get_top_consistent_players(results):
-    # Initialize dictionaries to store the top scores for each category
+def get_hardline9(results):
+    filtered_data = []
+    for item in results:
+        if 'category' in item and item['category'] == 'Hardline':
+            over_data = {
+                'player_name': item['player_name'],
+                'stat': item['stat'],
+                'bet_type': 'Over',
+                'value': item['Over']['over_value'],
+                'odds': item['Over']['over_odds'],
+                'consistency_score': item['Over']['consistency_score_over']
+            }
+            under_data = {
+                'player_name': item['player_name'],
+                'stat': item['stat'],
+                'bet_type': 'Under',
+                'value': item['Under']['under_value'],
+                'odds': item['Under']['under_odds'],
+                'consistency_score': item['Under']['consistency_score_under']
+            }
+            filtered_data.append(over_data)
+            filtered_data.append(under_data)
+            
+    # Initialize dictionaries to store top consistency scores
     top_scores = {
         'Points': [],
         'Rebounds': [],
@@ -803,50 +748,29 @@ def get_top_consistent_players(results):
         'Steals': []
     }
 
-    # Iterate over each player's result
-    for player_result in results:
-        player_name = player_result['player_name']
-        stat = player_result['stat']
-
-        # Check if the stat is in the categories of interest
+    # Iterate over filtered_data to populate top_scores
+    for entry in filtered_data:
+        stat = entry['stat']
         if stat in top_scores:
-            # Iterate over 'Over' and 'Under' to find the highest consistency scores with price >= -400
-            for bet_type in ['Over', 'Under']:
-                consistency_score_key = 'consistency_score_' + bet_type.lower()
-                price_key = bet_type.lower() + '_odds'
-                
-                consistency_score = player_result[bet_type][consistency_score_key]
-                price = player_result[bet_type][price_key]
-                prop_value = player_result[bet_type][bet_type.lower() + '_value']
+            top_scores[stat].append(entry)
 
-                # Convert price to an integer for comparison
-                price_int = int(price.replace('−', '-'))
+    # Function to get top N consistency scores
+    def get_top_n_scores(stat_list, n):
+        return sorted(stat_list, key=lambda x: x['consistency_score'], reverse=True)[:n]
 
-                # Check if the price is greater than or equal to -400
-                if price_int >= -400:
-                    # Append the relevant data to the appropriate category
-                    top_scores[stat].append({
-                        'player_name': player_name,
-                        'stat': stat,
-                        'prop_value': prop_value,
-                        'bet_type': bet_type,
-                        'consistency_score': consistency_score,
-                        'odds': price
-                    })
-
-    # Sort each category based on consistency score in descending order
-    for stat, scores in top_scores.items():
-        scores.sort(key=lambda x: x['consistency_score'], reverse=True)
-
-    # Get the top scores for each category
-    top_9_players = []
-    for stat in ['Points', 'Rebounds', '3-Pointers', 'Assists', 'Blocks', 'Steals']:
-        top_9_players.extend(top_scores[stat][:2] if stat in ['Points', 'Rebounds', '3-Pointers'] else top_scores[stat][:1])
-    
-
-    return top_9_players
+    # Get top 2 scores for Points, Rebounds, 3 Pointers and top 1 for Assists, Blocks, Steals
+    result = []
+    for stat in top_scores:
+        if stat in ['Points', 'Rebounds', '3-Pointers']:
+            result.extend(get_top_n_scores(top_scores[stat], 2))
+        elif stat in ['Assists', 'Blocks', 'Steals']:
+            result.extend(get_top_n_scores(top_scores[stat], 1))
+            
+    return result
 
 
+
+#---- PARLAY GENERATION ----#
 # Converts American odds to decimal odds
 def convert_odds_to_decimal(odds):
     odds = int(odds.replace('−', '-').replace('+', ''))
@@ -854,6 +778,11 @@ def convert_odds_to_decimal(odds):
         return (odds / 100) + 1
     else:
         return (100 / abs(odds)) + 1
+
+def convert_odds_to_int(odds):
+    if isinstance(odds, str):
+        return int(odds.replace('−', '-').replace('+', ''))
+    return int(odds)
 
 # Calculates the combined decimal odds for a parlay
 def calculate_combined_odds(parlay):
@@ -1013,7 +942,6 @@ def create_more_parlays(top_scores):
 
     return parlays
 
-
 # Get the top 4 consistent scores and create a valid parlay
 def get_golden_goose_parlay(top_scores):
     # Define the priority of stats
@@ -1047,14 +975,9 @@ def get_golden_goose_parlay(top_scores):
     return None
 
 
-def insert_to_db(collection, data):
-    collection.delete_many({})
-    document = {
-        "data": data
-    }
-    collection.insert_one(document)
 
-# Function to replace Unicode minus sign with ASCII hyphen
+
+# Replace Unicode minus sign with ASCII hyphen
 def fix_odds(data):
     for item in data:
         item['odds'] = item['odds'].replace('−', '-')
@@ -1090,66 +1013,34 @@ lesslegs_collection = db['lesslegs']
 morelegs_collection = db['morelegs']
 goldengoose_collection = db['goldengoose']
 
-
 daily_player_odds = fetch_daily_player_odds(collection)
 add_player_ids_and_stat_abrv(db, daily_player_odds)
 
-player_game_collection = get_data_from_db('playersgamelog')
-
-hardline_results = process_hardline_data(daily_player_odds, player_game_collection)
-top_9_scores = get_top_consistent_players(hardline_results)
-
-top_9_scores = fix_odds(top_9_scores)
-
-insert_to_db(hardline9_collection, top_9_scores)
-
-print(top_9_scores)
-
-# # Query player games from DB
+# Query player games from DB
 results = process_daily_player_odds(daily_player_odds)
 
+# Hardline 9
+hardline_results = get_hardline9(results)
+top_9_scores = fix_odds(hardline_results)
+insert_to_db(hardline9_collection, top_9_scores)
 
 top_50_consistent_scores = get_top_consistent_scores(results, top_n=50)
 
 for idx, leg in enumerate(top_50_consistent_scores):
     leg['id'] = idx
 
+# Less legs 
 less_legs_parlays = create_parlays(top_50_consistent_scores)
 less_legs_parlays = fix_unicode_minus(less_legs_parlays)
 insert_to_db(lesslegs_collection, less_legs_parlays)
-for parlay in less_legs_parlays:
-    print(parlay)
-    print(f"Parlay Odds: {parlay['odds']}, Implied Probability: {parlay['implied_probability']:.2%}")
-    for leg in parlay['parlay']:
-        print(leg)
 
-
+# More Legs
 more_legs_parlays = create_more_parlays(top_50_consistent_scores)
 more_legs_parlays = fix_unicode_minus(more_legs_parlays)
 insert_to_db(morelegs_collection, more_legs_parlays)
-for parlay in more_legs_parlays:
-    print(f"Parlay Odds: {parlay['odds']}, Implied Probability: {parlay['implied_probability']:.2%}")
-    for leg in parlay['parlay']:
-        print(leg)
 
 top_50_jackpot_scores = get_top_consistent_jackpot_scores(results, top_n=50)
 
+# Golden Goose
 top_4_parlay = get_golden_goose_parlay(top_50_jackpot_scores)
 insert_to_db(goldengoose_collection, top_4_parlay)
-
-if top_4_parlay:
-    print(f"Parlay Odds: {top_4_parlay['odds']}, Implied Probability: {top_4_parlay['implied_probability']:.2%}")
-    for leg in top_4_parlay['parlay']:
-        print(leg)
-else:
-    print("No valid parlay found with 4 legs.")
-
-
-# collection = db["hardlinedailyprops"]
-# # Clear existing data from the collection
-# collection.delete_many({})
-# # Insert the new data into the collection
-# collection.insert_many(top_9_scores)
-
-
-                
