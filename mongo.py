@@ -1144,11 +1144,11 @@ try:
     
     # get_live_scoreboard()
     
-    try:
-        check_yesterdays_parlays(db)
-        print("GOT TODAYS MATCHUPS")
-    except Exception as e:
-        print(f"Error updating team rosters: {e}")
+    # try:
+    #     check_yesterdays_parlays(db)
+    #     print("GOT TODAYS MATCHUPS")
+    # except Exception as e:
+    #     print(f"Error updating team rosters: {e}")
 
     # try:
     #     scrapeForRosters(db, scraping_roster_logger)
@@ -1204,6 +1204,14 @@ try:
     # #     print("UPDATED TEAM RANK DATA")
     # # except Exception as e:
     # #     print(f"Error updating team rank data: {e}")
+    
+    today_date = datetime.now()
+    collection = db["arbitrage"]
+    collection.delete_many({})
+    document = {
+        "timestamp": today_date
+    }
+    collection.insert_one(document)  
 
     client.close()
 

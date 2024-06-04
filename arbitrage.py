@@ -1,142 +1,261 @@
 import requests
 from datetime import datetime, timezone
 
-# An API key is emailed to you when you sign up for a plan
-API_KEY = '41427f459bc4c67745a3bc720220292d'
+API_KEY = 'df3dbd3a796505a6f11173c2d787a6ca'
 
-SPORT = 'upcoming'  # Use the sport_key from the /sports endpoint below, or use 'upcoming' to see the next 8 games across all sports
-REGIONS = 'us,uk,eu,au'  # uk | us | eu | au. Multiple can be specified if comma delimited
-MARKETS = 'h2h,spreads,totals'  # h2h | spreads | totals. Multiple can be specified if comma delimited
-ODDS_FORMAT = 'decimal'  # decimal | american
-DATE_FORMAT = 'iso'  # iso | unix
+REGIONS = 'us,uk,eu,au'
+MARKETS = 'h2h,spreads,totals'
+ALTERNATE_MARKETS = 'alternate_spreads,alternate_totals'
+ODDS_FORMAT = 'decimal'
+DATE_FORMAT = 'iso'
 
 DESIRED_BOOKMAKERS = [
     'betonlineag', 'bovada', 'draftkings', 'fanduel', 
-    'betmgm', 'mybookieag', 'betus', 'espnbet'
+    'betmgm', 'mybookieag', 'betus', 'espnbet', 'betparx', 'hardrockbet',
+    'betrivers', 'pointsbetus'
 ]
 
-# Get a list of in-season sports
-sports_response = requests.get(
-    'https://api.the-odds-api.com/v4/sports',
-    params={
-        'api_key': API_KEY
-    }
-)
+def get_in_season_sports():
+    try:
+        sports_response = requests.get(
+            'https://api.the-odds-api.com/v4/sports/',
+            params={
+                'apiKey': API_KEY
+            }
+        )
 
-if sports_response.status_code != 200:
-    print(f'Failed to get sports: status_code {sports_response.status_code}, response body {sports_response.text}')
-else:
-    print('List of in-season sports:', sports_response.json())
+        sports_response.raise_for_status()  # Raise an HTTPError for bad responses
 
-# Get a list of live & upcoming games for the sport you want, along with odds for different bookmakers
-odds_response = requests.get(
-    f'https://api.the-odds-api.com/v4/sports/{SPORT}/odds',
-    params={
-        'api_key': API_KEY,
-        'regions': REGIONS,
-        'markets': MARKETS,
-        'oddsFormat': ODDS_FORMAT,
-        'dateFormat': DATE_FORMAT,
-    }
-)
+        sports_json = sports_response.json()
+        sports = [
+            sport['key'] for sport in sports_json
+            if 'football' not in sport['key'] and not sport['key'].endswith('_winner')
+        ]
+        return sports
 
-if odds_response.status_code != 200:
-    print(f'Failed to get odds: status_code {odds_response.status_code}, response body {odds_response.text}')
-else:
-    odds_json = odds_response.json()
-    print('Number of events:', len(odds_json))
+    except Exception as e:
+        print(f'An error occurred: {e}')
+        return None
 
-    # Function to find arbitrage opportunities
-    def find_arbitrage_opportunity(odds_dict):
-        outcomes = list(odds_dict.keys())
-        if len(outcomes) < 2:
-            return False, 0, [], []
+def fetch_alternate_markets(event_id, sport):
+    try:
+        odds_response = requests.get(
+            f'https://api.the-odds-api.com/v4/sports/{sport}/events/{event_id}/odds',
+            params={
+                'api_key': API_KEY,
+                'regions': REGIONS,
+                'markets': ALTERNATE_MARKETS,
+                'oddsFormat': ODDS_FORMAT,
+                'dateFormat': DATE_FORMAT,
+            }
+        )
 
-        implied_probabilities = []
-        for outcome in outcomes:
-            best_odds = max(odds_dict[outcome], key=lambda x: x[1])
-            implied_probabilities.append(1 / best_odds[1])
+        if odds_response.status_code != 200:
+            print(f'Failed to get alternate odds for event {event_id}: status_code {odds_response.status_code}, response body {odds_response.text}')
+            return None
 
-        total_implied_probability = sum(implied_probabilities)
+        return odds_response.json()
 
-        if total_implied_probability < 1:
-            stakes = [(total_investment * implied_prob) / total_implied_probability for implied_prob in implied_probabilities]
-            profit_margin = 1 - total_implied_probability
-            return True, profit_margin, outcomes, stakes
-        else:
-            return False, 0, [], []
+    except Exception as e:
+        print(f'An error occurred while fetching alternate markets for event {event_id}: {e}')
+        return None
 
-    arbitrage_opportunities = []
-    total_investment = 100  # You can change the total investment amount
-
-    current_time = datetime.now(timezone.utc)
-
-    # Iterate through events and bookmakers to find arbitrage opportunities
-    for event in odds_json:
-        commence_time = datetime.fromisoformat(event['commence_time'].replace('Z', '+00:00'))
-        if commence_time < current_time:
-            continue
-
-        sport_title = event.get('sport_title', 'Unknown Sport')
-        event_name = f"{event['home_team']} vs {event['away_team']}"
-
-        for market_type in ['h2h', 'totals', 'spreads']:
-            odds_dict = {}
-            for bookmaker in event['bookmakers']:
-                if bookmaker['key'] not in DESIRED_BOOKMAKERS:
-                    continue
-                for market in bookmaker['markets']:
-                    if market['key'] == market_type:
-                        for outcome in market['outcomes']:
-                            outcome_name = outcome['name']
-                            odds_price = outcome['price']
-                            points = outcome.get('point', None)  # Get points if available
-                            if outcome_name not in odds_dict:
-                                odds_dict[outcome_name] = []
-                            odds_dict[outcome_name].append((bookmaker['title'], odds_price, points))
-
-            is_arbitrage, profit_margin, outcomes, stakes = find_arbitrage_opportunity(odds_dict)
-            if is_arbitrage:
-                opportunity = {
-                    'sport': sport_title,
-                    'event_name': event_name,
-                    'market_type': market_type,
-                    'profit_margin': profit_margin,
-                    'details': []
+def fetch_odds_for_sports(sports):
+    all_events = []
+    for sport in sports:
+        try:
+            odds_response = requests.get(
+                f'https://api.the-odds-api.com/v4/sports/{sport}/odds',
+                params={
+                    'api_key': API_KEY,
+                    'regions': REGIONS,
+                    'markets': MARKETS,
+                    'oddsFormat': ODDS_FORMAT,
+                    'dateFormat': DATE_FORMAT,
                 }
-                for i, outcome in enumerate(outcomes):
-                    best_odds = max(odds_dict[outcome], key=lambda x: x[1])
-                    return_value = stakes[i] * best_odds[1]
-                    profit = return_value - total_investment
-                    opportunity['details'].append({
-                        'bookmaker': best_odds[0],
-                        'outcome': outcome,
-                        'odds': best_odds[1],
-                        'stake': stakes[i],
-                        'profit': profit,
-                        'points': best_odds[2]  # Include points if available
-                    })
-                arbitrage_opportunities.append(opportunity)
+            )
 
-    # Sort the arbitrage opportunities by profit margin in descending order
-    arbitrage_opportunities.sort(key=lambda x: x['profit_margin'], reverse=True)
+            if odds_response.status_code != 200:
+                print(f'Failed to get odds for {sport}: status_code {odds_response.status_code}, response body {odds_response.text}')
+                continue
 
-    # Print the top 5 arbitrage opportunities
-    top_arbitrages = arbitrage_opportunities[:5]
+            odds_json = odds_response.json()
+            for event in odds_json:
+                event_id = event['id']
+                sport_key = event['sport_key']
+                home_team = event['home_team']
+                away_team = event['away_team']
+                commence_time = datetime.fromisoformat(event['commence_time'][:-1]).replace(tzinfo=timezone.utc)
 
-    for opportunity in top_arbitrages:
-        print(f"\nArbitrage opportunity found for event {opportunity['event_name']} in market {opportunity['market_type']} ({opportunity['sport']})!")
-        print(f"Profit margin: {opportunity['profit_margin']*100:.2f}%")
-        for detail in opportunity['details']:
-            print(f"Bookmaker: {detail['bookmaker']}")
-            if detail['points'] is not None:
-                print(f"{detail['outcome']} at {detail['points']}: {detail['odds']}, Stake: {detail['stake']:.2f}, Profit if {detail['outcome']} wins: {detail['profit']:.2f}")
+                # Filter out events that have already commenced
+                if commence_time < datetime.now(timezone.utc):
+                    continue
+
+                event_data = {
+                    'event_id': event_id,
+                    'sport_key': sport_key,
+                    'home_team': home_team,
+                    'away_team': away_team,
+                    'odds': {}
+                }
+
+                for bookmaker in event['bookmakers']:
+                    if bookmaker['key'] in DESIRED_BOOKMAKERS:
+                        event_data['odds'][bookmaker['title']] = bookmaker['markets']
+
+                # Fetch alternate markets
+                # alternate_markets = fetch_alternate_markets(event_id, sport)
+                # if alternate_markets:
+                #     for bookmaker in alternate_markets['bookmakers']:
+                #         if bookmaker['key'] in DESIRED_BOOKMAKERS:
+                #             if bookmaker['title'] in event_data['odds']:
+                #                 event_data['odds'][bookmaker['title']].extend(bookmaker['markets'])
+                #             else:
+                #                 event_data['odds'][bookmaker['title']] = bookmaker['markets']
+
+                all_events.append(event_data)
+
+        except Exception as e:
+            print(f'An error occurred while processing sport {sport}: {e}')
+
+    return all_events, odds_response.headers.get('x-requests-remaining', 'N/A'), odds_response.headers.get('x-requests-used', 'N/A')
+
+def find_arbitrage_opportunities(events):
+    arbitrage_opportunities = []
+
+    for event in events:
+        best_odds = {'home': None, 'away': None, 'draw': None}
+        best_bookmakers = {'home': '', 'away': '', 'draw': ''}
+
+        for bookmaker, markets in event['odds'].items():
+            for market in markets:
+                if market['key'] == 'h2h':
+                    for outcome in market['outcomes']:
+                        if outcome['name'] == event['home_team']:
+                            if best_odds['home'] is None or outcome['price'] > best_odds['home']:
+                                best_odds['home'] = outcome['price']
+                                best_bookmakers['home'] = bookmaker
+                        elif outcome['name'] == event['away_team']:
+                            if best_odds['away'] is None or outcome['price'] > best_odds['away']:
+                                best_odds['away'] = outcome['price']
+                                best_bookmakers['away'] = bookmaker
+                        elif outcome['name'].lower() == 'draw':
+                            if best_odds['draw'] is None or outcome['price'] > best_odds['draw']:
+                                best_odds['draw'] = outcome['price']
+                                best_bookmakers['draw'] = bookmaker
+
+        if best_odds['home'] is not None and best_odds['away'] is not None:
+            if best_odds['draw'] is not None:
+                sum_inverses = (1 / best_odds['home']) + (1 / best_odds['away']) + (1 / best_odds['draw'])
             else:
-                print(f"{detail['outcome']}: {detail['odds']}, Stake: {detail['stake']:.2f}, Profit if {detail['outcome']} wins: {detail['profit']:.2f}")
+                sum_inverses = (1 / best_odds['home']) + (1 / best_odds['away'])
 
-    if not top_arbitrages:
-        print("\nNo arbitrage opportunities found.")
+            if sum_inverses < 1:
+                # Calculate stakes
+                total_stake = 10000
+                home_stake = total_stake / best_odds['home'] / sum_inverses
+                away_stake = total_stake / best_odds['away'] / sum_inverses
+                if best_odds['draw'] is not None:
+                    draw_stake = total_stake / best_odds['draw'] / sum_inverses
+                    profit = total_stake * (1 - sum_inverses)
+                    arbitrage_opportunities.append({
+                        'event_id': event['event_id'],
+                        'sport_key': event['sport_key'],
+                        'home_team': event['home_team'],
+                        'away_team': event['away_team'],
+                        'best_odds': best_odds,
+                        'best_bookmakers': best_bookmakers,
+                        'sum_inverses': sum_inverses,
+                        'home_stake': home_stake,
+                        'away_stake': away_stake,
+                        'draw_stake': draw_stake,
+                        'profit': profit
+                    })
+                else:
+                    profit = total_stake * (1 - sum_inverses)
+                    arbitrage_opportunities.append({
+                        'event_id': event['event_id'],
+                        'sport_key': event['sport_key'],
+                        'home_team': event['home_team'],
+                        'away_team': event['away_team'],
+                        'best_odds': best_odds,
+                        'best_bookmakers': best_bookmakers,
+                        'sum_inverses': sum_inverses,
+                        'home_stake': home_stake,
+                        'away_stake': away_stake,
+                        'profit': profit
+                    })
 
-    # Check the usage quota
-    print('Remaining requests', odds_response.headers['x-requests-remaining'])
-    print('Used requests', odds_response.headers['x-requests-used'])
+        # # Check for arbitrage in spreads and totals, including alternate markets
+        # for market_key in ['spreads', 'totals', 'alternate_spreads', 'alternate_totals']:
+        #     market_odds = {}
+        #     for bookmaker, markets in event['odds'].items():
+        #         for market in markets:
+        #             if market['key'] == market_key:
+        #                 for outcome in market['outcomes']:
+        #                     point = outcome.get('point', None)
+        #                     if point is not None:
+        #                         if point not in market_odds:
+        #                             market_odds[point] = {'over': None, 'under': None}
+        #                         if outcome['name'].lower() == 'over':
+        #                             if market_odds[point]['over'] is None or outcome['price'] > market_odds[point]['over']:
+        #                                 market_odds[point]['over'] = outcome['price']
+        #                         elif outcome['name'].lower() == 'under':
+        #                             if market_odds[point]['under'] is None or outcome['price'] > market_odds[point]['under']:
+        #                                 market_odds[point]['under'] = outcome['price']
+
+        #     for point, odds in market_odds.items():
+        #         if odds['over'] is not None and odds['under'] is not None:
+        #             sum_inverses = (1 / odds['over']) + (1 / odds['under'])
+        #             if sum_inverses < 1:
+        #                 # Calculate stakes
+        #                 total_stake = 10000
+        #                 over_stake = total_stake / odds['over'] / sum_inverses
+        #                 under_stake = total_stake / odds['under'] / sum_inverses
+        #                 profit = total_stake * (1 - sum_inverses)
+        #                 arbitrage_opportunities.append({
+        #                     'event_id': event['event_id'],
+        #                     'sport_key': event['sport_key'],
+        #                     'home_team': event['home_team'],
+        #                     'away_team': event['away_team'],
+        #                     'market': market_key,
+        #                     'point': point,
+        #                     'best_odds': odds,
+        #                     'sum_inverses': sum_inverses,
+        #                     'over_stake': over_stake,
+        #                     'under_stake': under_stake,
+        #                     'profit': profit
+        #                 })
+
+    # Sort by profit in descending order and take the top 5
+    arbitrage_opportunities = sorted(arbitrage_opportunities, key=lambda x: x['profit'], reverse=True)[:5]
+
+    return arbitrage_opportunities
+
+def print_arbitrage_opportunities(arbitrage_opportunities):
+    for arb in arbitrage_opportunities:
+        print(f"Arbitrage Opportunity in Event ID: {arb['event_id']}")
+        print(f"Sport: {arb['sport_key']}")
+        print(f"Home Team: {arb['home_team']}, Best Odds: {arb['best_odds']['home']} (Bookmaker: {arb['best_bookmakers']['home']})")
+        print(f"Away Team: {arb['away_team']}, Best Odds: {arb['best_odds']['away']} (Bookmaker: {arb['best_bookmakers']['away']})")
+        if arb['best_odds']['draw'] is not None:
+            print(f"Draw, Best Odds: {arb['best_odds']['draw']} (Bookmaker: {arb['best_bookmakers']['draw']})")
+            print(f"Bet on Draw: ${arb['draw_stake']:.2f}")
+        print(f"Sum of Inverses: {arb['sum_inverses']:.6f}")
+        print(f"Bet on Home Team: ${arb['home_stake']:.2f}")
+        print(f"Bet on Away Team: ${arb['away_stake']:.2f}")
+        print(f"Guaranteed Profit: ${arb['profit']:.2f}")
+        print("\n")
+
+in_season_sports = get_in_season_sports()
+
+if in_season_sports:
+    print(f"In-season sports: {in_season_sports}")
+    filtered_events, remaining_rq, used_rq = fetch_odds_for_sports(in_season_sports)
+    print("remaining:", remaining_rq)
+    print("used:", used_rq)
+
+    arbitrage_opportunities = find_arbitrage_opportunities(filtered_events)
+    print_arbitrage_opportunities(arbitrage_opportunities)
+else:
+    print("Failed to retrieve in-season sports.")

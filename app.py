@@ -584,6 +584,8 @@ def nba_get_moneylines():
         error_message = {'error': str(e)}
         return jsonify(error_message), 500
 
+
+
 @app.route('/hardline9', methods=['GET'])
 def get_hardline9():
     hardline9 = get_data_from_db_general('hardline9')
@@ -603,7 +605,21 @@ def get_more_legs():
 def get_golden_goose():
     golden_goose  = get_data_from_db_general('goldengoose')
     return jsonify(golden_goose)
-   
+
+
+
+#-------- ARBITRAGE ----------
+@app.route('/arbitrage', methods=['GET'])
+def get_arbitrage():
+    arbitrage = get_data_from_db_general('arbitrage')
+    return jsonify(arbitrage)
+
+@app.route('/update-timestamp', methods=['POST'])
+def update_timestamp():
+    # Update the timestamp to the current time
+    new_timestamp = datetime.now()
+    db.arbitrage.update_one({}, {'$set': {'timestamp': new_timestamp}})
+    return jsonify({'success': True})  
     
 def get_data_from_collection(collection_name):
     collection = db[collection_name]
@@ -639,7 +655,7 @@ def sanitize_string(value):
 load_dotenv()
 
 # Retrieve the MongoDB Atlas URI from the environment
-uri = os.getenv("MONGODB_URI_ENDUSER")
+uri = os.getenv("MONGODB_URI_END") # currently changed from end user for post of timestamp
 
 # Create a MongoClient instance
 client = MongoClient(uri, tlsCAFile=certifi.where())
