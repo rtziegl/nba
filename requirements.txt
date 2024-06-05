@@ -1,8 +1,10 @@
 appdirs==1.4.4
+APScheduler==3.10.4
 bcrypt==4.1.2
 beautifulsoup4==4.12.3
 blinker==1.7.0
 bs4==0.0.2
+cachelib==0.13.0
 certifi==2023.11.17
 cffi==1.16.0
 charset-normalizer==3.3.2
@@ -17,6 +19,7 @@ fake-useragent==1.5.1
 Flask==3.0.2
 Flask-Cors==4.0.0
 Flask-Mail==0.9.1
+Flask-Session==0.8.0
 fonttools==4.50.0
 gunicorn==21.2.0
 idna==3.6
@@ -32,6 +35,7 @@ lxml==5.2.2
 lxml_html_clean==0.1.1
 MarkupSafe==2.1.5
 matplotlib==3.8.3
+msgspec==0.18.6
 nba_api==1.4.1
 numpy==1.26.4
 packaging==23.2
@@ -68,6 +72,7 @@ threadpoolctl==3.3.0
 tqdm==4.66.4
 typing_extensions==4.10.0
 tzdata==2024.1
+tzlocal==5.2
 urllib3==1.26.18
 w3lib==2.1.2
 websockets==10.4
