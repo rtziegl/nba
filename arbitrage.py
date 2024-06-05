@@ -12,7 +12,7 @@ DATE_FORMAT = 'iso'
 DESIRED_BOOKMAKERS = [
     'betonlineag', 'bovada', 'draftkings', 'fanduel', 
     'betmgm', 'mybookieag', 'betus', 'espnbet', 'betparx', 'hardrockbet',
-    'betrivers', 'pointsbetus'
+    'betrivers', 'pointsbetus', 'pinnacle'
 ]
 
 def get_in_season_sports():
@@ -186,46 +186,54 @@ def find_arbitrage_opportunities(events):
                         'profit': profit
                     })
 
-        # # Check for arbitrage in spreads and totals, including alternate markets
-        # for market_key in ['spreads', 'totals', 'alternate_spreads', 'alternate_totals']:
-        #     market_odds = {}
-        #     for bookmaker, markets in event['odds'].items():
-        #         for market in markets:
-        #             if market['key'] == market_key:
-        #                 for outcome in market['outcomes']:
-        #                     point = outcome.get('point', None)
-        #                     if point is not None:
-        #                         if point not in market_odds:
-        #                             market_odds[point] = {'over': None, 'under': None}
-        #                         if outcome['name'].lower() == 'over':
-        #                             if market_odds[point]['over'] is None or outcome['price'] > market_odds[point]['over']:
-        #                                 market_odds[point]['over'] = outcome['price']
-        #                         elif outcome['name'].lower() == 'under':
-        #                             if market_odds[point]['under'] is None or outcome['price'] > market_odds[point]['under']:
-        #                                 market_odds[point]['under'] = outcome['price']
+        # Check for arbitrage in spreads and totals, including alternate markets
+        for market_key in ['spreads', 'totals']:
+            market_odds = {}
+            for bookmaker, markets in event['odds'].items():
+                for market in markets:
+                    if market['key'] == market_key:
+                        for outcome in market['outcomes']:
+                            point = outcome.get('point', None)
+                            if point is not None:
+                                if point not in market_odds:
+                                    market_odds[point] = {'over': None, 'under': None}
+                                if outcome['name'].lower() == 'over':
+                                    if market_odds[point]['over'] is None or outcome['price'] > market_odds[point]['over']:
+                                        market_odds[point]['over'] = outcome['price']
+                                elif outcome['name'].lower() == 'under':
+                                    if market_odds[point]['under'] is None or outcome['price'] > market_odds[point]['under']:
+                                        market_odds[point]['under'] = outcome['price']
+                                      
 
-        #     for point, odds in market_odds.items():
-        #         if odds['over'] is not None and odds['under'] is not None:
-        #             sum_inverses = (1 / odds['over']) + (1 / odds['under'])
-        #             if sum_inverses < 1:
-        #                 # Calculate stakes
-        #                 total_stake = 10000
-        #                 over_stake = total_stake / odds['over'] / sum_inverses
-        #                 under_stake = total_stake / odds['under'] / sum_inverses
-        #                 profit = total_stake * (1 - sum_inverses)
-        #                 arbitrage_opportunities.append({
-        #                     'event_id': event['event_id'],
-        #                     'sport_key': event['sport_key'],
-        #                     'home_team': event['home_team'],
-        #                     'away_team': event['away_team'],
-        #                     'market': market_key,
-        #                     'point': point,
-        #                     'best_odds': odds,
-        #                     'sum_inverses': sum_inverses,
-        #                     'over_stake': over_stake,
-        #                     'under_stake': under_stake,
-        #                     'profit': profit
-        #                 })
+            for point, odds in market_odds.items():
+                if odds['over'] is not None and odds['under'] is not None:
+                    sum_inverses = (1 / odds['over']) + (1 / odds['under'])
+                    if sum_inverses < 1:
+                        print(f"Arbitrage opportunity found for point {point}:")
+                        print(f"  - Best 'over' odds: {odds['over']}")
+                        print(f"  - Best 'under' odds: {odds['under']}")
+                        # Calculate stakes
+                        total_stake = 10000
+                        over_stake = total_stake / odds['over'] / sum_inverses
+                        under_stake = total_stake / odds['under'] / sum_inverses
+                        profit = total_stake * (1 - sum_inverses)
+                        print(f"  - Total stake: {total_stake}")
+                        print(f"  - Over stake: {over_stake}")
+                        print(f"  - Under stake: {under_stake}")
+                        print(f"  - Profit: {profit}")
+                        arbitrage_opportunities.append({
+                            'event_id': event['event_id'],
+                            'sport_key': event['sport_key'],
+                            'home_team': event['home_team'],
+                            'away_team': event['away_team'],
+                            'market': market_key,
+                            'point': point,
+                            'best_odds': odds,
+                            'sum_inverses': sum_inverses,
+                            'over_stake': over_stake,
+                            'under_stake': under_stake,
+                            'profit': profit
+                        })
 
     # Sort by profit in descending order and take the top 5
     arbitrage_opportunities = sorted(arbitrage_opportunities, key=lambda x: x['profit'], reverse=True)[:5]
