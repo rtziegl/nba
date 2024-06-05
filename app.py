@@ -47,12 +47,8 @@ def index():
 #----------- SCHEDULED JOBS -------------#
 
 def scheduled_job():
-    print("HELLO SCHEDULE")
+    print("ONLY ONE SCHEDULE")
     pass
-
-scheduler = BackgroundScheduler()
-scheduler.add_job(scheduled_job, 'interval', minutes=1)
-scheduler.start()
 
 
 
@@ -704,4 +700,10 @@ client = MongoClient(uri, tlsCAFile=certifi.where())
 db = client["nba"]
 
 if __name__ == '__main__':
+    
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(scheduled_job, 'interval', minutes=1)
+    scheduler.start()
+    
+    
     app.run(debug=True, port=8000)  # Run on port 8000 instead of the default 5000
