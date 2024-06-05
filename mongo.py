@@ -1205,14 +1205,6 @@ try:
     # # except Exception as e:
     # #     print(f"Error updating team rank data: {e}")
     
-    today_date = datetime.now()
-    collection = db["arbitrage"]
-    collection.delete_many({})
-    document = {
-        "timestamp": today_date
-    }
-    collection.insert_one(document)  
-
     client.close()
 
 except Exception as e:

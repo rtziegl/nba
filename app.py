@@ -4,10 +4,10 @@ from nba_api.stats.endpoints import commonallplayers
 from nba_api.stats.static import players, teams
 from nba_api.stats.endpoints import playergamelog
 
-from datetime import datetime
-from flask import Flask, jsonify, request, render_template
+from datetime import datetime, timezone
+from flask import Flask, jsonify, request, render_template, session
 from flask_cors import CORS
-
+from flask_session import Session 
 from pymongo import MongoClient, DESCENDING
 from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
@@ -23,14 +23,39 @@ import string
 import secrets
 from datetime import datetime, timedelta
 
+from apscheduler.schedulers.background import BackgroundScheduler
+
+
 from bson.json_util import dumps 
 
 app = Flask(__name__)
 CORS(app)
 
+app.secret_key = 'your_secret_key'  
+# Configure session to use filesystem (instead of signed cookies)
+app.config['SESSION_TYPE'] = 'filesystem'
+Session(app)
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+
+
+
+#----------- SCHEDULED JOBS -------------#
+
+def scheduled_job():
+    print("HELLO SCHEDULE")
+    pass
+
+scheduler = BackgroundScheduler()
+scheduler.add_job(scheduled_job, 'interval', minutes=1)
+scheduler.start()
+
+
+
 
 
 
@@ -609,17 +634,33 @@ def get_golden_goose():
 
 
 #-------- ARBITRAGE ----------
-@app.route('/arbitrage', methods=['GET'])
-def get_arbitrage():
-    arbitrage = get_data_from_db_general('arbitrage')
-    return jsonify(arbitrage)
 
-@app.route('/update-timestamp', methods=['POST'])
-def update_timestamp():
-    # Update the timestamp to the current time
-    new_timestamp = datetime.now()
-    db.arbitrage.update_one({}, {'$set': {'timestamp': new_timestamp}})
-    return jsonify({'success': True})  
+@app.route('/start_countdown', methods=['POST'])
+def start_countdown():
+    # Calculate the end_timer timestamp using timezone-aware datetime
+    end_timer = datetime.now(timezone.utc) + timedelta(minutes=1)
+    # Store the end_timer and button_used flag in the session
+    session['end_timer'] = end_timer.isoformat()
+    session['button_used'] = True
+    # Return the end_timer to the client
+    return jsonify({'end_timer': end_timer.isoformat(), 'button_used': False})
+
+@app.route('/check_timer', methods=['GET'])
+def check_timer():
+    # Check the current state of the timer using session
+    if 'button_used' in session:
+        # Check if the timer has expired
+        if datetime.now(timezone.utc) > datetime.fromisoformat(session['end_timer']):
+            # Reset the session if the timer has expired
+            session.pop('end_timer', None)
+            session.pop('button_used', None)
+            return jsonify({'button_used': False})
+        else:
+            # Return the existing end_timer and button_used state
+            return jsonify({'end_timer': session['end_timer'], 'button_used': True})
+    else:
+        # If no timer is found in the session, return button_used as False
+        return jsonify({'button_used': False})
     
 def get_data_from_collection(collection_name):
     collection = db[collection_name]
@@ -655,7 +696,7 @@ def sanitize_string(value):
 load_dotenv()
 
 # Retrieve the MongoDB Atlas URI from the environment
-uri = os.getenv("MONGODB_URI_END") # currently changed from end user for post of timestamp
+uri = os.getenv("MONGODB_URI") # currently changed from end user for post of timestamp
 
 # Create a MongoClient instance
 client = MongoClient(uri, tlsCAFile=certifi.where())
@@ -663,4 +704,4 @@ client = MongoClient(uri, tlsCAFile=certifi.where())
 db = client["nba"]
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=8000)  # Run on port 8000 instead of the default 5000

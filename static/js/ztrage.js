@@ -1,55 +1,62 @@
-// document.addEventListener('DOMContentLoaded', function() {
-//     let interval; // Declare interval outside to clear it later
+document.addEventListener('DOMContentLoaded', function() {
+    // Check the timer state on page load
+    fetch('/check_timer')
+    .then(response => response.json())
+    .then(data => {
+        if (data.button_used) {
+            // Disable the button if it has been used
+            document.getElementById('startButton').disabled = true;
+            // Continue the countdown
+            startCountdown(new Date(data.end_timer));
+        }
+    });
+});
 
-//     // Function to start the countdown
-//     function startCountdown() {
-//         fetch('/arbitrage')
-//             .then(response => response.json())
-//             .then(data => {
-//                 const timestamp = new Date(data[0].timestamp);
-//                 const endTime = new Date(timestamp.getTime() + 60000); // One minute after the timestamp
-//                 updateCountdown(endTime);
-//             })
-//             .catch(error => console.error('Error fetching player data:', error));
-//     // 
 
-//     // Function to update the countdown every second
-//     function updateCountdown(endTime) {
-//         const countdownElement = document.getElementById('countdown');
-//         clearInterval(interval); // Clear any existing intervals
-//         interval = setInterval(function() {
-//             const now = new Date();
-//             const timeLeft = endTime - now;
 
-//             if (timeLeft <= 0) {
-//                 clearInterval(interval);
-//                 countdownElement.textContent = 'Time is up!';
-//                 // Wait for a minute before updating the timestamp
-//                 setTimeout(updateTimestamp, 60000); // Wait for 60 seconds
-//             } else {
-//                 const seconds = Math.floor((timeLeft / 1000) % 60);
-//                 const minutes = Math.floor((timeLeft / 1000 / 60) % 60);
-//                 countdownElement.textContent = `Time left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-//             }
-//         }, 1000);
-//     }
+document.getElementById('startButton').addEventListener('click', function() {
+    this.disabled = true; // Disable the button after it's clicked
 
-//     // Function to update the timestamp
-//     function updateTimestamp() {
-//         fetch('/update-timestamp', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify({}) // You can pass any data if needed
-//         })
-//             .then(response => response.json())
-//             .then(data => {
-//                 startCountdown(); // Fetch new timestamp and restart countdown
-//             })
-//             .catch(error => console.error('Error updating timestamp:', error));
-//     }
-    
-//     // Start the countdown
-//     startCountdown();
-// });
+    // Make an AJAX POST request to the Flask endpoint
+    fetch('/start_countdown', {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Start the countdown with the end_timer from the server
+        startCountdown(new Date(data.end_timer));
+    });
+});
+
+function startCountdown(endTime) {
+    var interval = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = endTime - now;
+        console.log(distance)
+        
+        // Calculate and display the countdown
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById('timerDisplay').style.color = "#ADD8E6";
+        document.getElementById('timerDisplay').innerHTML = "Search available in "+ seconds + "s";
+        
+        // If the countdown is finished
+        if (distance < 0) {
+            clearInterval(interval);
+            document.getElementById('timerDisplay').style.color = "#cdffcd";
+            document.getElementById('timerDisplay').innerHTML = "Search Ready";
+            
+            document.getElementById('startButton').disabled = false;
+            // Optionally, handle the expired state by making a new request to the server
+            // fetch('/start_countdown', {
+            //     method: 'POST'
+            // })
+            // .then(response => response.json())
+            // .then(data => {
+            //     // Start the countdown again with the new end_timer
+            //     startCountdown(new Date(data.end_timer));
+            // });
+        }
+    }, 1000);
+}
+
