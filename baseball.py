@@ -17,7 +17,7 @@ DATE_FORMAT = 'iso'
 DESIRED_BOOKMAKERS = [
     'betonlineag', 'bovada', 'draftkings', 'fanduel', 
     'betmgm', 'mybookieag', 'betus', 'espnbet', 'betparx', 'hardrockbet',
-    'betrivers', 'pointsbetus'
+    'betrivers', 'pointsbetus', 'bet365'
 ]
 
 def get_in_season_sports():

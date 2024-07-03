@@ -12,7 +12,7 @@ DATE_FORMAT = 'iso'
 DESIRED_BOOKMAKERS = [
     'betonlineag', 'bovada', 'draftkings', 'fanduel', 
     'betmgm', 'mybookieag', 'betus', 'espnbet', 'betparx', 'hardrockbet',
-    'betrivers', 'pointsbetus', 'pinnacle'
+    'betrivers', 'pointsbetus'
 ]
 
 def get_in_season_sports():
@@ -85,11 +85,11 @@ def fetch_odds_for_sports(sports):
                 sport_key = event['sport_key']
                 home_team = event['home_team']
                 away_team = event['away_team']
-                commence_time = datetime.fromisoformat(event['commence_time'][:-1]).replace(tzinfo=timezone.utc)
+                # commence_time = datetime.fromisoformat(event['commence_time'][:-1]).replace(tzinfo=timezone.utc)
 
-                # Filter out events that have already commenced
-                if commence_time < datetime.now(timezone.utc):
-                    continue
+                # # Filter out events that have already commenced
+                # if commence_time < datetime.now(timezone.utc):
+                #     continue
 
                 event_data = {
                     'event_id': event_id,

@@ -50,7 +50,7 @@ DATE_FORMAT = 'iso'
 DESIRED_BOOKMAKERS = [
     'betonlineag', 'bovada', 'draftkings', 'fanduel', 
     'betmgm', 'mybookieag', 'betus', 'espnbet', 'betparx', 'hardrockbet',
-    'betrivers', 'pointsbetus', 'pinnacle'
+    'betrivers', 'pointsbetus', 'pinnacle', 'bet365'
 ]
 
 
